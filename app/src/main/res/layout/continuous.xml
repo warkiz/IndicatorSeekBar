@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.warkiz.indicatorseekbar.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/title_text_style"
+            android:text="continuous"/>
+
+        <TextView
+            style="@style/subtitle_text_style"
+            android:text="1. max = 80; min = 20; show_indicator"/>
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isb_max="80"
+            app:isb_min="20"
+            app:isb_progress="50"
+            app:isb_show_indicator="true"/>
+
+        <TextView
+            style="@style/subtitle_text_style"
+            android:text="2. max = 78.8; min = 10.2"/>
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isb_max="78.8"
+            app:isb_min="10.2"
+            app:isb_progress="50.3"
+            app:isb_progress_value_float="true"
+            app:isb_show_indicator="true"/>
+
+        <TextView
+            style="@style/subtitle_text_style"
+            android:text="3. seek_bar_type = continuous_texts_ends; change color"/>
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isb_indicator_color="@color/color_green"
+            app:isb_indicator_text_color="#000000"
+            app:isb_max="880"
+            app:isb_progress="74"
+            app:isb_seek_bar_type="continuous_texts_ends"
+            app:isb_show_indicator="true"
+            app:isb_text_color="@color/color_red"
+            app:isb_thumb_color="@color/color_blue"
+            app:isb_track_background_bar_color="@color/color_pink"
+            app:isb_track_progress_bar_color="@color/color_blue"/>
+
+        <TextView
+            style="@style/subtitle_text_style"
+            android:text="4. thumb_progress_stay , change size"/>
+
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:isb_indicator_text_color="@color/color_blue"
+            app:isb_indicator_text_size="19dp"
+            app:isb_indicator_type="rounded_corners"
+            app:isb_progress="46"
+            app:isb_seek_bar_type="continuous"
+            app:isb_show_indicator="true"
+            app:isb_text_size="18sp"
+            app:isb_thumb_color="@color/color_pink"
+            app:isb_thumb_progress_stay="true"
+            app:isb_thumb_width="22dp"
+            app:isb_track_background_bar_color="@color/color_gray"
+            app:isb_track_progress_bar_color="@color/color_pink"
+            app:isb_track_progress_bar_size="4dp"
+            app:isb_track_rounded_corners="false"/>
+
+        <TextView
+            style="@style/subtitle_text_style"
+            android:text="5. track_rounded_corners; seekChangeListener"/>
+
+        <TextView
+            android:id="@+id/continuous_progress"
+            style="@style/des_text_style"
+            android:text="progress:59.3"/>
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:id="@+id/continuous"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isb_max="100.0"
+            app:isb_min="0.0"
+            app:isb_progress="59.3"
+            app:isb_progress_value_float="true"
+            app:isb_show_indicator="true"
+            app:isb_text_color="@color/color_blue"
+            app:isb_thumb_color="@color/color_blue"
+            app:isb_thumb_progress_stay="true"
+            app:isb_track_background_bar_color="@color/color_green"
+            app:isb_track_progress_bar_color="@color/color_blue"
+            app:isb_track_progress_bar_size="4dp"
+            app:isb_track_rounded_corners="false"/>
+    </LinearLayout>
+
+</ScrollView>

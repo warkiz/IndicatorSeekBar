@@ -1,0 +1,50 @@
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'indicatorseekbar'
+
+    publishedGroupId = 'com.github.warkiz.widget'
+    libraryName = 'IndicatorSeekbar'
+    artifact = 'indicatorseekbar'
+
+    libraryDescription = 'A deeply customized SeekBar on Android.'
+
+    siteUrl = 'https://github.com/warkiz/IndicatorSeekBar'
+    gitUrl = 'https://github.com/warkiz/IndicatorSeekBar.git'
+
+    libraryVersion = '1.0.2'
+
+    developerId = 'warkiz'
+    developerName = 'Guangquan chuong'
+    developerEmail = 'warkiz4j@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.1"
+
+    defaultConfig {
+        minSdkVersion 7
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    provided 'com.android.support:appcompat-v7:25.3.1'
+}
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

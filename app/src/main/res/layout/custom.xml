@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.warkiz.indicatorseekbar.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/title_text_style"
+            android:text="custom"/>
+
+        <TextView
+            style="@style/subtitle_text_style"
+            android:text="1. custom thumb drawable"/>
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isb_show_indicator="true"
+            app:isb_thumb_drawable="@drawable/thumb_custom"/>
+
+        <TextView
+            style="@style/subtitle_text_style"
+            android:text="2. custom tick drawable"/>
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isb_seek_bar_type="discrete_ticks_texts"
+            app:isb_show_indicator="true"
+            app:isb_tick_drawable="@drawable/tick_custom"
+            app:isb_tick_num="7"/>
+
+        <TextView
+            style="@style/subtitle_text_style"
+            android:text="3. custom top content view for indicator"/>
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isb_indicator_custom_top_content_layout="@layout/custom_top_content_view_rect"
+            app:isb_seek_bar_type="discrete_ticks_texts"
+            app:isb_show_indicator="true"
+            app:isb_tick_num="7"/>
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:isb_indicator_custom_top_content_layout="@layout/custom_top_content_view_round"
+            app:isb_indicator_type="rounded_corners"
+            app:isb_progress="67"
+            app:isb_seek_bar_type="discrete_ticks_texts"
+            app:isb_show_indicator="true"
+            app:isb_text_color="@color/color_blue"
+            app:isb_tick_num="7"
+            app:isb_tick_on_thumb_left_hide="true"
+            app:isb_tick_type="none"/>
+
+        <TextView
+            style="@style/subtitle_text_style"
+            android:text="4. custom indicator"/>
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:isb_indicator_custom_layout="@layout/custom_indicator_rec"
+            app:isb_indicator_type="custom"
+            app:isb_show_indicator="true"/>
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:isb_indicator_custom_layout="@layout/custom_indicator_oval"
+            app:isb_indicator_type="custom"
+            app:isb_seek_bar_type="discrete_ticks_texts"
+            app:isb_show_indicator="true"
+            app:isb_tick_num="5"/>
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:isb_indicator_custom_layout="@layout/custom_indicator_red"
+            app:isb_indicator_type="custom"
+            app:isb_seek_bar_type="discrete_ticks_texts_ends"
+            app:isb_show_indicator="true"/>
+
+
+    </LinearLayout>
+
+</ScrollView>

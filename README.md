@@ -1,4 +1,4 @@
-#
+#IndicatorSeekBar
 A deeply customized SeekBar on Android, which can be changed the size / color / thumbDrawable / tickDrawable / textsBelowTick / indicator by user, can show an indicator view with progress above SeekBar when seeking.
 ###1. ScreenShot
 

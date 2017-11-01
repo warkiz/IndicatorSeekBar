@@ -15,11 +15,11 @@
 
         <include layout="@layout/continuous"/>
 
-       <!-- <include layout="@layout/discrete"/>
+        <include layout="@layout/discrete"/>
 
         <include layout="@layout/custom"/>
 
-        <include layout="@layout/java_build"/>-->
+        <include layout="@layout/java_build"/>
 
     </LinearLayout>
 

@@ -95,7 +95,6 @@
             app:isb_seek_bar_type="discrete_ticks_texts_ends"
             app:isb_show_indicator="true"/>
 
-
     </LinearLayout>
 
 </ScrollView>

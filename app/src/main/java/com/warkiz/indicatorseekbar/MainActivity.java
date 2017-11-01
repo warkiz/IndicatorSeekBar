@@ -1,13 +1,18 @@
 package com.warkiz.indicatorseekbar;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.warkiz.widget.IndicatorSeekBar;
+import com.warkiz.widget.IndicatorSeekBarType;
+import com.warkiz.widget.IndicatorType;
+import com.warkiz.widget.TickType;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final TextView continuousTv = (TextView) findViewById(R.id.continuous_progress);
-//        final TextView discreteTv = (TextView) findViewById(R.id.discrete_progress);
-//        final TextView discreteBlockTv = (TextView) findViewById(R.id.discrete_block);
-//        final LinearLayout javaBuildContainer = (LinearLayout) findViewById(R.id.java_build);
+        final TextView discreteTv = (TextView) findViewById(R.id.discrete_progress);
+        final TextView discreteBlockTv = (TextView) findViewById(R.id.discrete_block);
+        final LinearLayout javaBuildContainer = (LinearLayout) findViewById(R.id.java_build);
 
         IndicatorSeekBar continuous = (IndicatorSeekBar) findViewById(R.id.continuous);
         continuous.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
@@ -46,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-      /*  IndicatorSeekBar discrete = (IndicatorSeekBar) findViewById(R.id.discrete);
+        IndicatorSeekBar discrete = (IndicatorSeekBar) findViewById(R.id.discrete);
         discrete.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -104,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
         //DISCRETE_TICKS_TEXTS_ENDS
         IndicatorSeekBar indicatorSeekBar5 = new IndicatorSeekBar.Builder(this).setSeekBarType(IndicatorSeekBarType.DISCRETE_TICKS_TEXTS_ENDS).setLeftEndText("LAST").setIndicatorCustomLayout(R.layout.custom_indicator_blue).setRightEndText("NEXT").setTickDrawable(getResources().getDrawable(R.drawable.thumb_rec_0_corner)).setThumbDrawable(R.drawable.thumb_rec_0_corner_big).setTextColor(Color.parseColor("#0000FF")).showIndicator(true).build();
         javaBuildContainer.addView(indicatorSeekBar5);
-*/
     }
 
     @NonNull

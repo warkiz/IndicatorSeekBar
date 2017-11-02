@@ -21,7 +21,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +32,6 @@ import java.util.List;
 public class IndicatorSeekBar extends View {
     private static final int GAP_BETWEEN_SEEK_BAR_AND_BELOW_TEXT = 3;
     private static final String INSTANCE_STATE_KEY = "isb_instance_state";
-    private static final String PARAMS_KEY = "isb_params";
     private BuilderParams p;
     private float mTickRadius;
     private Indicator mIndicator;
@@ -58,7 +56,6 @@ public class IndicatorSeekBar extends View {
     private boolean mFirstDraw = true;
     private boolean mIsTouching;
     private float mThumbRadius;
-    private Builder mBuilder;
     private OnSeekBarChangeListener mListener;
     private float lastProgress;
     private float mFaultTolerance = -1;
@@ -584,7 +581,7 @@ public class IndicatorSeekBar extends View {
     protected Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
         bundle.putParcelable(INSTANCE_STATE_KEY, super.onSaveInstanceState());
-        bundle.putSerializable(PARAMS_KEY, p);
+        bundle.putFloat("isb_progress", p.mProgress);
         return bundle;
     }
 
@@ -592,7 +589,7 @@ public class IndicatorSeekBar extends View {
     protected void onRestoreInstanceState(Parcelable state) {
         if (state instanceof Bundle) {
             Bundle bundle = (Bundle) state;
-            p = (BuilderParams) bundle.getSerializable(PARAMS_KEY);
+            p.mProgress = bundle.getFloat("isb_progress");
             super.onRestoreInstanceState(bundle.getParcelable(INSTANCE_STATE_KEY));
             return;
         }
@@ -813,13 +810,6 @@ public class IndicatorSeekBar extends View {
     }
 
     /**
-     * return the seek bar build params object.
-     */
-    public Builder getBuilder() {
-        return mBuilder;
-    }
-
-    /**
      * set the seek bar build params . not null.
      *
      * @param p BuilderParams
@@ -846,8 +836,8 @@ public class IndicatorSeekBar extends View {
      *
      * @param textArray
      */
-    public void setTextArray(@ArrayRes int textArray) {
-        this.p.mTextArray = mContext.getResources().getStringArray(textArray);
+    public void setTextArray(@NonNull CharSequence[] textArray) {
+        this.p.mTextArray = textArray;
         invalidate();
     }
 
@@ -856,8 +846,8 @@ public class IndicatorSeekBar extends View {
      *
      * @param textArray
      */
-    public void setTextArray(@NonNull CharSequence[] textArray) {
-        this.p.mTextArray = textArray;
+    public void setTextArray(@ArrayRes int textArray) {
+        this.p.mTextArray = mContext.getResources().getStringArray(textArray);
         invalidate();
     }
 
@@ -918,7 +908,7 @@ public class IndicatorSeekBar extends View {
         void onStopTrackingTouch(IndicatorSeekBar seekBar);
     }
 
-    public static class Builder implements Serializable {
+    public static class Builder {
         BuilderParams p;
 
         public Builder(Context context) {

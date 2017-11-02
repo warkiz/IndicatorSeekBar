@@ -1,11 +1,14 @@
 package com.warkiz.indicatorseekbar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,6 +16,11 @@ import com.warkiz.widget.IndicatorSeekBar;
 import com.warkiz.widget.IndicatorSeekBarType;
 import com.warkiz.widget.IndicatorType;
 import com.warkiz.widget.TickType;
+
+/**
+ * created by ZhuangGuangquan on 2017/9/6
+ */
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -109,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
         //DISCRETE_TICKS_TEXTS_ENDS
         IndicatorSeekBar indicatorSeekBar5 = new IndicatorSeekBar.Builder(this).setSeekBarType(IndicatorSeekBarType.DISCRETE_TICKS_TEXTS_ENDS).setLeftEndText("LAST").setIndicatorCustomLayout(R.layout.custom_indicator_blue).setRightEndText("NEXT").setTickDrawable(getResources().getDrawable(R.drawable.thumb_rec_0_corner)).setThumbDrawable(R.drawable.thumb_rec_0_corner_big).setTextColor(Color.parseColor("#0000FF")).showIndicator(true).build();
         javaBuildContainer.addView(indicatorSeekBar5);
+
     }
 
     @NonNull
@@ -117,6 +126,23 @@ public class MainActivity extends AppCompatActivity {
         int padding = dp2px(this, 16);
         textView.setPadding(padding, padding, padding, 0);
         return textView;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.action_home) {
+            startActivity(new Intent(MainActivity.this, IndicatorSeekBarHomeActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 

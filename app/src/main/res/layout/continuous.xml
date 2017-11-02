@@ -108,6 +108,7 @@
             app:isb_track_progress_bar_color="@color/color_blue"
             app:isb_track_progress_bar_size="4dp"
             app:isb_track_rounded_corners="false"/>
+
     </LinearLayout>
 
 </ScrollView>

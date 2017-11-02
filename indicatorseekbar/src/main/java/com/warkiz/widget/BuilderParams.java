@@ -5,14 +5,12 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
-import java.io.Serializable;
-
 /**
  * created by ZhuangGuangquan on 2017/9/9
  */
 
 
-class BuilderParams implements Serializable {
+class BuilderParams {
 
     Context mContext;
     //seekBar
@@ -65,5 +63,4 @@ class BuilderParams implements Serializable {
         mTextSize = IndicatorUtils.sp2px(mContext, 13);
         mThumbSize = IndicatorUtils.dp2px(mContext, 18);
     }
-
 }

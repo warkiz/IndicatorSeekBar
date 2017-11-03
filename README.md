@@ -11,7 +11,7 @@ A deeply customized SeekBar on Android, which can be changed the `size` / `color
 ### Step 1. build.gradle at module :
 ```groovy
 dependencies {
-	compile 'com.github.warkiz.widget:indicatorseekbar:1.0.3'
+	compile 'com.github.warkiz.widget:indicatorseekbar:1.0.4'
 }
 ```
 ### Step 2. in xml or class file:
@@ -27,7 +27,6 @@ dependencies {
 	app:isb_progress_value_float="true"
 	app:isb_show_indicator="true"/>
 ```
-
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
 	android:layout_width="match_parent"
@@ -61,11 +60,11 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 				.setSeekBarType(IndicatorSeekBarType.DISCRETE_TICKS)
 				.setTickType(TickType.OVAL)
 				.setTickColor(Color.parseColor("#0000FF"))
-				.setTickSize(8)
+				.setTickSize(8)//dp size
 				.setTickNum(8)
-				.setBackgroundTrackSize(2)
+				.setBackgroundTrackSize(2)//dp size
 				.setBackgroundTrackColor(Color.parseColor("#666666"))
-				.setProgressTrackSize(3)
+				.setProgressTrackSize(3)//dp size
 				.setProgressTrackColor(Color.parseColor("#0000FF"))
 				.showIndicator(true)
 				.setIndicatorType(IndicatorType.SQUARE_CORNERS)
@@ -85,7 +84,7 @@ IndicatorSeekBar has provided 2 serious seekbar type:
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
 	app:isb_seek_bar_type="continuous"
-	.../>
+       .../>
 ```
 
 ### 3.2 custom color/size
@@ -105,19 +104,19 @@ The ticks on the seekbar both end sides or on thumb left can be hid.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
 	app:isb_tick_both_end_hide="true"
-	.../>
+       .../>
 
 
 <com.warkiz.widget.IndicatorSeekBar
 	app:isb_tick_on_thumb_left_hide="true"
-	.../>
+       .../>
 ```	
 ### 3.4 change the seekbar corners shape
  Seekbar's track's is round corners default , could be set to square.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
 	app:isb_track_rounded_corners="false"
-	.../>
+       .../>
 ```	
 
 ### 3.5 seeking to show progress text below thumb.
@@ -126,11 +125,7 @@ When the seekabr type is `CONTINUOUS` or `DISCRETE_TICKS` , you can set the prog
 <com.warkiz.widget.IndicatorSeekBar
 	app:isb_seek_bar_type="continuous"//discrete_ticks
 	app:isb_thumb_progress_stay="true"
-	.../>
-```
-	or
-```Java
-indicatorSeekBar.setTextArray(R.array.tick_below_text_length_5);
+       .../>
 ```
 
 ### 3.6 custom 2 below texts on both ends of seekbar
@@ -140,7 +135,7 @@ When the seekabr type is `CONTINUOUS_TEXTS_ENDS` or `DISCRETE_TICKS_TEXTS_ENDS` 
 	app:isb_seek_bar_type="continuous_texts_ends"//discrete_ticks_texts_ends
 	app:isb_text_left_end="last"
 	app:isb_text_right_end="next"
-	.../>
+       .../>
 ```
 
 ### 3.7 custom texts below tick
@@ -149,7 +144,7 @@ When the seekabr type is `DISCRETE_TICKS_TEXTS` , you can custom the texts below
 <com.warkiz.widget.IndicatorSeekBar
 	app:isb_text_array="@array/texts_below_tick_length_5"
     	app:isb_tick_num="5"
-	.../>
+       .../>
 ```
 	or
 ```Java
@@ -201,29 +196,31 @@ indicatorSeekBar.getIndicator().setIndicatorTopContentLayout(R.layout.top_conten
 ```Java
 indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
 
-@Override
-public void onProgressChanged(IndicatorSeekBar seekBar, int progress, float progressFloat, boolean fromUserTouch) {
+	@Override
+	public void onProgressChanged(IndicatorSeekBar seekBar, int progress, float progressFloat, boolean fromUserTouch) {
 
-}
+	}
 
-@Override
-public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch) {
-    //only callback on `discrete serious` seekbar type.
-}
+	@Override
+	public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch) {
+	    //only callback on discrete serious seekbar type.
+	}
 
-@Override
-public void onStartTrackingTouch(IndicatorSeekBar seekBar, int thumbPosOnTick) {
-}
+	@Override
+	public void onStartTrackingTouch(IndicatorSeekBar seekBar, int thumbPosOnTick) {
+	}
 
-@Override
-public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
+	@Override
+	public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
 
-}
+	}
 });
 ```
 onSectionChanged: when the seekbar type is `discrete serious`, this callback work to get the tick position and text. `continuous serious` will not work.
 ## 5. Proguard
-	-keep class com.warkiz.widget.** { *; }
+```Java
+-keep class com.warkiz.widget.** { *; }
+```
 
 ## 6. Attributes
 ```xml
@@ -291,4 +288,6 @@ Apache License 2.0
 Feel free to contact me if you have any trouble on this project.
 
 1. Create an issue.
-2. Send mail to me, "warkiz".concat("4j").concat("@").concat("gmail.com")
+2. Sina weibo：http://weibo.com/warkiz
+3. Send mail to me, "warkiz".concat("4j").concat("@").concat("gmail.com")
+

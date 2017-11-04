@@ -1,5 +1,5 @@
 # IndicatorSeekBar
-[Readme_中文文档.md](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_CN.md)  |   READMWE_ENGLIST.md
+[README_中文文档.md](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_CN.md)  |   READMWE_ENGLISH.md
 
 A deeply customized SeekBar on Android, which can be changed the `size` / `color` / `thumbDrawable` / `tickDrawable` / `textsBelowTick` / `indicator` by user, can show an indicator view with progress above SeekBar when seeking.
 

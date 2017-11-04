@@ -21,7 +21,7 @@
             <!-- the attr:isb_indicator_custom_layout should be called to give a indicator view when you select custom indicator type -->
             <enum name="custom" value="2"/>
         </attr>
-        <attr name="isb_show_indicator" format="boolean"/><!-- show indicator or not when seeking, default false-->
+        <attr name="isb_show_indicator" format="boolean"/><!-- show indicator or not when seeking, default true-->
         <attr name="isb_indicator_color" format="color|reference"/><!-- set indicator's color, default #FF4081-->
         <attr name="isb_indicator_custom_layout" format="reference"/><!-- when you set indicator type to custom , you can set this layout for indicator view you want-->
         <attr name="isb_indicator_custom_top_content_layout" format="reference"/> <!--you can set this layout for indicator top view you want, no effect arrow below indicator, effect on indicator type : square_corners or rounded_corners-->

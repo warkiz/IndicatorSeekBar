@@ -13,10 +13,6 @@
         android:orientation="vertical">
 
         <TextView
-            style="@style/title_text_style"
-            android:text="discrete_2"/>
-
-        <TextView
             style="@style/subtitle_text_style"
             android:text="1. seek_bar_type=discrete_ticks; tick_num = 7"/>
 

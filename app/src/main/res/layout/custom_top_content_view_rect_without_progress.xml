@@ -13,17 +13,12 @@
         android:layout_margin="4dp"
         android:src="@mipmap/ic_launcher"/>
 
+    <!--if you want to change this text by progress,
+    you can set the TextView's id to isb_progress.-->
     <TextView
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:text="I'm a customized top view Indicator."
-        android:textColor="#666"/>
-    <!--if you does not want to change this text by progress,
-            you can set the TextView's id to others(not isb_progress).-->
-    <TextView
-        android:id="@+id/isb_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="I'm a customized top view Indicator."
         android:textColor="#666"/>
 
 </LinearLayout>

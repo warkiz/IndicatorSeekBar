@@ -22,7 +22,7 @@ class BuilderParams {
     boolean mIsFloatProgress = false;
     //indicator
     int mIndicatorType = 0;
-    boolean mShowIndicator = false;
+    boolean mShowIndicator = true;
     int mIndicatorColor = Color.parseColor("#FF4081");
     int mIndicatorTextColor = Color.parseColor("#FFFFFF");
     int mIndicatorTextSize;

@@ -2,17 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-    <!--if you does not want to change this text by progress,
-         you can set the TextView's id to others(not isb_progress).-->
+    <!--if you want to change this text by progress,
+       you can set the TextView's id to isb_progress.-->
     <TextView
-        android:id="@+id/isb_progress"
+        android:id="@+id/text"
         android:layout_width="35dp"
         android:layout_height="44dp"
         android:background="@mipmap/indicator_bg_blue"
         android:gravity="center"
         android:maxLines="1"
         android:paddingBottom="8dp"
-        android:text="34"
+        android:text="text"
         android:textColor="#FFFFFF"
         android:textSize="12dp"/>
 

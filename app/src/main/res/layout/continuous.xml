@@ -13,10 +13,6 @@
         android:orientation="vertical">
 
         <TextView
-            style="@style/title_text_style"
-            android:text="continuous"/>
-
-        <TextView
             style="@style/subtitle_text_style"
             android:text="1. max = 80; min = 20; show_indicator"/>
 

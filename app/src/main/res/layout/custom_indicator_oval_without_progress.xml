@@ -3,16 +3,16 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@drawable/custom_indicator_bg_oval">
-    <!--if you does not want to change this text by progress,
-           you can set the TextView's id to others(not isb_progress).-->
+    <!--if you want to change this text by progress,
+      you can set the TextView's id to isb_progress.-->
     <TextView
-        android:id="@+id/isb_progress"
+        android:id="@+id/text"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:gravity="center"
         android:maxLines="1"
         android:padding="6dp"
-        android:text="34"
+        android:text="text"
         android:textColor="#FFFFFF"
         android:textSize="12dp"/>
 

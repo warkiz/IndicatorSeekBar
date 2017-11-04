@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.action_home) {
-            startActivity(new Intent(MainActivity.this, IndicatorSeekBarHomeActivity.class));
+            startActivity(new Intent(MainActivity.this, IndicatorHomeActivity.class));
             return true;
         }
 

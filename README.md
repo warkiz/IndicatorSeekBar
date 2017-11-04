@@ -77,7 +77,7 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 -------------------------
 ## 3. Abilities
 ### 3.1 multiple seekbar type
-IndicatorSeekBar has provided 2 serious seekbar type: 
+IndicatorSeekBar has provided 2 series seekbar type: 
 
 1. continous serious:  `CONTINUOUS`/  `CONTINUOUS_TEXTS_ENDS`.
 
@@ -206,7 +206,7 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 
 	@Override
 	public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch) {
-	    //only callback on discrete serious seekbar type.
+	    //only callback on discrete series seekbar type.
 	}
 
 	@Override
@@ -219,7 +219,7 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 	}
 });
 ```
-onSectionChanged: when the seekbar type is `discrete serious`, this callback work to get the tick position and text. `continuous serious` will not work.
+onSectionChanged: when the seekbar type is `discrete series`, this callback work to get the tick position and text. `continuous series` will not work.
 ## 5. Proguard
 ```Java
 -keep class com.warkiz.widget.** { *; }

@@ -6,12 +6,13 @@ A deeply customized SeekBar on Android, which can be changed the `size` / `color
 ## 1.ScreenShot
 
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/>
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
 
 ## 2. How to use
-### Step 1. build.gradle at module :
+### Step 1. build.gradle in module :
 ```groovy
 dependencies {
-	compile 'com.github.warkiz.widget:indicatorseekbar:1.0.4'
+	compile 'com.github.warkiz.widget:indicatorseekbar:1.0.6'
 }
 ```
 ### Step 2. in xml or class file:
@@ -178,6 +179,7 @@ IndicatorSeekbar provided 3 kinds of indicator type `ROUNDED_CORNERS` / `SQUARE_
 ```Java
 indicatorSeekBar.setCustomIndicator(R.layout.custom_indicator_blue);
 ```
+Attention: if want to show the custom indicator with a progress text when seeking , the indicator view should have a TextView which id is `isb_progress`. 
 
 ### 3.11 custom indicator's top content view
 When the indicator type is `ROUNDED_CORNERS` or `SQUARE_CORNERS` , you can set a custom indicator top content view.
@@ -191,7 +193,7 @@ When the indicator type is `ROUNDED_CORNERS` or `SQUARE_CORNERS` , you can set a
 ```Java
 indicatorSeekBar.getIndicator().setIndicatorTopContentLayout(R.layout.top_content_view);
 ```
-
+Attention: if want to show the custom indicator top content view with a progress text when seeking , the content view should have a TextView which id is `isb_progress`. 
 ## 4. Support listener
 ```Java
 indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
@@ -244,7 +246,7 @@ onSectionChanged: when the seekbar type is `discrete serious`, this callback wor
     <!-- the attr:isb_indicator_custom_layout should be called to give a indicator view when you select custom indicator type -->
     <enum name="custom" value="2"/>
 </attr>
-<attr name="isb_show_indicator" format="boolean"/><!-- show indicator or not when seeking, default false-->
+<attr name="isb_show_indicator" format="boolean"/><!-- show indicator or not when seeking, default true-->
 <attr name="isb_indicator_color" format="color|reference"/><!-- set indicator's color, default #FF4081-->
 <attr name="isb_indicator_custom_layout" format="reference"/><!-- when you set indicator type to custom , you can set this layout for indicator view you want-->
 <attr name="isb_indicator_custom_top_content_layout" format="reference"/> <!--you can set this layout for indicator top view you want, no effect arrow below indicator, effect on indicator type : square_corners or rounded_corners-->

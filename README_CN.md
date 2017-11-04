@@ -206,7 +206,7 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 
 	@Override
 	public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch) {
-	    //only callback on discrete serious seekbar type.
+	    //only callback on discrete series seekbar type.
 	}
 
 	@Override

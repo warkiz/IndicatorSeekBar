@@ -145,8 +145,8 @@ seekbar的两个端点的刻度或者滑块左边的刻度可以被隐藏。
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
 	app:isb_text_array="@array/texts_below_tick_length_5"
-    	app:isb_tick_num="5"
-       .../>
+    	app:isb_tick_num="5" //一般来说 , 文字数组的长度应该和刻度的数量相等
+       .../>
 ```
 	or
 ```Java
@@ -178,7 +178,7 @@ IndicatorSeekbar提供了3种指示器的类型： `ROUNDED_CORNERS` / `SQUARE_C
 ```
 	or
 ```Java
-indicatorSeekBar.setCustomIndicator(R.layout.custom_indicator_blue);
+indicatorSeekBar.setCustomIndicator(R.layout.indicator);
 ```
 注意：如果指示器需要显示进度，那么指示器必须要有一个TextView，而且其id必须为`isb_progress`.
 ### 3.11 自定义指示器顶部的内容
@@ -186,7 +186,7 @@ indicatorSeekBar.setCustomIndicator(R.layout.custom_indicator_blue);
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
 	 app:isb_indicator_type="rounded_corners"/square_corners
-	 app:isb_indicator_custom_top_content_layout="@layout/indicator"
+	 app:isb_indicator_custom_top_content_layout="@layout/top_content_view"
 	.../>
 ```
 	or

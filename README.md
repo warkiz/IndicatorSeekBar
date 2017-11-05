@@ -77,11 +77,11 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 -------------------------
 ## 3. Abilities
 ### 3.1 multiple seekbar type
-IndicatorSeekBar has provided 2 series seekbar type: 
+IndicatorSeekBar has provided 2 kinds of series seekbar type: 
 
-1. continous serious:  `CONTINUOUS`/  `CONTINUOUS_TEXTS_ENDS`.
+1. continous series:  `CONTINUOUS`/  `CONTINUOUS_TEXTS_ENDS`.
 
-2. discrete serious:  `DISCRETE_TICKS`/  `DISCRETE_TICKS_TEXTS`/  `DISCRETE_TICKS_TEXTS_ENDS`.
+2. discrete series:  `DISCRETE_TICKS`/  `DISCRETE_TICKS_TEXTS`/  `DISCRETE_TICKS_TEXTS_ENDS`.
 
 ```xml
 <com.warkiz.widget.IndicatorSeekBar

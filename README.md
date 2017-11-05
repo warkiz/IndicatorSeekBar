@@ -145,8 +145,8 @@ When the seekabr type is `DISCRETE_TICKS_TEXTS` , you can custom the texts below
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
 	app:isb_text_array="@array/texts_below_tick_length_5"
-    	app:isb_tick_num="5"
-       .../>
+    	app:isb_tick_num="5" // normally , array length should equals tick num.
+        .../>
 ```
 	or
 ```Java
@@ -178,7 +178,7 @@ IndicatorSeekbar provided 3 kinds of indicator type `ROUNDED_CORNERS` / `SQUARE_
 ```
 	or
 ```Java
-indicatorSeekBar.setCustomIndicator(R.layout.custom_indicator_blue);
+indicatorSeekBar.setCustomIndicator(R.layout.indicator);
 ```
 Attention: if want to show the custom indicator with a progress text when seeking , the indicator view should have a TextView which id is `isb_progress`. 
 
@@ -187,7 +187,7 @@ When the indicator type is `ROUNDED_CORNERS` or `SQUARE_CORNERS` , you can set a
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
 	 app:isb_indicator_type="rounded_corners"/square_corners
-	 app:isb_indicator_custom_top_content_layout="@layout/indicator"
+	 app:isb_indicator_custom_top_content_layout="@layout/top_content_view"
 	.../>
 ```
 	or

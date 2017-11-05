@@ -89,9 +89,9 @@ IndicatorSeekBar has provided 2 kinds of series seekbar type:
        .../>
 ```
 
-### 3.2 custom color/size
+### 3.2 customized color/size
 
-Below seekbar parts' color/size can be custom:
+Below seekbar parts' color/size can be customized:
 
 - background track
 - progress track
@@ -130,7 +130,7 @@ When the seekabr type is `CONTINUOUS` or `DISCRETE_TICKS` , you can set the prog
        .../>
 ```
 
-### 3.6 custom 2 below texts on both ends of seekbar
+### 3.6 customized 2 below texts on both ends of seekbar
 When the seekabr type is `CONTINUOUS_TEXTS_ENDS` or `DISCRETE_TICKS_TEXTS_ENDS` , you can set the left & right text.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -140,7 +140,7 @@ When the seekabr type is `CONTINUOUS_TEXTS_ENDS` or `DISCRETE_TICKS_TEXTS_ENDS` 
        .../>
 ```
 
-### 3.7 custom texts below tick
+### 3.7 customized texts below tick
 When the seekabr type is `DISCRETE_TICKS_TEXTS` , you can custom the texts below tick by an array, and the array's length should equals ticks num.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -153,14 +153,14 @@ When the seekabr type is `DISCRETE_TICKS_TEXTS` , you can custom the texts below
 indicatorSeekBar.setTextArray(R.array.texts_below_tick_length_5);
 ```
 
-### 3.8 custom thumb drawable
+### 3.8 customized thumb drawable
 Thumb can be replaced by a drawable:
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
 	app:isb_thumb_drawable="@mipmap/ic_launcher"
 	.../>
 ```
-### 3.9 custom tick drawable
+### 3.9 customized tick drawable
 Ticks can be replaced by a drawable:
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -168,7 +168,7 @@ Ticks can be replaced by a drawable:
 	.../>
 ```
 
-### 3.10 custom indicator
+### 3.10 customized indicator
 IndicatorSeekbar provided 3 kinds of indicator type `ROUNDED_CORNERS` / `SQUARE_CORNERS` / `CUSTOM`, when the indicator type is `CUSTOM` , you can set a custom indicator view.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -182,7 +182,7 @@ indicatorSeekBar.setCustomIndicator(R.layout.indicator);
 ```
 Attention: if want to show the custom indicator with a progress text when seeking , the indicator view should have a TextView which id is `isb_progress`. 
 
-### 3.11 custom indicator's top content view
+### 3.11 customized indicator's top content view
 When the indicator type is `ROUNDED_CORNERS` or `SQUARE_CORNERS` , you can set a custom indicator top content view.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar

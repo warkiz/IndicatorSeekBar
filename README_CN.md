@@ -76,7 +76,7 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 #####  更多使用方式请参考 [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk).
 -------------------------
 ## 3. 功能
-### 3.1 多种的SeeBar类型
+### 3.1 多种的SeekBar类型
 IndicatorSeekBar 提供了两种系列的类型: 
 
 1. 连续的滑动:  `CONTINUOUS`/  `CONTINUOUS_TEXTS_ENDS`.

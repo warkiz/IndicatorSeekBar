@@ -1,5 +1,5 @@
 # IndicatorSeekBar
-README_中文文档.md  | [  README_ENGLISH.md  here](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)
+README: 中文 | [ English ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)
 
 自定义SeekBar, 能改变尺寸、颜色、滑块图片、刻度图片、刻度文字和指示器，当滑动时会在SeekBar顶部显示带有进度的指示器。
 

@@ -95,13 +95,13 @@ IndicatorSeekBar 提供了两种系列的类型:
 
 seekbar以下部分的颜色或尺寸可以被自定义：
 
-- 背景条
-- 进度条
-- 刻度
-- 刻度文字
-- 滑块
-- 指示器
-- 指示器文字
+- 背景条 track_background_bar
+- 进度条 track_progress_bar
+- 刻度 tick
+- 刻度文字 text
+- 滑块 thumb
+- 指示器 indicator
+- 指示器文字 indicator_text
 
 ### 3.3 隐藏刻度tick
 seekbar的两个端点的刻度或者滑块左边的刻度可以被隐藏。

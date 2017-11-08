@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/warkiz/IndicatorSeekBar'
     gitUrl = 'https://github.com/warkiz/IndicatorSeekBar.git'
 
-    libraryVersion = '1.0.6'
+    libraryVersion = '1.0.9'
 
     developerId = 'warkiz'
     developerName = 'Guangquan chuong'
@@ -29,7 +29,7 @@ android {
     buildToolsVersion "26.0.1"
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 9
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"

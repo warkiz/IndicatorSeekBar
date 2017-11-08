@@ -15,7 +15,7 @@ README: 中文 | [ English ](https://github.com/warkiz/IndicatorSeekBar/blob/mas
 ###  1. 在app/build.gradle下:
 ```groovy
 dependencies {
-    compile 'com.github.warkiz.widget:indicatorseekbar:1.0.6'
+    compile 'com.github.warkiz.widget:indicatorseekbar:1.0.9'
 }
 ```
 ### 2. 在布局文件或java类中:

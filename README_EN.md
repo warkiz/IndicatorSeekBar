@@ -1,7 +1,7 @@
 # IndicatorSeekBar
 [![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9)
 
-README: [ 中文 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_CN.md)  |  English
+README: [ 中文 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)  |  English
 
 A deeply customized SeekBar on Android, which can be changed the `size` / `color` / `thumbDrawable` / `tickDrawable` / `textsBelowTick` / `indicator` by user, can show an indicator view with progress above SeekBar when seeking.
 
@@ -15,7 +15,7 @@ A deeply customized SeekBar on Android, which can be changed the `size` / `color
 ### 1. build.gradle in module :
 ```groovy
 dependencies {
-	compile 'com.github.warkiz.widget:indicatorseekbar:1.0.6'
+	compile 'com.github.warkiz.widget:indicatorseekbar:1.0.9'
 }
 ```
 ### 2. in xml or class file:

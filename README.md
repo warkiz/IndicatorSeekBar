@@ -1,7 +1,9 @@
 # IndicatorSeekBar
-README: 中文 | [ English ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)
+[![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9)
 
-自定义SeekBar, 能改变尺寸、颜色、滑块图片、刻度图片、刻度文字和指示器，当滑动时会在SeekBar顶部显示带有进度的指示器。
+README: 中文 | [ English ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_EN.md)
+
+自定义SeekBar, 能改变尺寸、颜色、滑块(thumb)图片、刻度(tick)图片、刻度文字(text)和气泡指示器(indicator)，当滑动时显示带有进度的指示器。
 
 ----------------
 ## 1.截图
@@ -13,43 +15,43 @@ README: 中文 | [ English ](https://github.com/warkiz/IndicatorSeekBar/blob/mas
 ###  1. 在app/build.gradle下:
 ```groovy
 dependencies {
-	compile 'com.github.warkiz.widget:indicatorseekbar:1.0.6'
+    compile 'com.github.warkiz.widget:indicatorseekbar:1.0.6'
 }
 ```
 ### 2. 在布局文件或java类中:
 #### xml
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:layout_marginTop="16dp"
-	app:isb_max="78.8"
-	app:isb_min="10.2"
-	app:isb_progress="50.3"
-	app:isb_progress_value_float="true"
-	app:isb_show_indicator="true"/>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    app:isb_max="78.8"
+    app:isb_min="10.2"
+    app:isb_progress="50.3"
+    app:isb_progress_value_float="true"
+    app:isb_show_indicator="true"/>
 ```
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	app:isb_indicator_custom_layout="@layout/custom_indicator"
-	app:isb_indicator_type="custom"
-	app:isb_max="189"
-	app:isb_min="23"
-	app:isb_progress="67"
-	app:isb_seek_bar_type="discrete_ticks_texts"
-	app:isb_show_indicator="true"
-	app:isb_text_array="@array/tick_below_text_length_9"
-	app:isb_text_color="@color/color_blue"
-	app:isb_thumb_width="18dp"
-	app:isb_tick_drawable="@mipmap/ic_launcher"
-	app:isb_tick_num="9"
-	app:isb_tick_on_thumb_left_hide="true"
-	app:isb_track_background_bar_color="#FF00"
-	app:isb_track_background_bar_size="2dp"
-	app:isb_track_progress_bar_color="#FF0000"
-	app:isb_track_progress_bar_size="5dp"/>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:isb_indicator_custom_layout="@layout/custom_indicator"
+    app:isb_indicator_type="custom"
+    app:isb_max="189"
+    app:isb_min="23"
+    app:isb_progress="67"
+    app:isb_seek_bar_type="discrete_ticks_texts"
+    app:isb_show_indicator="true"
+    app:isb_text_array="@array/tick_below_text_length_9"
+    app:isb_text_color="@color/color_blue"
+    app:isb_thumb_width="18dp"
+    app:isb_tick_drawable="@mipmap/ic_launcher"
+    app:isb_tick_num="9"
+    app:isb_tick_on_thumb_left_hide="true"
+    app:isb_track_background_bar_color="#FF00"
+    app:isb_track_background_bar_size="2dp"
+    app:isb_track_progress_bar_color="#FF0000"
+    app:isb_track_progress_bar_size="5dp"/>
 ```
 
 #### Java
@@ -79,14 +81,14 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 ### 3.1 多种的SeekBar类型
 IndicatorSeekBar 提供了两种系列的类型: 
 
-1. 连续的滑动:  `CONTINUOUS`/  `CONTINUOUS_TEXTS_ENDS`.
+1. 连续（continuous）的滑动:  `CONTINUOUS`/`CONTINUOUS_TEXTS_ENDS`.
 
-2. 非连续的滑动:  `DISCRETE_TICKS`/  `DISCRETE_TICKS_TEXTS`/  `DISCRETE_TICKS_TEXTS_ENDS`.
+2. 非连续（discrete）的滑动:  `DISCRETE_TICKS`/  `DISCRETE_TICKS_TEXTS`/  `DISCRETE_TICKS_TEXTS_ENDS`.
 
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_seek_bar_type="continuous"
-       .../>
+    app:isb_seek_bar_type="continuous"
+    .../>
 ```
 
 ### 3.2 自定义 颜色、尺寸
@@ -105,51 +107,50 @@ seekbar以下部分的颜色或尺寸可以被自定义：
 seekbar的两个端点的刻度或者滑块左边的刻度可以被隐藏。
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_tick_both_end_hide="true"
-       .../>
-
+    app:isb_tick_both_end_hide="true"
+    .../>
 
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_tick_on_thumb_left_hide="true"
-       .../>
+    app:isb_tick_on_thumb_left_hide="true"
+    .../>
 ```	
 ### 3.4 给seekbar选择圆角/方角
  默认两端是圆角，可以设置为方形。
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_track_rounded_corners="true"
-       .../>
+    app:isb_track_rounded_corners="true"
+    .../>
 ```	
 
 ### 3.5 滑块下显示进度
 当 seekabr 的类型为 `CONTINUOUS` or `DISCRETE_TICKS`时 , 可以设置滑动后滑块下显示保留进度。
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_seek_bar_type="continuous"//discrete_ticks
-	app:isb_thumb_progress_stay="true"
-       .../>
+    app:isb_seek_bar_type="continuous"//discrete_ticks
+    app:isb_thumb_progress_stay="true"
+    .../>
 ```
 
 ### 3.6 自定义seekbar两端的文字
 当 seekabr 的类型是 `CONTINUOUS_TEXTS_ENDS` 或 `DISCRETE_TICKS_TEXTS_ENDS` 时, 可以设置两端的文字.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_seek_bar_type="continuous_texts_ends"//discrete_ticks_texts_ends
-	app:isb_text_left_end="last"
-	app:isb_text_right_end="next"
-       .../>
+    app:isb_seek_bar_type="continuous_texts_ends"//discrete_ticks_texts_ends
+    app:isb_text_left_end="last"
+    app:isb_text_right_end="next"
+    .../>
 ```
 
 ### 3.7 自定义刻度下的文字
 当 seekabr 的类型是 `DISCRETE_TICKS_TEXTS` , 可以通过设置数组的方式自定义刻度下的文字, 数组的长度应当和刻度相等。
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_text_array="@array/texts_below_tick_length_5"
-    	app:isb_tick_num="5" //一般来说 , 文字数组的长度应该和刻度的数量相等
-       .../>
+    app:isb_text_array="@array/texts_below_tick_length_5"
+    app:isb_tick_num="5" //一般来说 , 文字数组的长度应该和刻度的数量相等
+    .../>
 ```
-	or
 ```Java
+or
 indicatorSeekBar.setTextArray(R.array.texts_below_tick_length_5);
 ```
 
@@ -157,27 +158,27 @@ indicatorSeekBar.setTextArray(R.array.texts_below_tick_length_5);
 滑块可以使用图片去自定义：
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_thumb_drawable="@mipmap/ic_launcher"
-	.../>
+    app:isb_thumb_drawable="@mipmap/ic_launcher"
+    .../>
 ```
 ### 3.9 自定义刻度的图片
 刻度可以使用图片去自定义.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_tick_drawable="@mipmap/ic_launcher"
-	.../>
+    app:isb_tick_drawable="@mipmap/ic_launcher"
+    .../>
 ```
 
 ### 3.10 自定义指示器
 IndicatorSeekbar提供了3种指示器的类型： `ROUNDED_CORNERS` / `SQUARE_CORNERS` / `CUSTOM`,当指示器的类型为 `CUSTOM` 时, 可以自定义指示器的view.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	 app:isb_indicator_type="custom"
-    	 app:isb_indicator_custom_layout="@layout/indicator"
-	.../>
+    app:isb_indicator_type="custom"
+    app:isb_indicator_custom_layout="@layout/indicator"
+    .../>
 ```
-	or
 ```Java
+or
 indicatorSeekBar.setCustomIndicator(R.layout.indicator);
 ```
 注意：如果指示器需要显示进度，那么指示器必须要有一个TextView，而且其id必须为`isb_progress`.
@@ -185,12 +186,12 @@ indicatorSeekBar.setCustomIndicator(R.layout.indicator);
 当 indicator 的类型为 `ROUNDED_CORNERS` 或者 `SQUARE_CORNERS` , 可以设置指示器顶部的view.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	 app:isb_indicator_type="rounded_corners"/square_corners
-	 app:isb_indicator_custom_top_content_layout="@layout/top_content_view"
-	.../>
+    app:isb_indicator_type="rounded_corners"/square_corners
+    app:isb_indicator_custom_top_content_layout="@layout/top_content_view"
+    .../>
 ```
-	or
 ```Java
+or
 indicatorSeekBar.getIndicator().setIndicatorTopContentLayout(R.layout.top_content_view);
 ```
 注意：如果指示器顶部的view需要显示进度，那么这个view必须要有一个TextView，而且其id必须为`isb_progress`.
@@ -205,7 +206,7 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 	}
 
 	@Override
-	public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch) {
+	public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String textBelowText, boolean fromUserTouch) {
 	    //only callback on discrete series seekbar type.
 	}
 
@@ -219,7 +220,7 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 	}
 });
 ```
-onSectionChanged: 当seekbar的类型为 `discrete`系列 时, 这个回调会获得滑块的位置和滑块下的文字. 当为 `continuous`则不回调。
+onSectionChanged: 当seekbar的类型为非连续 `discrete`系列 时, 这个回调会获得滑块的位置和滑块下的文字. 当为连续 `continuous`系列则不回调。
 ## 5. 混淆
 ```Java
 -keep class com.warkiz.widget.** { *; }

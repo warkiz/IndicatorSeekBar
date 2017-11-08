@@ -95,6 +95,8 @@ IndicatorSeekBar 提供了两种系列的类型:
 
 seekbar以下部分的颜色或尺寸可以被自定义：
 
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
+
 - 背景条 track_background_bar
 - 进度条 track_progress_bar
 - 刻度 tick

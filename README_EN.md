@@ -1,4 +1,6 @@
 # IndicatorSeekBar
+[![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9)
+
 README: [ 中文 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_CN.md)  |  English
 
 A deeply customized SeekBar on Android, which can be changed the `size` / `color` / `thumbDrawable` / `tickDrawable` / `textsBelowTick` / `indicator` by user, can show an indicator view with progress above SeekBar when seeking.
@@ -10,53 +12,53 @@ A deeply customized SeekBar on Android, which can be changed the `size` / `color
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
 
 ## 2. How to use
-### Step 1. build.gradle in module :
+### 1. build.gradle in module :
 ```groovy
 dependencies {
 	compile 'com.github.warkiz.widget:indicatorseekbar:1.0.6'
 }
 ```
-### Step 2. in xml or class file:
+### 2. in xml or class file:
 #### xml
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:layout_marginTop="16dp"
-	app:isb_max="78.8"
-	app:isb_min="10.2"
-	app:isb_progress="50.3"
-	app:isb_progress_value_float="true"
-	app:isb_show_indicator="true"/>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    app:isb_max="78.8"
+    app:isb_min="10.2"
+    app:isb_progress="50.3"
+    app:isb_progress_value_float="true"
+    app:isb_show_indicator="true"/>
 ```
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	app:isb_indicator_custom_layout="@layout/custom_indicator"
-	app:isb_indicator_type="custom"
-	app:isb_max="189"
-	app:isb_min="23"
-	app:isb_progress="67"
-	app:isb_seek_bar_type="discrete_ticks_texts"
-	app:isb_show_indicator="true"
-	app:isb_text_array="@array/tick_below_text_length_9"
-	app:isb_text_color="@color/color_blue"
-	app:isb_thumb_width="18dp"
-	app:isb_tick_drawable="@mipmap/ic_launcher"
-	app:isb_tick_num="9"
-	app:isb_tick_on_thumb_left_hide="true"
-	app:isb_track_background_bar_color="#FF00"
-	app:isb_track_background_bar_size="2dp"
-	app:isb_track_progress_bar_color="#FF0000"
-	app:isb_track_progress_bar_size="5dp"/>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:isb_indicator_custom_layout="@layout/custom_indicator"
+    app:isb_indicator_type="custom"
+    app:isb_max="189"
+    app:isb_min="23"
+    app:isb_progress="67"
+    app:isb_seek_bar_type="discrete_ticks_texts"
+    app:isb_show_indicator="true"
+    app:isb_text_array="@array/tick_below_text_length_5"
+    app:isb_text_color="@color/color_blue"
+    app:isb_thumb_width="18dp"
+    app:isb_tick_drawable="@mipmap/ic_launcher"
+    app:isb_tick_num="5"
+    app:isb_tick_on_thumb_left_hide="true"
+    app:isb_track_background_bar_color="#FF00"
+    app:isb_track_background_bar_size="2dp"
+    app:isb_track_progress_bar_color="#FF0000"
+    app:isb_track_progress_bar_size="5dp"/>
 ```
 
 #### Java
 
 ```Java
 IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
-				.setMax(200)
+                                .setMax(200)
 				.setMin(0)
 				.setProgress(35)
 				.setSeekBarType(IndicatorSeekBarType.DISCRETE_TICKS)
@@ -85,8 +87,8 @@ IndicatorSeekBar has provided 2 kinds of series seekbar type:
 
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_seek_bar_type="continuous"
-       .../>
+    app:isb_seek_bar_type="continuous"
+    .../>
 ```
 
 ### 3.2 customized color/size
@@ -105,51 +107,51 @@ Below seekbar parts' color/size can be customized:
 The ticks on the seekbar both end sides or on thumb left can be hid.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_tick_both_end_hide="true"
-       .../>
+    app:isb_tick_both_end_hide="true"
+    .../>
 
 
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_tick_on_thumb_left_hide="true"
-       .../>
+    app:isb_tick_on_thumb_left_hide="true"
+    .../>
 ```	
 ### 3.4 change the seekbar corners shape
  Seekbar's track's is round corners default , could be set to square.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_track_rounded_corners="false"
-       .../>
+    app:isb_track_rounded_corners="false"
+    .../>
 ```	
 
 ### 3.5 seeking to show progress text below thumb.
 When the seekabr type is `CONTINUOUS` or `DISCRETE_TICKS` , you can set the progress text showing when seeking.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_seek_bar_type="continuous"//discrete_ticks
-	app:isb_thumb_progress_stay="true"
-       .../>
+    app:isb_seek_bar_type="continuous"//discrete_ticks
+    app:isb_thumb_progress_stay="true"
+    .../>
 ```
 
 ### 3.6 customized 2 below texts on both ends of seekbar
 When the seekabr type is `CONTINUOUS_TEXTS_ENDS` or `DISCRETE_TICKS_TEXTS_ENDS` , you can set the left & right text.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_seek_bar_type="continuous_texts_ends"//discrete_ticks_texts_ends
-	app:isb_text_left_end="last"
-	app:isb_text_right_end="next"
-       .../>
+    app:isb_seek_bar_type="continuous_texts_ends"//discrete_ticks_texts_ends
+    app:isb_text_left_end="last"
+    app:isb_text_right_end="next"
+    .../>
 ```
 
 ### 3.7 customized texts below tick
 When the seekabr type is `DISCRETE_TICKS_TEXTS` , you can custom the texts below tick by an array, and the array's length should equals ticks num.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_text_array="@array/texts_below_tick_length_5"
-    	app:isb_tick_num="5" // normally , array length should equals tick num.
-        .../>
-```
-	or
+    app:isb_text_array="@array/texts_below_tick_length_5"
+    app:isb_tick_num="5" // normally , array length should equals tick num.
+    .../>
+```	
 ```Java
+or
 indicatorSeekBar.setTextArray(R.array.texts_below_tick_length_5);
 ```
 
@@ -157,27 +159,27 @@ indicatorSeekBar.setTextArray(R.array.texts_below_tick_length_5);
 Thumb can be replaced by a drawable:
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_thumb_drawable="@mipmap/ic_launcher"
-	.../>
+    app:isb_thumb_drawable="@mipmap/ic_launcher"
+    .../>
 ```
 ### 3.9 customized tick drawable
 Ticks can be replaced by a drawable:
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	app:isb_tick_drawable="@mipmap/ic_launcher"
-	.../>
+    app:isb_tick_drawable="@mipmap/ic_launcher"
+    .../>
 ```
 
 ### 3.10 customized indicator
 IndicatorSeekbar provided 3 kinds of indicator type `ROUNDED_CORNERS` / `SQUARE_CORNERS` / `CUSTOM`, when the indicator type is `CUSTOM` , you can set a custom indicator view.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	 app:isb_indicator_type="custom"
-    	 app:isb_indicator_custom_layout="@layout/indicator"
-	.../>
+    app:isb_indicator_type="custom"
+    app:isb_indicator_custom_layout="@layout/indicator"
+    .../>
 ```
-	or
 ```Java
+or
 indicatorSeekBar.setCustomIndicator(R.layout.indicator);
 ```
 Attention: if want to show the custom indicator with a progress text when seeking , the indicator view should have a TextView which id is `isb_progress`. 
@@ -186,12 +188,12 @@ Attention: if want to show the custom indicator with a progress text when seekin
 When the indicator type is `ROUNDED_CORNERS` or `SQUARE_CORNERS` , you can set a custom indicator top content view.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-	 app:isb_indicator_type="rounded_corners"/square_corners
-	 app:isb_indicator_custom_top_content_layout="@layout/top_content_view"
-	.../>
+    app:isb_indicator_type="rounded_corners"/square_corners
+    app:isb_indicator_custom_top_content_layout="@layout/top_content_view"
+    .../>
 ```
-	or
 ```Java
+or
 indicatorSeekBar.getIndicator().setIndicatorTopContentLayout(R.layout.top_content_view);
 ```
 Attention: if want to show the custom indicator top content view with a progress text when seeking , the content view should have a TextView which id is `isb_progress`. 
@@ -205,7 +207,7 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 	}
 
 	@Override
-	public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch) {
+	public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String textBelowTick, boolean fromUserTouch) {
 	    //only callback on discrete series seekbar type.
 	}
 

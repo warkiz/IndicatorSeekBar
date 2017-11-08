@@ -181,7 +181,7 @@ IndicatorSeekbar提供了3种指示器的类型： `ROUNDED_CORNERS` / `SQUARE_C
 or
 indicatorSeekBar.setCustomIndicator(R.layout.indicator);
 ```
-注意：如果自定义指示器需要显示进度，那么指示器必须要有一个TextView，而且其id必须设置为`isb_progress`.
+注意：如果自定义指示器需要显示进度, 那么指示器必须要有一个TextView，而且其id必须设置为`isb_progress`.
 ### 3.11 自定义指示器顶部的内容
 当 indicator 的类型为 `ROUNDED_CORNERS` 或者 `SQUARE_CORNERS` , 可以设置指示器顶部的view.
 ```xml
@@ -194,7 +194,7 @@ indicatorSeekBar.setCustomIndicator(R.layout.indicator);
 or
 indicatorSeekBar.getIndicator().setIndicatorTopContentLayout(R.layout.top_content_view);
 ```
-注意：如果自定义指示器顶部的view需要显示进度，那么这个view必须要有一个TextView，而且其id必须设置为`isb_progress`.
+注意：如果自定义指示器顶部的view需要显示进度, 那么这个view必须要有一个TextView，而且其id必须设置为`isb_progress`.
 
 ## 4. 支持进度监听
 ```Java

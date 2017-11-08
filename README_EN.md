@@ -78,7 +78,7 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 #####  Refer to [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk) for more details about usage.
 -------------------------
 ## 3. Abilities
-### 3.1 multiple seekbar type
+### 3.1 multiple SeekBar type
 IndicatorSeekBar has provided 2 kinds of series seekbar type: 
 
 1. continous series:  `CONTINUOUS`/  `CONTINUOUS_TEXTS_ENDS`.

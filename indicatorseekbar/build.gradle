@@ -16,7 +16,7 @@ ext {
     libraryVersion = '1.0.9'
 
     developerId = 'warkiz'
-    developerName = 'Guangquan chuong'
+    developerName = 'Guangquan chuang'
     developerEmail = 'warkiz4j@gmail.com'
 
     licenseName = 'The Apache Software License, Version 2.0'

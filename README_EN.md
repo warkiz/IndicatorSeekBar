@@ -96,6 +96,7 @@ IndicatorSeekBar has provided 2 kinds of series seekbar type:
 Below seekbar parts' color/size can be customized:
 
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
+
 - track background bar
 - track progress bar
 - ticks

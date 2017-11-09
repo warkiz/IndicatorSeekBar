@@ -4,6 +4,7 @@
 README: 中文 | [ English ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_EN.md)
 
 自定义SeekBar, 能改变尺寸、颜色、滑块(thumb)图片、刻度(tick)图片、刻度文字(text)和气泡指示器(indicator)，当滑动时显示带有进度的指示器。
+如果你喜欢`IndicatorSeekBar`, 就右上角给个`Star`支持一下吧。
 
 ----------------
 ## 1.截图
@@ -208,7 +209,7 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 	}
 
 	@Override
-	public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String textBelowText, boolean fromUserTouch) {
+	public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String textBelowTick, boolean fromUserTouch) {
 	    //only callback on discrete series seekbar type.
 	}
 

@@ -19,6 +19,7 @@
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:isb_progress="50"
             app:isb_show_indicator="true"
             app:isb_thumb_drawable="@drawable/thumb_custom"/>
 
@@ -29,6 +30,8 @@
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:isb_indicator_type="rounded_corners"
+            app:isb_progress="34"
             app:isb_seek_bar_type="discrete_ticks_texts"
             app:isb_show_indicator="true"
             app:isb_tick_drawable="@drawable/tick_custom"
@@ -42,9 +45,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:isb_indicator_custom_top_content_layout="@layout/custom_top_content_view_rect"
+            app:isb_max="99.9"
+            app:isb_min="10.8"
+            app:isb_progress="50"
+            app:isb_progress_value_float="true"
             app:isb_seek_bar_type="discrete_ticks_texts"
             app:isb_show_indicator="true"
-            app:isb_tick_num="7"/>
+            app:isb_tick_num="6"
+            app:isb_tick_type="oval"
+            app:isb_track_progress_bar_size="3dp"/>
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
@@ -55,10 +64,11 @@
             app:isb_progress="67"
             app:isb_seek_bar_type="discrete_ticks_texts"
             app:isb_show_indicator="true"
+            app:isb_text_array="@array/tick_below_text_length_6"
             app:isb_text_color="@color/color_blue"
-            app:isb_tick_num="7"
-            app:isb_tick_on_thumb_left_hide="true"
-            app:isb_tick_type="none"/>
+            app:isb_tick_drawable="@mipmap/ic_launcher"
+            app:isb_tick_num="6"/>
+
 
         <TextView
             style="@style/subtitle_text_style"
@@ -70,7 +80,9 @@
             android:layout_marginTop="16dp"
             app:isb_indicator_custom_layout="@layout/custom_indicator_rec"
             app:isb_indicator_type="custom"
-            app:isb_show_indicator="true"/>
+            app:isb_progress="20"
+            app:isb_show_indicator="true"
+            app:isb_thumb_progress_stay="true"/>
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
@@ -78,9 +90,15 @@
             android:layout_marginTop="16dp"
             app:isb_indicator_custom_layout="@layout/custom_indicator_oval"
             app:isb_indicator_type="custom"
+            app:isb_progress="34"
+            app:isb_tick_color="#FFF"
+            app:isb_track_background_bar_color="@color/color_pink"
+            app:isb_track_progress_bar_color="@color/color_blue"
             app:isb_seek_bar_type="discrete_ticks_texts"
             app:isb_show_indicator="true"
-            app:isb_tick_num="5"/>
+            app:isb_track_progress_bar_size="4dp"
+            app:isb_thumb_drawable="@mipmap/ic_launcher"
+            app:isb_tick_num="6"/>
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
@@ -88,6 +106,7 @@
             android:layout_marginTop="16dp"
             app:isb_indicator_custom_layout="@layout/custom_indicator_red"
             app:isb_indicator_type="custom"
+            app:isb_progress="50"
             app:isb_seek_bar_type="discrete_ticks_texts_ends"
             app:isb_show_indicator="true"/>
 

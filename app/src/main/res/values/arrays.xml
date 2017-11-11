@@ -8,16 +8,13 @@
         <item>fifth</item>
     </array>
 
-    <array name="tick_below_text_length_9">
-        <item>A</item>
-        <item>B</item>
-        <item>C</item>
-        <item>D</item>
-        <item>E</item>
-        <item>F</item>
-        <item>G</item>
-        <item>H</item>
-        <item>J</item>
+    <array name="tick_below_text_length_6">
+        <item>AB</item>
+        <item>CD</item>
+        <item>EF</item>
+        <item>GH</item>
+        <item>IJ</item>
+        <item>KL</item>
     </array>
 
 </resources>

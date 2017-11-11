@@ -135,20 +135,20 @@ class Indicator {
         }
         int indicatorScreenX = getIndicatorScreenX();
         if (indicatorScreenX + touchX < mIndicator.getContentView().getMeasuredWidth() / 2) {
-            setMargin(mIndicatorArrow, -(int) (mIndicator.getContentView().getMeasuredWidth() / 2 - indicatorScreenX - touchX), -1, -1, -1);
+            setMargin(-(int) (mIndicator.getContentView().getMeasuredWidth() / 2 - indicatorScreenX - touchX), -1, -1, -1);
         } else if (mWindowWidth - indicatorScreenX - touchX < mIndicator.getContentView().getMeasuredWidth() / 2) {
-            setMargin(mIndicatorArrow, (int) (mIndicator.getContentView().getMeasuredWidth() / 2 - (mWindowWidth - indicatorScreenX - touchX)), -1, -1, -1);
+            setMargin((int) (mIndicator.getContentView().getMeasuredWidth() / 2 - (mWindowWidth - indicatorScreenX - touchX)), -1, -1, -1);
         } else {
-            setMargin(mIndicatorArrow, 0, 0, 0, 0);
+            setMargin(0, 0, 0, 0);
         }
     }
 
-    private void setMargin(View v, int left, int top, int right, int bottom) {
-        if (v == null) {
+    private void setMargin(int left, int top, int right, int bottom) {
+        if (mIndicatorArrow == null) {
             return;
         }
-        if (v.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
-            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+        if (mIndicatorArrow.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mIndicatorArrow.getLayoutParams();
             layoutParams.setMargins(left == -1 ? layoutParams.leftMargin : left, top == -1 ? layoutParams.topMargin : top, right == -1 ? layoutParams.rightMargin : right, bottom == -1 ? layoutParams.bottomMargin : bottom);
             mIndicatorArrow.requestLayout();
         }
@@ -173,7 +173,7 @@ class Indicator {
                 }
                 mIndicator.getContentView().measure(0, 0);
             }
-            mIndicator.update(mSeekBar, (int) (touchX - mIndicator.getContentView().getMeasuredWidth() / 2), -(mSeekBar.getMeasuredHeight() + mIndicator.getContentView().getMeasuredHeight() + mSeekBar.getPaddingTop() +  IndicatorUtils.dp2px(mContext, 2)), -1, -1);
+            mIndicator.update(mSeekBar, (int) (touchX - mIndicator.getContentView().getMeasuredWidth() / 2), -(mSeekBar.getMeasuredHeight() + mIndicator.getContentView().getMeasuredHeight() + mSeekBar.getPaddingTop() + IndicatorUtils.dp2px(mContext, 2)), -1, -1);
             adjustArrow(touchX);
         }
     }
@@ -197,7 +197,7 @@ class Indicator {
                 }
                 mIndicator.getContentView().measure(0, 0);
             }
-            mIndicator.showAsDropDown(mSeekBar, (int) (touchX - mIndicator.getContentView().getMeasuredWidth() / 2f), -(mSeekBar.getMeasuredHeight() + mIndicator.getContentView().getMeasuredHeight() + mSeekBar.getPaddingTop() +  IndicatorUtils.dp2px(mContext, 2)));
+            mIndicator.showAsDropDown(mSeekBar, (int) (touchX - mIndicator.getContentView().getMeasuredWidth() / 2f), -(mSeekBar.getMeasuredHeight() + mIndicator.getContentView().getMeasuredHeight() + mSeekBar.getPaddingTop() + IndicatorUtils.dp2px(mContext, 2)));
             adjustArrow(touchX);
         }
     }

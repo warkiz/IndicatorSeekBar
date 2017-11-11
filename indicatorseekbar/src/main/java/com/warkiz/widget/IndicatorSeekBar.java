@@ -1,7 +1,6 @@
 package com.warkiz.widget;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -591,11 +590,6 @@ public class IndicatorSeekBar extends View {
                 break;
         }
         return super.dispatchTouchEvent(event);
-    }
-
-    @Override
-    protected void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
     }
 
     @Override

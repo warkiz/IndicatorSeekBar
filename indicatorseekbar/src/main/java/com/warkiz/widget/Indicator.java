@@ -64,7 +64,7 @@ class Indicator {
                             mIndicatorText.setTextSize(IndicatorUtils.px2sp(mContext, mIndicatorTextSize));
                             mIndicatorText.setTextColor(mIndicatorTextColor);
                         } else {
-                            throw new ClassCastException("the view identified by progress in indicator custom layout can not be cast to TextView");
+                            throw new ClassCastException("the view identified by isb_progress in indicator custom layout can not be cast to TextView");
                         }
                     }
                 }

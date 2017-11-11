@@ -1,6 +1,7 @@
 # IndicatorSeekBar
 [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
-[![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9)[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
+[![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9)
+[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
 
 
 README: 中文 | [ English ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_EN.md)
@@ -19,7 +20,7 @@ README: 中文 | [ English ](https://github.com/warkiz/IndicatorSeekBar/blob/mas
 ###  1. 在app/build.gradle下:
 ```groovy
 dependencies {
-    compile 'com.github.warkiz.widget:indicatorseekbar:1.0.9'
+    compile 'com.github.warkiz.widget:indicatorseekbar:1.1.2'
 }
 ```
 ### 2. 在布局文件或java类中:

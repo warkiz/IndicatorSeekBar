@@ -1,4 +1,5 @@
 # IndicatorSeekBar
+[![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
 [![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9)
 
 README: [ 中文 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)  |  English
@@ -8,7 +9,7 @@ A deeply customized SeekBar on Android, which can be changed the `size` , `color
 If you like `IndicatorSeekBar` , welcome to give a `Star` to support Me. Thanks.
 
 ----------------
-## 1.ScreenShot
+## 1.Screenshot
 
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/>
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
@@ -108,7 +109,7 @@ Below seekbar parts' color/size can be customized:
 - indicator text
 
 ### 3.3 hide ticks
-The ticks on the seekbar both end sides or on thumb left can be hid.
+The ticks on the SeekBar both end sides or on thumb left can be hid.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
     app:isb_tick_both_end_hide="true"
@@ -119,7 +120,7 @@ The ticks on the seekbar both end sides or on thumb left can be hid.
     app:isb_tick_on_thumb_left_hide="true"
     .../>
 ```	
-### 3.4 change the seekbar corners shape
+### 3.4 change the SeekBar corners shape
  Seekbar's track's is round corners default , could be set to square.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -136,7 +137,7 @@ When the seekabr type is `CONTINUOUS` or `DISCRETE_TICKS` , you can set the prog
     .../>
 ```
 
-### 3.6 customized 2 below texts on both ends of seekbar
+### 3.6 customized 2 below texts on both ends of SeekBar
 When the seekabr type is `CONTINUOUS_TEXTS_ENDS` or `DISCRETE_TICKS_TEXTS_ENDS` , you can set the left & right text.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -212,7 +213,7 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 
 	@Override
 	public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String textBelowTick, boolean fromUserTouch) {
-	    //only callback on discrete series seekbar type.
+	    //only callback on discrete series SeekBar type.
 	}
 
 	@Override
@@ -225,7 +226,7 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 	}
 });
 ```
-onSectionChanged: when the seekbar type is `discrete series`, this callback work to get the tick position and text. `continuous series` will not work.
+onSectionChanged: when the SeekBar type is `discrete series`, this callback work to get the tick position and text. `continuous series` will not work.
 ## 5. Proguard
 ```Java
 -keep class com.warkiz.widget.** { *; }

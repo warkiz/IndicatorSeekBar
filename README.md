@@ -1,5 +1,7 @@
 # IndicatorSeekBar
+[![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
 [![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9)
+
 
 README: 中文 | [ English ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_EN.md)
 
@@ -95,7 +97,7 @@ IndicatorSeekBar 提供了两种系列的类型:
 
 ### 3.2 自定义 颜色、尺寸
 
-seekbar以下部分的颜色或尺寸可以被自定义：
+SeekBar以下部分的颜色或尺寸可以被自定义：
 
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
 
@@ -108,7 +110,7 @@ seekbar以下部分的颜色或尺寸可以被自定义：
 - 指示器文字 indicator_text
 
 ### 3.3 隐藏刻度tick
-seekbar的两个端点的刻度或者滑块左边的刻度可以被隐藏。
+SeekBar的两个端点的刻度或者滑块左边的刻度可以被隐藏。
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
     app:isb_tick_both_end_hide="true"
@@ -118,7 +120,7 @@ seekbar的两个端点的刻度或者滑块左边的刻度可以被隐藏。
     app:isb_tick_on_thumb_left_hide="true"
     .../>
 ```	
-### 3.4 给seekbar选择圆角/方角
+### 3.4 给SeekBar选择圆角/方角
  默认两端是圆角，可以设置为方形。
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -135,7 +137,7 @@ seekbar的两个端点的刻度或者滑块左边的刻度可以被隐藏。
     .../>
 ```
 
-### 3.6 自定义seekbar两端的文字text
+### 3.6 自定义SeekBar两端的文字text
 当 seekabr 的类型是 `CONTINUOUS_TEXTS_ENDS` 或 `DISCRETE_TICKS_TEXTS_ENDS` 时, 可以设置两端的文字.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -211,7 +213,7 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 
 	@Override
 	public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String textBelowTick, boolean fromUserTouch) {
-	    //only callback on discrete series seekbar type.
+	    //only callback on discrete series SeekBar type.
 	}
 
 	@Override
@@ -224,7 +226,7 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 	}
 });
 ```
-onSectionChanged: 当seekbar的类型为非连续 `discrete`系列 时, 这个回调会获得滑块的位置和滑块下的文字. 当为连续 `continuous`系列则不回调。
+onSectionChanged: 当SeekBar的类型为非连续 `discrete`系列 时, 这个回调会获得滑块的位置和滑块下的文字. 当为连续 `continuous`系列则不回调。
 ## 5. 混淆配置
 ```Java
 -keep class com.warkiz.widget.** { *; }

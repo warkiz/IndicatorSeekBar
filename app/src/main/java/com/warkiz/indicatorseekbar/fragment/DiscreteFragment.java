@@ -14,37 +14,44 @@ import com.warkiz.widget.IndicatorSeekBar;
  * created by ZhuangGuangquan on  2017/9/6
  */
 
-public class DiscreteFragment extends Fragment {
+public class DiscreteFragment extends Fragment
+{
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         View root = inflater.inflate(R.layout.discrete, container, false);
         final TextView textView = (TextView) root.findViewById(R.id.discrete_progress);
         final TextView discreteBlockTv = (TextView) root.findViewById(R.id.discrete_block);
         IndicatorSeekBar discrete = (IndicatorSeekBar) root.findViewById(R.id.discrete);
 
-        discrete.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
+        discrete.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener()
+        {
 
             @Override
-            public void onProgressChanged(IndicatorSeekBar seekBar, int progress, float progressFloat, boolean fromUserTouch) {
+            public void onProgressChanged(IndicatorSeekBar seekBar, int progress, float progressFloat, boolean fromUserTouch)
+            {
                 textView.setText("progress: " + progress);
             }
 
             @Override
-            public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch) {
+            public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch)
+            {
                 discreteBlockTv.setText("thumbPosOnTick: " + thumbPosOnTick + " ;  tickBelowText: " + tickBelowText);
             }
 
             @Override
-            public void onStartTrackingTouch(IndicatorSeekBar seekBar, int thumbPosOnTick) {
+            public void onStartTrackingTouch(IndicatorSeekBar seekBar, int thumbPosOnTick)
+            {
             }
 
             @Override
-            public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
+            public void onStopTrackingTouch(IndicatorSeekBar seekBar)
+            {
 
             }
         });
-        return inflater.inflate(R.layout.discrete, container, false);
+        return root;
     }
 
 }

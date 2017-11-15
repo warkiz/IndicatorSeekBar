@@ -3,11 +3,11 @@
 [![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9)
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
 
-README: [ 中文 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)  |  English
+#### README: [ 中文 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)  |  English
 
 A deeply customized SeekBar on Android, which can be changed the `size` , `color` , `thumbDrawable` , `tickDrawable` , `textsBelowTick` , `indicator`, also can show an indicator view with progress above SeekBar when seeking.
 
-If you like `IndicatorSeekBar` , welcome to give a `Star` to support Me. Thanks.
+#### If you like `IndicatorSeekBar` , welcome to give a `Star` to support me, thanks.
 
 ----------------
 ## 1.Screenshot
@@ -19,7 +19,7 @@ If you like `IndicatorSeekBar` , welcome to give a `Star` to support Me. Thanks.
 ### 1. build.gradle in module :
 ```groovy
 dependencies {
-	compile 'com.github.warkiz.widget:indicatorseekbar:1.1.2'
+  compile 'com.github.warkiz.widget:indicatorseekbar:1.1.2'
 }
 ```
 ### 2. in xml or class file:
@@ -79,7 +79,7 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 				.setIndicatorColor(Color.parseColor("#0000FF"))
 				.build();
 ```
-#####  Refer to [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk) for more details about usage.
+#####  Refer to [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk) or demo for more details about usage.
 -------------------------
 ## 3. Abilities
 ### 3.1 multiple SeekBar type
@@ -130,7 +130,7 @@ The ticks on the SeekBar both end sides or on thumb left can be hid.
 ```	
 
 ### 3.5 seeking to show progress text below thumb.
-When the seekabr type is `CONTINUOUS` or `DISCRETE_TICKS` , you can set the progress text showing when seeking.
+When the seekabr type is `CONTINUOUS` or `DISCRETE_TICKS` , you can set the progress text to show when seeking.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
     app:isb_seek_bar_type="continuous"//discrete_ticks

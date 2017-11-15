@@ -22,10 +22,12 @@ import com.warkiz.widget.TickType;
  * created by ZhuangGuangquan on  2017/9/6
  */
 
-public class JavaBuildFragment extends Fragment {
+public class JavaBuildFragment extends Fragment
+{
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         View root = inflater.inflate(R.layout.java_build, container, false);
         final LinearLayout content = (LinearLayout) root.findViewById(R.id.java_build);
 
@@ -67,14 +69,16 @@ public class JavaBuildFragment extends Fragment {
     }
 
     @NonNull
-    private TextView getTextView() {
+    private TextView getTextView()
+    {
         TextView textView = new TextView(getContext());
         int padding = dp2px(getContext(), 16);
         textView.setPadding(padding, padding, padding, 0);
         return textView;
     }
 
-    public int dp2px(Context context, float dpValue) {
+    public int dp2px(Context context, float dpValue)
+    {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, context.getResources().getDisplayMetrics());
     }
 

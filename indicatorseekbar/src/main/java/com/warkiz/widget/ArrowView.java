@@ -11,21 +11,25 @@ import android.view.View;
  * created by ZhuangGuangquan on 2017/9/6
  */
 
-public class ArrowView extends View {
+public class ArrowView extends View
+{
     private final int mWidth;
     private final int mHeight;
     private final Path mPath;
     private final Paint mPaint;
 
-    public ArrowView(Context context) {
+    public ArrowView(Context context)
+    {
         this(context, null);
     }
 
-    public ArrowView(Context context, AttributeSet attrs) {
+    public ArrowView(Context context, AttributeSet attrs)
+    {
         this(context, attrs, 0);
     }
 
-    public ArrowView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ArrowView(Context context, AttributeSet attrs, int defStyleAttr)
+    {
         super(context, attrs, defStyleAttr);
         mWidth = IndicatorUtils.dp2px(context, 12);
         mHeight = IndicatorUtils.dp2px(context, 7);
@@ -39,18 +43,21 @@ public class ArrowView extends View {
         mPaint.setStrokeWidth(1);
     }
 
-    void setColor(int color) {
+    void setColor(int color)
+    {
         mPaint.setColor(color);
         invalidate();
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
+    {
         setMeasuredDimension(mWidth, mHeight);
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas)
+    {
         canvas.drawPath(mPath, mPaint);
     }
 }

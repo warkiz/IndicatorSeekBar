@@ -10,7 +10,8 @@ import android.view.View;
  */
 
 
-class BuilderParams {
+class BuilderParams
+{
 
     Context mContext;
     //seekBar
@@ -54,7 +55,8 @@ class BuilderParams {
     Drawable mThumbDrawable = null;
     boolean mThumbProgressStay = false;
 
-    BuilderParams(Context context) {
+    BuilderParams(Context context)
+    {
         this.mContext = context;
         this.mIndicatorTextSize = IndicatorUtils.sp2px(mContext, 13);
         this.mBackgroundTrackSize = IndicatorUtils.dp2px(mContext, 2);

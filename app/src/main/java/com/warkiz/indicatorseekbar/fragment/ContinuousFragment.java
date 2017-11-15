@@ -15,30 +15,37 @@ import com.warkiz.widget.IndicatorSeekBar;
  */
 
 
-public class ContinuousFragment extends Fragment {
+public class ContinuousFragment extends Fragment
+{
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         View root = inflater.inflate(R.layout.continuous, container, false);
         final TextView textView = (TextView) root.findViewById(R.id.continuous_progress);
         IndicatorSeekBar continuous = (IndicatorSeekBar) root.findViewById(R.id.continuous);
-        continuous.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
+        continuous.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener()
+        {
 
             @Override
-            public void onProgressChanged(IndicatorSeekBar seekBar, int progress, float progressFloat, boolean fromUserTouch) {
+            public void onProgressChanged(IndicatorSeekBar seekBar, int progress, float progressFloat, boolean fromUserTouch)
+            {
                 textView.setText("progress:" + progress + ";  progressFloat:" + progressFloat + ";  fromUser:" + fromUserTouch);
             }
 
             @Override
-            public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch) {
+            public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch)
+            {
             }
 
             @Override
-            public void onStartTrackingTouch(IndicatorSeekBar seekBar, int thumbPosOnTick) {
+            public void onStartTrackingTouch(IndicatorSeekBar seekBar, int thumbPosOnTick)
+            {
             }
 
             @Override
-            public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
+            public void onStopTrackingTouch(IndicatorSeekBar seekBar)
+            {
 
             }
         });

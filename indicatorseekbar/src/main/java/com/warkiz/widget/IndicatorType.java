@@ -4,7 +4,8 @@ package com.warkiz.widget;
  * created by ZhuangGuangquan on  2017/9/9
  */
 
-public interface IndicatorType {
+public interface IndicatorType
+{
     /**
      * the indicator corners is square shape
      */

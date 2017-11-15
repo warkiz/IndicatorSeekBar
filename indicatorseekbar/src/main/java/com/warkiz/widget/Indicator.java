@@ -17,7 +17,8 @@ import android.widget.TextView;
  */
 
 
-class Indicator {
+class Indicator
+{
     private final Context mContext;
     private final int mIndicatorType;
     private final IndicatorSeekBar mSeekBar;
@@ -33,7 +34,8 @@ class Indicator {
     private PopupWindow mIndicator;
     private LinearLayout mTopContentView;
 
-    Indicator(Context context, IndicatorSeekBar seekBar, BuilderParams p) {
+    Indicator(Context context, IndicatorSeekBar seekBar, BuilderParams p)
+    {
         this.mContext = context;
         this.mSeekBar = seekBar;
         this.mIndicatorColor = p.mIndicatorColor;
@@ -46,30 +48,38 @@ class Indicator {
         mWindowWidth = getWindowWidth();
     }
 
-    private void initIndicator() {
+    private void initIndicator()
+    {
         View mIndicatorView = null;
-        if (mIndicatorType == IndicatorType.CUSTOM) {
-            if (mIndicatorCustomView != null) {
+        if (mIndicatorType == IndicatorType.CUSTOM)
+        {
+            if (mIndicatorCustomView != null)
+            {
                 mIndicatorView = mIndicatorCustomView;
                 //for the custom indicator view, if progress need to show when seeking ,
                 // need a TextView to show progress and this textView 's identify must be progress;
                 int progressTextViewId = mContext.getResources().getIdentifier("isb_progress", "id", mContext.getApplicationContext().getPackageName());
-                if (progressTextViewId > 0) {
+                if (progressTextViewId > 0)
+                {
                     View view = mIndicatorView.findViewById(progressTextViewId);
-                    if (view != null) {
-                        if (view instanceof TextView) {
+                    if (view != null)
+                    {
+                        if (view instanceof TextView)
+                        {
                             //progressText
                             mIndicatorText = (TextView) view;
                             mIndicatorText.setText(String.valueOf(mSeekBar.getProgress()));
                             mIndicatorText.setTextSize(IndicatorUtils.px2sp(mContext, mIndicatorTextSize));
                             mIndicatorText.setTextColor(mIndicatorTextColor);
-                        } else {
+                        } else
+                        {
                             throw new ClassCastException("the view identified by isb_progress in indicator custom layout can not be cast to TextView");
                         }
                     }
                 }
             }
-        } else {
+        } else
+        {
             mIndicatorView = View.inflate(mContext, R.layout.indicator, null);
             //container
             mTopContentView = (LinearLayout) mIndicatorView.findViewById(R.id.indicator_container);
@@ -83,71 +93,90 @@ class Indicator {
             mIndicatorText.setTextColor(mIndicatorTextColor);
             mTopContentView.setBackground(getGradientDrawable());
             //custom top content view
-            if (mIndicatorCustomTopContentView != null) {
+            if (mIndicatorCustomTopContentView != null)
+            {
                 //for the custom indicator top content view, if progress need to show when seeking ,
                 //need a TextView to show progress and this textView 's identify must be progress;
                 int progressTextViewId = mContext.getResources().getIdentifier("isb_progress", "id", mContext.getApplicationContext().getPackageName());
                 View topContentView = mIndicatorCustomTopContentView;
-                if (progressTextViewId > 0) {
+                if (progressTextViewId > 0)
+                {
                     View tv = topContentView.findViewById(progressTextViewId);
-                    if (tv != null) {
+                    if (tv != null)
+                    {
                         setIndicatorTopContentView(topContentView, progressTextViewId);
-                    } else {
+                    } else
+                    {
                         setIndicatorTopContentView(topContentView);
                     }
-                } else {
+                } else
+                {
                     setIndicatorTopContentView(topContentView);
                 }
 
             }
         }
-        if (mIndicatorView != null) {
+        if (mIndicatorView != null)
+        {
             mIndicatorView.measure(0, 0);
             mIndicator = new PopupWindow(mIndicatorView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, false);
         }
     }
 
     @NonNull
-    private GradientDrawable getGradientDrawable() {
+    private GradientDrawable getGradientDrawable()
+    {
         GradientDrawable tvDrawable;
-        if (mIndicatorType == IndicatorType.SQUARE_CORNERS) {
+        if (mIndicatorType == IndicatorType.SQUARE_CORNERS)
+        {
             tvDrawable = (GradientDrawable) mContext.getResources().getDrawable(R.drawable.indicator_square_corners);
-        } else {
+        } else
+        {
             tvDrawable = (GradientDrawable) mContext.getResources().getDrawable(R.drawable.indicator_rounded_corners);
         }
         tvDrawable.setColor(mIndicatorColor);
         return tvDrawable;
     }
 
-    private int getWindowWidth() {
+    private int getWindowWidth()
+    {
         WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         return wm.getDefaultDisplay().getWidth();
     }
 
-    private int getIndicatorScreenX() {
+    private int getIndicatorScreenX()
+    {
         mSeekBar.getLocationOnScreen(mLocation);
         return mLocation[0];
     }
 
-    private void adjustArrow(float touchX) {
-        if (mIndicatorType == IndicatorType.CUSTOM) {
+    private void adjustArrow(float touchX)
+    {
+        if (mIndicatorType == IndicatorType.CUSTOM)
+        {
             return;
         }
         int indicatorScreenX = getIndicatorScreenX();
-        if (indicatorScreenX + touchX < mIndicator.getContentView().getMeasuredWidth() / 2) {
+        if (indicatorScreenX + touchX < mIndicator.getContentView().getMeasuredWidth() / 2)
+        {
             setMargin(-(int) (mIndicator.getContentView().getMeasuredWidth() / 2 - indicatorScreenX - touchX), -1, -1, -1);
-        } else if (mWindowWidth - indicatorScreenX - touchX < mIndicator.getContentView().getMeasuredWidth() / 2) {
+        } else if (mWindowWidth - indicatorScreenX - touchX < mIndicator.getContentView().getMeasuredWidth() / 2)
+        {
             setMargin((int) (mIndicator.getContentView().getMeasuredWidth() / 2 - (mWindowWidth - indicatorScreenX - touchX)), -1, -1, -1);
-        } else {
+        } else
+        {
             setMargin(0, 0, 0, 0);
         }
     }
 
-    private void setMargin(int left, int top, int right, int bottom) {
-        if (mIndicatorArrow == null) {
+    private void setMargin(int left, int top, int right, int bottom)
+    {
+        if (mIndicatorArrow == null)
+        {
             return;
         }
-        if (mIndicatorArrow.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+        if (mIndicatorArrow.getLayoutParams() instanceof ViewGroup.MarginLayoutParams)
+        {
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mIndicatorArrow.getLayoutParams();
             layoutParams.setMargins(left == -1 ? layoutParams.leftMargin : left, top == -1 ? layoutParams.topMargin : top, right == -1 ? layoutParams.rightMargin : right, bottom == -1 ? layoutParams.bottomMargin : bottom);
             mIndicatorArrow.requestLayout();
@@ -159,16 +188,23 @@ class Indicator {
      *
      * @param touchX the x location you touch without padding left.
      */
-    void update(float touchX, int seekBarType, int thumbPos) {
-        if (mIndicator != null) {
-            if (mIndicatorText != null) {
-                if (hasTextArray(seekBarType)) {
-                    if (thumbPos >= mSeekBar.getTextArray().length) {
+    void update(float touchX, int seekBarType, int thumbPos)
+    {
+        if (mIndicator != null)
+        {
+            if (mIndicatorText != null)
+            {
+                if (hasTextArray(seekBarType))
+                {
+                    if (thumbPos >= mSeekBar.getTextArray().length)
+                    {
                         mIndicatorText.setText("");
-                    } else {
+                    } else
+                    {
                         mIndicatorText.setText(mSeekBar.getTextArray()[thumbPos]);
                     }
-                } else {
+                } else
+                {
                     mIndicatorText.setText(mSeekBar.getProgressString());
                 }
                 mIndicator.getContentView().measure(0, 0);
@@ -183,16 +219,23 @@ class Indicator {
      *
      * @param touchX the x location you touch without padding left.
      */
-    void showIndicator(float touchX, int seekBarType, int thumbPos) {
-        if (mIndicator != null && !mIndicator.isShowing()) {
-            if (mIndicatorText != null) {
-                if (hasTextArray(seekBarType)) {
-                    if (thumbPos >= mSeekBar.getTextArray().length) {
+    void showIndicator(float touchX, int seekBarType, int thumbPos)
+    {
+        if (mIndicator != null && !mIndicator.isShowing())
+        {
+            if (mIndicatorText != null)
+            {
+                if (hasTextArray(seekBarType))
+                {
+                    if (thumbPos >= mSeekBar.getTextArray().length)
+                    {
                         mIndicatorText.setText("");
-                    } else {
+                    } else
+                    {
                         mIndicatorText.setText(mSeekBar.getTextArray()[thumbPos]);
                     }
-                } else {
+                } else
+                {
                     mIndicatorText.setText(mSeekBar.getProgressString());
                 }
                 mIndicator.getContentView().measure(0, 0);
@@ -202,7 +245,8 @@ class Indicator {
         }
     }
 
-    private boolean hasTextArray(int seekBarType) {
+    private boolean hasTextArray(int seekBarType)
+    {
         CharSequence[] textArray = mSeekBar.getTextArray();
         return seekBarType == IndicatorSeekBarType.DISCRETE_TICKS_TEXTS && textArray != null && textArray.length > 0;
     }
@@ -210,8 +254,10 @@ class Indicator {
     /**
      * call this method hide the indicator
      */
-    void hideIndicator() {
-        if (mIndicator != null && mIndicator.isShowing()) {
+    void hideIndicator()
+    {
+        if (mIndicator != null && mIndicator.isShowing())
+        {
             mIndicator.dismiss();
         }
     }
@@ -222,7 +268,8 @@ class Indicator {
      *
      * @param topContentView the view is inside the indicator TOP part, not influence indicator arrow;
      */
-    public void setIndicatorTopContentView(@NonNull View topContentView) {
+    public void setIndicatorTopContentView(@NonNull View topContentView)
+    {
         mTopContentView.removeAllViews();
         topContentView.setBackground(getGradientDrawable());
         mTopContentView.addView(topContentView);
@@ -234,7 +281,8 @@ class Indicator {
      *
      * @param topContentLayoutId the view id for indicator TOP part, not influence indicator arrow;
      */
-    public void setIndicatorTopContentLayout(@LayoutRes int topContentLayoutId) {
+    public void setIndicatorTopContentLayout(@LayoutRes int topContentLayoutId)
+    {
         mTopContentView.removeAllViews();
         View topContentView = View.inflate(mContext, topContentLayoutId, null);
         topContentView.setBackground(getGradientDrawable());
@@ -249,12 +297,15 @@ class Indicator {
      * @param topContentView     the view is inside the indicator TOP part, not influence indicator arrow;
      * @param progressTextViewId the id can be find in @param topContentView, and it is a TextView id.
      */
-    public void setIndicatorTopContentView(@NonNull View topContentView, @IdRes int progressTextViewId) {
+    public void setIndicatorTopContentView(@NonNull View topContentView, @IdRes int progressTextViewId)
+    {
         View tv = topContentView.findViewById(progressTextViewId);
-        if (tv == null) {
+        if (tv == null)
+        {
             throw new IllegalArgumentException(" can not find the TextView in indicator topContentView by id: " + progressTextViewId);
         }
-        if (!(tv instanceof TextView)) {
+        if (!(tv instanceof TextView))
+        {
             throw new ClassCastException(" the view identified by progressTextViewId can not be cast to TextView. ");
         }
         mIndicatorText = (TextView) tv;
@@ -268,7 +319,8 @@ class Indicator {
      *
      * @return true is showing.
      */
-    public boolean isShowing() {
+    public boolean isShowing()
+    {
         return mIndicator != null && mIndicator.isShowing();
     }
 
@@ -277,7 +329,8 @@ class Indicator {
      *
      * @param customIndicatorView a new view for indicator.
      */
-    public void setCustomIndicator(@NonNull View customIndicatorView) {
+    public void setCustomIndicator(@NonNull View customIndicatorView)
+    {
         mIndicator.setContentView(customIndicatorView);
     }
 
@@ -286,7 +339,8 @@ class Indicator {
      *
      * @param view a text view can be found in indicator root view
      */
-    public void setProgressTextView(@NonNull TextView view) {
+    public void setProgressTextView(@NonNull TextView view)
+    {
         mIndicatorText = view;
     }
 }

@@ -33,6 +33,7 @@ class Indicator
     private TextView mIndicatorText;
     private PopupWindow mIndicator;
     private LinearLayout mTopContentView;
+    private int mGap;
 
     Indicator(Context context, IndicatorSeekBar seekBar, BuilderParams p)
     {
@@ -46,6 +47,7 @@ class Indicator
         this.mIndicatorTextColor = p.mIndicatorTextColor;
         initIndicator();
         mWindowWidth = getWindowWidth();
+        mGap = IndicatorUtils.dp2px(mContext, 2);
     }
 
     private void initIndicator()
@@ -209,7 +211,7 @@ class Indicator
                 }
                 mIndicator.getContentView().measure(0, 0);
             }
-            mIndicator.update(mSeekBar, (int) (touchX - mIndicator.getContentView().getMeasuredWidth() / 2), -(mSeekBar.getMeasuredHeight() + mIndicator.getContentView().getMeasuredHeight() + mSeekBar.getPaddingTop() + IndicatorUtils.dp2px(mContext, 2)), -1, -1);
+            mIndicator.update(mSeekBar, (int) (touchX - mIndicator.getContentView().getMeasuredWidth() / 2), -(mSeekBar.getMeasuredHeight() + mIndicator.getContentView().getMeasuredHeight() - mSeekBar.getPaddingTop() + mGap), -1, -1);
             adjustArrow(touchX);
         }
     }
@@ -240,7 +242,7 @@ class Indicator
                 }
                 mIndicator.getContentView().measure(0, 0);
             }
-            mIndicator.showAsDropDown(mSeekBar, (int) (touchX - mIndicator.getContentView().getMeasuredWidth() / 2f), -(mSeekBar.getMeasuredHeight() + mIndicator.getContentView().getMeasuredHeight() + mSeekBar.getPaddingTop() + IndicatorUtils.dp2px(mContext, 2)));
+            mIndicator.showAsDropDown(mSeekBar, (int) (touchX - mIndicator.getContentView().getMeasuredWidth() / 2f), -(mSeekBar.getMeasuredHeight() + mIndicator.getContentView().getMeasuredHeight() - mSeekBar.getPaddingTop() + mGap));
             adjustArrow(touchX);
         }
     }

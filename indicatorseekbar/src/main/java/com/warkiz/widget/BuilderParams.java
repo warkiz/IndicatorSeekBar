@@ -63,6 +63,6 @@ class BuilderParams
         this.mProgressTrackSize = IndicatorUtils.dp2px(mContext, 2);
         this.mTickSize = IndicatorUtils.dp2px(mContext, 8);
         this.mTextSize = IndicatorUtils.sp2px(mContext, 13);
-        this.mThumbSize = IndicatorUtils.dp2px(mContext, 18);
+        this.mThumbSize = IndicatorUtils.dp2px(mContext, 14);
     }
 }

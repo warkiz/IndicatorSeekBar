@@ -15,6 +15,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -39,7 +40,7 @@ public class IndicatorSeekBar extends View
     private ArrayList<String> mTextList;
     private Context mContext;
     private Paint mStockPaint;
-    private Paint mTextPaint;
+    private TextPaint mTextPaint;
     private float mTouchX;
     private float mTrackY;
     private float mSeekLength;
@@ -324,7 +325,7 @@ public class IndicatorSeekBar extends View
     {
         if (needDrawText())
         {
-            mTextPaint = new Paint();
+            mTextPaint = new TextPaint();
             mTextPaint.setAntiAlias(true);
             mTextPaint.setTextAlign(Paint.Align.CENTER);
             mTextPaint.setTextSize(p.mTextSize);
@@ -536,7 +537,7 @@ public class IndicatorSeekBar extends View
         mStockPaint.setColor(p.mTickColor);
         String allText = getAllText();
         mTextPaint.getTextBounds(allText, 0, allText.length(), mRect);
-        int textHeight = mRect.height();
+        int textHeight = Math.round(mRect.height() - mTextPaint.descent() - .5f);
         int gap = IndicatorUtils.dp2px(mContext, 3);
         for (int i = 0; i < mTextList.size(); i++)
         {

@@ -25,6 +25,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * created by ZhuangGuangquan on 2017/9/1
  */
@@ -32,6 +33,7 @@ import java.util.List;
 public class IndicatorSeekBar extends View
 {
     private static final int GAP_BETWEEN_SEEK_BAR_AND_BELOW_TEXT = 3;
+    private static final int CUSTOM_DRAWABLE_MAX_LIMITED_WIDTH = 30;
     private static final String INSTANCE_STATE_KEY = "isb_instance_state";
     private BuilderParams p;
     private float mTickRadius;
@@ -57,10 +59,12 @@ public class IndicatorSeekBar extends View
     private boolean mFirstDraw = true;
     private boolean mIsTouching;
     private float mThumbRadius;
+    private float mThumbTouchRadius;
     private OnSeekBarChangeListener mListener;
     private float lastProgress;
     private float mFaultTolerance = -1;
     private int mTextHeight;
+    private float mThumbTouchHeight;
     private boolean hasMeasured;
 
     public IndicatorSeekBar(Context context)
@@ -205,25 +209,30 @@ public class IndicatorSeekBar extends View
         {
             p.mTickType = TickType.REC;//set a not none type
         }
-        mThumbRadius = p.mThumbSize / 2.0f;
+        if (p.mThumbDrawable == null)
+        {
+            mThumbRadius = p.mThumbSize / 2.0f;
+            mThumbTouchRadius = mThumbRadius * 1.2f;
+            mThumbTouchHeight = mThumbTouchRadius * 2.0f;
+        } else
+        {
+            float thumbIntrinsicWidth = p.mThumbDrawable.getIntrinsicWidth();
+            int maxThumbWidth = IndicatorUtils.dp2px(mContext, CUSTOM_DRAWABLE_MAX_LIMITED_WIDTH);
+            mThumbRadius = (maxThumbWidth < thumbIntrinsicWidth ? maxThumbWidth : thumbIntrinsicWidth) / 2.0f;
+            mThumbTouchRadius = p.mThumbSize;
+            mThumbTouchHeight =  mThumbTouchRadius * 2.0f;
+        }
         mTickRadius = p.mTickSize / 2.0f;
 
         initStrokePaint();
 
-        if (mThumbRadius < p.mProgressTrackSize)
-        {
-            mThumbRadius = p.mProgressTrackSize;
-        }
         initDefaultPadding();
         if (p.mShowIndicator)
         {
             mIndicator = new Indicator(mContext, this, p);
         }
 
-        if (mTickRadius > 2 * mThumbRadius / 3f)
-        {
-            mTickRadius = (int) (2 * mThumbRadius / 3f);
-        }
+        mTickRadius = mTickRadius > mThumbRadius ? mThumbRadius : mTickRadius;
 
         if (noMarks())
         {
@@ -343,7 +352,7 @@ public class IndicatorSeekBar extends View
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
     {
         int width = MeasureSpec.getSize(widthMeasureSpec);
-        int height = (int) (mThumbRadius * 2 + .6f + getPaddingTop() + getPaddingBottom());
+        int height = Math.round(mThumbTouchHeight + .5f + getPaddingTop() + getPaddingBottom());
         setMeasuredDimension(width, height + mTextHeight);
         initSeekBarInfo();
     }
@@ -390,7 +399,7 @@ public class IndicatorSeekBar extends View
             canvas.drawBitmap(mThumbDraw, thumbX - mThumbDraw.getWidth() / 2.0f, mTrackY - mThumbDraw.getHeight() / 2.0f, mStockPaint);
         } else
         {
-            canvas.drawCircle(thumbX + p.mBackgroundTrackSize / 2.0f, mTrackY, mIsTouching ? mThumbRadius : (2 * mThumbRadius / 3f), mStockPaint);
+            canvas.drawCircle(thumbX + p.mBackgroundTrackSize / 2.0f, mTrackY, mIsTouching ? mThumbTouchRadius : mThumbRadius, mStockPaint);
         }
     }
 
@@ -402,7 +411,7 @@ public class IndicatorSeekBar extends View
         }
         if (p.mThumbProgressStay)
         {
-            canvas.drawText(getProgressString(p.mProgress), thumbX + p.mBackgroundTrackSize / 2.0f, mPaddingTop + mThumbRadius * 2 + mRect.height() + IndicatorUtils.dp2px(mContext, 2), mTextPaint);
+            canvas.drawText(getProgressString(p.mProgress), thumbX + p.mBackgroundTrackSize / 2.0f, mPaddingTop + mThumbTouchHeight + mRect.height() + IndicatorUtils.dp2px(mContext, 2), mTextPaint);
         }
     }
 
@@ -414,7 +423,7 @@ public class IndicatorSeekBar extends View
         mPaddingTop = getPaddingTop();
         mSeekLength = mMeasuredWidth - mPaddingLeft - mPaddingRight;
         mSeekBlockLength = mSeekLength / p.mTickNum;
-        mTrackY = mPaddingTop + mThumbRadius;
+        mTrackY = mPaddingTop + mThumbTouchRadius;
         mSeekStart = p.mTrackRoundedCorners ? mPaddingLeft + p.mBackgroundTrackSize / 2.0f : mPaddingLeft;
         mSeekEnd = mMeasuredWidth - mPaddingRight - p.mBackgroundTrackSize / 2.0f;
         if (!hasMeasured)
@@ -501,7 +510,7 @@ public class IndicatorSeekBar extends View
         int tickWidth;
         int tickHeight;
         int intrinsicWidth = drawable.getIntrinsicWidth();
-        int maxRange = IndicatorUtils.dp2px(mContext, 14);
+        int maxRange = IndicatorUtils.dp2px(mContext, CUSTOM_DRAWABLE_MAX_LIMITED_WIDTH);
         if (intrinsicWidth > maxRange)
         {
             tickWidth = maxRange;
@@ -537,7 +546,8 @@ public class IndicatorSeekBar extends View
         mStockPaint.setColor(p.mTickColor);
         String allText = getAllText();
         mTextPaint.getTextBounds(allText, 0, allText.length(), mRect);
-        int textHeight = Math.round(mRect.height() - mTextPaint.descent() - .5f);
+
+        int textHeight = Math.round(mRect.height() - mTextPaint.descent());
         int gap = IndicatorUtils.dp2px(mContext, 3);
         for (int i = 0; i < mTextList.size(); i++)
         {
@@ -545,17 +555,17 @@ public class IndicatorSeekBar extends View
             mTextPaint.getTextBounds(text, 0, text.length(), mRect);
             if (i == 0)
             {
-                canvas.drawText(text, mTextLocationList.get(i) + mRect.width() / 2.0f, mPaddingTop + mThumbRadius * 2 + textHeight + gap, mTextPaint);
+                canvas.drawText(text, mTextLocationList.get(i) + mRect.width() / 2.0f, mPaddingTop + mThumbTouchHeight + textHeight + gap, mTextPaint);
             } else if (i == mTextList.size() - 1)
             {
-                canvas.drawText(text, mTextLocationList.get(i) - mRect.width() / 2.0f, mPaddingTop + mThumbRadius * 2 + textHeight + gap, mTextPaint);
+                canvas.drawText(text, mTextLocationList.get(i) - mRect.width() / 2.0f, mPaddingTop + mThumbTouchHeight + textHeight + gap, mTextPaint);
             } else
             {
                 if (p.mSeekBarType == IndicatorSeekBarType.CONTINUOUS_TEXTS_ENDS || p.mSeekBarType == IndicatorSeekBarType.DISCRETE_TICKS_TEXTS_ENDS)
                 {
                     continue;
                 }
-                canvas.drawText(text, mTextLocationList.get(i), mPaddingTop + mThumbRadius * 2 + textHeight + gap, mTextPaint);
+                canvas.drawText(text, mTextLocationList.get(i), mPaddingTop + mThumbTouchHeight + textHeight + gap, mTextPaint);
             }
         }
     }
@@ -583,7 +593,7 @@ public class IndicatorSeekBar extends View
     @NonNull
     private String getAllText()
     {
-        String allText = "9f";
+        String allText = "j";
         if (p.mTextArray != null)
         {
             for (CharSequence text : p.mTextArray)
@@ -839,7 +849,7 @@ public class IndicatorSeekBar extends View
             mFaultTolerance = IndicatorUtils.dp2px(mContext, 5);
         }
         boolean inWidthRange = mX >= (mPaddingLeft - 2 * mFaultTolerance) && mX <= (mMeasuredWidth - mPaddingRight + 2 * mFaultTolerance);
-        boolean inHeightRange = mY >= mTrackY - mThumbRadius - mFaultTolerance && mY <= mTrackY + mThumbRadius + mFaultTolerance;
+        boolean inHeightRange = mY >= mTrackY - mThumbTouchRadius - mFaultTolerance && mY <= mTrackY + mThumbTouchRadius + mFaultTolerance;
         return inWidthRange && inHeightRange;
     }
 
@@ -1041,9 +1051,9 @@ public class IndicatorSeekBar extends View
      *
      * @param textArray the array of texts below tick
      */
-    public void setTextArray(@NonNull CharSequence[] textArray)
+    public void setTextArray(@ArrayRes int textArray)
     {
-        this.p.mTextArray = textArray;
+        this.p.mTextArray = mContext.getResources().getStringArray(textArray);
         invalidate();
     }
 
@@ -1052,9 +1062,9 @@ public class IndicatorSeekBar extends View
      *
      * @param textArray the array of texts below tick
      */
-    public void setTextArray(@ArrayRes int textArray)
+    public void setTextArray(@NonNull CharSequence[] textArray)
     {
-        this.p.mTextArray = mContext.getResources().getStringArray(textArray);
+        this.p.mTextArray = textArray;
         invalidate();
     }
 

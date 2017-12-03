@@ -173,10 +173,6 @@ public class IndicatorSeekBar extends View
         {
             p.mBackgroundTrackSize = p.mProgressTrackSize;
         }
-        if (2 * p.mThumbSize / 3f < p.mProgressTrackSize)
-        {
-            p.mThumbSize = Math.round(p.mProgressTrackSize * 3 / 2f);
-        }
         if (p.mTickNum < 0)
         {
             p.mTickNum = 0;
@@ -217,10 +213,15 @@ public class IndicatorSeekBar extends View
             mThumbTouchHeight = mThumbTouchRadius * 2.0f;
         } else
         {
-            float thumbIntrinsicWidth = p.mThumbDrawable.getIntrinsicWidth();
             int maxThumbWidth = IndicatorUtils.dp2px(mContext, CUSTOM_DRAWABLE_MAX_LIMITED_WIDTH);
-            mThumbRadius = (maxThumbWidth < thumbIntrinsicWidth ? maxThumbWidth : thumbIntrinsicWidth) / 2.0f;
-            mThumbTouchRadius = p.mThumbSize;
+            if (p.mThumbSize > maxThumbWidth)
+            {
+                mThumbRadius = maxThumbWidth/2.0f;
+            } else
+            {
+                mThumbRadius = p.mThumbSize/2.0f;
+            }
+            mThumbTouchRadius = mThumbRadius;
             mThumbTouchHeight = mThumbTouchRadius * 2.0f;
         }
         if (p.mTickDrawable == null)
@@ -228,9 +229,14 @@ public class IndicatorSeekBar extends View
             mTickRadius = p.mTickSize / 2.0f;
         } else
         {
-            float tickIntrinsicWidth = p.mTickDrawable.getIntrinsicWidth();
             int maxTickWidth = IndicatorUtils.dp2px(mContext, CUSTOM_DRAWABLE_MAX_LIMITED_WIDTH);
-            mTickRadius = (maxTickWidth < tickIntrinsicWidth ? maxTickWidth : tickIntrinsicWidth) / 2.0f;
+            if (p.mTickSize > maxTickWidth)
+            {
+                mTickRadius = maxTickWidth/2.0f;
+            } else
+            {
+                mTickRadius = p.mTickSize/2.0f;
+            }
         }
         if (mThumbTouchRadius >= mTickRadius)
         {
@@ -409,7 +415,7 @@ public class IndicatorSeekBar extends View
         {
             if (mThumbDraw == null)
             {
-                mThumbDraw = getBitmapDraw(p.mThumbDrawable);
+                mThumbDraw = getBitmapDraw(p.mThumbDrawable, true);
             }
             canvas.drawBitmap(mThumbDraw, thumbX - mThumbDraw.getWidth() / 2.0f, mTrackY - mThumbDraw.getHeight() / 2.0f, mStockPaint);
         } else
@@ -491,7 +497,7 @@ public class IndicatorSeekBar extends View
             {
                 if (mTickDraw == null)
                 {
-                    mTickDraw = getBitmapDraw(p.mTickDrawable);
+                    mTickDraw = getBitmapDraw(p.mTickDrawable, false);
                 }
                 if (p.mTickType == TickType.REC)
                 {
@@ -522,36 +528,50 @@ public class IndicatorSeekBar extends View
 
     }
 
-    private Bitmap getBitmapDraw(Drawable drawable)
+    private Bitmap getBitmapDraw(Drawable drawable, boolean isThumb)
     {
         if (drawable == null)
         {
             return null;
         }
-        int tickWidth;
-        int tickHeight;
-        int intrinsicWidth = drawable.getIntrinsicWidth();
+        int width;
+        int height;
         int maxRange = IndicatorUtils.dp2px(mContext, CUSTOM_DRAWABLE_MAX_LIMITED_WIDTH);
+        int intrinsicWidth = drawable.getIntrinsicWidth();
         if (intrinsicWidth > maxRange)
         {
-            tickWidth = maxRange;
+            if (isThumb)
+            {
+                width = p.mThumbSize;
+            } else
+            {
+                width = p.mTickSize;
+            }
+            height = getHeightByRatio(drawable, width);
+
+            if (width > maxRange)
+            {
+                width = maxRange;
+                height = getHeightByRatio(drawable, width);
+            }
         } else
         {
-            tickWidth = intrinsicWidth;
+            width = drawable.getIntrinsicWidth();
+            height = drawable.getIntrinsicHeight();
         }
-        int intrinsicHeight = drawable.getIntrinsicHeight();
-        if (intrinsicHeight > maxRange)
-        {
-            tickHeight = maxRange;
-        } else
-        {
-            tickHeight = intrinsicHeight;
-        }
-        Bitmap bitmap = Bitmap.createBitmap(tickWidth, tickHeight, Bitmap.Config.ARGB_8888);
+
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         drawable.draw(canvas);
         return bitmap;
+    }
+
+    private int getHeightByRatio(Drawable drawable, int width)
+    {
+        int intrinsicWidth = drawable.getIntrinsicWidth();
+        int intrinsicHeight = drawable.getIntrinsicHeight();
+        return Math.round(1.0f * width * intrinsicHeight / intrinsicWidth);
     }
 
     private void drawText(Canvas canvas)

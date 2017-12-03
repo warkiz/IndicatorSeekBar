@@ -2,6 +2,7 @@ package com.warkiz.widget;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -82,7 +83,7 @@ class Indicator
             }
         } else
         {
-            mIndicatorView = View.inflate(mContext, R.layout.indicator, null);
+            mIndicatorView = View.inflate(mContext, R.layout.isb_indicator, null);
             //container
             mTopContentView = (LinearLayout) mIndicatorView.findViewById(R.id.indicator_container);
             //arrow
@@ -93,7 +94,11 @@ class Indicator
             mIndicatorText.setText(String.valueOf(mSeekBar.getProgress()));
             mIndicatorText.setTextSize(IndicatorUtils.px2sp(mContext, mIndicatorTextSize));
             mIndicatorText.setTextColor(mIndicatorTextColor);
-            mTopContentView.setBackground(getGradientDrawable());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                mTopContentView.setBackground(getGradientDrawable());
+            } else {
+                mTopContentView.setBackgroundDrawable(getGradientDrawable());
+            }
             //custom top content view
             if (mIndicatorCustomTopContentView != null)
             {
@@ -131,10 +136,10 @@ class Indicator
         GradientDrawable tvDrawable;
         if (mIndicatorType == IndicatorType.SQUARE_CORNERS)
         {
-            tvDrawable = (GradientDrawable) mContext.getResources().getDrawable(R.drawable.indicator_square_corners);
+            tvDrawable = (GradientDrawable) mContext.getResources().getDrawable(R.drawable.isb_indicator_square_corners);
         } else
         {
-            tvDrawable = (GradientDrawable) mContext.getResources().getDrawable(R.drawable.indicator_rounded_corners);
+            tvDrawable = (GradientDrawable) mContext.getResources().getDrawable(R.drawable.isb_indicator_rounded_corners);
         }
         tvDrawable.setColor(mIndicatorColor);
         return tvDrawable;
@@ -273,7 +278,11 @@ class Indicator
     public void setIndicatorTopContentView(@NonNull View topContentView)
     {
         mTopContentView.removeAllViews();
-        topContentView.setBackground(getGradientDrawable());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            topContentView.setBackground(getGradientDrawable());
+        } else {
+            topContentView.setBackgroundDrawable(getGradientDrawable());
+        }
         mTopContentView.addView(topContentView);
     }
 
@@ -287,7 +296,11 @@ class Indicator
     {
         mTopContentView.removeAllViews();
         View topContentView = View.inflate(mContext, topContentLayoutId, null);
-        topContentView.setBackground(getGradientDrawable());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            topContentView.setBackground(getGradientDrawable());
+        } else {
+            topContentView.setBackgroundDrawable(getGradientDrawable());
+        }
         mTopContentView.addView(topContentView);
     }
 
@@ -312,7 +325,11 @@ class Indicator
         }
         mIndicatorText = (TextView) tv;
         mTopContentView.removeAllViews();
-        topContentView.setBackground(getGradientDrawable());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            topContentView.setBackground(getGradientDrawable());
+        } else {
+            topContentView.setBackgroundDrawable(getGradientDrawable());
+        }
         mTopContentView.addView(topContentView);
     }
 

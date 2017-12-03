@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 
+def VERSION_NAME = "1.1.5"
+
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'indicatorseekbar'
@@ -8,15 +10,15 @@ ext {
     libraryName = 'IndicatorSeekbar'
     artifact = 'indicatorseekbar'
 
-    libraryDescription = 'A deeply customized SeekBar on Android.'
+    libraryDescription = 'A customized SeekBar on Android, which can be changed the size ,color , thumb drawable , tick drawable , tick text and indicator , also , will show an indicator view with progress above SeekBar when seeking. '
 
     siteUrl = 'https://github.com/warkiz/IndicatorSeekBar'
     gitUrl = 'https://github.com/warkiz/IndicatorSeekBar.git'
 
-    libraryVersion = '1.1.2'
+    libraryVersion = VERSION_NAME
 
     developerId = 'warkiz'
-    developerName = 'Guangquan chuang'
+    developerName = 'Guangquan Chuang'
     developerEmail = 'warkiz4j@gmail.com'
 
     licenseName = 'The Apache Software License, Version 2.0'
@@ -25,14 +27,14 @@ ext {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "26.0.1"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.1"
 
     defaultConfig {
-        minSdkVersion 9
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion 14
+        targetSdkVersion 27
+        versionCode 2
+        versionName VERSION_NAME
     }
     buildTypes {
         release {
@@ -43,8 +45,6 @@ android {
 }
 
 dependencies {
-    provided 'com.android.support:appcompat-v7:25.3.1'
+    provided 'com.android.support:appcompat-v7:27.0.2'
 }
 
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

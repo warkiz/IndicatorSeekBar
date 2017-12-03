@@ -1,6 +1,6 @@
 # IndicatorSeekBar
 [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
-[![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9)
+[![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
 
 
@@ -17,9 +17,10 @@
 
 ## 2. 使用
 ###  1. 在app/build.gradle下:
+最新版本: [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
 ```groovy
 dependencies {
-    compile 'com.github.warkiz.widget:indicatorseekbar:1.1.2'
+    compile 'com.github.warkiz.widget:indicatorseekbar:1.1.5'//推荐使用最新版本
 }
 ```
 ### 2. 在布局文件或java类中:
@@ -167,6 +168,8 @@ indicatorSeekBar.setTextArray(R.array.texts_below_tick_length_5);
     app:isb_thumb_drawable="@mipmap/ic_launcher"
     .../>
 ```
+注意: 可通过isb_thumb_width 属性设置滑块图片大小, 最大限制显示30dp, 默认14dp . 如果图片小于30dp, 会整张图片显示.
+
 ### 3.9 自定义刻度tick的图片
 刻度可以使用图片去自定义.
 ```xml
@@ -174,6 +177,8 @@ indicatorSeekBar.setTextArray(R.array.texts_below_tick_length_5);
     app:isb_tick_drawable="@mipmap/ic_launcher"
     .../>
 ```
+
+注意: 可通过isb_tick_size 属性设置刻度图片大小, 最大限制显示30dp, 默认8dp . 如果图片小于30dp, 会整张图片显示.
 
 ### 3.10 自定义指示器indicator
 IndicatorSeekbar提供了3种指示器的类型： `ROUNDED_CORNERS` / `SQUARE_CORNERS` / `CUSTOM`,当指示器的类型为 `CUSTOM` 时, 可以自定义指示器的view.
@@ -269,13 +274,13 @@ onSectionChanged: 当SeekBar的类型为非连续 `discrete`系列 时, 这个�
 //thumb
 <attr name="isb_thumb_progress_stay" format="boolean"/><!-- set thumb below text to stay after seek, default false, work on seekBar type : continuous / discrete_ticks-->
 <attr name="isb_thumb_color" format="color|reference"/><!--set thumb's color, default #FF4081-->
-<attr name="isb_thumb_width" format="dimension|reference"/><!--set thumb's size, default 18dp, when custom thumb-->
-<attr name="isb_thumb_drawable" format="reference"/><!--set custom thumb's drawable you want, thumb size will be limited in 18dp no matter drawable size-->
+<attr name="isb_thumb_width" format="dimension|reference"/><!--set thumb's size, default 14dp, when custom thumb-->
+<attr name="isb_thumb_drawable" format="reference"/><!--set custom thumb's drawable you want,default 14dp, thumb size will be limited in 30dp-->
 //tick
-<attr name="isb_tick_drawable" format="reference"/><!--set custom tick's drawable you want-->
+<attr name="isb_tick_drawable" format="reference"/><!--set custom tick's drawable you want , default 14dp, thumb size will be limited in 30dp-->
 <attr name="isb_tick_color" format="color|reference"/><!--set tick's color, default #FF4081-->
 <attr name="isb_tick_num" format="integer"/><!--seekBar's tick count, default 5-->
-<attr name="isb_tick_size" format="dimension|reference"/><!--set the tick width, default 13dp,  custom drawable will be limited in 18dp no matter drawable size-->
+<attr name="isb_tick_size" format="dimension|reference"/><!--set the tick width, default 8dp,  custom drawable will be limited in 30dp-->
 <attr name="isb_tick_both_end_hide" format="boolean"/><!--hide 2 ticks on the seekBar's both ends, default false-->
 <attr name="isb_tick_on_thumb_left_hide" format="boolean"/><!--hide the ticks on the seekBar's thumb left, default false-->
 <attr name="isb_tick_type"><!--select the tick shape type, default rectangle/1-->
@@ -291,8 +296,20 @@ onSectionChanged: 当SeekBar的类型为非连续 `discrete`系列 时, 这个�
 <attr name="isb_text_array" format="reference"/><!--set the texts below tick to replace default progress text, default string of progress, work on seekBar type :DISCRETE_TICKS_TEXTS-->
 ```
 ## 7. License
-Apache License 2.0
 
+Copyright 2017 Chuang Guangquan (warkiz)
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
 
 ## 8. 联系我
 如果你对此项目有问题，欢迎通过以下方式联系我。

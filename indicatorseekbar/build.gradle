@@ -10,7 +10,7 @@ ext {
     libraryName = 'IndicatorSeekbar'
     artifact = 'indicatorseekbar'
 
-    libraryDescription = 'A customized SeekBar on Android, which can be changed the size ,color , thumb drawable , tick drawable , tick text and indicator , also , will show an indicator view with progress above SeekBar when seeking. '
+    libraryDescription = 'A customized SeekBar on Android, which can be changed the size ,color , thumb drawable , tick drawable , tick text and isb_indicator , also , will show an isb_indicator view with progress above SeekBar when seeking. '
 
     siteUrl = 'https://github.com/warkiz/IndicatorSeekBar'
     gitUrl = 'https://github.com/warkiz/IndicatorSeekBar.git'
@@ -45,6 +45,6 @@ android {
 }
 
 dependencies {
-    provided 'com.android.support:appcompat-v7:27.0.2'
+    compileOnly 'com.android.support:appcompat-v7:27.0.2'
 }
 

@@ -1,6 +1,6 @@
 # IndicatorSeekBar
 [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
-[![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9)
+[![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
 
 #### README: [ 中文 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)  |  English
@@ -14,10 +14,12 @@ A deeply customized SeekBar on Android, which can be changed the `size` , `color
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
 
 ## 2. How to use
+
 ### 1. build.gradle in module :
+latest version : [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
 ```groovy
 dependencies {
-  compile 'com.github.warkiz.widget:indicatorseekbar:1.1.2'
+  compile 'com.github.warkiz.widget:indicatorseekbar:1.1.5'//recommend to use latest version.
 }
 ```
 ### 2. in xml or class file:
@@ -153,7 +155,9 @@ When the seekabr type is `DISCRETE_TICKS_TEXTS` , you can custom the texts below
     app:isb_text_array="@array/texts_below_tick_length_5"
     app:isb_tick_num="5" // normally , array length should equals tick num.
     .../>
-```	
+```
+Also, you can use the attr: isb_tick_size to change the drawable' size , limited in 30 dp, default 8dp. if the drawable less than 30dp, will show in raw size
+
 ```Java
 or
 indicatorSeekBar.setTextArray(R.array.texts_below_tick_length_5);
@@ -166,6 +170,8 @@ Thumb can be replaced by a drawable:
     app:isb_thumb_drawable="@mipmap/ic_launcher"
     .../>
 ```
+Also, you can use the attr: isb_thumb_width to change the drawable' size , limited in 30 dp , default 8dp . if the drawable less than 30dp, will show in raw size.
+
 ### 3.9 customized tick drawable
 Ticks can be replaced by a drawable:
 ```xml
@@ -290,7 +296,20 @@ onSectionChanged: when the SeekBar type is `discrete series`, this callback work
 <attr name="isb_text_array" format="reference"/><!--set the texts below tick to replace default progress text, default string of progress, work on seekBar type :DISCRETE_TICKS_TEXTS-->
 ```
 ## 7. License
-Apache License 2.0
+
+Copyright 2017 Chuang Guangquan (warkiz)
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
 
 
 ## 8. Contact me

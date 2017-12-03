@@ -94,9 +94,11 @@ class Indicator
             mIndicatorText.setText(String.valueOf(mSeekBar.getProgress()));
             mIndicatorText.setTextSize(IndicatorUtils.px2sp(mContext, mIndicatorTextSize));
             mIndicatorText.setTextColor(mIndicatorTextColor);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+            {
                 mTopContentView.setBackground(getGradientDrawable());
-            } else {
+            } else
+            {
                 mTopContentView.setBackgroundDrawable(getGradientDrawable());
             }
             //custom top content view
@@ -148,7 +150,11 @@ class Indicator
     private int getWindowWidth()
     {
         WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-        return wm.getDefaultDisplay().getWidth();
+        if (wm != null)
+        {
+            return wm.getDefaultDisplay().getWidth();
+        }
+        return 0;
     }
 
     private int getIndicatorScreenX()
@@ -278,9 +284,11 @@ class Indicator
     public void setIndicatorTopContentView(@NonNull View topContentView)
     {
         mTopContentView.removeAllViews();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+        {
             topContentView.setBackground(getGradientDrawable());
-        } else {
+        } else
+        {
             topContentView.setBackgroundDrawable(getGradientDrawable());
         }
         mTopContentView.addView(topContentView);
@@ -296,9 +304,11 @@ class Indicator
     {
         mTopContentView.removeAllViews();
         View topContentView = View.inflate(mContext, topContentLayoutId, null);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+        {
             topContentView.setBackground(getGradientDrawable());
-        } else {
+        } else
+        {
             topContentView.setBackgroundDrawable(getGradientDrawable());
         }
         mTopContentView.addView(topContentView);
@@ -325,9 +335,11 @@ class Indicator
         }
         mIndicatorText = (TextView) tv;
         mTopContentView.removeAllViews();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+        {
             topContentView.setBackground(getGradientDrawable());
-        } else {
+        } else
+        {
             topContentView.setBackgroundDrawable(getGradientDrawable());
         }
         mTopContentView.addView(topContentView);

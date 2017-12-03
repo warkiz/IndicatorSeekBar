@@ -127,7 +127,6 @@ class Indicator
         }
         if (mIndicatorView != null)
         {
-            mIndicatorView.measure(0, 0);
             mIndicator = new PopupWindow(mIndicatorView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, false);
         }
     }

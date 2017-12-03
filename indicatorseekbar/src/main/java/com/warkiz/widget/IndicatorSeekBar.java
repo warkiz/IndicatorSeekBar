@@ -66,6 +66,7 @@ public class IndicatorSeekBar extends View
     private int mTextHeight;
     private float mThumbTouchHeight;
     private boolean hasMeasured;
+    private float mCustomDrawableMaxHeight;
 
     public IndicatorSeekBar(Context context)
     {
@@ -220,9 +221,24 @@ public class IndicatorSeekBar extends View
             int maxThumbWidth = IndicatorUtils.dp2px(mContext, CUSTOM_DRAWABLE_MAX_LIMITED_WIDTH);
             mThumbRadius = (maxThumbWidth < thumbIntrinsicWidth ? maxThumbWidth : thumbIntrinsicWidth) / 2.0f;
             mThumbTouchRadius = p.mThumbSize;
-            mThumbTouchHeight =  mThumbTouchRadius * 2.0f;
+            mThumbTouchHeight = mThumbTouchRadius * 2.0f;
         }
-        mTickRadius = p.mTickSize / 2.0f;
+        if (p.mTickDrawable == null)
+        {
+            mTickRadius = p.mTickSize / 2.0f;
+        } else
+        {
+            float tickIntrinsicWidth = p.mTickDrawable.getIntrinsicWidth();
+            int maxTickWidth = IndicatorUtils.dp2px(mContext, CUSTOM_DRAWABLE_MAX_LIMITED_WIDTH);
+            mTickRadius = (maxTickWidth < tickIntrinsicWidth ? maxTickWidth : tickIntrinsicWidth) / 2.0f;
+        }
+        if (mThumbTouchRadius >= mTickRadius)
+        {
+            mCustomDrawableMaxHeight = mThumbTouchHeight;
+        } else
+        {
+            mCustomDrawableMaxHeight = mTickRadius * 2.0f;
+        }
 
         initStrokePaint();
 
@@ -231,8 +247,6 @@ public class IndicatorSeekBar extends View
         {
             mIndicator = new Indicator(mContext, this, p);
         }
-
-        mTickRadius = mTickRadius > mThumbRadius ? mThumbRadius : mTickRadius;
 
         if (noMarks())
         {
@@ -352,7 +366,7 @@ public class IndicatorSeekBar extends View
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
     {
         int width = MeasureSpec.getSize(widthMeasureSpec);
-        int height = Math.round(mThumbTouchHeight + .5f + getPaddingTop() + getPaddingBottom());
+        int height = Math.round(mCustomDrawableMaxHeight + .5f + getPaddingTop() + getPaddingBottom());
         setMeasuredDimension(width, height + mTextHeight);
         initSeekBarInfo();
     }
@@ -370,6 +384,7 @@ public class IndicatorSeekBar extends View
             mFirstDraw = false;
         }
         float thumbX = getThumbX();
+        //draw progress track
         mStockPaint.setStrokeWidth(p.mProgressTrackSize);
         canvas.drawLine(mSeekStart, mTrackY, thumbX, mTrackY, mStockPaint);
         //draw BG track
@@ -423,7 +438,13 @@ public class IndicatorSeekBar extends View
         mPaddingTop = getPaddingTop();
         mSeekLength = mMeasuredWidth - mPaddingLeft - mPaddingRight;
         mSeekBlockLength = mSeekLength / p.mTickNum;
-        mTrackY = mPaddingTop + mThumbTouchRadius;
+        if (mThumbTouchRadius >= mTickRadius)
+        {
+            mTrackY = mPaddingTop + mThumbTouchRadius;
+        } else
+        {
+            mTrackY = mPaddingTop + mTickRadius;
+        }
         mSeekStart = p.mTrackRoundedCorners ? mPaddingLeft + p.mBackgroundTrackSize / 2.0f : mPaddingLeft;
         mSeekEnd = mMeasuredWidth - mPaddingRight - p.mBackgroundTrackSize / 2.0f;
         if (!hasMeasured)
@@ -555,17 +576,17 @@ public class IndicatorSeekBar extends View
             mTextPaint.getTextBounds(text, 0, text.length(), mRect);
             if (i == 0)
             {
-                canvas.drawText(text, mTextLocationList.get(i) + mRect.width() / 2.0f, mPaddingTop + mThumbTouchHeight + textHeight + gap, mTextPaint);
+                canvas.drawText(text, mTextLocationList.get(i) + mRect.width() / 2.0f, mPaddingTop + mCustomDrawableMaxHeight + textHeight + gap, mTextPaint);
             } else if (i == mTextList.size() - 1)
             {
-                canvas.drawText(text, mTextLocationList.get(i) - mRect.width() / 2.0f, mPaddingTop + mThumbTouchHeight + textHeight + gap, mTextPaint);
+                canvas.drawText(text, mTextLocationList.get(i) - mRect.width() / 2.0f, mPaddingTop + mCustomDrawableMaxHeight + textHeight + gap, mTextPaint);
             } else
             {
                 if (p.mSeekBarType == IndicatorSeekBarType.CONTINUOUS_TEXTS_ENDS || p.mSeekBarType == IndicatorSeekBarType.DISCRETE_TICKS_TEXTS_ENDS)
                 {
                     continue;
                 }
-                canvas.drawText(text, mTextLocationList.get(i), mPaddingTop + mThumbTouchHeight + textHeight + gap, mTextPaint);
+                canvas.drawText(text, mTextLocationList.get(i), mPaddingTop + mCustomDrawableMaxHeight + textHeight + gap, mTextPaint);
             }
         }
     }
@@ -593,15 +614,16 @@ public class IndicatorSeekBar extends View
     @NonNull
     private String getAllText()
     {
-        String allText = "j";
+        StringBuilder sb = new StringBuilder();
+        sb.append("j");
         if (p.mTextArray != null)
         {
             for (CharSequence text : p.mTextArray)
             {
-                allText += text;
+                sb.append(text);
             }
         }
-        return allText;
+        return sb.toString();
     }
 
     private void initLocationListData()
@@ -699,7 +721,7 @@ public class IndicatorSeekBar extends View
                 }
                 break;
         }
-        return false;
+        return super.onTouchEvent(event);
     }
 
     private void setListener()
@@ -1051,9 +1073,9 @@ public class IndicatorSeekBar extends View
      *
      * @param textArray the array of texts below tick
      */
-    public void setTextArray(@ArrayRes int textArray)
+    public void setTextArray(@NonNull CharSequence[] textArray)
     {
-        this.p.mTextArray = mContext.getResources().getStringArray(textArray);
+        this.p.mTextArray = textArray;
         invalidate();
     }
 
@@ -1062,9 +1084,9 @@ public class IndicatorSeekBar extends View
      *
      * @param textArray the array of texts below tick
      */
-    public void setTextArray(@NonNull CharSequence[] textArray)
+    public void setTextArray(@ArrayRes int textArray)
     {
-        this.p.mTextArray = textArray;
+        this.p.mTextArray = mContext.getResources().getStringArray(textArray);
         invalidate();
     }
 

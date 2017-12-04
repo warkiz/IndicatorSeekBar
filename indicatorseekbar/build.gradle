@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-def VERSION_NAME = "1.1.5"
+def VERSION_NAME = "1.1.6"
 
 ext {
     bintrayRepo = 'maven'
@@ -45,6 +45,6 @@ android {
 }
 
 dependencies {
-    compileOnly 'com.android.support:appcompat-v7:27.0.2'
+    provided 'com.android.support:appcompat-v7:27.0.2'
 }
 

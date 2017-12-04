@@ -7,7 +7,7 @@
 #### README: 中文 | [ English here](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_EN.md)
 
 自定义SeekBar, 能改变尺寸、颜色、滑块(thumb)图片、刻度(tick)图片、刻度文字(text)和气泡指示器(indicator)，当滑动时显示带有进度的指示器。
-欢迎 `star` or `pull requests`。
+欢迎 `star` or `pull request`。
 
 ----------------
 ## 1.截图
@@ -20,7 +20,8 @@
 最新版本: [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
 ```groovy
 dependencies {
-    compile 'com.github.warkiz.widget:indicatorseekbar:1.1.5'//推荐使用最新版本
+    //推荐使用最新版本
+    compile 'com.github.warkiz.widget:indicatorseekbar:1.1.6'
 }
 ```
 ### 2. 在布局文件或java类中:
@@ -238,63 +239,9 @@ onSectionChanged: 当SeekBar的类型为非连续 `discrete`系列 时, 这个�
 ```
 
 ## 6. 属性
-```xml
-//seekBar
-<attr name="isb_max" format="float"/><!-- the max value of seekBar to seek, default 100-->
-<attr name="isb_min" format="float"/><!-- the min value of seekBar to seek, default 0 -->
-<attr name="isb_progress" format="float"/><!-- the current progress value of seekBar, default 0-->
-<attr name="isb_clear_default_padding" format="boolean"/><!-- set seekBar's leftPadding&rightPadding to zero, default false, default padding is 16dp-->
-<attr name="isb_progress_value_float" format="boolean"/><!--set the value of seekBar to float type, default false-->
-<attr name="isb_seek_bar_type"><!-- the type for seekBar, default 0.-->
-    <enum name="continuous" value="0"/>
-    <enum name="continuous_texts_ends" value="1"/>
-    <enum name="discrete_ticks" value="2"/>
-    <enum name="discrete_ticks_texts" value="3"/><!--has below text-->
-    <enum name="discrete_ticks_texts_ends" value="4"/><!--has below text of both ends of seekBar-->
-</attr>
-//indicator
-<attr name="isb_indicator_type"><!-- the type for indicator, default square_corners/0.-->
-    <enum name="square_corners" value="0"/>
-    <enum name="rounded_corners" value="1"/>
-    <!-- the attr:isb_indicator_custom_layout should be called to give a indicator view when you select custom indicator type -->
-    <enum name="custom" value="2"/>
-</attr>
-<attr name="isb_show_indicator" format="boolean"/><!-- show indicator or not when seeking, default true-->
-<attr name="isb_indicator_color" format="color|reference"/><!-- set indicator's color, default #FF4081-->
-<attr name="isb_indicator_custom_layout" format="reference"/><!-- when you set indicator type to custom , you can set this layout for indicator view you want-->
-<attr name="isb_indicator_custom_top_content_layout" format="reference"/> <!--you can set this layout for indicator top view you want, no effect arrow below indicator, effect on indicator type : square_corners or rounded_corners-->
-<attr name="isb_indicator_text_color" format="color|reference"/><!-- set indicator's text color, default #FF4081 , work on indicator type : square_corners or rounded_corners-->
-<attr name="isb_indicator_text_size" format="dimension|reference"/><!-- set indicator's text size, default 13sp,  work on indicator type : square_corners or rounded_corners-->
-//track
-<attr name="isb_track_background_bar_size" format="dimension|reference"/><!-- set indicatorSeekBar's track background bar size, default 2dp-->
-<attr name="isb_track_background_bar_color" format="color|reference"/><!-- set indicatorSeekBar's track background bar color, default #D7D7D7-->
-<attr name="isb_track_progress_bar_size" format="dimension|reference"/><!-- set indicatorSeekBar's track progress bar size, default 2dp-->
-<attr name="isb_track_progress_bar_color" format="color|reference"/><!-- set indicatorSeekBar's track progress bar color, default #FF4081-->
-<attr name="isb_track_rounded_corners" format="boolean"/><!-- set indicatorSeekBar's track's both ends's corners to rounded/square, default false-->
-//thumb
-<attr name="isb_thumb_progress_stay" format="boolean"/><!-- set thumb below text to stay after seek, default false, work on seekBar type : continuous / discrete_ticks-->
-<attr name="isb_thumb_color" format="color|reference"/><!--set thumb's color, default #FF4081-->
-<attr name="isb_thumb_width" format="dimension|reference"/><!--set thumb's size, default 14dp, when custom thumb-->
-<attr name="isb_thumb_drawable" format="reference"/><!--set custom thumb's drawable you want,default 14dp, thumb size will be limited in 30dp-->
-//tick
-<attr name="isb_tick_drawable" format="reference"/><!--set custom tick's drawable you want , default 14dp, thumb size will be limited in 30dp-->
-<attr name="isb_tick_color" format="color|reference"/><!--set tick's color, default #FF4081-->
-<attr name="isb_tick_num" format="integer"/><!--seekBar's tick count, default 5-->
-<attr name="isb_tick_size" format="dimension|reference"/><!--set the tick width, default 8dp,  custom drawable will be limited in 30dp-->
-<attr name="isb_tick_both_end_hide" format="boolean"/><!--hide 2 ticks on the seekBar's both ends, default false-->
-<attr name="isb_tick_on_thumb_left_hide" format="boolean"/><!--hide the ticks on the seekBar's thumb left, default false-->
-<attr name="isb_tick_type"><!--select the tick shape type, default rectangle/1-->
-    <enum name="none" value="0"/>
-    <enum name="rec" value="1"/>
-    <enum name="oval" value="2"/>
-</attr>
-//texts
-<attr name="isb_text_color" format="color|reference"/><!--set the color of text below tick, default #FF4081-->
-<attr name="isb_text_left_end" format="string|reference"/><!--set the text below seekBar left end, default min value string, work on seekBar type :CONTINUOUS_TEXTS_ENDS/DISCRETE_TICKS_TEXTS/DISCRETE_TICKS_TEXTS_ENDS-->
-<attr name="isb_text_right_end" format="string|reference"/><!--set the text below seekBar right end, default max value string, work on seekBar type :CONTINUOUS_TEXTS_ENDS/DISCRETE_TICKS_TEXTS/DISCRETE_TICKS_TEXTS_ENDS-->
-<attr name="isb_text_size" format="dimension|reference"/><!--set the text size of tick below text, default 13sp-->
-<attr name="isb_text_array" format="reference"/><!--set the texts below tick to replace default progress text, default string of progress, work on seekBar type :DISCRETE_TICKS_TEXTS-->
-```
+
+[ attr.xml ](https://github.com/warkiz/IndicatorSeekBar/blob/master/indicatorseekbar/src/main/res/values/attr.xml)
+
 ## 7. License
 
 Copyright 2017 Chuang Guangquan (warkiz)

@@ -59,7 +59,7 @@ class BuilderParams {
         this.mIndicatorTextSize = IndicatorUtils.sp2px(mContext, 13);
         this.mBackgroundTrackSize = IndicatorUtils.dp2px(mContext, 2);
         this.mProgressTrackSize = IndicatorUtils.dp2px(mContext, 2);
-        this.mTickSize = IndicatorUtils.dp2px(mContext, 8);
+        this.mTickSize = IndicatorUtils.dp2px(mContext, 10);
         this.mTextSize = IndicatorUtils.sp2px(mContext, 13);
         this.mThumbSize = IndicatorUtils.dp2px(mContext, 14);
     }

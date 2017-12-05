@@ -577,7 +577,7 @@ public class IndicatorSeekBar extends View {
 
     public int getThumbPosOnTick() {
         if (p.mSeekBarType > 1) {
-            return Math.round(mTouchX / mSeekBlockLength);
+            return Math.round((mTouchX - mPaddingLeft) / mSeekBlockLength);
         } else {
             return -1;
         }

@@ -4,8 +4,7 @@ package com.warkiz.widget;
  * created by ZhuangGuangquan on 2017/9/11
  */
 
-public interface TickType
-{
+public interface TickType {
     /**
      * not show tickMarks
      */

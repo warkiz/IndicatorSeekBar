@@ -316,9 +316,8 @@ public class IndicatorSeekBar extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = Math.round(mCustomDrawableMaxHeight + .5f + getPaddingTop() + getPaddingBottom());
-        setMeasuredDimension(width, height + mTextHeight);
+        setMeasuredDimension(resolveSize(IndicatorUtils.dp2px(mContext, 170), widthMeasureSpec), height + mTextHeight);
         initSeekBarInfo();
     }
 
@@ -435,7 +434,7 @@ public class IndicatorSeekBar extends View {
                     } else {
                         rectTickHeightRange = p.mBackgroundTrackSize;
                     }
-                    canvas.drawRect(locationX - rectWidth, mTrackY - rectTickHeightRange / 2.0f, locationX + rectWidth, mTrackY + rectTickHeightRange / 2.0f + .5f, mStockPaint);
+                    canvas.drawRect(locationX - rectWidth, mTrackY - rectTickHeightRange / 2.0f - .5f, locationX + rectWidth, mTrackY + rectTickHeightRange / 2.0f + .5f, mStockPaint);
                 }
             }
         }

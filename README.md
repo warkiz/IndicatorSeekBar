@@ -28,39 +28,25 @@ dependencies {
 #### xml
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    app:isb_max="78.8"
-    app:isb_min="10.2"
-    app:isb_progress="50.3"
-    app:isb_progress_value_float="true"
-    app:isb_show_indicator="true"/>
-```
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:isb_indicator_custom_layout="@layout/custom_indicator"
-    app:isb_indicator_type="custom"
-    app:isb_max="189"
-    app:isb_min="23"
-    app:isb_progress="67"
-    app:isb_seek_bar_type="discrete_ticks_texts"
-    app:isb_show_indicator="true"
-    app:isb_text_array="@array/tick_below_text_length_9"
-    app:isb_text_color="@color/color_blue"
-    app:isb_thumb_width="18dp"
-    app:isb_tick_drawable="@mipmap/ic_launcher"
-    app:isb_tick_num="9"
-    app:isb_tick_on_thumb_left_hide="true"
-    app:isb_track_background_bar_color="#FF00"
-    app:isb_track_background_bar_size="2dp"
-    app:isb_track_progress_bar_color="#FF0000"
-    app:isb_track_progress_bar_size="5dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:isb_max="100"
+        app:isb_min="10"
+        app:isb_progress="34"
+        app:isb_show_indicator="true" />
+
+    <com.warkiz.widget.IndicatorSeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:isb_indicator_type="rounded_corners"
+        app:isb_progress="50"
+        app:isb_seek_bar_type="discrete_ticks_texts"
+        app:isb_tick_num="6"
+        app:isb_tick_type="oval" />
 ```
 
-#### Java
+#### or Java
 
 ```Java
 IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)

@@ -251,14 +251,23 @@ Copyright 2017 Chuang Guangquan (warkiz)
 3. 发邮件, "warkiz".concat("4j").concat("@").concat("gmail.com")
 
 ## 9. 感谢
-[material.io-slider](https://material.io/guidelines/components/sliders.html#sliders-continuous-slider).
-[MaterialDesignLibrary](https://github.com/navasmdc/MaterialDesignLibrary).
+[material.io-slider](https://material.io/guidelines/components/sliders.html#sliders-continuous-slider). 
+
+[MaterialDesignLibrary](https://github.com/navasmdc/MaterialDesignLibrary). 
+
 [PointerPopupWindow](https://github.com/okry1123/PointerPopupWindow).
-[SeekBarCompat](https://github.com/ahmedrizwan/SeekBarCompat).
-[BubbleSeekBar](https://github.com/woxingxiao/BubbleSeekBar).
-[NumberProgressBar](https://github.com/daimajia/NumberProgressBar).
-[android-slidr](https://github.com/florent37/android-slidr).
-[RangeSeekBar](https://github.com/Jay-Goo/RangeSeekBar).
-[BubblePopupWindow](https://github.com/smuyyh/BubblePopupWindow).
+
+[SeekBarCompat](https://github.com/ahmedrizwan/SeekBarCompat). 
+
+[BubbleSeekBar](https://github.com/woxingxiao/BubbleSeekBar). 
+
+[NumberProgressBar](https://github.com/daimajia/NumberProgressBar). 
+
+[android-slidr](https://github.com/florent37/android-slidr). 
+
+[RangeSeekBar](https://github.com/Jay-Goo/RangeSeekBar). 
+
+[BubblePopupWindow](https://github.com/smuyyh/BubblePopupWindow). 
+
  
 

@@ -49,7 +49,7 @@ dependencies {
 
 ```Java
 IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
-                .setMax(200)
+                                .setMax(200)
 				.setMin(0)
 				.setProgress(35)
 				.setSeekBarType(IndicatorSeekBarType.DISCRETE_TICKS)
@@ -251,3 +251,21 @@ Feel free to contact me if you have any trouble on this project.
 1. Create an issue.
 2. Send mail to me, "warkiz".concat("4j").concat("@").concat("gmail.com")
 
+## 9. Thanks
+[material.io-slider](https://material.io/guidelines/components/sliders.html#sliders-continuous-slider). 
+
+[MaterialDesignLibrary](https://github.com/navasmdc/MaterialDesignLibrary). 
+
+[PointerPopupWindow](https://github.com/okry1123/PointerPopupWindow).
+
+[SeekBarCompat](https://github.com/ahmedrizwan/SeekBarCompat). 
+
+[BubbleSeekBar](https://github.com/woxingxiao/BubbleSeekBar). 
+
+[NumberProgressBar](https://github.com/daimajia/NumberProgressBar). 
+
+[android-slidr](https://github.com/florent37/android-slidr). 
+
+[RangeSeekBar](https://github.com/Jay-Goo/RangeSeekBar). 
+
+[BubblePopupWindow](https://github.com/smuyyh/BubblePopupWindow). 

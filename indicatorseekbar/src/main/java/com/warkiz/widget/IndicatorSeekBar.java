@@ -15,6 +15,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -386,7 +387,10 @@ public class IndicatorSeekBar extends View {
     @Override
     protected void onWindowVisibilityChanged(final int visibility) {
         super.onWindowVisibilityChanged(visibility);
-        if (visibility == INVISIBLE || visibility == GONE) {
+        if (visibility == View.INVISIBLE || visibility == View.GONE) {
+            if (mIndicator != null) {
+                mIndicator.forceHideIndicator();
+            }
             return;
         }
         if (!p.mShowIndicator || !p.mIndicatorStay || mIndicator == null) {
@@ -399,8 +403,10 @@ public class IndicatorSeekBar extends View {
                     if (isCover()) {
                         mIndicator.forceHideIndicator();
                     } else {
-                        calculateProgressTouchX();
-                        mIndicator.showIndicator(mTouchX, p.mSeekBarType, getThumbPosOnTick());
+                        if (IndicatorSeekBar.this.getVisibility() == View.VISIBLE) {
+                            calculateProgressTouchX();
+                            mIndicator.showIndicator(mTouchX, p.mSeekBarType, getThumbPosOnTick());
+                        }
                     }
                 }
             }

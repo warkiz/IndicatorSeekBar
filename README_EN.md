@@ -8,6 +8,24 @@
 A customized SeekBar on Android, which can be changed the `size` , `color` , `thumbDrawable` , `tickDrawable` , `textsBelowTick` , `indicator`, also can show an indicator view with progress above SeekBar when seeking. Welcome `star` or `pull request`.
 
 ----------------
+## new feature logs
+
+12/5
+
+When custom tickn or thumb drawable :
+    
+	if the drawable's width is less than 30 dp , will show the drawable in raw size.
+	if large than 30dp , you can set the width by isb_tick_size/isb_thumb_width , default 14dp , max is 30dp when display.height auto adjust by ratio.
+
+12/10
+
+This new feature can set the indicator to show always.
+    
+	IndicatorSeekBar has provied the attribute isb_indicator_stay to do this , also can use setter in builder.
+	this new feature is fine when use in below situation.
+	ListView / ScrollView / GridView / RecyclerView / ViewPager / Dialog 
+
+----------------
 ## 1.Screenshot
 
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/>

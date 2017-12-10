@@ -27,6 +27,7 @@
         <attr name="isb_indicator_custom_top_content_layout" format="reference" /> <!--you can set this layout isb_indicatorator top view you want, no effect arrow beisb_indicatorator, effectisb_indicatorator type : square_corners or rounded_corners-->
         <attr name="isb_indicator_text_color" format="color|reference" /><!-- isb_indicatorator's text color, default #FF4081 , workisb_indicatorator type : square_corners or rounded_corners-->
         <attr name="isb_indicator_text_size" format="dimension|reference" /><!-- isb_indicatorator's text size, default 13sp,  workisb_indicatorator type : square_corners or rounded_corners-->
+        <attr name="isb_indicator_stay" format="boolean" /><!-- indicator is visible when seekbar visible, gone when seekbar gone-->
         //track
         <attr name="isb_track_background_bar_size" format="dimension|reference" /><!-- set indicatorSeekBar's track background bar size, default 2dp-->
         <attr name="isb_track_background_bar_color" format="color|reference" /><!-- set indicatorSeekBar's track background bar color, default #D7D7D7-->

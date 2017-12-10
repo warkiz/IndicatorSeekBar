@@ -17,9 +17,11 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
@@ -29,6 +31,9 @@ import java.util.List;
 
 /**
  * created by ZhuangGuangquan on 2017/9/1
+ * Version : 2.0
+ * Date: 2017/12/10
+ * New Feature: indicator stay always.
  */
 
 public class IndicatorSeekBar extends View {
@@ -56,7 +61,7 @@ public class IndicatorSeekBar extends View {
     private int mPaddingTop;
     private Bitmap mTickDraw;
     private Bitmap mThumbDraw;
-    private boolean mFirstDraw = true;
+    private boolean mDrawAgain;
     private boolean mIsTouching;
     private float mThumbRadius;
     private float mThumbTouchRadius;
@@ -67,6 +72,7 @@ public class IndicatorSeekBar extends View {
     private float mThumbTouchHeight;
     private boolean hasMeasured;
     private float mCustomDrawableMaxHeight;
+    private float mScreenWidth = -1;
 
     public IndicatorSeekBar(Context context) {
         this(context, null);
@@ -119,6 +125,7 @@ public class IndicatorSeekBar extends View {
         p.mIndicatorColor = ta.getColor(R.styleable.IndicatorSeekBar_isb_indicator_color, p.mIndicatorColor);
         p.mIndicatorTextColor = ta.getColor(R.styleable.IndicatorSeekBar_isb_indicator_text_color, p.mIndicatorTextColor);
         p.mShowIndicator = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_show_indicator, p.mShowIndicator);
+        p.mIndicatorStay = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_indicator_stay, p.mIndicatorStay);
         p.mIndicatorTextSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_indicator_text_size, p.mIndicatorTextSize);
         int indicatorCustomViewId = ta.getResourceId(R.styleable.IndicatorSeekBar_isb_indicator_custom_layout, 0);
         if (indicatorCustomViewId > 0) {
@@ -221,7 +228,7 @@ public class IndicatorSeekBar extends View {
             mIndicator = new Indicator(mContext, this, p);
         }
 
-        if (noMarks()) {
+        if (noTick()) {
             if (p.mMax - p.mMin > 100) {
                 p.mTickNum = Math.round(p.mMax - p.mMin);
             } else {
@@ -244,7 +251,13 @@ public class IndicatorSeekBar extends View {
         lastProgress = p.mProgress;
     }
 
-    private boolean noMarks() {
+    public void calculateProgressTouchX() {
+        //progress
+        float touchX = (p.mProgress - p.mMin) * mSeekLength / (p.mMax - p.mMin) + mPaddingLeft;
+        calculateTouchX(touchX);
+    }
+
+    private boolean noTick() {
         return p.mSeekBarType == IndicatorSeekBarType.CONTINUOUS || p.mSeekBarType == IndicatorSeekBarType.CONTINUOUS_TEXTS_ENDS;
     }
 
@@ -325,11 +338,11 @@ public class IndicatorSeekBar extends View {
     protected void onDraw(Canvas canvas) {
         //draw 2th track
         mStockPaint.setColor(p.mProgressTrackColor);
-        if (mFirstDraw) {
+        if (!mDrawAgain) {
             //progress
             float touchX = (p.mProgress - p.mMin) * mSeekLength / (p.mMax - p.mMin) + mPaddingLeft;
             calculateTouchX(touchX);
-            mFirstDraw = false;
+            mDrawAgain = true;
         }
         float thumbX = getThumbX();
         //draw progress track
@@ -348,6 +361,80 @@ public class IndicatorSeekBar extends View {
         //drawThumb
         drawThumb(canvas, thumbX);
 
+        if (p.mShowIndicator && p.mIndicatorStay && !mIndicator.isShowing()) {
+            if (!isCover()) {
+                calculateProgressTouchX();
+                mIndicator.showIndicator(mTouchX, p.mSeekBarType, getThumbPosOnTick());
+            }
+
+        }
+    }
+
+    @Override
+    protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
+        super.onVisibilityChanged(changedView, visibility);
+        if (!p.mShowIndicator) {
+            return;
+        }
+        if (View.GONE == visibility || View.INVISIBLE == visibility) {
+            if (mIndicator != null) {
+                mIndicator.forceHideIndicator();
+            }
+        }
+    }
+
+    @Override
+    protected void onWindowVisibilityChanged(final int visibility) {
+        super.onWindowVisibilityChanged(visibility);
+        if (visibility == INVISIBLE || visibility == GONE) {
+            return;
+        }
+        if (!p.mShowIndicator || !p.mIndicatorStay || mIndicator == null) {
+            return;
+        }
+        this.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                if (visibility == View.VISIBLE) {
+                    if (isCover()) {
+                        mIndicator.forceHideIndicator();
+                    } else {
+                        calculateProgressTouchX();
+                        mIndicator.showIndicator(mTouchX, p.mSeekBarType, getThumbPosOnTick());
+                    }
+                }
+            }
+        });
+    }
+
+    private boolean isCover() {
+        Rect rect = new Rect();
+        if (this.getGlobalVisibleRect(rect)) {
+            if (rect.width() >= this.getMeasuredWidth() && rect.height() >= this.getMeasuredHeight()) {
+                if (mScreenWidth < 0) {
+                    initScreenWidth();
+                }
+                if (mScreenWidth > 0) {
+                    int left = rect.left;
+                    int top = rect.top;
+                    int[] location = new int[2];
+                    this.getLocationInWindow(location);
+                    if (left == location[0] && top == location[1]) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    private void initScreenWidth() {
+        DisplayMetrics metric = new DisplayMetrics();
+        WindowManager systemService = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+        if (systemService != null) {
+            systemService.getDefaultDisplay().getMetrics(metric);
+            mScreenWidth = metric.widthPixels;
+        }
     }
 
     private void drawThumb(Canvas canvas, float thumbX) {
@@ -553,7 +640,19 @@ public class IndicatorSeekBar extends View {
                 mTextList.add(getProgressString(tickProgress));
             }
             initEndTexts();
+            initDefaultTextArray(mTextList);
         }
+    }
+
+    private void initDefaultTextArray(ArrayList<String> mTextList) {
+        if (p.mTextArray != null) {
+            return;
+        }
+        CharSequence[] charSequence = new CharSequence[mTextList.size()];
+        for (int i = 0; i < mTextList.size(); i++) {
+            charSequence[i] = mTextList.get(i);
+        }
+        p.mTextArray = charSequence;
     }
 
     private float getThumbX() {
@@ -586,17 +685,18 @@ public class IndicatorSeekBar extends View {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                performClick();
                 if (isTouchSeekBar(event)) {
                     if (mListener != null) {
                         mListener.onStartTrackingTouch(this, getThumbPosOnTick());
                     }
-                    refreshSeekBar(event, 0);
+                    refreshSeekBar(event, true);
                     return true;
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
                 setListener();
-                refreshSeekBar(event, 1);
+                refreshSeekBar(event, false);
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
@@ -611,6 +711,11 @@ public class IndicatorSeekBar extends View {
                 break;
         }
         return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean performClick() {
+        return super.performClick();
     }
 
     private void setListener() {
@@ -661,34 +766,28 @@ public class IndicatorSeekBar extends View {
     }
 
     @Override
-    public void setVisibility(int visibility) {
-        super.setVisibility(visibility);
-        if (GONE == visibility || INVISIBLE == visibility) {
-            if (mIndicator != null && mIndicator.isShowing()) {
-                mIndicator.hideIndicator();
-            }
-        }
-    }
-
-    @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (mIndicator != null && mIndicator.isShowing()) {
-            mIndicator.hideIndicator();
+        if (mIndicator != null) {
+            mIndicator.forceHideIndicator();
         }
     }
 
-    private void refreshSeekBar(MotionEvent event, int touchFlag) {
+    private void refreshSeekBar(MotionEvent event, boolean isDownTouch) {
         calculateTouchX(adjustTouchX(event));
         calculateProgress();
         mIsTouching = true;
-        if (0 == touchFlag) {
+        if (isDownTouch) {
             if (lastProgress != p.mProgress) {
                 setListener();
             }
             invalidate();
             if (p.mShowIndicator) {
-                mIndicator.showIndicator(mTouchX, p.mSeekBarType, getThumbPosOnTick());
+                if (mIndicator.isShowing()) {
+                    mIndicator.update(mTouchX, p.mSeekBarType, getThumbPosOnTick());
+                } else {
+                    mIndicator.showIndicator(mTouchX, p.mSeekBarType, getThumbPosOnTick());
+                }
             }
         } else {
             if (lastProgress != p.mProgress) {

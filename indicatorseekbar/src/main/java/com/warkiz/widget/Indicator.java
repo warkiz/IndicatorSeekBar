@@ -15,6 +15,10 @@ import android.widget.TextView;
 
 /**
  * created by ZhuangGuangquan on 2017/9/9
+ *
+ * Version : 2.0
+ * Date: 2017/12/10
+ * New Feature: indicator stay always.
  */
 
 
@@ -27,6 +31,7 @@ class Indicator {
     private final View mIndicatorCustomTopContentView;
     private final int mIndicatorTextSize;
     private final int mIndicatorTextColor;
+    private final boolean mIndicatorStay;
     private int mIndicatorColor;
     private int[] mLocation = new int[2];
     private ArrowView mIndicatorArrow;
@@ -44,6 +49,7 @@ class Indicator {
         this.mIndicatorCustomTopContentView = p.mIndicatorCustomTopContentView;
         this.mIndicatorTextSize = p.mIndicatorTextSize;
         this.mIndicatorTextColor = p.mIndicatorTextColor;
+        this.mIndicatorStay = p.mIndicatorStay;
         initIndicator();
         mWindowWidth = getWindowWidth();
         mGap = IndicatorUtils.dp2px(mContext, 2);
@@ -111,6 +117,7 @@ class Indicator {
         if (mIndicatorView != null) {
             mIndicator = new PopupWindow(mIndicatorView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, false);
         }
+
     }
 
     @NonNull
@@ -219,7 +226,18 @@ class Indicator {
     /**
      * call this method hide the indicator
      */
-    void hideIndicator() {
+    public void hideIndicator() {
+        if (mIndicator != null && mIndicator.isShowing()) {
+            if (!mIndicatorStay) {
+                mIndicator.dismiss();
+            }
+        }
+    }
+
+    /**
+     * call this method hide the indicator
+     */
+    public void forceHideIndicator() {
         if (mIndicator != null && mIndicator.isShowing()) {
             mIndicator.dismiss();
         }

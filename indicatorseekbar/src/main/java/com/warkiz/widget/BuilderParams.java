@@ -7,6 +7,9 @@ import android.view.View;
 
 /**
  * created by ZhuangGuangquan on 2017/9/9
+ * Version : 2.0
+ * Date: 2017/12/10
+ * New Feature: indicator stay always.
  */
 
 
@@ -23,6 +26,7 @@ class BuilderParams {
     //indicator
     int mIndicatorType = 0;
     boolean mShowIndicator = true;
+    boolean mIndicatorStay = false;
     int mIndicatorColor = Color.parseColor("#FF4081");
     int mIndicatorTextColor = Color.parseColor("#FFFFFF");
     int mIndicatorTextSize;

@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 /**
  * created by ZhuangGuangquan on 2017/9/9
- *
+ * <p>
  * Version : 2.0
  * Date: 2017/12/10
  * New Feature: indicator stay always.
@@ -115,6 +115,7 @@ class Indicator {
             }
         }
         if (mIndicatorView != null) {
+            mIndicatorView.measure(0, 0);
             mIndicator = new PopupWindow(mIndicatorView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, false);
         }
 

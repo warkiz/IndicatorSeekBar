@@ -1540,6 +1540,17 @@ public class IndicatorSeekBar extends View {
             return this;
         }
 
+        /**
+         * call this method to set indicator to show all the time.
+         *
+         * @param stay true to stay.
+         * @return
+         */
+        public Builder setIndicatorStay(boolean stay) {
+            p.mIndicatorStay = stay;
+            return this;
+        }
+
     }
 
 }

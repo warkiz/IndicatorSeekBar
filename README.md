@@ -10,6 +10,25 @@
 欢迎 `star` or `pull request`。
 
 ----------------
+## 新增功能日志
+
+12/5
+
+    自定义tick或thumb的图片时：
+    
+    当图片宽度小于30dp , 显示完整图片; 
+    
+    当大于30dp , 可通过属性 isb_tick_size/isb_thumb_width 控制, 默认显示14dp, 最大显示30dp.
+
+12/10
+
+    新增指示器Indicator默认自动显示 , 滑动SeekBar不消失。
+    
+    属性为 isb_indicator_stay , 提供 setter 方法 ; 可跟随 View 滚动。
+    
+    此功能适用ListView / ScrollView / GridView / RecyclerView / ViewPager / Dialog 等场景。
+
+----------------
 ## 1.截图
 
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/>

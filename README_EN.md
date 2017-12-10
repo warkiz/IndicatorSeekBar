@@ -12,7 +12,7 @@ A customized SeekBar on Android, which can be changed the `size` , `color` , `th
 
 12/5
 
-When custom tickn or thumb drawable :
+When custom tick or thumb drawable :
     
 	if the drawable's width is less than 30 dp , will show the drawable in raw size.
 	if large than 30dp , you can set the width by isb_tick_size/isb_thumb_width , default 14dp , max is 30dp when display.height auto adjust by ratio.

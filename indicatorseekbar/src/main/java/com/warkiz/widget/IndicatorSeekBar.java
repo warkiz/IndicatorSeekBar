@@ -396,10 +396,10 @@ public class IndicatorSeekBar extends View {
         if (!p.mShowIndicator || !p.mIndicatorStay || mIndicator == null) {
             return;
         }
-        this.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged() {
-                if (visibility == View.VISIBLE) {
+        if (visibility == View.VISIBLE) {
+            this.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+                @Override
+                public void onScrollChanged() {
                     if (isCover()) {
                         mIndicator.forceHideIndicator();
                     } else {
@@ -409,8 +409,8 @@ public class IndicatorSeekBar extends View {
                         }
                     }
                 }
-            }
-        });
+            });
+        }
     }
 
     private boolean isCover() {

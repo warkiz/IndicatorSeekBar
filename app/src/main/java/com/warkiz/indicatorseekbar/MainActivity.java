@@ -23,29 +23,25 @@ import com.warkiz.indicatorseekbar.fragment.JavaBuildFragment;
  */
 
 
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
 
     private String[] mType = new String[]{"continuous", "discrete", "custom", "java", "indicator"};
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
     }
 
-    private void initViews()
-    {
+    private void initViews() {
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
         viewPager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
 
-        for (String s : mType)
-        {
+        for (String s : mType) {
             TextView textView = new TextView(this);
             textView.setText(s);
             tabLayout.newTab().setCustomView(textView);
@@ -53,18 +49,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.action_home)
-        {
+        if (item.getItemId() == R.id.action_home) {
             startActivity(new Intent(MainActivity.this, IndicatorHomeActivity.class));
             return true;
         }
@@ -72,42 +65,33 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private class PagerAdapter extends FragmentPagerAdapter
-    {
+    private class PagerAdapter extends FragmentPagerAdapter {
 
-        public PagerAdapter(FragmentManager fm)
-        {
+        public PagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
-        public Fragment getItem(int position)
-        {
-            if (position == 0)
-            {
+        public Fragment getItem(int position) {
+            if (position == 0) {
                 return new ContinuousFragment();
-            } else if (position == 1)
-            {
+            } else if (position == 1) {
                 return new DiscreteFragment();
-            } else if (position == 2)
-            {
+            } else if (position == 2) {
                 return new CustomFragment();
-            } else if (position == 3)
-            {
+            } else if (position == 3) {
                 return new JavaBuildFragment();
             }
             return new IndicatorFragment();
         }
 
         @Override
-        public int getCount()
-        {
+        public int getCount() {
             return mType.length;
         }
 
         @Override
-        public CharSequence getPageTitle(int position)
-        {
+        public CharSequence getPageTitle(int position) {
             return mType[position];
         }
     }

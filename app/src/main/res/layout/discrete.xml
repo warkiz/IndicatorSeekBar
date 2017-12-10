@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,8 +12,12 @@
         android:orientation="vertical">
 
         <TextView
+            style="@style/title_text_style"
+            android:text="Discrete_1" />
+
+        <TextView
             style="@style/subtitle_text_style"
-            android:text="1. seek_bar_type=discrete_ticks; tick_num = 7"/>
+            android:text="1. seek_bar_type=discrete_ticks; tick_num = 7" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
@@ -24,24 +27,25 @@
             app:isb_show_indicator="true"
             app:isb_thumb_color="@color/color_blue"
             app:isb_tick_num="7"
-            app:isb_track_progress_bar_color="@color/color_blue"/>
+            app:isb_track_progress_bar_color="@color/color_blue" />
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="2. seek_bar_type=discrete_ticks_texts, tick_type=oval"/>
+            android:text="2. seek_bar_type=discrete_ticks_texts, tick_type=oval, indicator_stay = true" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:isb_progress="24"
+            app:isb_indicator_stay="true"
+            app:isb_progress="68"
             app:isb_seek_bar_type="discrete_ticks_texts"
             app:isb_show_indicator="true"
             app:isb_tick_num="7"
-            app:isb_tick_type="oval"/>
+            app:isb_tick_type="oval" />
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="3. custom thumb drawable; change tick color; change tick size"/>
+            android:text="3. custom thumb drawable; change tick color; change tick size" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
@@ -53,11 +57,11 @@
             app:isb_tick_color="@color/color_blue"
             app:isb_tick_num="7"
             app:isb_tick_size="5dp"
-            app:isb_tick_type="oval"/>
+            app:isb_tick_type="oval" />
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="4. custom tick drawable , change track size; change below text size"/>
+            android:text="4. custom tick drawable , change track size; change below text size" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
@@ -71,50 +75,63 @@
             app:isb_tick_num="7"
             app:isb_tick_type="oval"
             app:isb_track_background_bar_size="3dp"
-            app:isb_track_progress_bar_size="5dp"/>
+            app:isb_track_progress_bar_size="5dp" />
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="5. seek_bar_type=discrete_ticks_texts_ends, hide both ends tick"/>
+            android:text="5. seek_bar_type=discrete_ticks_texts_ends, hide both ends tick, indicator_stay" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:isb_indicator_stay="true"
+            app:isb_indicator_type="rounded_corners"
             app:isb_progress="50"
             app:isb_seek_bar_type="discrete_ticks_texts_ends"
             app:isb_show_indicator="true"
             app:isb_tick_both_end_hide="true"
             app:isb_tick_color="#000000"
-            app:isb_tick_num="7"/>
+            app:isb_tick_num="7" />
+
+        <TextView
+            style="@style/title_text_style"
+            android:text="Discrete_2" />
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="6. text_array=@array/tick_below_text_length_5"/>
+            android:layout_marginTop="50dp"
+            android:text="6. text_array=@array/tick_below_text_length_5" />
 
         <TextView
             android:id="@+id/discrete_progress"
             style="@style/des_text_style"
-            android:text="progress: 50 "/>
+            android:text="progress: 50 " />
 
         <TextView
-            android:id="@+id/discrete_block"
+            android:id="@+id/discrete_pos"
             style="@style/des_text_style"
-            android:text="thumbPosOnTick:3; tickBelowText: third"/>
+            android:text="thumbPositonOnTick: 3 " />
+
+        <TextView
+            android:id="@+id/discrete_text"
+            style="@style/des_text_style"
+            android:text="text: third " />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:id="@+id/discrete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="24dp"
             app:isb_progress="50"
             app:isb_seek_bar_type="discrete_ticks_texts"
             app:isb_show_indicator="true"
             app:isb_text_array="@array/tick_below_text_length_5"
             app:isb_tick_num="5"
-            app:isb_track_progress_bar_color="@color/color_blue"/>
+            app:isb_track_progress_bar_color="@color/color_blue" />
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="7. text_left_end= last; text_right_end = next; track_rounded_corners = false"/>
+            android:text="7. text_left_end= last; text_right_end = next; track_rounded_corners = false" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
@@ -131,11 +148,11 @@
             app:isb_track_background_bar_size="2dp"
             app:isb_track_progress_bar_color="@color/color_red"
             app:isb_track_progress_bar_size="5dp"
-            app:isb_track_rounded_corners="false"/>
+            app:isb_track_rounded_corners="false" />
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="8. hide tick on thumb left"/>
+            android:text="8. hide tick on thumb left" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
@@ -145,15 +162,16 @@
             app:isb_show_indicator="true"
             app:isb_tick_num="7"
             app:isb_tick_on_thumb_left_hide="true"
-            app:isb_tick_type="oval"/>
+            app:isb_tick_type="oval" />
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="9. change text color, tick_type = none"/>
+            android:text="9. change text color, tick_type = none" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="80dp"
             app:isb_indicator_custom_layout="@layout/custom_indicator_red"
             app:isb_indicator_type="custom"
             app:isb_progress="67"
@@ -162,7 +180,7 @@
             app:isb_text_color="@color/color_blue"
             app:isb_tick_num="7"
             app:isb_tick_on_thumb_left_hide="true"
-            app:isb_tick_type="none"/>
+            app:isb_tick_type="none" />
 
     </LinearLayout>
 

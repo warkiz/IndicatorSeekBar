@@ -22,12 +22,10 @@ import com.warkiz.widget.TickType;
  * created by ZhuangGuangquan on  2017/9/6
  */
 
-public class JavaBuildFragment extends Fragment
-{
+public class JavaBuildFragment extends Fragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.java_build, container, false);
         final LinearLayout content = (LinearLayout) root.findViewById(R.id.java_build);
 
@@ -35,7 +33,7 @@ public class JavaBuildFragment extends Fragment
         textView1.setText("continuous");
         content.addView(textView1);
         //CONTINUOUS
-        IndicatorSeekBar indicatorSeekBar1 = new IndicatorSeekBar.Builder(getContext()).setSeekBarType(IndicatorSeekBarType.CONTINUOUS).setMax(88).setMin(2).setProgress(33).setBackgroundTrackSize(2).setBackgroundTrackColor(Color.parseColor("#FF0000")).setProgressTrackSize(4).setProgressTrackColor(Color.parseColor("#FF0000")).setThumbColor(Color.parseColor("#FF0000")).showIndicator(true).setIndicatorType(IndicatorType.ROUNDED_CORNERS).setIndicatorColor(Color.parseColor("#FF0000")).build();
+        IndicatorSeekBar indicatorSeekBar1 = new IndicatorSeekBar.Builder(getContext()).setIndicatorStay(true).setSeekBarType(IndicatorSeekBarType.CONTINUOUS).setMax(88).setMin(2).setProgress(33).setBackgroundTrackSize(2).setBackgroundTrackColor(Color.parseColor("#FF0000")).setProgressTrackSize(4).setProgressTrackColor(Color.parseColor("#FF0000")).setThumbColor(Color.parseColor("#FF0000")).showIndicator(true).setIndicatorType(IndicatorType.ROUNDED_CORNERS).setIndicatorColor(Color.parseColor("#FF0000")).build();
         content.addView(indicatorSeekBar1);
 
         TextView textView2 = getTextView();
@@ -69,16 +67,14 @@ public class JavaBuildFragment extends Fragment
     }
 
     @NonNull
-    private TextView getTextView()
-    {
+    private TextView getTextView() {
         TextView textView = new TextView(getContext());
         int padding = dp2px(getContext(), 16);
         textView.setPadding(padding, padding, padding, 0);
         return textView;
     }
 
-    public int dp2px(Context context, float dpValue)
-    {
+    public int dp2px(Context context, float dpValue) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, context.getResources().getDisplayMetrics());
     }
 

@@ -14,40 +14,35 @@ import com.warkiz.widget.IndicatorSeekBar;
  * created by ZhuangGuangquan on  2017/9/6
  */
 
-public class DiscreteFragment extends Fragment
-{
+public class DiscreteFragment extends Fragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.discrete, container, false);
-        final TextView textView = (TextView) root.findViewById(R.id.discrete_progress);
-        final TextView discreteBlockTv = (TextView) root.findViewById(R.id.discrete_block);
+        final TextView progressTv = (TextView) root.findViewById(R.id.discrete_progress);
+        final TextView postionTv = (TextView) root.findViewById(R.id.discrete_pos);
+        final TextView textTv = (TextView) root.findViewById(R.id.discrete_text);
         IndicatorSeekBar discrete = (IndicatorSeekBar) root.findViewById(R.id.discrete);
 
-        discrete.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener()
-        {
+        discrete.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
 
             @Override
-            public void onProgressChanged(IndicatorSeekBar seekBar, int progress, float progressFloat, boolean fromUserTouch)
-            {
-                textView.setText("progress: " + progress);
+            public void onProgressChanged(IndicatorSeekBar seekBar, int progress, float progressFloat, boolean fromUserTouch) {
+                progressTv.setText("progress: " + progress);
             }
 
             @Override
-            public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch)
-            {
-                discreteBlockTv.setText("thumbPosOnTick: " + thumbPosOnTick + " ;  tickBelowText: " + tickBelowText);
+            public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch) {
+                postionTv.setText("thumbPosOnTick: " + thumbPosOnTick);
+                textTv.setText("tickBelowText: " + tickBelowText);
             }
 
             @Override
-            public void onStartTrackingTouch(IndicatorSeekBar seekBar, int thumbPosOnTick)
-            {
+            public void onStartTrackingTouch(IndicatorSeekBar seekBar, int thumbPosOnTick) {
             }
 
             @Override
-            public void onStopTrackingTouch(IndicatorSeekBar seekBar)
-            {
+            public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
 
             }
         });

@@ -12,6 +12,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <TextView
+            style="@style/title_text_style"
+            android:text="Java_Build" />
+
     </LinearLayout>
 
 </ScrollView>

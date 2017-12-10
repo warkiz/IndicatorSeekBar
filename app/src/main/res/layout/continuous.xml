@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,8 +12,12 @@
         android:orientation="vertical">
 
         <TextView
+            style="@style/title_text_style"
+            android:text="Continuous" />
+
+        <TextView
             style="@style/subtitle_text_style"
-            android:text="1. max = 80; min = 20; show_indicator"/>
+            android:text="1. max = 80; min = 20; show_indicator" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
@@ -22,11 +25,11 @@
             app:isb_max="80"
             app:isb_min="20"
             app:isb_progress="50"
-            app:isb_show_indicator="true"/>
+            app:isb_show_indicator="true" />
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="2. max = 78.8; min = 10.2"/>
+            android:text="2. max = 78.8; min = 10.2" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
@@ -35,29 +38,31 @@
             app:isb_min="10.2"
             app:isb_progress="50.3"
             app:isb_progress_value_float="true"
-            app:isb_show_indicator="true"/>
+            app:isb_show_indicator="true" />
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="3. seek_bar_type = continuous_texts_ends; change color"/>
+            android:text="3. indicator_stay; change color" />
 
         <com.warkiz.widget.IndicatorSeekBar
+            android:id="@+id/ee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:isb_indicator_color="@color/color_green"
+            app:isb_indicator_stay="true"
             app:isb_indicator_text_color="#000000"
             app:isb_max="880"
-            app:isb_progress="74"
+            app:isb_progress="674"
             app:isb_seek_bar_type="continuous_texts_ends"
             app:isb_show_indicator="true"
             app:isb_text_color="@color/color_red"
             app:isb_thumb_color="@color/color_blue"
             app:isb_track_background_bar_color="@color/color_pink"
-            app:isb_track_progress_bar_color="@color/color_blue"/>
+            app:isb_track_progress_bar_color="@color/color_blue" />
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="4. thumb_progress_stay , change size"/>
+            android:text="4. thumb_progress_stay , change size" />
 
 
         <com.warkiz.widget.IndicatorSeekBar
@@ -77,16 +82,26 @@
             app:isb_track_background_bar_color="@color/color_gray"
             app:isb_track_progress_bar_color="@color/color_pink"
             app:isb_track_progress_bar_size="4dp"
-            app:isb_track_rounded_corners="false"/>
+            app:isb_track_rounded_corners="false" />
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="5. track_rounded_corners; seekChangeListener"/>
+            android:text="5. track_rounded_corners; seekChangeListener" />
 
         <TextView
             android:id="@+id/continuous_progress"
             style="@style/des_text_style"
-            android:text="progress:59.3"/>
+            android:text="progress:59" />
+
+        <TextView
+            android:id="@+id/continuous_progress_float"
+            style="@style/des_text_style"
+            android:text="progress:59.3" />
+
+        <TextView
+            android:id="@+id/continuous_from_user"
+            style="@style/des_text_style"
+            android:text="fromUser:false" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:id="@+id/continuous"
@@ -103,7 +118,7 @@
             app:isb_track_background_bar_color="@color/color_green"
             app:isb_track_progress_bar_color="@color/color_blue"
             app:isb_track_progress_bar_size="4dp"
-            app:isb_track_rounded_corners="false"/>
+            app:isb_track_rounded_corners="false" />
 
     </LinearLayout>
 

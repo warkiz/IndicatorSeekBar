@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="tick_below_text_length_5">
-        <item>first</item>
-        <item>second</item>
-        <item>third</item>
-        <item>fourth</item>
-        <item>fifth</item>
+        <item>one</item>
+        <item>two</item>
+        <item>three</item>
+        <item>four</item>
+        <item>five</item>
     </array>
 
     <array name="tick_below_text_length_6">
-        <item>AB</item>
-        <item>CD</item>
-        <item>EF</item>
-        <item>GH</item>
-        <item>IJ</item>
-        <item>KL</item>
+        <item>Ab</item>
+        <item>Cd</item>
+        <item>Ef</item>
+        <item>Gh</item>
+        <item>Ij</item>
+        <item>Kl</item>
     </array>
 
 </resources>

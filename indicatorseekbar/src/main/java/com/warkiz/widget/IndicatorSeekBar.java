@@ -71,7 +71,6 @@ public class IndicatorSeekBar extends View {
     private float mFaultTolerance = -1;
     private int mTextHeight;
     private float mThumbTouchHeight;
-    private boolean hasMeasured;
     private float mCustomDrawableMaxHeight;
     private float mScreenWidth = -1;
 
@@ -478,10 +477,7 @@ public class IndicatorSeekBar extends View {
         }
         mSeekStart = p.mTrackRoundedCorners ? mPaddingLeft + p.mBackgroundTrackSize / 2.0f : mPaddingLeft;
         mSeekEnd = mMeasuredWidth - mPaddingRight - p.mBackgroundTrackSize / 2.0f;
-        if (!hasMeasured) {
-            initLocationListData();
-            hasMeasured = true;
-        }
+        initLocationListData();
     }
 
     private void drawTicks(Canvas canvas, float thumbX) {

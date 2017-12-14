@@ -22,11 +22,14 @@
 
 12/10
 
-    新增指示器Indicator默认自动显示 , 滑动SeekBar不消失。
+    新增指示器Indicator自动显示功能, 滑动SeekBar时Indiator不消失。
     
     属性为 isb_indicator_stay , 提供 setter 方法 ; 可跟随 View 滚动。
     
     此功能适用ListView / ScrollView / GridView / RecyclerView / ViewPager / Dialog 等场景。
+
+12/14
+    兼容 ConstraintLayout.
 
 ----------------
 ## 1.截图
@@ -40,7 +43,7 @@
 ```groovy
 dependencies {
     //推荐使用最新版本
-    compile 'com.github.warkiz.widget:indicatorseekbar:1.1.8'
+    compile 'com.github.warkiz.widget:indicatorseekbar:1.1.9'
 }
 ```
 ### 2. 在布局文件或java类中:

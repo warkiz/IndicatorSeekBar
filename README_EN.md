@@ -5,7 +5,7 @@
 
 #### README: [ 中文 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)  |  English
 
-A customized SeekBar on Android, which can be changed the `size` , `color` , `thumbDrawable` , `tickDrawable` , `textsBelowTick` , `indicator`, also can show an indicator view with progress above SeekBar when seeking. Welcome `star` or `pull request`.
+A custom SeekBar on Android, which can be changed the `size` , `color` , `thumb drawable` , `tick drawable` , `texts` , `indicator`, also can show an indicator view with progress above SeekBar when seeking. Welcome `star` or `pull request`.
 
 ----------------
 ## new feature logs
@@ -21,9 +21,12 @@ When custom tick or thumb drawable :
 
 This new feature can set the indicator to show always.
     
-	IndicatorSeekBar has provied the attribute isb_indicator_stay to do this , also can use setter in builder.
+	IndicatorSeekBar has provided the attribute isb_indicator_stay to do this , also can use setter in builder.
 	this new feature is fine when use in below situation.
-	ListView / ScrollView / GridView / RecyclerView / ViewPager / Dialog 
+	ListView / ScrollView / GridView / RecyclerView / ViewPager / Dialog
+
+12/14
+    compat ConstraintLayout.
 
 ----------------
 ## 1.Screenshot
@@ -38,7 +41,7 @@ latest version : [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indi
 ```groovy
 dependencies {
   //recommend using latest version.
-  compile 'com.github.warkiz.widget:indicatorseekbar:1.1.8'
+  compile 'com.github.warkiz.widget:indicatorseekbar:1.1.9'
 }
 ```
 ### 2. in xml or class file:
@@ -127,7 +130,7 @@ The ticks on the SeekBar both end sides or on thumb left can be hid.
     .../>
 ```	
 ### 3.4 change the SeekBar corners shape
- Seekbar's track's is round corners default , could be set to square.
+ SeekBar's track's is round corners default , could be set to square.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
     app:isb_track_rounded_corners="false"
@@ -135,7 +138,7 @@ The ticks on the SeekBar both end sides or on thumb left can be hid.
 ```	
 
 ### 3.5 seeking to show progress text below thumb.
-When the seekabr type is `CONTINUOUS` or `DISCRETE_TICKS` , you can set the progress text to show when seeking.
+When the SeekBar type is `CONTINUOUS` or `DISCRETE_TICKS` , can show the progress text under thumb when seeking.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
     app:isb_seek_bar_type="continuous"//discrete_ticks
@@ -144,7 +147,7 @@ When the seekabr type is `CONTINUOUS` or `DISCRETE_TICKS` , you can set the prog
 ```
 
 ### 3.6 customized 2 below texts on both ends of SeekBar
-When the seekabr type is `CONTINUOUS_TEXTS_ENDS` or `DISCRETE_TICKS_TEXTS_ENDS` , you can set the left & right text.
+When the SeekBar type is `CONTINUOUS_TEXTS_ENDS` or `DISCRETE_TICKS_TEXTS_ENDS` , you can set the left & right text.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
     app:isb_seek_bar_type="continuous_texts_ends"//discrete_ticks_texts_ends
@@ -154,14 +157,13 @@ When the seekabr type is `CONTINUOUS_TEXTS_ENDS` or `DISCRETE_TICKS_TEXTS_ENDS` 
 ```
 
 ### 3.7 customized texts below tick
-When the seekabr type is `DISCRETE_TICKS_TEXTS` , you can custom the texts below tick by an array, and the array's length should equals ticks num.
+When the SeekBar type is `DISCRETE_TICKS_TEXTS` , you can custom the texts below tick by an array, and the array's length should equals ticks num.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
     app:isb_text_array="@array/texts_below_tick_length_5"
     app:isb_tick_num="5" // normally , array length should equals tick num.
     .../>
 ```
-Also, you can use the attr: isb_tick_size to change the drawable' size , limited in 30 dp, default 8dp. if the drawable less than 30dp, will show in raw size
 
 ```Java
 or
@@ -186,7 +188,7 @@ Ticks can be replaced by a drawable:
 ```
 
 ### 3.10 customized indicator
-IndicatorSeekbar provided 3 kinds of indicator type `ROUNDED_CORNERS` / `SQUARE_CORNERS` / `CUSTOM`, when the indicator type is `CUSTOM` , you can set a custom indicator view.
+IndicatorSeekBar provided 3 kinds of indicator type `ROUNDED_CORNERS` / `SQUARE_CORNERS` / `CUSTOM`, when the indicator type is `CUSTOM` , you can set a custom indicator view.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
     app:isb_indicator_type="custom"
@@ -218,7 +220,6 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 
 	@Override
 	public void onProgressChanged(IndicatorSeekBar seekBar, int progress, float progressFloat, boolean fromUserTouch) {
-
 	}
 
 	@Override
@@ -232,7 +233,6 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 
 	@Override
 	public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
-
 	}
 });
 ```

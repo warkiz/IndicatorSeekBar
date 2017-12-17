@@ -25,30 +25,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:isb_indicator_custom_top_content_layout="@layout/custom_top_content_view_rect_without_progress"
-            app:isb_indicator_type="square_corners"
+            app:isb_indicator_type="rectangle_rounded_corner"
             app:isb_progress="20"
             app:isb_show_indicator="true" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="36dp"
             app:isb_indicator_custom_layout="@layout/custom_indicator_oval_without_progress"
+            app:isb_indicator_stay="true"
             app:isb_indicator_type="custom"
-            app:isb_progress="30"
+            app:isb_progress="70"
             app:isb_show_indicator="true"
             app:isb_thumb_drawable="@mipmap/ic_launcher" />
-
-        <com.warkiz.widget.IndicatorSeekBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:isb_indicator_custom_layout="@layout/custom_indicator_blue_without_progress"
-            app:isb_indicator_type="custom"
-            app:isb_progress="50"
-            app:isb_seek_bar_type="discrete_ticks_texts"
-            app:isb_tick_drawable="@mipmap/ic_launcher"
-            app:isb_tick_num="6" />
 
         <TextView
             style="@style/subtitle_text_style"
@@ -59,29 +49,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:isb_indicator_custom_top_content_layout="@layout/custom_top_content_view_rect"
-            app:isb_indicator_type="square_corners"
-            app:isb_progress="20" />
+            app:isb_indicator_type="rectangle"
+            app:isb_progress="80" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:isb_indicator_custom_layout="@layout/custom_indicator_oval"
-            app:isb_indicator_type="custom"
-            app:isb_progress="30"
-            app:isb_thumb_drawable="@mipmap/ic_launcher" />
-
-        <com.warkiz.widget.IndicatorSeekBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:isb_indicator_custom_layout="@layout/custom_indicator_blue"
             app:isb_indicator_stay="true"
             app:isb_indicator_type="custom"
-            app:isb_progress="50"
-            app:isb_seek_bar_type="discrete_ticks_texts"
-            app:isb_tick_drawable="@mipmap/ic_launcher"
-            app:isb_tick_num="6" />
+            app:isb_progress="20"
+            app:isb_thumb_drawable="@mipmap/ic_launcher" />
 
     </LinearLayout>
 

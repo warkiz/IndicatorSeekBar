@@ -50,6 +50,8 @@
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:isb_indicator_stay="true"
+            app:isb_indicator_type="circular_bubble"
             app:isb_progress="24"
             app:isb_seek_bar_type="discrete_ticks_texts"
             app:isb_show_indicator="true"
@@ -85,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:isb_indicator_stay="true"
-            app:isb_indicator_type="rounded_corners"
+            app:isb_indicator_type="rectangle"
             app:isb_progress="50"
             app:isb_seek_bar_type="discrete_ticks_texts_ends"
             app:isb_show_indicator="true"
@@ -99,7 +101,6 @@
 
         <TextView
             style="@style/subtitle_text_style"
-            android:layout_marginTop="50dp"
             android:text="6. text_array=@array/tick_below_text_length_5" />
 
         <TextView
@@ -122,6 +123,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="24dp"
+            app:isb_indicator_stay="true"
+            app:isb_indicator_type="circular_bubble"
             app:isb_progress="50"
             app:isb_seek_bar_type="discrete_ticks_texts"
             app:isb_show_indicator="true"
@@ -172,8 +175,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="80dp"
-            app:isb_indicator_custom_layout="@layout/custom_indicator_red"
-            app:isb_indicator_type="custom"
+            app:isb_indicator_type="circular_bubble"
+            app:isb_indicator_color="@color/color_gray"
             app:isb_progress="67"
             app:isb_seek_bar_type="discrete_ticks_texts"
             app:isb_show_indicator="true"

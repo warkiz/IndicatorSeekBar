@@ -26,7 +26,12 @@ This new feature can set the indicator to show always.
 	ListView / ScrollView / GridView / RecyclerView / ViewPager / Dialog
 
 12/14
+
     compat ConstraintLayout.
+
+12/17
+
+    add more Indicator type : circular_bubble
 
 ----------------
 ## 1.Screenshot
@@ -34,14 +39,14 @@ This new feature can set the indicator to show always.
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/>
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
 
-## 2. How to use
+## 2. Usage
 
 ### 1. build.gradle in module :
 latest version : [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
 ```groovy
 dependencies {
   //recommend using latest version.
-  compile 'com.github.warkiz.widget:indicatorseekbar:1.1.9'
+  compile 'com.github.warkiz.widget:indicatorseekbar:1.2.1'
 }
 ```
 ### 2. in xml or class file:
@@ -59,7 +64,7 @@ dependencies {
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:isb_indicator_type="rounded_corners"
+        app:isb_indicator_type="CIRCULAR_BUBBLE"
         app:isb_progress="50"
         app:isb_seek_bar_type="discrete_ticks_texts"
         app:isb_tick_num="6"
@@ -87,25 +92,13 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 				.setIndicatorColor(Color.parseColor("#0000FF"))
 				.build();
 ```
-#####  Refer to [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk) or demo for more details about usage.
+#####  Check out the project or refer to [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk) or demo for more details about usage.
 -------------------------
 ## 3. Abilities
-### 3.1 multiple SeekBar type
-IndicatorSeekBar has provided 2 kinds of series seekbar type: 
 
-1. continous series:  `CONTINUOUS`/  `CONTINUOUS_TEXTS_ENDS`.
+### 3.1 customized color/size
 
-2. discrete series:  `DISCRETE_TICKS`/  `DISCRETE_TICKS_TEXTS`/  `DISCRETE_TICKS_TEXTS_ENDS`.
-
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-    app:isb_seek_bar_type="continuous"
-    .../>
-```
-
-### 3.2 customized color/size
-
-Below seekbar parts' color/size can be customized:
+Below SeekBar parts' color/size can be customized:
 
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
 
@@ -117,7 +110,32 @@ Below seekbar parts' color/size can be customized:
 - indicator
 - indicator text
 
-### 3.3 hide ticks
+### 3.2 multiple SeekBar type
+IndicatorSeekBar has provided 2 kinds of series SeekBar type:
+
+1. continuous series:  `continuous`/  `continuous_texts_ends`.
+
+2. discrete series:  `discrete_ticks`/  `discrete_ticks_texts`/  `discrete_ticks_texts_ends`.
+
+```xml
+<com.warkiz.widget.IndicatorSeekBar
+    app:isb_seek_bar_type="continuous"
+    .../>
+```
+
+### 3.3 multiple Indicator type
+
+IndicatorSeekBar has provided 4 kinds of SeekBar type: rectangle,rectangle_rounded_corner,circular_bubble,custom.
+
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator_type.png?raw=true" width = "392" height = "115"/>
+
+```xml
+<com.warkiz.widget.IndicatorSeekBar
+    app:isb_indicator_type="circular_bubble"
+    .../>
+```
+
+### 3.4 hide ticks
 The ticks on the SeekBar both end sides or on thumb left can be hid.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -129,7 +147,7 @@ The ticks on the SeekBar both end sides or on thumb left can be hid.
     app:isb_tick_on_thumb_left_hide="true"
     .../>
 ```	
-### 3.4 change the SeekBar corners shape
+### 3.5 change the SeekBar corners shape
  SeekBar's track's is round corners default , could be set to square.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -137,7 +155,7 @@ The ticks on the SeekBar both end sides or on thumb left can be hid.
     .../>
 ```	
 
-### 3.5 seeking to show progress text below thumb.
+### 3.6 seeking to show progress text below thumb.
 When the SeekBar type is `CONTINUOUS` or `DISCRETE_TICKS` , can show the progress text under thumb when seeking.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -146,7 +164,7 @@ When the SeekBar type is `CONTINUOUS` or `DISCRETE_TICKS` , can show the progres
     .../>
 ```
 
-### 3.6 customized 2 below texts on both ends of SeekBar
+### 3.7 customized 2 below texts on both ends of SeekBar
 When the SeekBar type is `CONTINUOUS_TEXTS_ENDS` or `DISCRETE_TICKS_TEXTS_ENDS` , you can set the left & right text.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -156,7 +174,7 @@ When the SeekBar type is `CONTINUOUS_TEXTS_ENDS` or `DISCRETE_TICKS_TEXTS_ENDS` 
     .../>
 ```
 
-### 3.7 customized texts below tick
+### 3.8 customized texts below tick
 When the SeekBar type is `DISCRETE_TICKS_TEXTS` , you can custom the texts below tick by an array, and the array's length should equals ticks num.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -170,7 +188,7 @@ or
 indicatorSeekBar.setTextArray(R.array.texts_below_tick_length_5);
 ```
 
-### 3.8 customized thumb drawable
+### 3.9 customized thumb drawable
 Thumb can be replaced by a drawable:
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -179,7 +197,7 @@ Thumb can be replaced by a drawable:
 ```
 Also, you can use the attr: isb_thumb_width to change the drawable' size , limited in 30 dp , default 8dp . if the drawable less than 30dp, will show in raw size.
 
-### 3.9 customized tick drawable
+### 3.10 customized tick drawable
 Ticks can be replaced by a drawable:
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -187,7 +205,7 @@ Ticks can be replaced by a drawable:
     .../>
 ```
 
-### 3.10 customized indicator
+### 3.11 customized indicator
 IndicatorSeekBar provided 3 kinds of indicator type `ROUNDED_CORNERS` / `SQUARE_CORNERS` / `CUSTOM`, when the indicator type is `CUSTOM` , you can set a custom indicator view.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -201,7 +219,7 @@ indicatorSeekBar.setCustomIndicator(R.layout.indicator);
 ```
 Attention: if want to show the custom indicator with a progress text when seeking , the indicator view should have a TextView which id is `isb_progress`. 
 
-### 3.11 customized indicator's top content view
+### 3.12 customized indicator's top content view
 When the indicator type is `ROUNDED_CORNERS` or `SQUARE_CORNERS` , you can set a custom indicator top content view.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar

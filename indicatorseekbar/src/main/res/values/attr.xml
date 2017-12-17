@@ -15,19 +15,19 @@
             <enum name="discrete_ticks_texts_ends" value="4" /><!--has below text of both ends of seekBar-->
         </attr>
         //indicator
-        <attr name="isb_indicator_type"><!-- the type isb_indicatorator, default square_corners/0.-->
-            <enum name="square_corners" value="0" />
-            <enum name="rounded_corners" value="1" />
-            <!-- the attr:isb_indicator_custom_layout should be called to givisb_indicatorator view when you select cusisb_indicatorator type -->
-            <enum name="custom" value="2" />
+        <attr name="isb_indicator_type"><!-- the type for indicator, default rectangle_rounded_corner/0.-->
+            <enum name="rectangle_rounded_corner" value="0" />
+            <enum name="rectangle" value="1" />
+            <enum name="circular_bubble" value="2" />
+            <enum name="custom" value="3" /><!--choose custom type that you can set the custom indicator layout you want.-->
         </attr>
-        <attr name="isb_show_indicator" format="boolean" /><!-- sisb_indicatorator or not when seeking, default true-->
-        <attr name="isb_indicator_color" format="color|reference" /><!-- isb_indicatorator's color, default #FF4081-->
-        <attr name="isb_indicator_custom_layout" format="reference" /><!-- when you isb_indicatorator type to custom , you can set this layout isb_indicatorator view you want-->
-        <attr name="isb_indicator_custom_top_content_layout" format="reference" /> <!--you can set this layout isb_indicatorator top view you want, no effect arrow beisb_indicatorator, effectisb_indicatorator type : square_corners or rounded_corners-->
-        <attr name="isb_indicator_text_color" format="color|reference" /><!-- isb_indicatorator's text color, default #FF4081 , workisb_indicatorator type : square_corners or rounded_corners-->
-        <attr name="isb_indicator_text_size" format="dimension|reference" /><!-- isb_indicatorator's text size, default 13sp,  workisb_indicatorator type : square_corners or rounded_corners-->
-        <attr name="isb_indicator_stay" format="boolean" /><!-- indicator is visible when seekbar visible, gone when seekbar gone-->
+        <attr name="isb_show_indicator" format="boolean" /><!-- show indicator or not when seeking, default true-->
+        <attr name="isb_indicator_color" format="color|reference" /><!-- indicator's color, default #FF4081-->
+        <attr name="isb_indicator_custom_layout" format="reference" /><!-- when you set indicator type to custom , you can set this layout indicator layout you want-->
+        <attr name="isb_indicator_custom_top_content_layout" format="reference" /> <!--set this layout indicator top view you want, no effect arrow , effect on indicator type : rectangle or rectangle_rounded_corner-->
+        <attr name="isb_indicator_text_color" format="color|reference" /><!-- indicator's text color, default #FF4081 , work on indicator type : rectangle or rectangle_rounded_corner-->
+        <attr name="isb_indicator_text_size" format="dimension|reference" /><!-- indicator's text size, default 13sp,  work on indicator type : rectangle or rectangle_rounded_corner-->
+        <attr name="isb_indicator_stay" format="boolean" /><!-- indicator is visible when SeekBar visible, gone when SeekBar gone-->
         //track
         <attr name="isb_track_background_bar_size" format="dimension|reference" /><!-- set indicatorSeekBar's track background bar size, default 2dp-->
         <attr name="isb_track_background_bar_color" format="color|reference" /><!-- set indicatorSeekBar's track background bar color, default #D7D7D7-->
@@ -57,6 +57,5 @@
         <attr name="isb_text_right_end" format="string|reference" /><!--set the text below seekBar right end, default max value string, work on seekBar type :CONTINUOUS_TEXTS_ENDS/DISCRETE_TICKS_TEXTS/DISCRETE_TICKS_TEXTS_ENDS-->
         <attr name="isb_text_size" format="dimension|reference" /><!--set the text size of tick below text, default 13sp-->
         <attr name="isb_text_array" format="reference" /><!--set the texts below tick to replace default progress text, default string of progress, work on seekBar type :DISCRETE_TICKS_TEXTS-->
-
     </declare-styleable>
 </resources>

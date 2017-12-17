@@ -29,13 +29,19 @@
     此功能适用ListView / ScrollView / GridView / RecyclerView / ViewPager / Dialog 等场景。
 
 12/14
+
     兼容 ConstraintLayout.
+
+12/17
+
+    新增指示器Indicator 类型 circular_bubble
+
 
 ----------------
 ## 1.截图
 
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/>
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/>
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
 
 ## 2. 使用
 ###  1. 在app/build.gradle下:
@@ -43,7 +49,7 @@
 ```groovy
 dependencies {
     //推荐使用最新版本
-    compile 'com.github.warkiz.widget:indicatorseekbar:1.1.9'
+    compile 'com.github.warkiz.widget:indicatorseekbar:1.2.1'
 }
 ```
 ### 2. 在布局文件或java类中:
@@ -61,7 +67,7 @@ dependencies {
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:isb_indicator_type="rounded_corners"
+        app:isb_indicator_type="circular_bubble"
         app:isb_progress="50"
         app:isb_seek_bar_type="discrete_ticks_texts"
         app:isb_tick_num="6"
@@ -85,27 +91,15 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 				.setProgressTrackSize(3)//dp size
 				.setProgressTrackColor(Color.parseColor("#0000FF"))
 				.showIndicator(true)
-				.setIndicatorType(IndicatorType.SQUARE_CORNERS)
+				.setIndicatorType(IndicatorType.CIRCULAR_BUBBLE)
 				.setIndicatorColor(Color.parseColor("#0000FF"))
 				.build();
 ```
 #####  更多使用方式请参考 [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk).
 -------------------------
 ## 3. 功能
-### 3.1 多种的SeekBar类型
-IndicatorSeekBar 提供了两种系列的类型: 
 
-1. 连续（continuous）的滑动:  `CONTINUOUS`/`CONTINUOUS_TEXTS_ENDS`.
-
-2. 非连续（discrete）的滑动:  `DISCRETE_TICKS`/  `DISCRETE_TICKS_TEXTS`/  `DISCRETE_TICKS_TEXTS_ENDS`.
-
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-    app:isb_seek_bar_type="continuous"
-    .../>
-```
-
-### 3.2 自定义 颜色、尺寸
+### 3.1 自定义 颜色、尺寸
 
 SeekBar以下部分的颜色或尺寸可以被自定义：
 
@@ -119,7 +113,32 @@ SeekBar以下部分的颜色或尺寸可以被自定义：
 - 指示器 indicator
 - 指示器文字 indicator_text
 
-### 3.3 隐藏刻度tick
+### 3.2 多种的SeekBar类型
+IndicatorSeekBar 提供了两种系列的类型: 
+
+1. 连续（continuous）的滑动:  `CONTINUOUS`/`CONTINUOUS_TEXTS_ENDS`.
+
+2. 非连续（discrete）的滑动:  `DISCRETE_TICKS`/  `DISCRETE_TICKS_TEXTS`/  `DISCRETE_TICKS_TEXTS_ENDS`.
+
+```xml
+<com.warkiz.widget.IndicatorSeekBar
+    app:isb_seek_bar_type="continuous"
+    .../>
+```
+
+### 3.3 多种的指示器Indicator类型
+
+IndicatorSeekBar 提供了 4 种指示器类型: 矩形(rectangle),圆角矩形(rectangle_rounded_corner),圆形气泡(circular_bubble) 和 自定义(custom)。
+
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator_type.png?raw=true" width = "392" height = "115"/>
+
+```xml
+<com.warkiz.widget.IndicatorSeekBar
+    app:isb_indicator_type="circular_bubble"
+    .../>
+```
+
+### 3.4 隐藏刻度tick
 SeekBar的两个端点的刻度或者滑块左边的刻度可以被隐藏。
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -130,7 +149,7 @@ SeekBar的两个端点的刻度或者滑块左边的刻度可以被隐藏。
     app:isb_tick_on_thumb_left_hide="true"
     .../>
 ```	
-### 3.4 给SeekBar选择圆角/方角
+### 3.5 给SeekBar选择圆角/方角
  默认两端是圆角，可以设置为方形。
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -138,7 +157,7 @@ SeekBar的两个端点的刻度或者滑块左边的刻度可以被隐藏。
     .../>
 ```	
 
-### 3.5 滑块thumb下显示进度
+### 3.6 滑块thumb下显示进度
 当 seekabr 的类型为 `CONTINUOUS` or `DISCRETE_TICKS`时 , 可以设置滑动后滑块下显示保留进度。
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -147,7 +166,7 @@ SeekBar的两个端点的刻度或者滑块左边的刻度可以被隐藏。
     .../>
 ```
 
-### 3.6 自定义SeekBar两端的文字text
+### 3.7 自定义SeekBar两端的文字text
 当 seekabr 的类型是 `CONTINUOUS_TEXTS_ENDS` 或 `DISCRETE_TICKS_TEXTS_ENDS` 时, 可以设置两端的文字.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -157,7 +176,7 @@ SeekBar的两个端点的刻度或者滑块左边的刻度可以被隐藏。
     .../>
 ```
 
-### 3.7 自定义刻度下的文字text
+### 3.8 自定义刻度下的文字text
 当 seekabr 的类型是 `DISCRETE_TICKS_TEXTS` , 可以通过设置数组的方式自定义刻度下的文字, 数组的长度应当和刻度相等。
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -170,7 +189,7 @@ or
 indicatorSeekBar.setTextArray(R.array.texts_below_tick_length_5);
 ```
 
-### 3.8 自定义滑块thumb的图片
+### 3.9 自定义滑块thumb的图片
 滑块可以使用图片去自定义：
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -179,7 +198,7 @@ indicatorSeekBar.setTextArray(R.array.texts_below_tick_length_5);
 ```
 注意: 可通过isb_thumb_width 属性设置滑块图片大小, 最大限制显示30dp, 默认14dp . 如果图片小于30dp, 会整张图片显示.
 
-### 3.9 自定义刻度tick的图片
+### 3.10 自定义刻度tick的图片
 刻度可以使用图片去自定义.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -189,7 +208,7 @@ indicatorSeekBar.setTextArray(R.array.texts_below_tick_length_5);
 
 注意: 可通过isb_tick_size 属性设置刻度图片大小, 最大限制显示30dp, 默认8dp . 如果图片小于30dp, 会整张图片显示.
 
-### 3.10 自定义指示器indicator
+### 3.11 自定义指示器indicator
 IndicatorSeekbar提供了3种指示器的类型： `ROUNDED_CORNERS` / `SQUARE_CORNERS` / `CUSTOM`,当指示器的类型为 `CUSTOM` 时, 可以自定义指示器的view.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -202,7 +221,7 @@ or
 indicatorSeekBar.setCustomIndicator(R.layout.indicator);
 ```
 注意：如果自定义指示器需要显示进度, 那么指示器必须要有一个TextView，而且其id必须设置为`isb_progress`.
-### 3.11 自定义指示器顶部的内容
+### 3.12 自定义指示器顶部的内容
 当 indicator 的类型为 `ROUNDED_CORNERS` 或者 `SQUARE_CORNERS` , 可以设置指示器顶部的view.
 ```xml
 <com.warkiz.widget.IndicatorSeekBar

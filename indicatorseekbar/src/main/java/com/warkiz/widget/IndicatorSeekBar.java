@@ -224,10 +224,6 @@ public class IndicatorSeekBar extends View {
         initStrokePaint();
 
         initDefaultPadding();
-        if (p.mShowIndicator) {
-            mIndicator = new Indicator(mContext, this, p);
-        }
-
         if (noTick()) {
             if (p.mMax - p.mMin > 100) {
                 p.mTickNum = Math.round(p.mMax - p.mMin);
@@ -332,6 +328,10 @@ public class IndicatorSeekBar extends View {
         int height = Math.round(mCustomDrawableMaxHeight + .5f + getPaddingTop() + getPaddingBottom());
         setMeasuredDimension(resolveSize(IndicatorUtils.dp2px(mContext, 170), widthMeasureSpec), height + mTextHeight);
         initSeekBarInfo();
+        if (p.mShowIndicator && mIndicator == null) {
+            mIndicator = new Indicator(mContext, this, p);
+        }
+
     }
 
     @Override
@@ -364,7 +364,7 @@ public class IndicatorSeekBar extends View {
         if (p.mShowIndicator && p.mIndicatorStay && !mIndicator.isShowing()) {
             if (!isCover()) {
                 calculateProgressTouchX();
-                mIndicator.showIndicator(mTouchX, p.mSeekBarType, getThumbPosOnTick());
+                mIndicator.showIndicator(mTouchX);
             }
 
         }
@@ -392,7 +392,7 @@ public class IndicatorSeekBar extends View {
             }
             return;
         }
-        if (!p.mShowIndicator || !p.mIndicatorStay || mIndicator == null) {
+        if (!p.mShowIndicator || !p.mIndicatorStay) {
             return;
         }
         if (visibility == View.VISIBLE) {
@@ -404,7 +404,7 @@ public class IndicatorSeekBar extends View {
                     } else {
                         if (IndicatorSeekBar.this.getVisibility() == View.VISIBLE) {
                             calculateProgressTouchX();
-                            mIndicator.showIndicator(mTouchX, p.mSeekBarType, getThumbPosOnTick());
+                            mIndicator.showIndicator(mTouchX);
                         }
                     }
                 }
@@ -786,9 +786,9 @@ public class IndicatorSeekBar extends View {
             invalidate();
             if (p.mShowIndicator) {
                 if (mIndicator.isShowing()) {
-                    mIndicator.update(mTouchX, p.mSeekBarType, getThumbPosOnTick());
+                    mIndicator.update(mTouchX);
                 } else {
-                    mIndicator.showIndicator(mTouchX, p.mSeekBarType, getThumbPosOnTick());
+                    mIndicator.showIndicator(mTouchX);
                 }
             }
         } else {
@@ -796,7 +796,7 @@ public class IndicatorSeekBar extends View {
                 setListener();
                 invalidate();
                 if (p.mShowIndicator) {
-                    mIndicator.update(mTouchX, p.mSeekBarType, getThumbPosOnTick());
+                    mIndicator.update(mTouchX);
                 }
             }
         }
@@ -859,6 +859,20 @@ public class IndicatorSeekBar extends View {
         return progressString;
     }
 
+    String getProgressString() {
+
+        if (p.mSeekBarType == IndicatorSeekBarType.DISCRETE_TICKS_TEXTS) {
+            int thumbPosOnTick = getThumbPosOnTick();
+            if (thumbPosOnTick >= p.mTextArray.length) {
+                return "";
+            } else {
+                return String.valueOf(p.mTextArray[thumbPosOnTick]);
+            }
+        } else {
+            return getProgressString(p.mProgress);
+        }
+    }
+
     /**
      * Get the seek bar's current level of progress in int type.
      *
@@ -904,15 +918,6 @@ public class IndicatorSeekBar extends View {
      */
     public float getProgressFloat() {
         return getProgressFloat(1);
-    }
-
-    /**
-     * get the current progress in String type , integer or float progress value type is fine.
-     *
-     * @return the current progress value String.
-     */
-    public String getProgressString() {
-        return getProgressString(p.mProgress);
     }
 
     /**

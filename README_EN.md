@@ -125,7 +125,7 @@ IndicatorSeekBar has provided 2 kinds of series SeekBar type:
 
 ### 3.3 multiple Indicator type
 
-IndicatorSeekBar has provided 4 kinds of SeekBar type: rectangle,rectangle_rounded_corner,circular_bubble,custom.
+IndicatorSeekBar has provided 4 kinds of Indicator type: rectangle,rectangle_rounded_corner,circular_bubble,custom.
 
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator_type.png?raw=true" width = "392" height = "115"/>
 

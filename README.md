@@ -4,7 +4,7 @@
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
 
 
-#### README: 中文 | [ English here](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_EN.md)
+## [ English_Readme here](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_EN.md)
 
 自定义SeekBar, 能改变尺寸、颜色、滑块(thumb)图片、刻度(tick)图片、刻度文字(text)和气泡指示器(indicator)，当滑动时显示带有进度的指示器。
 欢迎 `star` or `pull request`。

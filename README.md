@@ -36,6 +36,11 @@
 
     新增指示器Indicator 类型 circular_bubble
 
+12/19
+
+    支持在运行时修改builder参数, 并动态更新IndicatorSeekBar.
+
+
 
 ----------------
 ## 1.截图
@@ -49,7 +54,7 @@
 ```groovy
 dependencies {
     //推荐使用最新版本
-    compile 'com.github.warkiz.widget:indicatorseekbar:1.2.1'
+    compile 'com.github.warkiz.widget:indicatorseekbar:1.2.3'
 }
 ```
 ### 2. 在布局文件或java类中:
@@ -94,6 +99,18 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 				.setIndicatorType(IndicatorType.CIRCULAR_BUBBLE)
 				.setIndicatorColor(Color.parseColor("#0000FF"))
 				.build();
+
+
+动态更新IndicatorSeekBar:
+
+        indicatorSeekBar.getBuilder()
+                        .setMax(232)
+                        .setMin(43)
+                        .setTickType(TickType.OVAL)
+		        .setTickColor(Color.parseColor("#0000FF"))
+                        .setIndicatorColor(Color.parseColor("#00ff00"))
+                        .apply();
+
 ```
 #####  更多使用方式请参考 [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk).
 -------------------------

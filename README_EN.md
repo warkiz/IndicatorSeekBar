@@ -3,7 +3,7 @@
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
 
-#### README: [ 中文 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)  |  English
+### [ 中文 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md) 
 
 A custom SeekBar on Android, which can be changed the `size` , `color` , `thumb drawable` , `tick drawable` , `texts` , `indicator`, also can show an indicator view with progress above SeekBar when seeking. Welcome `star` or `pull request`.
 
@@ -32,6 +32,10 @@ This new feature can set the indicator to show always.
 12/17
 
     add more Indicator type : circular_bubble
+    
+12/19
+
+    support to change the IndicatorSeekBar at the runtime.
 
 ----------------
 ## 1.Screenshot
@@ -46,7 +50,7 @@ latest version : [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indi
 ```groovy
 dependencies {
   //recommend using latest version.
-  compile 'com.github.warkiz.widget:indicatorseekbar:1.2.1'
+  compile 'com.github.warkiz.widget:indicatorseekbar:1.2.3'
 }
 ```
 ### 2. in xml or class file:
@@ -64,7 +68,7 @@ dependencies {
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:isb_indicator_type="CIRCULAR_BUBBLE"
+        app:isb_indicator_type="circular_bubble"
         app:isb_progress="50"
         app:isb_seek_bar_type="discrete_ticks_texts"
         app:isb_tick_num="6"
@@ -91,14 +95,25 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 				.setIndicatorType(IndicatorType.SQUARE_CORNERS)
 				.setIndicatorColor(Color.parseColor("#0000FF"))
 				.build();
+				
+//change build params at the runtime.				
+     
+     indicatorSeekBar.getBuilder()
+                        .setMax(232)
+                        .setMin(43)
+                        .setTickType(TickType.OVAL)
+		        .setTickColor(Color.parseColor("#0000FF"))
+                        .setIndicatorColor(Color.parseColor("#00ff00"))
+                        .apply();
+
 ```
-#####  Check out the project or refer to [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk) or demo for more details about usage.
+#####  Check out the project or refer to [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk) for more details about usage.
 -------------------------
 ## 3. Abilities
 
 ### 3.1 customized color/size
 
-Below SeekBar parts' color/size can be customized:
+Below SeekBar's parts' color/size can be customized:
 
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
 

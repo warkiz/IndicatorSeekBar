@@ -44,7 +44,7 @@ public class Indicator {
         mGap = IndicatorUtils.dp2px(mContext, 2);
     }
 
-    private void initIndicator() {
+    void initIndicator() {
         if (p.mIndicatorType == IndicatorType.CUSTOM) {
             if (p.mIndicatorCustomView != null) {
                 mIndicatorView = p.mIndicatorCustomView;

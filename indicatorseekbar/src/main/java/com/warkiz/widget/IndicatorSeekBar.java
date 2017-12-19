@@ -15,7 +15,6 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -158,8 +157,16 @@ public class IndicatorSeekBar extends View {
     }
 
     private void initData() {
-        mTextLocationList = new ArrayList<>();
-        mTextList = new ArrayList<>();
+        if (mTextLocationList == null) {
+            mTextLocationList = new ArrayList<>();
+        } else {
+            mTextLocationList.clear();
+        }
+        if (mTextList == null) {
+            mTextList = new ArrayList<>();
+        } else {
+            mTextList.clear();
+        }
         if (p.mMax < p.mMin) {
             p.mMax = p.mMin;
         }
@@ -242,14 +249,11 @@ public class IndicatorSeekBar extends View {
             p.mTickNum = p.mTickNum < 2 ? 2 : (p.mTickNum - 1);
         }
         if (needDrawText()) {
-            if (mTextPaint == null) {
-                initTextPaint();
-            }
+            initTextPaint();
             mTextPaint.getTextBounds("jf1", 0, 3, mRect);
             mTextHeight = 0;
             mTextHeight += mRect.height() + IndicatorUtils.dp2px(mContext, 2 * GAP_BETWEEN_SEEK_BAR_AND_BELOW_TEXT);
         }
-
         lastProgress = p.mProgress;
     }
 
@@ -304,7 +308,9 @@ public class IndicatorSeekBar extends View {
     }
 
     private void initStrokePaint() {
-        mStockPaint = new Paint();
+        if (mStockPaint == null) {
+            mStockPaint = new Paint();
+        }
         if (p.mTrackRoundedCorners) {
             mStockPaint.setStrokeCap(Paint.Cap.ROUND);
         }
@@ -315,12 +321,14 @@ public class IndicatorSeekBar extends View {
     }
 
     private void initTextPaint() {
-        if (needDrawText()) {
+        if (mTextPaint == null) {
             mTextPaint = new TextPaint();
-            mTextPaint.setAntiAlias(true);
-            mTextPaint.setTextAlign(Paint.Align.CENTER);
-            mTextPaint.setTextSize(p.mTextSize);
-            mTextPaint.setColor(p.mTextColor);
+        }
+        mTextPaint.setAntiAlias(true);
+        mTextPaint.setTextAlign(Paint.Align.CENTER);
+        mTextPaint.setTextSize(p.mTextSize);
+        mTextPaint.setColor(p.mTextColor);
+        if (mRect == null) {
             mRect = new Rect();
         }
     }
@@ -888,6 +896,36 @@ public class IndicatorSeekBar extends View {
     }
 
     /**
+     * set the max value for SeekBar
+     *
+     * @param max the max value , if is less than min, will set to min.
+     */
+    public void setMax(float max) {
+        if (max < mRawParams.mMin) {
+            max = mRawParams.mMin;
+        }
+        this.mRawParams.mMax = max;
+        this.p.copy(mRawParams);
+        initData();
+        requestLayout();
+    }
+
+    /**
+     * set the min value for SeekBar
+     *
+     * @param min the min value , if is larger than max, will set to max.
+     */
+    public void setMin(float min) {
+        if (min > mRawParams.mMax) {
+            min = mRawParams.mMax;
+        }
+        this.mRawParams.mMin = min;
+        this.p.copy(mRawParams);
+        initData();
+        requestLayout();
+    }
+
+    /**
      * Sets the current progress to the specified value.
      *
      * @param progress a new progress value , if the new progress is less than min , it will set to min ,if over max ,will be max.
@@ -991,7 +1029,7 @@ public class IndicatorSeekBar extends View {
     /**
      * set the seek bar build params . not null.
      *
-     * @param p BuilderParams
+     * @param p a new BuilderParams
      */
     private void apply(BuilderParams p) {
         if (p == null) {
@@ -1001,6 +1039,9 @@ public class IndicatorSeekBar extends View {
         this.p.copy(p);
         initData();
         requestLayout();
+        if (mIndicator != null) {
+            mIndicator.initIndicator();
+        }
     }
 
 

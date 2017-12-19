@@ -73,6 +73,8 @@ public class IndicatorSeekBar extends View {
     private float mThumbTouchHeight;
     private float mCustomDrawableMaxHeight;
     private float mScreenWidth = -1;
+    private Builder mBuilder;
+    private BuilderParams mRawParams;
 
     public IndicatorSeekBar(Context context) {
         this(context, null);
@@ -81,7 +83,9 @@ public class IndicatorSeekBar extends View {
     public IndicatorSeekBar(Builder builder) {
         super(builder.getContext(), null, 0);
         this.mContext = builder.getContext();
+        this.mBuilder = builder;
         this.p = builder.p;
+        this.mRawParams = new BuilderParams(mContext).copy(p);
         initData();
     }
 
@@ -93,6 +97,7 @@ public class IndicatorSeekBar extends View {
         super(context, attrs, defStyleAttr);
         this.mContext = context;
         initAttrs(mContext, attrs);
+        this.mRawParams = new BuilderParams(mContext).copy(p);
         initData();
     }
 
@@ -241,6 +246,7 @@ public class IndicatorSeekBar extends View {
                 initTextPaint();
             }
             mTextPaint.getTextBounds("jf1", 0, 3, mRect);
+            mTextHeight = 0;
             mTextHeight += mRect.height() + IndicatorUtils.dp2px(mContext, 2 * GAP_BETWEEN_SEEK_BAR_AND_BELOW_TEXT);
         }
 
@@ -697,7 +703,6 @@ public class IndicatorSeekBar extends View {
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                setListener();
                 refreshSeekBar(event, false);
                 break;
             case MotionEvent.ACTION_UP:
@@ -720,15 +725,15 @@ public class IndicatorSeekBar extends View {
         return super.performClick();
     }
 
-    private void setListener() {
+    private void setListener(boolean formUserTouch) {
         if (mListener != null) {
-            mListener.onProgressChanged(this, getProgress(), getProgressFloat(), true);
+            mListener.onProgressChanged(this, getProgress(), getProgressFloat(), formUserTouch);
             if (p.mSeekBarType > 1) {
                 int thumbPosOnTick = getThumbPosOnTick();
                 if (p.mTextArray != null && thumbPosOnTick < (p.mTextArray.length)) {
-                    mListener.onSectionChanged(this, thumbPosOnTick, p.mTextArray[thumbPosOnTick] + "", true);
+                    mListener.onSectionChanged(this, thumbPosOnTick, String.valueOf(p.mTextArray[thumbPosOnTick]), formUserTouch);
                 } else {
-                    mListener.onSectionChanged(this, thumbPosOnTick, "", true);
+                    mListener.onSectionChanged(this, thumbPosOnTick, "", formUserTouch);
                 }
             }
         }
@@ -781,7 +786,7 @@ public class IndicatorSeekBar extends View {
         mIsTouching = true;
         if (isDownTouch) {
             if (lastProgress != p.mProgress) {
-                setListener();
+                setListener(true);
             }
             invalidate();
             if (p.mShowIndicator) {
@@ -793,7 +798,7 @@ public class IndicatorSeekBar extends View {
             }
         } else {
             if (lastProgress != p.mProgress) {
-                setListener();
+                setListener(true);
                 invalidate();
                 if (p.mShowIndicator) {
                     mIndicator.update(mTouchX);
@@ -895,20 +900,22 @@ public class IndicatorSeekBar extends View {
         } else {
             p.mProgress = progress;
         }
-        if (mListener != null) {
-            mListener.onProgressChanged(this, getProgress(), getProgressFloat(), false);
-            if (p.mSeekBarType > 1) {
-                int thumbPosOnTick = getThumbPosOnTick();
-                if (p.mTextArray != null && thumbPosOnTick < (p.mTextArray.length - 1)) {
-                    mListener.onSectionChanged(this, thumbPosOnTick, p.mTextArray[thumbPosOnTick] + "", false);
-                } else {
-                    mListener.onSectionChanged(this, thumbPosOnTick, "", true);
-                }
-            }
-        }
+        setListener(false);
         float touchX = (p.mProgress - p.mMin) * mSeekLength / (p.mMax - p.mMin) + mPaddingLeft;
         calculateTouchX(touchX);
         postInvalidate();
+    }
+
+    /**
+     * get the SeekBar builder.
+     *
+     * @return
+     */
+    public Builder getBuilder() {
+        if (mBuilder == null) {
+            mBuilder = new Builder(mContext);
+        }
+        return mBuilder.setParams(mRawParams).setSeekBar(this);
     }
 
     /**
@@ -990,7 +997,8 @@ public class IndicatorSeekBar extends View {
         if (p == null) {
             throw new NullPointerException(" BuilderParams can not be a null value. ");
         }
-        this.p = p;
+        this.mRawParams.copy(p);
+        this.p.copy(p);
         initData();
         requestLayout();
     }
@@ -1057,10 +1065,10 @@ public class IndicatorSeekBar extends View {
          * @param thumbPosOnTick The thumb's position on the seek bar's tick,if seek bar type is DISCRETE serious,
          *                       min thumbPosition is 0 , max is ticks length - 1 ; if seek bar type is CONTINUOUS serious,
          *                       no ticks on seek bar, so the thumbPosition will be always -1.
-         * @param tickBelowText  this text  show below tick ,if tick below text is empty . text is "";
+         * @param textBelowTick  this text  show below tick ,if tick below text is empty . text is "";
          * @param fromUserTouch  True if the seeking change was initiated by the user.
          */
-        void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch);
+        void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String textBelowTick, boolean fromUserTouch);
 
         /**
          * Notification that the user has started a touch gesture. Clients may want to use this
@@ -1084,13 +1092,27 @@ public class IndicatorSeekBar extends View {
 
     public static class Builder {
         BuilderParams p;
+        IndicatorSeekBar indicatorSeekBar;
 
         public Builder(Context context) {
             this.p = new BuilderParams(context);
         }
 
+        /**
+         * call this to new an IndicatorSeekBar
+         *
+         * @return IndicatorSeekBar
+         */
         public IndicatorSeekBar build() {
-            IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar(p.mContext);
+            return new IndicatorSeekBar(this);
+        }
+
+        /**
+         * call this to refresh an indicatorSeekBar
+         *
+         * @return
+         */
+        public IndicatorSeekBar apply() {
             indicatorSeekBar.apply(p);
             return indicatorSeekBar;
         }
@@ -1549,6 +1571,16 @@ public class IndicatorSeekBar extends View {
          */
         public Builder setIndicatorStay(boolean stay) {
             p.mIndicatorStay = stay;
+            return this;
+        }
+
+        Builder setParams(BuilderParams p) {
+            this.p = p;
+            return this;
+        }
+
+        Builder setSeekBar(IndicatorSeekBar indicatorSeekBar) {
+            this.indicatorSeekBar = indicatorSeekBar;
             return this;
         }
 

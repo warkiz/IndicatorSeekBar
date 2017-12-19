@@ -22,7 +22,7 @@ import android.widget.TextView;
  */
 
 
-class Indicator {
+public class Indicator {
     private final Context mContext;
     private final IndicatorSeekBar mSeekBar;
     private final int mWindowWidth;
@@ -35,7 +35,7 @@ class Indicator {
     private int mGap;
     private BuilderParams p;
 
-    Indicator(Context context, IndicatorSeekBar seekBar, BuilderParams p) {
+    public Indicator(Context context, IndicatorSeekBar seekBar, BuilderParams p) {
         this.mContext = context;
         this.mSeekBar = seekBar;
         this.p = p;
@@ -273,6 +273,15 @@ class Indicator {
     }
 
     /**
+     * get the indicator content view.
+     *
+     * @return the view which is inside indicator.
+     */
+    public View getmContentView() {
+        return mIndicator.getContentView();
+    }
+
+    /**
      * set the  View to the indicator top container, and show the changing progress in indicator when seek;
      * not influence indicator arrow;
      * * if indicator type is custom , this method will be not work.
@@ -304,7 +313,7 @@ class Indicator {
      * @return true is showing.
      */
     public boolean isShowing() {
-        return mIndicator != null && mIndicator.isShowing();
+        return mIndicator.isShowing();
     }
 
     /**
@@ -317,7 +326,7 @@ class Indicator {
     }
 
     /**
-     * the text view to show the progress in indicator , must be found in indicator root view.
+     * the text view to show the progress in indicator , must can be found in indicator root view.
      *
      * @param view a text view can be found in indicator root view
      */

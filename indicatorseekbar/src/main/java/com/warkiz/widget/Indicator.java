@@ -183,6 +183,24 @@ public class Indicator {
     }
 
     /**
+     * call this to update indicator's location. if SeekBar is covered ,the indicator will dismiss auto and would show after the SeekBar showing completed.
+     */
+    public void updateIndicator() {
+        if (mSeekBar.isCover()) {
+            this.forceHideIndicator();
+        } else {
+            if (mSeekBar.getVisibility() == View.VISIBLE) {
+                if (this.isShowing()) {
+                    this.update(mSeekBar.getTouchX());
+                } else {
+                    this.showIndicator(mSeekBar.getTouchX());
+                }
+            }
+        }
+    }
+
+
+    /**
      * update the indicator position
      *
      * @param touchX the x location you touch without padding left.
@@ -197,6 +215,15 @@ public class Indicator {
             }
             mIndicator.update(mSeekBar, (int) (touchX - mIndicator.getContentView().getMeasuredWidth() / 2), -(mSeekBar.getMeasuredHeight() + mIndicator.getContentView().getMeasuredHeight() - mSeekBar.getPaddingTop() + mGap), -1, -1);
             adjustArrow(touchX);
+        }
+    }
+
+    /**
+     * call this to show indicator
+     */
+    public void showIndicator() {
+        if (!this.isShowing()) {
+            this.showIndicator(mSeekBar.getTouchX());
         }
     }
 

@@ -44,6 +44,8 @@ public class IndicatorSeekBar extends View {
     private float mTickRadius;
     private Indicator mIndicator;
     private List<Float> mTextLocationList;
+    private Rect mCoverRect;
+    private int[] mLocation;
     private ArrayList<String> mTextList;
     private Context mContext;
     private Paint mStockPaint;
@@ -257,10 +259,15 @@ public class IndicatorSeekBar extends View {
         lastProgress = p.mProgress;
     }
 
-    public void calculateProgressTouchX() {
+    private void calculateProgressTouchX() {
         //progress
         float touchX = (p.mProgress - p.mMin) * mSeekLength / (p.mMax - p.mMin) + mPaddingLeft;
         calculateTouchX(touchX);
+    }
+
+    float getTouchX() {
+        calculateProgressTouchX();
+        return mTouchX;
     }
 
     private boolean noTick() {
@@ -426,19 +433,23 @@ public class IndicatorSeekBar extends View {
         }
     }
 
-    private boolean isCover() {
-        Rect rect = new Rect();
-        if (this.getGlobalVisibleRect(rect)) {
-            if (rect.width() >= this.getMeasuredWidth() && rect.height() >= this.getMeasuredHeight()) {
+    boolean isCover() {
+        if (mCoverRect == null) {
+            mCoverRect = new Rect();
+        }
+        if (this.getGlobalVisibleRect(mCoverRect)) {
+            if (mCoverRect.width() >= this.getMeasuredWidth() && mCoverRect.height() >= this.getMeasuredHeight()) {
                 if (mScreenWidth < 0) {
                     initScreenWidth();
                 }
                 if (mScreenWidth > 0) {
-                    int left = rect.left;
-                    int top = rect.top;
-                    int[] location = new int[2];
-                    this.getLocationInWindow(location);
-                    if (left == location[0] && top == location[1]) {
+                    int left = mCoverRect.left;
+                    int top = mCoverRect.top;
+                    if (mLocation == null) {
+                        mLocation = new int[2];
+                    }
+                    this.getLocationInWindow(mLocation);
+                    if (left == mLocation[0] && top == mLocation[1]) {
                         return false;
                     }
                 }

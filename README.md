@@ -54,7 +54,7 @@
 ```groovy
 dependencies {
     //推荐使用最新版本
-    compile 'com.github.warkiz.widget:indicatorseekbar:1.2.3'
+    compile 'com.github.warkiz.widget:indicatorseekbar:1.2.4'
 }
 ```
 ### 2. 在布局文件或java类中:

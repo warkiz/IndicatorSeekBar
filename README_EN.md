@@ -50,7 +50,7 @@ latest version : [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indi
 ```groovy
 dependencies {
   //recommend using latest version.
-  compile 'com.github.warkiz.widget:indicatorseekbar:1.2.3'
+  compile 'com.github.warkiz.widget:indicatorseekbar:1.2.4'
 }
 ```
 ### 2. in xml or class file:

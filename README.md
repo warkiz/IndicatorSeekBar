@@ -76,9 +76,9 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 - customized color/size (tick,thumb,track,text,indicator,indicator-text)
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
 
-- choice continuous/discrete series SeekBar type.
+- choose different series SeekBar type.(continuous,discrete series)
 
-- choice different indicator type.(rectangle,rectangle_rounded_corner,circular_bubble,custom)
+- choose different indicator type.(rectangle,rectangle_rounded_corner,circular_bubble,custom)
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator_type.png?raw=true" width = "392" height = "115"/>
 
 - customized thumb drawable

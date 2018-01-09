@@ -19,7 +19,8 @@
    本库适用于ConstraintLayout/AppbarLayout/NestedScrollview/RecyclerView/ViewPager/ListView/ScrollView/GridView/Dialog。
 
 ## 2. 使用
-###  1. app/build.gradle:  最新版本: [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
+###  1. app/build.gradle:
+最新版本: [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
 ```groovy
 dependencies {
     //推荐使用最新版本

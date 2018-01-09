@@ -11,7 +11,7 @@ A custom SeekBar on Android, which can be changed the `size` , `color` , `thumb 
 ####  Download the [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk) for more details about usage.
 
 ## Advantage
-   IndicatorSeekBar is ok to use in ConstraintLayout/AppbarLayout/NestedScrollview/RecyclerView/ViewPager/ListView/ScrollView/GridView/Dialog scrollable situation.
+IndicatorSeekBar is ok to use in ConstraintLayout/AppbarLayout/NestedScrollview/RecyclerView/ViewPager/ListView/ScrollView/GridView/Dialog scrollable situation.
 
 ## 2. Usage
 

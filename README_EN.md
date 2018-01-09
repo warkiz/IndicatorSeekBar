@@ -1,59 +1,33 @@
-# IndicatorSeekBar
+自定义SeekBar, 能改变尺寸、颜色、滑块(thumb)图片、刻度(tick)图片、刻度文字(text)和气泡指示器(indicator)，当滑动时显示带有进度的指示器。
+欢迎 `submit issue` or `pull request`。
+
 [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
 
-### [ 中文 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md) 
 
-A custom SeekBar on Android, which can be changed the `size` , `color` , `thumb drawable` , `tick drawable` , `texts` , `indicator`, also can show an indicator view with progress above SeekBar when seeking. Welcome `star` or `pull request`.
+#### [ English readme.md here](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)
 
-----------------
-## new feature logs
+## 1.截图
 
-12/5
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/>
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
 
-When custom tick or thumb drawable :
-    
-	if the drawable's width is less than 30 dp , will show the drawable in raw size.
-	if large than 30dp , you can set the width by isb_tick_size/isb_thumb_width , default 14dp , max is 30dp when display.height auto adjust by ratio.
+#####  下载 [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk)查看更多演示.
 
-12/10
+## 特点
 
-This new feature can set the indicator to show always.
-    
-	IndicatorSeekBar has provided the attribute isb_indicator_stay to do this , also can use setter in builder.
-	this new feature is fine when use in below situation.
-	ListView / ScrollView / GridView / RecyclerView / ViewPager / Dialog
+    指示器Indicator适用于ConstraintLayout/AppbarLayout/NestedScrollview/RecyclerView/ViewPager/ListView/ScrollView/GridView/Dialog。
 
-12/14
-
-    compat ConstraintLayout.
-
-12/17
-
-    add more Indicator type : circular_bubble
-    
-12/19
-
-    support to change the IndicatorSeekBar at the runtime.
-
-----------------
-## 1.Screenshot
-
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/>
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
-
-## 2. Usage
-
-### 1. build.gradle in module :
-latest version : [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
+## 2. 使用
+###  1. app/build.gradle:  最新版本: [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
 ```groovy
 dependencies {
-  //recommend using latest version.
-  compile 'com.github.warkiz.widget:indicatorseekbar:1.2.4'
+    //推荐使用最新版本
+    compile 'com.github.warkiz.widget:indicatorseekbar:1.2.4'
 }
 ```
-### 2. in xml or class file:
+### 2. 在布局文件或java类中:
 #### xml
 ```xml
 <com.warkiz.widget.IndicatorSeekBar
@@ -75,30 +49,26 @@ dependencies {
         app:isb_tick_type="oval" />
 ```
 
-#### Java
+#### or Java
 
 ```Java
 IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
-                                .setMax(200)
+				.setMax(200)
 				.setMin(0)
 				.setProgress(35)
 				.setSeekBarType(IndicatorSeekBarType.DISCRETE_TICKS)
 				.setTickType(TickType.OVAL)
-				.setTickColor(Color.parseColor("#0000FF"))
 				.setTickSize(8)//dp size
 				.setTickNum(8)
-				.setBackgroundTrackSize(2)//dp size
-				.setBackgroundTrackColor(Color.parseColor("#666666"))
 				.setProgressTrackSize(3)//dp size
-				.setProgressTrackColor(Color.parseColor("#0000FF"))
-				.showIndicator(true)
-				.setIndicatorType(IndicatorType.SQUARE_CORNERS)
+				.setIndicatorType(IndicatorType.CIRCULAR_BUBBLE)
 				.setIndicatorColor(Color.parseColor("#0000FF"))
 				.build();
-				
-//change build params at the runtime.				
-     
-     indicatorSeekBar.getBuilder()
+
+
+//动态更新IndicatorSeekBar:
+
+        indicatorSeekBar.getBuilder()
                         .setMax(232)
                         .setMin(43)
                         .setTickType(TickType.OVAL)
@@ -107,147 +77,23 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
                         .apply();
 
 ```
-#####  Check out the project or refer to [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk) for more details about usage.
+#####  更多使用方式请参考 [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk).
 -------------------------
-## 3. Abilities
+## 3. 进阶
+--  自定义颜色、尺寸(刻度,滑块,滑条,刻度文字,指示器,指示器文字)
+--- <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
+--  可选 连续/分段 系类的SeekBar类型.
+--  可选 矩形/圆角矩形/圆形气泡/自定义的指示器类型.
+--- <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator_type.png?raw=true" width = "392" height = "115"/>
+--  自定义滑块图片
+--  自定义刻度图片
+--  自定义指示器布局
+--  自定义指示器顶部布局
+---- 如果自定义指示器顶部的view需要显示进度, 那么这个view必须要有一个TextView，而且其id必须设置为`isb_progress`.
 
-### 3.1 customized color/size
+####  下载项目查看更多的特性.
 
-Below SeekBar's parts' color/size can be customized:
-
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
-
-- track background bar
-- track progress bar
-- ticks
-- text
-- thumb
-- indicator
-- indicator text
-
-### 3.2 multiple SeekBar type
-IndicatorSeekBar has provided 2 kinds of series SeekBar type:
-
-1. continuous series:  `continuous`/  `continuous_texts_ends`.
-
-2. discrete series:  `discrete_ticks`/  `discrete_ticks_texts`/  `discrete_ticks_texts_ends`.
-
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-    app:isb_seek_bar_type="continuous"
-    .../>
-```
-
-### 3.3 multiple Indicator type
-
-IndicatorSeekBar has provided 4 kinds of Indicator type: rectangle,rectangle_rounded_corner,circular_bubble,custom.
-
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator_type.png?raw=true" width = "392" height = "115"/>
-
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-    app:isb_indicator_type="circular_bubble"
-    .../>
-```
-
-### 3.4 hide ticks
-The ticks on the SeekBar both end sides or on thumb left can be hid.
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-    app:isb_tick_both_end_hide="true"
-    .../>
-
-
-<com.warkiz.widget.IndicatorSeekBar
-    app:isb_tick_on_thumb_left_hide="true"
-    .../>
-```	
-### 3.5 change the SeekBar corners shape
- SeekBar's track's is round corners default , could be set to square.
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-    app:isb_track_rounded_corners="false"
-    .../>
-```	
-
-### 3.6 seeking to show progress text below thumb.
-When the SeekBar type is `CONTINUOUS` or `DISCRETE_TICKS` , can show the progress text under thumb when seeking.
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-    app:isb_seek_bar_type="continuous"//discrete_ticks
-    app:isb_thumb_progress_stay="true"
-    .../>
-```
-
-### 3.7 customized 2 below texts on both ends of SeekBar
-When the SeekBar type is `CONTINUOUS_TEXTS_ENDS` or `DISCRETE_TICKS_TEXTS_ENDS` , you can set the left & right text.
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-    app:isb_seek_bar_type="continuous_texts_ends"//discrete_ticks_texts_ends
-    app:isb_text_left_end="last"
-    app:isb_text_right_end="next"
-    .../>
-```
-
-### 3.8 customized texts below tick
-When the SeekBar type is `DISCRETE_TICKS_TEXTS` , you can custom the texts below tick by an array, and the array's length should equals ticks num.
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-    app:isb_text_array="@array/texts_below_tick_length_5"
-    app:isb_tick_num="5" // normally , array length should equals tick num.
-    .../>
-```
-
-```Java
-or
-indicatorSeekBar.setTextArray(R.array.texts_below_tick_length_5);
-```
-
-### 3.9 customized thumb drawable
-Thumb can be replaced by a drawable:
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-    app:isb_thumb_drawable="@mipmap/ic_launcher"
-    .../>
-```
-Also, you can use the attr: isb_thumb_width to change the drawable' size , limited in 30 dp , default 8dp . if the drawable less than 30dp, will show in raw size.
-
-### 3.10 customized tick drawable
-Ticks can be replaced by a drawable:
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-    app:isb_tick_drawable="@mipmap/ic_launcher"
-    .../>
-```
-
-### 3.11 customized indicator
-IndicatorSeekBar provided 3 kinds of indicator type `ROUNDED_CORNERS` / `SQUARE_CORNERS` / `CUSTOM`, when the indicator type is `CUSTOM` , you can set a custom indicator view.
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-    app:isb_indicator_type="custom"
-    app:isb_indicator_custom_layout="@layout/indicator"
-    .../>
-```
-```Java
-or
-indicatorSeekBar.setCustomIndicator(R.layout.indicator);
-```
-Attention: if want to show the custom indicator with a progress text when seeking , the indicator view should have a TextView which id is `isb_progress`. 
-
-### 3.12 customized indicator's top content view
-When the indicator type is `ROUNDED_CORNERS` or `SQUARE_CORNERS` , you can set a custom indicator top content view.
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-    app:isb_indicator_type="rounded_corners"/square_corners
-    app:isb_indicator_custom_top_content_layout="@layout/top_content_view"
-    .../>
-```
-```Java
-or
-indicatorSeekBar.getIndicator().setIndicatorTopContentLayout(R.layout.top_content_view);
-```
-Attention: if want to show the custom indicator top content view with a progress text when seeking , the content view should have a TextView which id is `isb_progress`. 
-## 4. Support listener
+## 4. 滑动监听
 ```Java
 indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
 
@@ -257,7 +103,7 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 
 	@Override
 	public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String textBelowTick, boolean fromUserTouch) {
-	    //only callback on discrete series SeekBar type.
+	    //这个回调仅在分段系列`discrete`的SeekBar生效，当为连续系列`continuous`则不回调。
 	}
 
 	@Override
@@ -269,54 +115,20 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 	}
 });
 ```
-onSectionChanged: when the SeekBar type is `discrete series`, this callback work to get the tick position and text. `continuous series` will not work.
-## 5. Proguard
-```Java
--keep class com.warkiz.widget.** { *; }
-```
-
-## 6. Attributes
+## 5. 属性
 
 [ attr.xml ](https://github.com/warkiz/IndicatorSeekBar/blob/master/indicatorseekbar/src/main/res/values/attr.xml)
 
-## 7. License
 
-Copyright 2017 Chuang Guangquan (warkiz)
+## 6. 联系我
+如果你对此项目有问题，欢迎通过以下方式联系我。
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+1. 提issue.
+2. 发邮件, "warkiz".concat("4j").concat("@").concat("gmail.com")
 
-       http://www.apache.org/licenses/LICENSE-2.0
+## 支持我
+1. 欢迎star, 或：
+2. 走VIP打赏通道，扫描二维码打赏，金额不限，支持IndicatorSeekBar。
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
-
-## 8. Contact me
-Feel free to contact me if you have any trouble on this project.
-
-1. Create an issue.
-2. Send mail to me, "warkiz".concat("4j").concat("@").concat("gmail.com")
-
-## 9. Thanks
-[material.io-slider](https://material.io/guidelines/components/sliders.html#sliders-continuous-slider). 
-
-[MaterialDesignLibrary](https://github.com/navasmdc/MaterialDesignLibrary). 
-
-[PointerPopupWindow](https://github.com/okry1123/PointerPopupWindow).
-
-[SeekBarCompat](https://github.com/ahmedrizwan/SeekBarCompat). 
-
-[BubbleSeekBar](https://github.com/woxingxiao/BubbleSeekBar). 
-
-[NumberProgressBar](https://github.com/daimajia/NumberProgressBar). 
-
-[android-slidr](https://github.com/florent37/android-slidr). 
-
-[RangeSeekBar](https://github.com/Jay-Goo/RangeSeekBar). 
-
-[BubblePopupWindow](https://github.com/smuyyh/BubblePopupWindow). 
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/AliPay.png?raw=true" width = "200" height = "226"/>
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/WechatPay.png?raw=true" width = "200" height = "222"/>

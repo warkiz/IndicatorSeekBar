@@ -6,13 +6,12 @@ A custom SeekBar on Android, which can be changed the `size` , `color` , `thumb 
 #### [ 中文 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_EN.md)
 ## 1.Screenshot
 
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/>
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
 
 ####  Download the [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk) for more details about usage.
 
 ## Advantage
-   IndicatorSeekBar's indicator is good to show in ConstraintLayout/AppbarLayout/NestedScrollview/RecyclerView/ViewPager/ListView/ScrollView/GridView/Dialog scrollable situation.
+   IndicatorSeekBar is ok to use in ConstraintLayout/AppbarLayout/NestedScrollview/RecyclerView/ViewPager/ListView/ScrollView/GridView/Dialog scrollable situation.
 
 ## 2. Usage
 
@@ -74,15 +73,21 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 ```
 -------------------------
 ## 3. Advance Usage
---  customized color/size (tick,thumb,track,text,indicator,indicator-text)
---- <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
---  choice continuous/discrete series SeekBar type.
---  choice different indicator type.(rectangle,rectangle_rounded_corner,circular_bubble,custom)
---- <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator_type.png?raw=true" width = "392" height = "115"/>
---  customized thumb drawable
---  customized tick drawable
---  customized indicator
---  customized indicator's top content view
+- customized color/size (tick,thumb,track,text,indicator,indicator-text)
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
+
+- choice continuous/discrete series SeekBar type.
+
+- choice different indicator type.(rectangle,rectangle_rounded_corner,circular_bubble,custom)
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator_type.png?raw=true" width = "392" height = "115"/>
+
+- customized thumb drawable
+
+- customized tick drawable
+
+- customized indicator
+
+- customized indicator's top content view
 
 ####  Check out the project for more details about advance usage.
 
@@ -124,5 +129,4 @@ Feel free to contact me if you have any trouble on this project.
 1. star, or
 2. Donation. open Alipay or Wechat App to scan the Quick Response Code to give me a tip you want。
 
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/AliPay.png?raw=true" width = "200" height = "226"/>
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/WechatPay.png?raw=true" width = "200" height = "222"/>
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/AliPay.png?raw=true" width = "200" height = "222"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/WechatPay.png?raw=true" width = "200" height = "222"/>

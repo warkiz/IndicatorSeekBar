@@ -7,7 +7,7 @@
 
 #### [ English readme.md here](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)
 
-## 1.截图
+## 截图
 
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/>
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
@@ -16,15 +16,15 @@
 
 ## 特点
 
-   本库适用于ConstraintLayout/AppbarLayout/NestedScrollview/RecyclerView/ViewPager/ListView/ScrollView/GridView/Dialog。
+   本库兼容ConstraintLayout/AppbarLayout/NestedScrollview/RecyclerView/ViewPager/ListView/ScrollView/GridView/Dialog。
 
-## 2. 使用
+## 使用
 ###  1. app/build.gradle:
 最新版本: [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
 ```groovy
 dependencies {
     //推荐使用最新版本
-    compile 'com.github.warkiz.widget:indicatorseekbar:1.2.4'
+    compile 'com.github.warkiz.widget:indicatorseekbar:1.2.5'
 }
 ```
 ### 2. 在布局文件或java类中:
@@ -76,7 +76,7 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 ```
 #####  更多使用方式请参考 [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk).
 -------------------------
-## 3. 进阶
+## 进阶
 - 自定义颜色、尺寸(刻度,滑块,滑条,刻度文字,指示器,指示器文字)
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
 
@@ -97,7 +97,7 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 
 ####  下载项目查看更多的特性.
 
-## 4. 滑动监听
+## 滑动监听
 ```Java
 indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
 
@@ -119,12 +119,12 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 	}
 });
 ```
-## 5. 属性
+## 属性
 
 [ attr.xml ](https://github.com/warkiz/IndicatorSeekBar/blob/master/indicatorseekbar/src/main/res/values/attr.xml)
 
 
-## 6. 联系我
+## 联系我
 1. 提issue.
 2. 发邮件, "warkiz".concat("4j").concat("@").concat("gmail.com")
 

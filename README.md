@@ -4,7 +4,7 @@ A custom SeekBar on Android, which can be changed the `size` , `color` , `thumb 
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
 #### [ 中文 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_EN.md)
-## 1.Screenshot
+## Screenshot
 
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
 
@@ -13,14 +13,14 @@ A custom SeekBar on Android, which can be changed the `size` , `color` , `thumb 
 ## Advantage
 IndicatorSeekBar is ok to use in ConstraintLayout/AppbarLayout/NestedScrollview/RecyclerView/ViewPager/ListView/ScrollView/GridView/Dialog scrollable situation.
 
-## 2. Usage
+## Usage
 
 ### 1. build.gradle in module :
 latest version : [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
 ```groovy
 dependencies {
   //recommend using latest version.
-  compile 'com.github.warkiz.widget:indicatorseekbar:1.2.4'
+  compile 'com.github.warkiz.widget:indicatorseekbar:1.2.5'
 }
 ```
 ### 2. in xml or class file:
@@ -72,7 +72,7 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 
 ```
 -------------------------
-## 3. Advance Usage
+## Advance Usage
 - customized color/size (tick,thumb,track,text,indicator,indicator-text)
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
 
@@ -91,7 +91,7 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 
 ####  Check out the project for more details about advance usage.
 
-## 4. listener
+## listener
 ```Java
 indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
 
@@ -115,18 +115,17 @@ indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeLis
 ```
 onSectionChanged: when the SeekBar type is `discrete series`, this callback work to get the tick position and text. `continuous series` will not work.
 
-## 5. Attributes
+## Attributes
 
 [ attr.xml ](https://github.com/warkiz/IndicatorSeekBar/blob/master/indicatorseekbar/src/main/res/values/attr.xml)
 
-## 6. Contact me
-Feel free to contact me if you have any trouble on this project.
+## Support & Contact me
 
+Star to support me , many thanks!
+
+Feel free to contact me if you have any trouble on this project.
 1. Create an issue.
 2. Send mail to me, "warkiz".concat("4j").concat("@").concat("gmail.com")
 
-## Support me
-1. star, or
-2. Donation. open Alipay or Wechat App to scan the Quick Response Code to give me a tip you want。
-
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/AliPay.png?raw=true" width = "200" height = "222"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/WechatPay.png?raw=true" width = "200" height = "222"/>
+## Thanks
+[material.io-slider](https://material.io/guidelines/components/sliders.html#sliders-continuous-slider)[MaterialDesignLibrary](https://github.com/navasmdc/MaterialDesignLibrary)[PointerPopupWindow](https://github.com/okry1123/PointerPopupWindow)[SeekBarCompat](https://github.com/ahmedrizwan/SeekBarCompat)[BubbleSeekBar](https://github.com/woxingxiao/BubbleSeekBar)[android-slidr](https://github.com/florent37/android-slidr)

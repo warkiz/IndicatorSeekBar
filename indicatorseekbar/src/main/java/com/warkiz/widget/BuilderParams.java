@@ -57,6 +57,7 @@ class BuilderParams {
     int mThumbSize;
     Drawable mThumbDrawable = null;
     boolean mThumbProgressStay = false;
+    boolean mForbidUserSeek = false;
 
     BuilderParams(Context context) {
         this.mContext = context;
@@ -111,6 +112,7 @@ class BuilderParams {
         this.mThumbSize = p.mThumbSize;
         this.mThumbDrawable = p.mThumbDrawable;
         this.mThumbProgressStay = p.mThumbProgressStay;
+        this.mForbidUserSeek = p.mForbidUserSeek;
         return this;
     }
 }

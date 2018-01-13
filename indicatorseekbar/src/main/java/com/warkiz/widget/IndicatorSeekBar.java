@@ -36,7 +36,7 @@ import java.util.List;
  * New Feature: indicator stay always.
  */
 
-public class IndicatorSeekBar extends View {
+public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalLayoutListener, ViewTreeObserver.OnScrollChangedListener {
     private static final int GAP_BETWEEN_SEEK_BAR_AND_BELOW_TEXT = 3;
     private static final int CUSTOM_DRAWABLE_MAX_LIMITED_WIDTH = 30;
     private static final String INSTANCE_STATE_KEY = "isb_instance_state";
@@ -114,6 +114,7 @@ public class IndicatorSeekBar extends View {
         p.mMin = ta.getFloat(R.styleable.IndicatorSeekBar_isb_min, p.mMin);
         p.mProgress = ta.getFloat(R.styleable.IndicatorSeekBar_isb_progress, p.mProgress);
         p.mClearPadding = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_clear_default_padding, p.mClearPadding);
+        p.mForbidUserSeek = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_forbid_user_seek, p.mForbidUserSeek);
         p.mIsFloatProgress = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_progress_value_float, p.mIsFloatProgress);
         //track
         p.mBackgroundTrackSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_track_background_bar_size, p.mBackgroundTrackSize);
@@ -257,6 +258,10 @@ public class IndicatorSeekBar extends View {
             mTextHeight += mRect.height() + IndicatorUtils.dp2px(mContext, 2 * GAP_BETWEEN_SEEK_BAR_AND_BELOW_TEXT);
         }
         lastProgress = p.mProgress;
+        if (p.mIndicatorStay && p.mShowIndicator) {
+            this.getViewTreeObserver().addOnGlobalLayoutListener(this);
+            this.getViewTreeObserver().addOnScrollChangedListener(this);
+        }
     }
 
     private void calculateProgressTouchX() {
@@ -385,7 +390,7 @@ public class IndicatorSeekBar extends View {
         if (p.mShowIndicator && p.mIndicatorStay && !mIndicator.isShowing()) {
             if (!isCover()) {
                 calculateProgressTouchX();
-                mIndicator.showIndicator(mTouchX);
+                mIndicator.show(mTouchX);
             }
 
         }
@@ -399,37 +404,8 @@ public class IndicatorSeekBar extends View {
         }
         if (View.GONE == visibility || View.INVISIBLE == visibility) {
             if (mIndicator != null) {
-                mIndicator.forceHideIndicator();
+                mIndicator.forceHide();
             }
-        }
-    }
-
-    @Override
-    protected void onWindowVisibilityChanged(final int visibility) {
-        super.onWindowVisibilityChanged(visibility);
-        if (visibility == View.INVISIBLE || visibility == View.GONE) {
-            if (mIndicator != null) {
-                mIndicator.forceHideIndicator();
-            }
-            return;
-        }
-        if (!p.mShowIndicator || !p.mIndicatorStay) {
-            return;
-        }
-        if (visibility == View.VISIBLE) {
-            this.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-                @Override
-                public void onScrollChanged() {
-                    if (isCover()) {
-                        mIndicator.forceHideIndicator();
-                    } else {
-                        if (IndicatorSeekBar.this.getVisibility() == View.VISIBLE) {
-                            calculateProgressTouchX();
-                            mIndicator.showIndicator(mTouchX);
-                        }
-                    }
-                }
-            });
         }
     }
 
@@ -713,7 +689,7 @@ public class IndicatorSeekBar extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 performClick();
-                if (isTouchSeekBar(event)) {
+                if (isTouchSeekBar(event) && !p.mForbidUserSeek) {
                     if (mListener != null) {
                         mListener.onStartTrackingTouch(this, getThumbPosOnTick());
                     }
@@ -732,7 +708,7 @@ public class IndicatorSeekBar extends View {
                 mIsTouching = false;
                 invalidate();
                 if (p.mShowIndicator) {
-                    mIndicator.hideIndicator();
+                    mIndicator.hide();
                 }
                 break;
         }
@@ -792,10 +768,47 @@ public class IndicatorSeekBar extends View {
     }
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        post(new Runnable() {
+            @Override
+            public void run() {
+                requestLayout();
+            }
+        });
+        checkIndicatorLoc();
+    }
+
+    @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         if (mIndicator != null) {
-            mIndicator.forceHideIndicator();
+            mIndicator.forceHide();
+        }
+    }
+
+    @Override
+    public void onGlobalLayout() {
+        checkIndicatorLoc();
+    }
+
+    @Override
+    public void onScrollChanged() {
+        checkIndicatorLoc();
+    }
+
+    private void checkIndicatorLoc() {
+        if (mIndicator == null || !p.mShowIndicator) {
+            return;
+        }
+        if (p.mIndicatorStay) {
+            if (mIndicator.isShowing()) {
+                mIndicator.update();
+            } else {
+                mIndicator.show();
+            }
+        } else {
+            mIndicator.forceHide();
         }
     }
 
@@ -812,7 +825,7 @@ public class IndicatorSeekBar extends View {
                 if (mIndicator.isShowing()) {
                     mIndicator.update(mTouchX);
                 } else {
-                    mIndicator.showIndicator(mTouchX);
+                    mIndicator.show(mTouchX);
                 }
             }
         } else {
@@ -919,6 +932,10 @@ public class IndicatorSeekBar extends View {
         this.p.copy(mRawParams);
         initData();
         requestLayout();
+        initLocationListData();
+        if (p.mIndicatorStay && mIndicator != null && mIndicator.isShowing()) {
+            mIndicator.update();
+        }
     }
 
     /**
@@ -934,6 +951,10 @@ public class IndicatorSeekBar extends View {
         this.p.copy(mRawParams);
         initData();
         requestLayout();
+        initLocationListData();
+        if (p.mIndicatorStay && mIndicator != null && mIndicator.isShowing()) {
+            mIndicator.update();
+        }
     }
 
     /**
@@ -952,7 +973,20 @@ public class IndicatorSeekBar extends View {
         setListener(false);
         float touchX = (p.mProgress - p.mMin) * mSeekLength / (p.mMax - p.mMin) + mPaddingLeft;
         calculateTouchX(touchX);
+        initLocationListData();
         postInvalidate();
+        if (p.mIndicatorStay && mIndicator != null && mIndicator.isShowing()) {
+            mIndicator.update();
+        }
+    }
+
+    /**
+     * call this to avoid user to seek;
+     *
+     * @param forbidding
+     */
+    public void forbidUserToSeek(boolean forbidding) {
+        p.mForbidUserSeek = forbidding;
     }
 
     /**
@@ -1051,7 +1085,17 @@ public class IndicatorSeekBar extends View {
         initData();
         requestLayout();
         if (mIndicator != null) {
+            if (mIndicator.isShowing()) {
+                mIndicator.forceHide();
+            }
             mIndicator.initIndicator();
+            if (p.mIndicatorStay) {
+                if (mIndicator.isShowing()) {
+                    mIndicator.update();
+                } else {
+                    mIndicator.show();
+                }
+            }
         }
     }
 
@@ -1093,7 +1137,6 @@ public class IndicatorSeekBar extends View {
     public void setOnSeekChangeListener(@NonNull OnSeekBarChangeListener listener) {
         this.mListener = listener;
     }
-
 
     public interface OnSeekBarChangeListener {
 
@@ -1623,6 +1666,17 @@ public class IndicatorSeekBar extends View {
          */
         public Builder setIndicatorStay(boolean stay) {
             p.mIndicatorStay = stay;
+            return this;
+        }
+
+        /**
+         * prevent user from touching to seek
+         *
+         * @param forbidding true can not seek.
+         * @return
+         */
+        public Builder forbidUserToSeek(boolean forbidding) {
+            p.mForbidUserSeek = forbidding;
             return this;
         }
 

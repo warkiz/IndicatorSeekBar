@@ -185,20 +185,19 @@ public class Indicator {
     /**
      * call this to update indicator's location. if SeekBar is covered ,the indicator will dismiss auto and would show after the SeekBar showing completed.
      */
-    public void updateIndicator() {
+    public void update() {
         if (mSeekBar.isCover()) {
-            this.forceHideIndicator();
+            this.forceHide();
         } else {
             if (mSeekBar.getVisibility() == View.VISIBLE) {
                 if (this.isShowing()) {
                     this.update(mSeekBar.getTouchX());
                 } else {
-                    this.showIndicator(mSeekBar.getTouchX());
+                    this.show(mSeekBar.getTouchX());
                 }
             }
         }
     }
-
 
     /**
      * update the indicator position
@@ -206,24 +205,22 @@ public class Indicator {
      * @param touchX the x location you touch without padding left.
      */
     void update(float touchX) {
-        if (mIndicator != null) {
-            if (mIndicatorView instanceof CircleBubbleView) {
-                ((CircleBubbleView) mIndicatorView).setProgress(mSeekBar.getProgressString());
-            } else if (mIndicatorText != null) {
-                mIndicatorText.setText(mSeekBar.getProgressString());
-                mIndicator.getContentView().measure(0, 0);
-            }
-            mIndicator.update(mSeekBar, (int) (touchX - mIndicator.getContentView().getMeasuredWidth() / 2), -(mSeekBar.getMeasuredHeight() + mIndicator.getContentView().getMeasuredHeight() - mSeekBar.getPaddingTop() + mGap), -1, -1);
-            adjustArrow(touchX);
+        if (mIndicatorView instanceof CircleBubbleView) {
+            ((CircleBubbleView) mIndicatorView).setProgress(mSeekBar.getProgressString());
+        } else if (mIndicatorText != null) {
+            mIndicatorText.setText(mSeekBar.getProgressString());
+            mIndicator.getContentView().measure(0, 0);
         }
+        mIndicator.update(mSeekBar, (int) (touchX - mIndicator.getContentView().getMeasuredWidth() / 2), -(mSeekBar.getMeasuredHeight() + mIndicator.getContentView().getMeasuredHeight() - mSeekBar.getPaddingTop() + mGap), -1, -1);
+        adjustArrow(touchX);
     }
 
     /**
      * call this to show indicator
      */
-    public void showIndicator() {
-        if (!this.isShowing()) {
-            this.showIndicator(mSeekBar.getTouchX());
+    public void show() {
+        if (!this.isShowing() && !mSeekBar.isCover()) {
+            this.show(mSeekBar.getTouchX());
         }
     }
 
@@ -233,24 +230,25 @@ public class Indicator {
      * @param touchX the x location you touch without padding left.
      */
 
-    void showIndicator(float touchX) {
-        if (mIndicator != null && !mIndicator.isShowing()) {
-            if (mIndicatorView instanceof CircleBubbleView) {
-                ((CircleBubbleView) mIndicatorView).setProgress(mSeekBar.getProgressString());
-            } else if (mIndicatorText != null) {
-                mIndicatorText.setText(mSeekBar.getProgressString());
-                mIndicator.getContentView().measure(0, 0);
-            }
-            mIndicator.showAsDropDown(mSeekBar, (int) (touchX - mIndicator.getContentView().getMeasuredWidth() / 2f), -(mSeekBar.getMeasuredHeight() + mIndicator.getContentView().getMeasuredHeight() - mSeekBar.getPaddingTop() + mGap));
-            adjustArrow(touchX);
+    void show(float touchX) {
+        if (mIndicator.isShowing()) {
+            return;
         }
+        if (mIndicatorView instanceof CircleBubbleView) {
+            ((CircleBubbleView) mIndicatorView).setProgress(mSeekBar.getProgressString());
+        } else if (mIndicatorText != null) {
+            mIndicatorText.setText(mSeekBar.getProgressString());
+            mIndicator.getContentView().measure(0, 0);
+        }
+        mIndicator.showAsDropDown(mSeekBar, (int) (touchX - mIndicator.getContentView().getMeasuredWidth() / 2f), -(mSeekBar.getMeasuredHeight() + mIndicator.getContentView().getMeasuredHeight() - mSeekBar.getPaddingTop() + mGap));
+        adjustArrow(touchX);
     }
 
     /**
      * call this method hide the indicator
      */
-    public void hideIndicator() {
-        if (mIndicator != null && mIndicator.isShowing()) {
+    public void hide() {
+        if (mIndicator.isShowing()) {
             if (!p.mIndicatorStay) {
                 mIndicator.dismiss();
             }
@@ -260,8 +258,8 @@ public class Indicator {
     /**
      * call this method to hide the indicator ignore indicator stay always.
      */
-    public void forceHideIndicator() {
-        if (mIndicator != null && mIndicator.isShowing()) {
+    public void forceHide() {
+        if (mIndicator.isShowing()) {
             mIndicator.dismiss();
         }
     }

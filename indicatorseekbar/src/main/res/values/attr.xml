@@ -6,6 +6,7 @@
         <attr name="isb_min" format="float" /><!-- the min value of seekBar to seek, default 0 -->
         <attr name="isb_progress" format="float" /><!-- the current progress value of seekBar, default 0-->
         <attr name="isb_clear_default_padding" format="boolean" /><!-- set seekBar's leftPadding&rightPadding to zero, default false, default padding is 16dp-->
+        <attr name="isb_forbid_user_seek" format="boolean" /><!--prevent user from touching to seek, default false-->
         <attr name="isb_progress_value_float" format="boolean" /><!--set the value of seekBar to float type, default false-->
         <attr name="isb_seek_bar_type"><!-- the type for seekBar, default 0.-->
             <enum name="continuous" value="0" />

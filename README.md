@@ -20,7 +20,8 @@ latest version : [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indi
 ```groovy
 dependencies {
   //recommend using latest version.
-  compile 'com.github.warkiz.widget:indicatorseekbar:1.2.5'
+  //e.g. compile 'com.github.warkiz.widget:indicatorseekbar:1.2.6'
+  compile 'com.github.warkiz.widget:indicatorseekbar:${LATEST_VERSION}'
 }
 ```
 ### 2. in xml or class file:
@@ -128,4 +129,4 @@ Feel free to contact me if you have any trouble on this project.
 2. Send mail to me, "warkiz".concat("4j").concat("@").concat("gmail.com")
 
 ## Thanks
-[material.io-slider](https://material.io/guidelines/components/sliders.html#sliders-continuous-slider)[MaterialDesignLibrary](https://github.com/navasmdc/MaterialDesignLibrary)[PointerPopupWindow](https://github.com/okry1123/PointerPopupWindow)[SeekBarCompat](https://github.com/ahmedrizwan/SeekBarCompat)[BubbleSeekBar](https://github.com/woxingxiao/BubbleSeekBar)[android-slidr](https://github.com/florent37/android-slidr)
+[material.io-slider  ](https://material.io/guidelines/components/sliders.html#sliders-continuous-slider)[MaterialDesignLibrary  ](https://github.com/navasmdc/MaterialDesignLibrary)[PointerPopupWindow  ](https://github.com/okry1123/PointerPopupWindow)[SeekBarCompat  ](https://github.com/ahmedrizwan/SeekBarCompat)[BubbleSeekBar  ](https://github.com/woxingxiao/BubbleSeekBar)[android-slidr  ](https://github.com/florent37/android-slidr)

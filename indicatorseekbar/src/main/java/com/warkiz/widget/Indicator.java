@@ -186,6 +186,9 @@ public class Indicator {
      * call this to update indicator's location. if SeekBar is covered ,the indicator will dismiss auto and would show after the SeekBar showing completed.
      */
     public void update() {
+        if (!mSeekBar.isEnabled()){
+            return;
+        }
         if (mSeekBar.isCover()) {
             this.forceHide();
         } else {
@@ -205,6 +208,9 @@ public class Indicator {
      * @param touchX the x location you touch without padding left.
      */
     void update(float touchX) {
+        if (!mSeekBar.isEnabled()){
+            return;
+        }
         if (mIndicatorView instanceof CircleBubbleView) {
             ((CircleBubbleView) mIndicatorView).setProgress(mSeekBar.getProgressString());
         } else if (mIndicatorText != null) {
@@ -219,6 +225,9 @@ public class Indicator {
      * call this to show indicator
      */
     public void show() {
+        if (!mSeekBar.isEnabled()){
+            return;
+        }
         if (!this.isShowing() && !mSeekBar.isCover()) {
             this.show(mSeekBar.getTouchX());
         }
@@ -231,7 +240,7 @@ public class Indicator {
      */
 
     void show(float touchX) {
-        if (mIndicator.isShowing()) {
+        if (mIndicator.isShowing()||!mSeekBar.isEnabled()) {
             return;
         }
         if (mIndicatorView instanceof CircleBubbleView) {

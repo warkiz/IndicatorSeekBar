@@ -2,7 +2,9 @@ package com.warkiz.widget;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -58,6 +60,7 @@ class BuilderParams {
     Drawable mThumbDrawable = null;
     boolean mThumbProgressStay = false;
     boolean mForbidUserSeek = false;
+    Typeface mTextTypeface = Typeface.DEFAULT;
 
     BuilderParams(Context context) {
         this.mContext = context;
@@ -107,6 +110,7 @@ class BuilderParams {
         this.mLeftEndText = p.mLeftEndText;
         this.mRightEndText = p.mRightEndText;
         this.mTextArray = p.mTextArray;
+        this.mTextTypeface = p.mTextTypeface;
         //thumb
         this.mThumbColor = p.mThumbColor;
         this.mThumbSize = p.mThumbSize;

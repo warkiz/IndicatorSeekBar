@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -22,6 +23,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
@@ -156,6 +158,17 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
         p.mRightEndText = ta.getString(R.styleable.IndicatorSeekBar_isb_text_right_end);
         p.mTextSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_text_size, p.mTextSize);
         p.mTextColor = ta.getColor(R.styleable.IndicatorSeekBar_isb_text_color, p.mTextColor);
+        int typefaceType = ta.getInt(R.styleable.IndicatorSeekBar_isb_text_typeface, 0);
+        if (typefaceType == 1) {
+            p.mTextTypeface = Typeface.MONOSPACE;
+        } else if (typefaceType == 2) {
+            p.mTextTypeface = Typeface.SANS_SERIF;
+        } else if (typefaceType == 3) {
+            p.mTextTypeface = Typeface.SERIF;
+        } else {
+            p.mTextTypeface = Typeface.DEFAULT;
+        }
+
         ta.recycle();
     }
 
@@ -335,14 +348,16 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
     private void initTextPaint() {
         if (mTextPaint == null) {
             mTextPaint = new TextPaint();
+            mTextPaint.setAntiAlias(true);
+            mTextPaint.setTextAlign(Paint.Align.CENTER);
+            mTextPaint.setTextSize(p.mTextSize);
+            mTextPaint.setColor(p.mTextColor);
+            mTextPaint.setTypeface(p.mTextTypeface);
         }
-        mTextPaint.setAntiAlias(true);
-        mTextPaint.setTextAlign(Paint.Align.CENTER);
-        mTextPaint.setTextSize(p.mTextSize);
-        mTextPaint.setColor(p.mTextColor);
         if (mRect == null) {
             mRect = new Rect();
         }
+
     }
 
     private boolean needDrawText() {
@@ -351,6 +366,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int height = Math.round(mCustomDrawableMaxHeight + .5f + getPaddingTop() + getPaddingBottom());
         setMeasuredDimension(resolveSize(IndicatorUtils.dp2px(mContext, 170), widthMeasureSpec), height + mTextHeight);
         initSeekBarInfo();
@@ -362,6 +378,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
 
     @Override
     protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
         //draw 2th track
         mStockPaint.setColor(p.mProgressTrackColor);
         if (!mDrawAgain) {
@@ -579,7 +596,6 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
         mStockPaint.setColor(p.mTickColor);
         String allText = getAllText();
         mTextPaint.getTextBounds(allText, 0, allText.length(), mRect);
-
         int textHeight = Math.round(mRect.height() - mTextPaint.descent());
         int gap = IndicatorUtils.dp2px(mContext, 3);
         for (int i = 0; i < mTextList.size(); i++) {
@@ -689,7 +705,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 performClick();
-                if (isTouchSeekBar(event) && !p.mForbidUserSeek) {
+                if (isTouchSeekBar(event) && !p.mForbidUserSeek && isEnabled()) {
                     if (mListener != null) {
                         mListener.onStartTrackingTouch(this, getThumbPosOnTick());
                     }
@@ -765,6 +781,22 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
             return;
         }
         super.onRestoreInstanceState(state);
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        if (enabled == isEnabled()) {
+            return;
+        }
+        super.setEnabled(enabled);
+        if (isEnabled()) {
+            setAlpha(1.0f);
+        } else {
+            setAlpha(0.3f);
+        }
+        if (p.mIndicatorStay && getIndicator() != null) {
+            getIndicator().forceHide();
+        }
     }
 
     @Override
@@ -897,7 +929,6 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
     }
 
     String getProgressString() {
-
         if (p.mSeekBarType == IndicatorSeekBarType.DISCRETE_TICKS_TEXTS) {
             int thumbPosOnTick = getThumbPosOnTick();
             if (thumbPosOnTick >= p.mTextArray.length) {
@@ -1292,6 +1323,18 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
             p.mTextSize = IndicatorUtils.sp2px(p.mContext, textSize);
             return this;
         }
+
+        /**
+         * set the text's textTypeface .
+         *
+         * @param textTypeface The text  textTypeface.
+         * @return Builder
+         */
+        public Builder setTextTypeface(Typeface textTypeface) {
+            p.mTextTypeface = textTypeface;
+            return this;
+        }
+
 
         /**
          * set the seek bar's background track's color.

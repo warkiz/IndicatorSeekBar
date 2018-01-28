@@ -58,5 +58,11 @@
         <attr name="isb_text_right_end" format="string|reference" /><!--set the text below seekBar right end, default max value string, work on seekBar type :CONTINUOUS_TEXTS_ENDS/DISCRETE_TICKS_TEXTS/DISCRETE_TICKS_TEXTS_ENDS-->
         <attr name="isb_text_size" format="dimension|reference" /><!--set the text size of tick below text, default 13sp-->
         <attr name="isb_text_array" format="reference" /><!--set the texts below tick to replace default progress text, default string of progress, work on seekBar type :DISCRETE_TICKS_TEXTS-->
+        <attr name="isb_text_typeface"><!--select the tick shape type, default rectangle/1-->
+            <enum name="normal" value="0" />
+            <enum name="monospace" value="1" />
+            <enum name="sans" value="2" />
+            <enum name="serif" value="3" />
+        </attr>
     </declare-styleable>
 </resources>

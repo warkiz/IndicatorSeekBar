@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.ArrayRes;
@@ -266,15 +267,12 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
         }
         if (needDrawText()) {
             initTextPaint();
+            mTextPaint.setTypeface(p.mTextTypeface);
             mTextPaint.getTextBounds("jf1", 0, 3, mRect);
             mTextHeight = 0;
             mTextHeight += mRect.height() + IndicatorUtils.dp2px(mContext, 2 * GAP_BETWEEN_SEEK_BAR_AND_BELOW_TEXT);
         }
         lastProgress = p.mProgress;
-        if (p.mIndicatorStay && p.mShowIndicator) {
-            this.getViewTreeObserver().addOnGlobalLayoutListener(this);
-            this.getViewTreeObserver().addOnScrollChangedListener(this);
-        }
     }
 
     private void calculateProgressTouchX() {
@@ -352,7 +350,6 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
             mTextPaint.setTextAlign(Paint.Align.CENTER);
             mTextPaint.setTextSize(p.mTextSize);
             mTextPaint.setColor(p.mTextColor);
-            mTextPaint.setTypeface(p.mTextTypeface);
         }
         if (mRect == null) {
             mRect = new Rect();
@@ -817,6 +814,23 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
         if (mIndicator != null) {
             mIndicator.forceHide();
         }
+        if (p.mIndicatorStay && p.mShowIndicator) {
+            if (Build.VERSION.SDK_INT < 16) {
+                this.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+            } else {
+                this.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+            this.getViewTreeObserver().removeOnScrollChangedListener(this);
+        }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (p.mIndicatorStay && p.mShowIndicator) {
+            this.getViewTreeObserver().addOnGlobalLayoutListener(this);
+            this.getViewTreeObserver().addOnScrollChangedListener(this);
+        }
     }
 
     @Override
@@ -1114,6 +1128,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
         this.mRawParams.copy(p);
         this.p.copy(p);
         initData();
+        initLocationListData();
         requestLayout();
         if (mIndicator != null) {
             if (mIndicator.isShowing()) {

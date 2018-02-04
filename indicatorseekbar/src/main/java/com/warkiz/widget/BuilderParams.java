@@ -25,6 +25,8 @@ class BuilderParams {
     float mProgress = 0;
     boolean mClearPadding = false;
     boolean mIsFloatProgress = false;
+    boolean mForbidUserSeek = false;
+    boolean mTouchToSeek = true;
     //indicator
     int mIndicatorType = 0;
     boolean mShowIndicator = true;
@@ -54,13 +56,12 @@ class BuilderParams {
     String mLeftEndText = null;
     String mRightEndText = null;
     CharSequence[] mTextArray = null;
+    Typeface mTextTypeface = Typeface.DEFAULT;
     //thumb
     int mThumbColor = Color.parseColor("#FF4081");
     int mThumbSize;
     Drawable mThumbDrawable = null;
     boolean mThumbProgressStay = false;
-    boolean mForbidUserSeek = false;
-    Typeface mTextTypeface = Typeface.DEFAULT;
 
     BuilderParams(Context context) {
         this.mContext = context;
@@ -81,6 +82,8 @@ class BuilderParams {
         this.mProgress = p.mProgress;
         this.mClearPadding = p.mClearPadding;
         this.mIsFloatProgress = p.mIsFloatProgress;
+        this.mForbidUserSeek = p.mForbidUserSeek;
+        this.mTouchToSeek = p.mTouchToSeek;
         //indicator
         this.mIndicatorType = p.mIndicatorType;
         this.mShowIndicator = p.mShowIndicator;
@@ -116,7 +119,6 @@ class BuilderParams {
         this.mThumbSize = p.mThumbSize;
         this.mThumbDrawable = p.mThumbDrawable;
         this.mThumbProgressStay = p.mThumbProgressStay;
-        this.mForbidUserSeek = p.mForbidUserSeek;
         return this;
     }
 }

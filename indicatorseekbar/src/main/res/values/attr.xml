@@ -7,6 +7,7 @@
         <attr name="isb_progress" format="float" /><!-- the current progress value of seekBar, default 0-->
         <attr name="isb_clear_default_padding" format="boolean" /><!-- set seekBar's leftPadding&rightPadding to zero, default false, default padding is 16dp-->
         <attr name="isb_forbid_user_seek" format="boolean" /><!--prevent user from touching to seek, default false-->
+        <attr name="isb_touch_to_seek" format="boolean" /><!--user change the thumb's location by touching thumb/touching track,true for touching track to seek. false for touching thumb; default true-->
         <attr name="isb_progress_value_float" format="boolean" /><!--set the value of seekBar to float type, default false-->
         <attr name="isb_seek_bar_type"><!-- the type for seekBar, default 0.-->
             <enum name="continuous" value="0" />
@@ -58,7 +59,7 @@
         <attr name="isb_text_right_end" format="string|reference" /><!--set the text below seekBar right end, default max value string, work on seekBar type :CONTINUOUS_TEXTS_ENDS/DISCRETE_TICKS_TEXTS/DISCRETE_TICKS_TEXTS_ENDS-->
         <attr name="isb_text_size" format="dimension|reference" /><!--set the text size of tick below text, default 13sp-->
         <attr name="isb_text_array" format="reference" /><!--set the texts below tick to replace default progress text, default string of progress, work on seekBar type :DISCRETE_TICKS_TEXTS-->
-        <attr name="isb_text_typeface"><!--select the tick shape type, default rectangle/1-->
+        <attr name="isb_text_typeface"><!--select the text typeface, default normal-->
             <enum name="normal" value="0" />
             <enum name="monospace" value="1" />
             <enum name="sans" value="2" />

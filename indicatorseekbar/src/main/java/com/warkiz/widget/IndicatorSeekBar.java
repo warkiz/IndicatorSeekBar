@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
@@ -119,6 +120,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
         p.mClearPadding = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_clear_default_padding, p.mClearPadding);
         p.mForbidUserSeek = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_forbid_user_seek, p.mForbidUserSeek);
         p.mIsFloatProgress = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_progress_value_float, p.mIsFloatProgress);
+        p.mTouchToSeek = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_touch_to_seek, p.mTouchToSeek);
         //track
         p.mBackgroundTrackSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_track_background_bar_size, p.mBackgroundTrackSize);
         p.mProgressTrackSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_track_progress_bar_size, p.mProgressTrackSize);
@@ -374,7 +376,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected synchronized void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //draw 2th track
         mStockPaint.setColor(p.mProgressTrackColor);
@@ -702,12 +704,16 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 performClick();
-                if (isTouchSeekBar(event) && !p.mForbidUserSeek && isEnabled()) {
-                    if (mListener != null) {
-                        mListener.onStartTrackingTouch(this, getThumbPosOnTick());
+                float mX = event.getX();
+                float mY = event.getY();
+                if (isTouchSeekBar(mX, mY) && !p.mForbidUserSeek && isEnabled()) {
+                    if (p.mTouchToSeek || isTouchThumb(mX)) {
+                        if (mListener != null) {
+                            mListener.onStartTrackingTouch(this, getThumbPosOnTick());
+                        }
+                        refreshSeekBar(event, true);
+                        return true;
                     }
-                    refreshSeekBar(event, true);
-                    return true;
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -907,9 +913,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
         mTouchX = mSeekBlockLength * touchBlockSize + mPaddingLeft;
     }
 
-    private boolean isTouchSeekBar(MotionEvent event) {
-        float mX = event.getX();
-        float mY = event.getY();
+    private boolean isTouchSeekBar(float mX, float mY) {
         if (mFaultTolerance == -1) {
             mFaultTolerance = IndicatorUtils.dp2px(mContext, 5);
         }
@@ -969,7 +973,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
      *
      * @param max the max value , if is less than min, will set to min.
      */
-    public void setMax(float max) {
+    public synchronized void setMax(float max) {
         if (max < mRawParams.mMin) {
             max = mRawParams.mMin;
         }
@@ -988,7 +992,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
      *
      * @param min the min value , if is larger than max, will set to max.
      */
-    public void setMin(float min) {
+    public synchronized void setMin(float min) {
         if (min > mRawParams.mMax) {
             min = mRawParams.mMax;
         }
@@ -1007,7 +1011,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
      *
      * @param progress a new progress value , if the new progress is less than min , it will set to min ,if over max ,will be max.
      */
-    public void setProgress(float progress) {
+    public synchronized void setProgress(float progress) {
         if (progress < p.mMin) {
             p.mProgress = p.mMin;
         } else if (progress > p.mMax) {
@@ -1039,7 +1043,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
      *
      * @return
      */
-    public Builder getBuilder() {
+    public synchronized Builder getBuilder() {
         if (mBuilder == null) {
             mBuilder = new Builder(mContext);
         }
@@ -1051,7 +1055,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
      *
      * @return current progress in float type.
      */
-    public float getProgressFloat() {
+    public synchronized float getProgressFloat() {
         return getProgressFloat(1);
     }
 
@@ -1085,7 +1089,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
      *
      * @param customIndicatorView the view is the indicator you touch to show;
      */
-    public void setCustomIndicator(@NonNull View customIndicatorView) {
+    public synchronized void setCustomIndicator(@NonNull View customIndicatorView) {
         mIndicator.setCustomIndicator(customIndicatorView);
     }
 
@@ -1094,7 +1098,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
      *
      * @param customIndicatorViewId the layout ID for indicator you touch to show;
      */
-    public void setCustomIndicator(@LayoutRes int customIndicatorViewId) {
+    public synchronized void setCustomIndicator(@LayoutRes int customIndicatorViewId) {
         mIndicator.setCustomIndicator(View.inflate(mContext, customIndicatorViewId, null));
     }
 
@@ -1104,7 +1108,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
      * @param customIndicatorView the view is the indicator you touch to show;
      * @param progressTextViewId  the progress id in the indicator root view , this id view must be a textView to show the progress
      */
-    public void setCustomIndicator(@NonNull View customIndicatorView, @IdRes int progressTextViewId) {
+    public synchronized void setCustomIndicator(@NonNull View customIndicatorView, @IdRes int progressTextViewId) {
         View tv = customIndicatorView.findViewById(progressTextViewId);
         if (tv == null) {
             throw new IllegalArgumentException(" can not find the textView in topContentView by progressTextViewId. ");
@@ -1182,6 +1186,11 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
      */
     public void setOnSeekChangeListener(@NonNull OnSeekBarChangeListener listener) {
         this.mListener = listener;
+    }
+
+    public boolean isTouchThumb(float mX) {
+        float rawTouchX = getTouchX();
+        return rawTouchX - p.mThumbSize / 2f <= mX && mX <= rawTouchX + p.mThumbSize / 2f;
     }
 
     public interface OnSeekBarChangeListener {
@@ -1735,6 +1744,18 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
          */
         public Builder forbidUserToSeek(boolean forbidding) {
             p.mForbidUserSeek = forbidding;
+            return this;
+        }
+
+
+        /**
+         * user change the thumb's location by touching thumb/touching track
+         *
+         * @param touchToSeek true for seeking by touch track, false for seeking by thumb.default true;
+         * @return
+         */
+        public Builder touchToSeek(boolean touchToSeek) {
+            p.mTouchToSeek = touchToSeek;
             return this;
         }
 

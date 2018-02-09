@@ -393,7 +393,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
         //draw BG track
         mStockPaint.setStrokeWidth(p.mBackgroundTrackSize);
         mStockPaint.setColor(p.mBackgroundTrackColor);
-        canvas.drawLine(thumbX, mTrackY, mSeekEnd, mTrackY, mStockPaint);
+        canvas.drawLine(thumbX + mThumbRadius, mTrackY, mSeekEnd, mTrackY, mStockPaint);
         //draw tick
         drawTicks(canvas, thumbX);
         //draw text below tick
@@ -1022,7 +1022,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
         setListener(false);
         float touchX = (p.mProgress - p.mMin) * mSeekLength / (p.mMax - p.mMin) + mPaddingLeft;
         calculateTouchX(touchX);
-        initLocationListData();
+        initSeekBarInfo();
         postInvalidate();
         if (p.mIndicatorStay && mIndicator != null && mIndicator.isShowing()) {
             mIndicator.update();
@@ -1047,6 +1047,7 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
         if (mBuilder == null) {
             mBuilder = new Builder(mContext);
         }
+        mRawParams.mProgress = p.mProgress;
         return mBuilder.setParams(mRawParams).setSeekBar(this);
     }
 
@@ -1132,7 +1133,8 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
         this.mRawParams.copy(p);
         this.p.copy(p);
         initData();
-        initLocationListData();
+        initSeekBarInfo();
+        setProgress(p.mProgress);
         requestLayout();
         if (mIndicator != null) {
             if (mIndicator.isShowing()) {

@@ -1,9 +1,12 @@
-A custom SeekBar on Android, which can be changed the `size` , `color` , `thumb drawable` , `tick drawable` , `texts` , `indicator`, also can show an indicator view with progress above SeekBar when seeking. Welcome `submit issue` or `pull request`.
+
+**A custom SeekBar on Android, which can be changed the `size` , `color` , `thumb drawable` , `tick drawable` , `texts` , `indicator`, also can show an indicator view with progress above SeekBar when seeking. Welcome `submit issue` or `pull request`.**
+
+#### [ 中文说明文档 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_EN.md)
 
 [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
-#### [ 中文 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_EN.md)
+
 ## Screenshot
 
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
@@ -20,7 +23,7 @@ latest version : [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indi
 ```groovy
 dependencies {
   //recommend using latest version.
-  //e.g. compile 'com.github.warkiz.widget:indicatorseekbar:1.2.6'
+  //e.g. compile 'com.github.warkiz.widget:indicatorseekbar:1.2.9'
   compile 'com.github.warkiz.widget:indicatorseekbar:${LATEST_VERSION}'
 }
 ```
@@ -34,16 +37,18 @@ dependencies {
         app:isb_min="10"
         app:isb_progress="34"
         app:isb_show_indicator="true" />
+```
 
-    <com.warkiz.widget.IndicatorSeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:isb_indicator_type="circular_bubble"
-        app:isb_progress="50"
-        app:isb_seek_bar_type="discrete_ticks_texts"
-        app:isb_tick_num="6"
-        app:isb_tick_type="oval" />
+```xml
+<com.warkiz.widget.IndicatorSeekBar
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    app:isb_indicator_type="circular_bubble"
+    app:isb_progress="50"
+    app:isb_seek_bar_type="discrete_ticks_texts"
+    app:isb_tick_num="6"
+    app:isb_tick_type="oval" />
 ```
 
 #### Java
@@ -64,12 +69,12 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 
 //change build params at the runtime.
 
-     indicatorSeekBar.getBuilder()
-                        .setMax(232)
-                        .setMin(43)
-                        .setTickType(TickType.OVAL)
-		        .setTickColor(Color.parseColor("#0000FF"))
-                        .apply();
+ indicatorSeekBar.getBuilder()
+                 .setMax(232)
+                 .setMin(43)
+                 .setTickType(TickType.OVAL)
+                 .setTickColor(Color.parseColor("#0000FF"))
+                 .apply();
 
 ```
 -------------------------
@@ -124,7 +129,7 @@ onSectionChanged: when the SeekBar type is `discrete series`, this callback work
 
 Star to support me , many thanks!
 
-Feel free to contact me if you have any trouble on this project.
+Feel free to contact me if you have any trouble on this project:
 1. Create an issue.
 2. Send mail to me, "warkiz".concat("4j").concat("@").concat("gmail.com")
 

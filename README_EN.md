@@ -1,11 +1,11 @@
-自定义SeekBar, 能改变尺寸、颜色、滑块(thumb)图片、刻度(tick)图片、刻度文字(text)和气泡指示器(indicator)，当滑动时显示带有进度的指示器。
-欢迎 `submit issue` or `pull request`。
+**自定义SeekBar, 能改变尺寸、颜色、滑块(thumb)图片、刻度(tick)图片、刻度文字(text)和气泡指示器(indicator)，当滑动时显示带有进度的指示器。
+欢迎 `submit issue` or `pull request`。**
+
+#### [ English readme.md here](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)
 
 [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
-
-#### [ English readme.md here](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)
 
 ## 截图
 
@@ -24,7 +24,7 @@
 ```groovy
 dependencies {
     //推荐使用最新版本
-    //e.g. compile 'com.github.warkiz.widget:indicatorseekbar:1.2.6'
+    //e.g. compile 'com.github.warkiz.widget:indicatorseekbar:1.2.9'
       compile 'com.github.warkiz.widget:indicatorseekbar:${LATEST_VERSION}'
 }
 ```
@@ -38,16 +38,18 @@ dependencies {
         app:isb_min="10"
         app:isb_progress="34"
         app:isb_show_indicator="true" />
+```
 
-    <com.warkiz.widget.IndicatorSeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:isb_indicator_type="circular_bubble"
-        app:isb_progress="50"
-        app:isb_seek_bar_type="discrete_ticks_texts"
-        app:isb_tick_num="6"
-        app:isb_tick_type="oval" />
+```xml
+<com.warkiz.widget.IndicatorSeekBar
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    app:isb_indicator_type="circular_bubble"
+    app:isb_progress="50"
+    app:isb_seek_bar_type="discrete_ticks_texts"
+    app:isb_tick_num="6"
+    app:isb_tick_type="oval" />
 ```
 
 #### or Java
@@ -66,13 +68,13 @@ IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
 				.setIndicatorColor(Color.parseColor("#0000FF"))
 				.build();
 //动态更新IndicatorSeekBar:
-        indicatorSeekBar.getBuilder()
-                        .setMax(232)
-                        .setMin(43)
-                        .setTickType(TickType.OVAL)
-		        .setTickColor(Color.parseColor("#0000FF"))
-                        .setIndicatorColor(Color.parseColor("#00ff00"))
-                        .apply();
+indicatorSeekBar.getBuilder()
+                .setMax(232)
+                .setMin(43)
+                .setTickType(TickType.OVAL)
+                .setTickColor(Color.parseColor("#0000FF"))
+                .setIndicatorColor(Color.parseColor("#00ff00"))
+                .apply();
 
 ```
 #####  更多使用方式请参考 [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk).

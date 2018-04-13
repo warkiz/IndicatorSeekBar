@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.1'
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.warkiz.indicatorseekbar"
         minSdkVersion 14
@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:27.0.2'
-    compile project(':indicatorseekbar')
-    compile 'com.android.support:design:27.0.2'
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    implementation project(':indicatorseekbar')
+    implementation 'com.android.support:design:27.1.0'
 }

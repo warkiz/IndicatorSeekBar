@@ -28,7 +28,7 @@ ext {
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.1"
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 14
@@ -45,7 +45,7 @@ android {
 }
 
 dependencies {
-    provided 'com.android.support:appcompat-v7:27.0.2'
+    compileOnly 'com.android.support:appcompat-v7:27.1.0'
 }
 
 

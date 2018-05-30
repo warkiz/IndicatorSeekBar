@@ -49,6 +49,7 @@ class BuilderParams {
     int mTickColor = Color.parseColor("#FF4081");
     boolean mTickHideBothEnds = false;
     boolean mTickOnThumbLeftHide = false;
+    boolean mTickOnThumbRightColorTrackBackground = false;
     Drawable mTickDrawable = null;
     //text
     int mTextSize;

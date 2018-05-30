@@ -48,6 +48,7 @@
         <attr name="isb_tick_size" format="dimension|reference" /><!--set the tick width, default 10dp,custom drawable will be limited in 30dp, if less than 30dp ,will show in raw size-->
         <attr name="isb_tick_both_end_hide" format="boolean" /><!--hide 2 ticks on the seekBar's both ends, default false-->
         <attr name="isb_tick_on_thumb_left_hide" format="boolean" /><!--hide the ticks on the seekBar's thumb left, default false-->
+        <attr name="isb_tick_on_thumb_right_color_as_track_background" format="boolean" /><!--set the ticks' color on the seekBar's thumb right to isb_track_background_bar_color, default false-->
         <attr name="isb_tick_type"><!--select the tick shape type, default rectangle/1-->
             <enum name="none" value="0" />
             <enum name="rec" value="1" />

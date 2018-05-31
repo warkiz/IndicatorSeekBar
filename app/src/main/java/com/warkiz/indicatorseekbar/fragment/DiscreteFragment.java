@@ -20,7 +20,7 @@ public class DiscreteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.discrete, container, false);
         final TextView progressTv = (TextView) root.findViewById(R.id.discrete_progress);
-        final TextView postionTv = (TextView) root.findViewById(R.id.discrete_pos);
+        final TextView positionTv = (TextView) root.findViewById(R.id.discrete_pos);
         final TextView textTv = (TextView) root.findViewById(R.id.discrete_text);
         IndicatorSeekBar discrete = (IndicatorSeekBar) root.findViewById(R.id.discrete);
 
@@ -33,7 +33,7 @@ public class DiscreteFragment extends Fragment {
 
             @Override
             public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch) {
-                postionTv.setText("thumbPosOnTick: " + thumbPosOnTick);
+                positionTv.setText("thumbPosOnTick: " + thumbPosOnTick);
                 textTv.setText("tickBelowText: " + tickBelowText);
             }
 

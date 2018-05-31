@@ -154,6 +154,8 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
         p.mTickType = ta.getInt(R.styleable.IndicatorSeekBar_isb_tick_type, p.mTickType);
         p.mTickHideBothEnds = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_tick_both_end_hide, p.mTickHideBothEnds);
         p.mTickOnThumbLeftHide = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_tick_on_thumb_left_hide, p.mTickOnThumbLeftHide);
+        p.mTickOnThumbRightColorTrackBackground = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_tick_on_thumb_right_color_as_track_background,
+                p.mTickOnThumbRightColorTrackBackground);
         p.mTickSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_tick_size, p.mTickSize);
         //text
         p.mTextArray = ta.getTextArray(R.styleable.IndicatorSeekBar_isb_text_array);
@@ -531,6 +533,9 @@ public class IndicatorSeekBar extends View implements ViewTreeObserver.OnGlobalL
                     canvas.drawBitmap(mTickDraw, locationX - mTickDraw.getWidth() / 2.0f, mTrackY - mTickDraw.getHeight() / 2.0f, mStockPaint);
                 }
             } else {
+                if (thumbX <= locationX && p.mTickOnThumbRightColorTrackBackground) {
+                    mStockPaint.setColor(p.mBackgroundTrackColor);
+                }
                 if (p.mTickType == TickType.OVAL) {
                     canvas.drawCircle(locationX, mTrackY, mTickRadius, mStockPaint);
                 } else if (p.mTickType == TickType.REC) {

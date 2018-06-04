@@ -1,23 +1,36 @@
 package com.warkiz.indicatorseekbar.fragment;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.SeekBar;
 
 import com.warkiz.indicatorseekbar.R;
+import com.warkiz.widget.IndicatorSeekBar;
+import com.warkiz.widget.OnSeekChangeListener;
+import com.warkiz.widget.SeekParams;
+
+import java.util.Random;
 
 /**
- * created by ZhuangGuangquan on  2017/9/6
+ * created by zhuangguangquan on  2017/9/6
  */
 
-
-public class IndicatorFragment extends Fragment {
+public class IndicatorFragment extends BaseFragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.custom_indicator, container, false);
+    protected int getLayoutId() {
+        return R.layout.custom_indicator;
     }
 
+    @Override
+    protected void initView(View root) {
+        //custom indicator text by java code
+        IndicatorSeekBar seekBarWithProgress = root.findViewById(R.id.custom_indicator_by_java_code);
+        seekBarWithProgress.setIndicatorTextFormat("${PROGRESS} %");
+
+        //custom indicator text by java code
+        IndicatorSeekBar seekBarWithTickText = root.findViewById(R.id.custom_indicator_by_java);
+        seekBarWithTickText.setIndicatorTextFormat("${TICK_TEXT} --");
+    }
 }

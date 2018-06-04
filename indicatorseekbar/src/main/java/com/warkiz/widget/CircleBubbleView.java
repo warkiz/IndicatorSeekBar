@@ -12,13 +12,13 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by ZhuangGuangquan on 2017/12/13.
+ * Created by zhuangguangquan on 2017/12/13.
  */
 
-class CircleBubbleView extends View {
+public class CircleBubbleView extends View {
     private int mIndicatorTextColor;
     private int mIndicatorColor;
-    private int mIndicatorTextSize;
+    private float mIndicatorTextSize;
     private Context mContext;
     private Path mPath;
     private Paint mPaint;
@@ -40,12 +40,12 @@ class CircleBubbleView extends View {
         init("100");
     }
 
-    CircleBubbleView(BuilderParams p, String maxLengthText) {
-        super(p.mContext, null, 0);
-        this.mContext = p.mContext;
-        this.mIndicatorTextSize = p.mIndicatorTextSize;
-        this.mIndicatorTextColor = p.mIndicatorTextColor;
-        this.mIndicatorColor = p.mIndicatorColor;
+    CircleBubbleView(Context context, float indicatorTextSize, int indicatorTextColor, int indicatorColor, String maxLengthText) {
+        super(context, null, 0);
+        this.mContext = context;
+        this.mIndicatorTextSize = indicatorTextSize;
+        this.mIndicatorTextColor = indicatorTextColor;
+        this.mIndicatorColor = indicatorColor;
         init(maxLengthText);
     }
 
@@ -57,8 +57,8 @@ class CircleBubbleView extends View {
         mPaint.setTextSize(mIndicatorTextSize);
         Rect mRect = new Rect();
         mPaint.getTextBounds(maxLengthText, 0, maxLengthText.length(), mRect);
-        mIndicatorWidth = mRect.width() + IndicatorUtils.dp2px(mContext, 4);
-        int minWidth = IndicatorUtils.dp2px(mContext, 36);
+        mIndicatorWidth = mRect.width() + SizeUtils.dp2px(mContext, 4);
+        int minWidth = SizeUtils.dp2px(mContext, 36);
         if (mIndicatorWidth < minWidth) {
             mIndicatorWidth = minWidth;
         }

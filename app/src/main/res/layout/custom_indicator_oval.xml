@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@drawable/custom_indicator_bg_oval">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/custom_indicator_bg_oval">
     <!--if you does not want to change this text by progress,
            you can set the TextView's id to others(not isb_progress).-->
     <TextView
         android:id="@+id/isb_progress"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:gravity="center"
         android:maxLines="1"
         android:padding="6dp"
         android:text="34"
         android:textColor="#FFFFFF"
-        android:textSize="12dp"/>
+        android:textSize="12dp" />
 
 </LinearLayout>

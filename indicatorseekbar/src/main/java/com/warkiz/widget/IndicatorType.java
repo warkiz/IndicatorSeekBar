@@ -1,25 +1,31 @@
 package com.warkiz.widget;
 
 /**
- * created by ZhuangGuangquan on  2017/9/9
+ * created by zhuangguangquan on  2017/9/9
  */
-
 public interface IndicatorType {
     /**
-     * the indicator corners is square shape
+     * don't have indicator to show.
      */
-    int RECTANGLE = 0;
-    /**
-     * the indicator corners is rounded shape
-     */
-    int RECTANGLE_ROUNDED_CORNER = 1;
+    int NONE = 0;
     /**
      * the indicator shape like water-drop
      */
-    int CIRCULAR_BUBBLE = 2;
+    int CIRCULAR_BUBBLE = 1;
+
     /**
-     * set custom indicator you want.
+     * the indicator corners is rounded shape
      */
-    int CUSTOM = 3;
+    int ROUNDED_RECTANGLE = 2;
+
+    /**
+     * the indicator corners is square shape
+     */
+    int RECTANGLE = 3;
+
+    /**
+     * set custom indicator you want
+     */
+    int CUSTOM = 4;
 
 }

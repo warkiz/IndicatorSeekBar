@@ -1,6 +1,5 @@
 package com.warkiz.indicatorseekbar;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -8,8 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.warkiz.indicatorseekbar.fragment.ContinuousFragment;
@@ -19,13 +16,17 @@ import com.warkiz.indicatorseekbar.fragment.IndicatorFragment;
 import com.warkiz.indicatorseekbar.fragment.JavaBuildFragment;
 
 /**
- * created by ZhuangGuangquan on 2017/9/6
+ * created by zhuangguangquan on 2017/9/6
  */
-
 
 public class MainActivity extends AppCompatActivity {
 
-    private String[] mType = new String[]{"continuous", "discrete", "custom", "java", "indicator"};
+    private static String[] sType = new String[]{"continuous", "discrete", "custom", "java", "indicator"};
+    private ContinuousFragment mContinuousFragment;
+    private DiscreteFragment mDiscreteFragment;
+    private CustomFragment mCustomFragment;
+    private Fragment mJavaBuildFragment;
+    private IndicatorFragment mIndicatorFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,28 +42,12 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
 
-        for (String s : mType) {
+        for (String s : sType) {
             TextView textView = new TextView(this);
             textView.setText(s);
             tabLayout.newTab().setCustomView(textView);
         }
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (item.getItemId() == R.id.action_home) {
-            startActivity(new Intent(MainActivity.this, IndicatorHomeActivity.class));
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private class PagerAdapter extends FragmentPagerAdapter {
@@ -74,25 +59,41 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             if (position == 0) {
-                return new ContinuousFragment();
+                if (mContinuousFragment == null) {
+                    mContinuousFragment = new ContinuousFragment();
+                }
+                return mContinuousFragment;
             } else if (position == 1) {
-                return new DiscreteFragment();
+                if (mDiscreteFragment == null) {
+                    mDiscreteFragment = new DiscreteFragment();
+                }
+                return mDiscreteFragment;
             } else if (position == 2) {
-                return new CustomFragment();
+                if (mCustomFragment == null) {
+                    mCustomFragment = new CustomFragment();
+                }
+                return mCustomFragment;
             } else if (position == 3) {
-                return new JavaBuildFragment();
+                if (mJavaBuildFragment == null) {
+                    mJavaBuildFragment = new JavaBuildFragment();
+                }
+                return mJavaBuildFragment;
             }
-            return new IndicatorFragment();
+
+            if (mIndicatorFragment == null) {
+                mIndicatorFragment = new IndicatorFragment();
+            }
+            return mIndicatorFragment;
         }
 
         @Override
         public int getCount() {
-            return mType.length;
+            return sType.length;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return mType[position];
+            return sType[position];
         }
     }
 

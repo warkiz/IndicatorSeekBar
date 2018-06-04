@@ -1,137 +1,153 @@
+# RxPermissions
 
-**A custom SeekBar on Android, which can be changed the `size` , `color` , `thumb drawable` , `tick drawable` , `texts` , `indicator`, also can show an indicator view with progress above SeekBar when seeking. Welcome `submit issue` or `pull request`.**
+[![Build Status](https://api.travis-ci.org/tbruyelle/RxPermissions.svg?branch=master)](https://travis-ci.org/tbruyelle/RxPermissions)
 
-#### [ 中文说明文档 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_EN.md)
+This library allows the usage of RxJava with the new Android M permission model.
 
-[![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
-[![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
-[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
+## Setup
 
-## Screenshot
+To use this library your `minSdkVersion` must be >= 11.
 
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
-
-####  Download the [demo.apk](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk) for more details about usage.
-
-## Advantage
-IndicatorSeekBar is ok to use in ConstraintLayout/AppbarLayout/NestedScrollview/RecyclerView/ViewPager/ListView/ScrollView/GridView/Dialog scrollable situation.
+```gradle
+dependencies {
+    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+}
+```
 
 ## Usage
 
-### 1. build.gradle in module :
-latest version : [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
-```groovy
-dependencies {
-  //recommend using latest version.
-  //e.g. compile 'com.github.warkiz.widget:indicatorseekbar:1.2.9'
-  compile 'com.github.warkiz.widget:indicatorseekbar:${LATEST_VERSION}'
-}
-```
-### 2. in xml or class file:
-#### xml
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:isb_max="100"
-        app:isb_min="10"
-        app:isb_progress="34"
-        app:isb_show_indicator="true" />
+Create a `RxPermissions` instance :
+
+```java
+RxPermissions rxPermissions = new RxPermissions(this); // where this is an Activity instance
 ```
 
-```xml
-<com.warkiz.widget.IndicatorSeekBar
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    app:isb_indicator_type="circular_bubble"
-    app:isb_progress="50"
-    app:isb_seek_bar_type="discrete_ticks_texts"
-    app:isb_tick_num="6"
-    app:isb_tick_type="oval" />
+Example : request the CAMERA permission (with Retrolambda for brevity, but not required)
+
+```java
+// Must be done during an initialization phase like onCreate
+rxPermissions
+    .request(Manifest.permission.CAMERA)
+    .subscribe(granted -> {
+        if (granted) { // Always true pre-M
+           // I can control the camera now
+        } else {
+           // Oups permission denied
+        }
+    });
 ```
 
-#### Java
+If you need to trigger the permission request from a specific event, you need to setup your event
+as an observable inside an initialization phase.
 
-```Java
-IndicatorSeekBar indicatorSeekBar = new IndicatorSeekBar.Builder(this)
-                                .setMax(200)
-				.setMin(0)
-				.setProgress(35)
-				.setSeekBarType(IndicatorSeekBarType.DISCRETE_TICKS)
-				.setTickType(TickType.OVAL)
-				.setTickNum(8)
-				.setBackgroundTrackSize(2)//dp size
-				.setProgressTrackSize(3)//dp size
-				.setIndicatorType(IndicatorType.SQUARE_CORNERS)
-				.setIndicatorColor(Color.parseColor("#0000FF"))
-				.build();
+You can use [JakeWharton/RxBinding](https://github.com/JakeWharton/RxBinding) to turn your view to
+an observable (not included in the library).
 
-//change build params at the runtime.
+Example :
 
- indicatorSeekBar.getBuilder()
-                 .setMax(232)
-                 .setMin(43)
-                 .setTickType(TickType.OVAL)
-                 .setTickColor(Color.parseColor("#0000FF"))
-                 .apply();
+```java
+// Must be done during an initialization phase like onCreate
+RxView.clicks(findViewById(R.id.enableCamera))
+    .compose(rxPermissions.ensure(Manifest.permission.CAMERA))
+    .subscribe(granted -> {
+        // R.id.enableCamera has been clicked
+    });
+```
+
+If multiple permissions at the same time, the result is combined :
+
+```java
+rxPermissions
+    .request(Manifest.permission.CAMERA,
+             Manifest.permission.READ_PHONE_STATE)
+    .subscribe(granted -> {
+        if (granted) {
+           // All requested permissions are granted
+        } else {
+           // At least one permission is denied
+        }
+    });
+```
+
+You can also observe a detailed result with `requestEach` or `ensureEach` :
+
+```java
+rxPermissions
+    .requestEach(Manifest.permission.CAMERA,
+             Manifest.permission.READ_PHONE_STATE)
+    .subscribe(permission -> { // will emit 2 Permission objects
+        if (permission.granted) {
+           // `permission.name` is granted !
+        } else if (permission.shouldShowRequestPermissionRationale) {
+           // Denied permission without ask never again
+        } else {
+           // Denied permission with ask never again
+           // Need to go to the settings
+        }
+    });
+```
+
+You can also get combined detailed result with `requestEachCombined` or `ensureEachCombined` :
+
+```java
+rxPermissions
+    .requestEachCombined(Manifest.permission.CAMERA,
+             Manifest.permission.READ_PHONE_STATE)
+    .subscribe(permission -> { // will emit 1 Permission object
+        if (permission.granted) {
+           // All permissions are granted !
+        } else if (permission.shouldShowRequestPermissionRationale)
+           // At least one denied permission without ask never again
+        } else {
+           // At least one denied permission with ask never again
+           // Need to go to the settings
+        }
+    });
+```
+
+Look at the `sample` app for more.
+
+## Important read
+
+**As mentioned above, because your app may be restarted during the permission request, the request
+must be done during an initialization phase**. This may be `Activity.onCreate`, or
+`View.onFinishInflate`, but not *pausing* methods like `onResume`, because you'll potentially create an infinite request loop, as your requesting activity is paused by the framework during the permission request.
+
+If not, and if your app is restarted during the permission request (because of a configuration
+change for instance), the user's answer will never be emitted to the subscriber.
+
+You can find more details about that [here](https://github.com/tbruyelle/RxPermissions/issues/69).
+
+## Status
+
+This library is still beta, so contributions are welcome.
+I'm currently using it in production since months without issue.
+
+## Benefits
+
+- Avoid worrying about the framework version. If the sdk is pre-M, the observer will automatically
+receive a granted result.
+
+- Prevents you to split your code between the permission request and the result handling.
+Currently without this library you have to request the permission in one place and handle the result
+in `Activity.onRequestPermissionsResult()`.
+
+- All what RX provides about transformation, filter, chaining...
+
+# License
 
 ```
--------------------------
-## Advance Usage
-- customized color/size (tick,thumb,track,text,indicator,indicator-text)
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
+Copyright (C) 2015 Thomas Bruyelle
 
-- choose different series SeekBar type.(continuous,discrete series)
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-- choose different indicator type.(rectangle,rectangle_rounded_corner,circular_bubble,custom)
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator_type.png?raw=true" width = "392" height = "115"/>
+   http://www.apache.org/licenses/LICENSE-2.0
 
-- customized thumb drawable
-
-- customized tick drawable
-
-- customized indicator
-
-- customized indicator's top content view
-
-####  Check out the project for more details about advance usage.
-
-## listener
-```Java
-indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
-
-	@Override
-	public void onProgressChanged(IndicatorSeekBar seekBar, int progress, float progressFloat, boolean fromUserTouch) {
-	}
-
-	@Override
-	public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String textBelowTick, boolean fromUserTouch) {
-	    //only callback on discrete series SeekBar type.
-	}
-
-	@Override
-	public void onStartTrackingTouch(IndicatorSeekBar seekBar, int thumbPosOnTick) {
-	}
-
-	@Override
-	public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
-	}
-});
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 ```
-onSectionChanged: when the SeekBar type is `discrete series`, this callback work to get the tick position and text. `continuous series` will not work.
-
-## Attributes
-
-[ attr.xml ](https://github.com/warkiz/IndicatorSeekBar/blob/master/indicatorseekbar/src/main/res/values/attr.xml)
-
-## Support & Contact me
-
-Star to support me , many thanks!
-
-Feel free to contact me if you have any trouble on this project:
-1. Create an issue.
-2. Send mail to me, "warkiz".concat("4j").concat("@").concat("gmail.com")
-
-## Thanks
-[material.io-slider  ](https://material.io/guidelines/components/sliders.html#sliders-continuous-slider)[MaterialDesignLibrary  ](https://github.com/navasmdc/MaterialDesignLibrary)[PointerPopupWindow  ](https://github.com/okry1123/PointerPopupWindow)[SeekBarCompat  ](https://github.com/ahmedrizwan/SeekBarCompat)[BubbleSeekBar  ](https://github.com/woxingxiao/BubbleSeekBar)[android-slidr  ](https://github.com/florent37/android-slidr)

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="#80555555" android:state_selected="true" />  <!--this color is for texts those are at left side of thumb-->
+    <item android:color="#FF4081" android:state_hovered="true" />  <!--for thumb text-->
+    <item android:color="#80555555" />  <!--for texts those are at right side of thumb-->
+</selector>

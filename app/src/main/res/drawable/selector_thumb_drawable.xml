@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/custom_indicator_bg_oval" android:state_pressed="true" />  <!--this drawable is for thumb when pressing-->
+    <item android:drawable="@mipmap/ic_launcher" />  <!--for thumb when normal-->
+</selector>

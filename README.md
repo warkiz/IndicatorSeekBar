@@ -1,153 +1,261 @@
-# RxPermissions
+# IndicatorSeekBar
 
-[![Build Status](https://api.travis-ci.org/tbruyelle/RxPermissions.svg?branch=master)](https://travis-ci.org/tbruyelle/RxPermissions)
+[![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
+[![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
+[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
 
-This library allows the usage of RxJava with the new Android M permission model.
+This is a customizable SeekBar library on Android.
+
+ [ 中文.md ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_zh.md)
+
+## OverView
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
+
+## Screenshot
+
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
+
+## Demo
+[download](https://github.com/warkiz/IndicatorSeekBar/blob/master/apk/demo.apk)
 
 ## Setup
 
-To use this library your `minSdkVersion` must be >= 11.
-
 ```gradle
 dependencies {
-    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+    implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.0'
 }
 ```
 
 ## Usage
+#### xml
 
-Create a `RxPermissions` instance :
-
-```java
-RxPermissions rxPermissions = new RxPermissions(this); // where this is an Activity instance
+```xml
+<com.warkiz.widget.IndicatorSeekBar
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:isb_max="100"
+    app:isb_min="-1.0"
+    app:isb_progress="25"
+    app:isb_seek_smoothly="true"
+    app:isb_ticks_count="5"
+    app:isb_show_tick_marks_type="oval"
+    app:isb_tick_marks_size="13dp"
+    app:isb_tick_marks_drawable="@mipmap/ic_launcher"
+    app:isb_show_tick_texts="true"
+    app:isb_tick_texts_size="15sp"
+    app:isb_tick_texts_color="@color/color_blue"
+    app:isb_thumb_color="@color/color_green"
+    app:isb_thumb_size="20dp"
+    app:isb_show_indicator="rounded_rectangle"
+    app:isb_indicator_color="@color/color_gray"
+    app:isb_indicator_text_color="@color/colorAccent"
+    app:isb_indicator_text_size="18sp"
+    app:isb_track_background_color="@color/color_gray"
+    app:isb_track_background_size="2dp"
+    app:isb_track_progress_color="@color/color_blue"
+    app:isb_track_progress_size="4dp" />
 ```
 
-Example : request the CAMERA permission (with Retrolambda for brevity, but not required)
+#### Java
 
-```java
-// Must be done during an initialization phase like onCreate
-rxPermissions
-    .request(Manifest.permission.CAMERA)
-    .subscribe(granted -> {
-        if (granted) { // Always true pre-M
-           // I can control the camera now
-        } else {
-           // Oups permission denied
-        }
-    });
-```
+```Java
 
-If you need to trigger the permission request from a specific event, you need to setup your event
-as an observable inside an initialization phase.
-
-You can use [JakeWharton/RxBinding](https://github.com/JakeWharton/RxBinding) to turn your view to
-an observable (not included in the library).
-
-Example :
-
-```java
-// Must be done during an initialization phase like onCreate
-RxView.clicks(findViewById(R.id.enableCamera))
-    .compose(rxPermissions.ensure(Manifest.permission.CAMERA))
-    .subscribe(granted -> {
-        // R.id.enableCamera has been clicked
-    });
-```
-
-If multiple permissions at the same time, the result is combined :
-
-```java
-rxPermissions
-    .request(Manifest.permission.CAMERA,
-             Manifest.permission.READ_PHONE_STATE)
-    .subscribe(granted -> {
-        if (granted) {
-           // All requested permissions are granted
-        } else {
-           // At least one permission is denied
-        }
-    });
-```
-
-You can also observe a detailed result with `requestEach` or `ensureEach` :
-
-```java
-rxPermissions
-    .requestEach(Manifest.permission.CAMERA,
-             Manifest.permission.READ_PHONE_STATE)
-    .subscribe(permission -> { // will emit 2 Permission objects
-        if (permission.granted) {
-           // `permission.name` is granted !
-        } else if (permission.shouldShowRequestPermissionRationale) {
-           // Denied permission without ask never again
-        } else {
-           // Denied permission with ask never again
-           // Need to go to the settings
-        }
-    });
-```
-
-You can also get combined detailed result with `requestEachCombined` or `ensureEachCombined` :
-
-```java
-rxPermissions
-    .requestEachCombined(Manifest.permission.CAMERA,
-             Manifest.permission.READ_PHONE_STATE)
-    .subscribe(permission -> { // will emit 1 Permission object
-        if (permission.granted) {
-           // All permissions are granted !
-        } else if (permission.shouldShowRequestPermissionRationale)
-           // At least one denied permission without ask never again
-        } else {
-           // At least one denied permission with ask never again
-           // Need to go to the settings
-        }
-    });
-```
-
-Look at the `sample` app for more.
-
-## Important read
-
-**As mentioned above, because your app may be restarted during the permission request, the request
-must be done during an initialization phase**. This may be `Activity.onCreate`, or
-`View.onFinishInflate`, but not *pausing* methods like `onResume`, because you'll potentially create an infinite request loop, as your requesting activity is paused by the framework during the permission request.
-
-If not, and if your app is restarted during the permission request (because of a configuration
-change for instance), the user's answer will never be emitted to the subscriber.
-
-You can find more details about that [here](https://github.com/tbruyelle/RxPermissions/issues/69).
-
-## Status
-
-This library is still beta, so contributions are welcome.
-I'm currently using it in production since months without issue.
-
-## Benefits
-
-- Avoid worrying about the framework version. If the sdk is pre-M, the observer will automatically
-receive a granted result.
-
-- Prevents you to split your code between the permission request and the result handling.
-Currently without this library you have to request the permission in one place and handle the result
-in `Activity.onRequestPermissionsResult()`.
-
-- All what RX provides about transformation, filter, chaining...
-
-# License
+ IndicatorSeekBar seekbar = IndicatorSeekBar
+                .with(getContext())
+                .max(110)
+                .min(10)
+                .progress(53)
+                .tickCount(7)
+                .showTickMarksType(TickMarkType.OVAL)
+                .tickMarksColor(getResources().getColor(R.color.color_blue, null))
+                .tickMarksSize(13)//dp
+                .showTickTexts(true)
+                .tickTextsColor(getResources().getColor(R.color.color_pink))
+                .tickTextsSize(13)//sp
+                .tickTextsTypeFace(Typeface.MONOSPACE)
+                .showIndicatorType(IndicatorType.ROUNDED_RECTANGLE)
+                .indicatorColor(getResources().getColor(R.color.color_blue))
+                .indicatorTextColor(Color.parseColor("#ffffff"))
+                .indicatorTextSize(13)//sp
+                .thumbColor(getResources().getColor(R.color.colorAccent, null))
+                .thumbSize(14)
+                .trackProgressColor(getResources().getColor(R.color.colorAccent,null))
+                .trackProgressSize(4)
+                .trackBackgroundColor(getResources().getColor(R.color.color_gray))
+                .trackBackgroundSize(2)
+                .build();
 
 ```
-Copyright (C) 2015 Thomas Bruyelle
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+## Indicator stay always
 
-   http://www.apache.org/licenses/LICENSE-2.0
+#### Xml
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+```xml
+<com.warkiz.widget.IndicatorStayLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--your layout-->
+    <com.warkiz.widget.IndicatorSeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:isb_show_indicator="rectangle" <!--show indicator can not be NONE-->
+        ....../>
+    <!--your layout-->
+</com.warkiz.widget.IndicatorStayLayout>
 ```
+
+#### Java
+
+```Java
+IndicatorSeekBar seekbar = IndicatorSeekBar
+                .with(getContext())
+                .max(50)
+                .min(10)
+                .showIndicatorType(IndicatorType.RECTANGLE) //show indicator can not be NONE
+                ...
+                .build();
+
+new IndicatorStayLayout(getContext()).attachTo(seekbar);
+```
+
+## Custom indicator's text
+
+Set a format string with placeholder `${PROGRESS}` or `${TICK_TEXT}` to IndicatorSeekBar, the indicator's text would change.
+For example:
+If you want to show the progress with suffix: `%` ，the code like：
+
+```Java
+seekbar.setIndicatorTextFormat("${PROGRESS} %")
+```
+
+or want to show the tick text with prefix: `I am` ，the code like：
+
+```Java
+seekbar.setIndicatorTextFormat("I am ${TICK_TEXT}")
+```
+
+## Custom section tracks color
+The color of every block of seek bar can also be custom.
+
+```Java
+sectionSeekBar.customSectionTrackColor(new ColorCollector() {
+    @Override
+    public boolean collectSectionTrackColor(int[] colorIntArr) {
+        //the length of colorIntArray equals section count
+        colorIntArr[0] = getResources().getColor(R.color.color_blue, null);
+        colorIntArr[1] = getResources().getColor(R.color.color_gray, null);
+        colorIntArr[2] = Color.parseColor("#FF4081");
+        ...
+        return true; //True if apply color , otherwise no change
+    }
+});
+```
+
+## Selector drawable&color were supported
+
+You can set the StateListDrawable or ColorStateList for the thumb,tickMarks;
+also,ColorStateList for tickTexts is supported, too. Usage's format acccording to:
+
+thumb selector drawable:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/custom_indicator_bg_oval" android:state_pressed="true" />  <!--this drawable is for thumb when pressing-->
+    <item android:drawable="@mipmap/ic_launcher" />  <!--for thumb when normal-->
+</selector>
+```
+
+thumb selector color:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/colorAccent" android:state_pressed="true" />  <!--this color is for thumb which is at pressing status-->
+    <item android:color="@color/color_blue" />                                <!--for thumb which is at normal status-->
+</selector>
+```
+
+tickMarks selector drawable：
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@mipmap/ic_launcher_round" android:state_pressed="true" />  <!--this drawable is for thumb when pressing-->
+    <item android:drawable="@mipmap/ic_launcher" />  <!--for thumb when normal-->
+</selector>
+```
+
+tickMarks selector color：
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/colorAccent" android:state_selected="true" />  <!--this color is for marks those are at left side of thumb-->
+    <item android:color="@color/color_gray" />                                 <!--for marks those are at right side of thumb-->
+</selector>
+```
+
+tickTexts selector color：
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/colorAccent" android:state_selected="true" />  <!--this color is for texts those are at left side of thumb-->
+    <item android:color="@color/color_blue" android:state_hovered="true" />     <!--for tick text which is stoped under thumb -->
+    <item android:color="@color/color_gray" />                                 <!--for texts those are at right side of thumb-->
+</selector>
+```
+
+## Listener
+```Java
+seekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
+            @Override
+            public void onSeeking(SeekParams seekParams) {
+                Log.i(TAG, seekParams.seekBar);
+                Log.i(TAG, seekParams.progress);
+                Log.i(TAG, seekParams.progressFloat);
+                Log.i(TAG, seekParams.fromUser);
+                //when tick count > 0
+                Log.i(TAG, seekParams.thumbPosition);
+                Log.i(TAG, seekParams.tickText);
+            }
+
+            @Override
+            public void onStartTrackingTouch(IndicatorSeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
+            }
+        });
+```
+
+## Attributes
+
+[ attr.xml ](https://github.com/warkiz/IndicatorSeekBar/blob/master/indicatorseekbar/src/main/res/values/attr.xml)
+
+## Support & Contact me
+
+Star to support me , many thanks!
+
+Feel free to contact me if you have any trouble on this project:
+1. Create an issue.
+2. Send mail to me, "warkiz".concat("4j").concat("@").concat("gmail.com")
+
+## License
+
+	Copyright (C) 2017 zhuangguangquan warkiz
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.

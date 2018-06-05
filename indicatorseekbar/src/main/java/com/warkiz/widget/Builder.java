@@ -374,7 +374,13 @@ public class Builder {
      *
      * @param thumbColorStateList color selector
      * @return Builder
+     * selector format like:
      */
+    //<?xml version="1.0" encoding="utf-8"?>
+    //<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    //<item android:color="@color/colorAccent" android:state_pressed="true" />  <!--this color is for thumb which is at pressing status-->
+    //<item android:color="@color/color_blue" />                                <!--for thumb which is at normal status-->
+    //</selector>
     public Builder thumbColorStateList(@NonNull ColorStateList thumbColorStateList) {
         this.thumbColorStateList = thumbColorStateList;
         return this;
@@ -392,9 +398,9 @@ public class Builder {
     }
 
     /**
-     * call this method to custom the thumb showing drawable.
+     * set a new thumb drawable.
      *
-     * @param thumbDrawable the drawable show as Thumb.
+     * @param thumbDrawable the drawable for thumb.
      * @return Builder
      */
     public Builder thumbDrawable(@NonNull Drawable thumbDrawable) {
@@ -407,22 +413,19 @@ public class Builder {
      *
      * @param thumbStateListDrawable the drawable show as Thumb.
      * @return Builder
+     * <p>
+     * selector format:
      */
+    //<?xml version="1.0" encoding="utf-8"?>
+    //<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    //<item android:drawable="Your drawableA" android:state_pressed="true" />  <!--this drawable is for thumb when pressing-->
+    //<item android:drawable="Your drawableB" />  < !--for thumb when normal-->
+    //</selector>
     public Builder thumbDrawable(@NonNull StateListDrawable thumbStateListDrawable) {
         this.thumbDrawable = thumbStateListDrawable;
         return this;
     }
 
-    /**
-     * call this method to custom the thumb showing drawable.
-     *
-     * @param thumbDrawableId the drawableId for thumb drawable.
-     * @return Builder
-     */
-    public Builder thumbDrawable(@DrawableRes int thumbDrawableId) {
-        this.thumbDrawable = context.getResources().getDrawable(thumbDrawableId);
-        return this;
-    }
 
     /**
      * show the tick texts or not
@@ -451,7 +454,14 @@ public class Builder {
      *
      * @param tickTextsColorStateList ColorInt
      * @return Builder
+     * selector format like:
      */
+    //<?xml version="1.0" encoding="utf-8"?>
+    //<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    //<item android:color="@color/colorAccent" android:state_selected="true" />  <!--this color is for texts those are at left side of thumb-->
+    //<item android:color="@color/color_blue" android:state_hovered="true" />     <!--for thumb below text-->
+    //<item android:color="@color/color_gray" />                                 <!--for texts those are at right side of thumb-->
+    //</selector>
     public Builder tickTextsColorStateList(@NonNull ColorStateList tickTextsColorStateList) {
         this.tickTextsColorStateList = tickTextsColorStateList;
         return this;
@@ -545,7 +555,13 @@ public class Builder {
      *
      * @param tickMarksColorStateList colorInt
      * @return Builder
+     * selector format like:
      */
+    //<?xml version="1.0" encoding="utf-8"?>
+    //<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    //<item android:color="@color/colorAccent" android:state_selected="true" />  <!--this color is for marks those are at left side of thumb-->
+    //<item android:color="@color/color_gray" />                                 <!--for marks those are at right side of thumb-->
+    //</selector>
     public Builder tickMarksColor(@NonNull ColorStateList tickMarksColorStateList) {
         this.tickMarksColorStateList = tickMarksColorStateList;
         return this;
@@ -559,18 +575,6 @@ public class Builder {
      */
     public Builder tickMarksSize(int tickMarksSize) {
         this.tickMarksSize = SizeUtils.dp2px(context, tickMarksSize);
-        return this;
-    }
-
-    /**
-     * call this method to custom the tickMarks showing drawable.
-     *
-     * @param tickMarksDrawableID the drawableId for tickMark drawable.
-     * @return Builder
-     */
-    public Builder tickMarksDrawable(@DrawableRes int tickMarksDrawableID) {
-        this.tickMarksDrawable = context.getResources().getDrawable(tickMarksDrawableID);
-        ;
         return this;
     }
 
@@ -590,7 +594,13 @@ public class Builder {
      *
      * @param tickMarksStateListDrawable the StateListDrawable show as tickMark.
      * @return Builder
+     * selector format like :
      */
+    //<?xml version="1.0" encoding="utf-8"?>
+    //<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    //<item android:drawable="@mipmap/ic_launcher_round" android:state_pressed="true" />  <!--this drawable is for thumb when pressing-->
+    //<item android:drawable="@mipmap/ic_launcher" />  <!--for thumb when normal-->
+    //</selector>
     public Builder tickMarksDrawable(@NonNull StateListDrawable tickMarksStateListDrawable) {
         this.tickMarksDrawable = tickMarksStateListDrawable;
         return this;

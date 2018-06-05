@@ -153,22 +153,11 @@ public class Indicator {
         }
         int indicatorScreenX = getIndicatorScreenX();
         if (indicatorScreenX + touchX < mIndicatorPopW.getContentView().getMeasuredWidth() / 2) {
-            setMargin(-(int) (mIndicatorPopW.getContentView().getMeasuredWidth() / 2 - indicatorScreenX - touchX), -1, -1, -1);
+            setMargin(mArrowView, -(int) (mIndicatorPopW.getContentView().getMeasuredWidth() / 2 - indicatorScreenX - touchX), -1, -1, -1);
         } else if (mWindowWidth - indicatorScreenX - touchX < mIndicatorPopW.getContentView().getMeasuredWidth() / 2) {
-            setMargin((int) (mIndicatorPopW.getContentView().getMeasuredWidth() / 2 - (mWindowWidth - indicatorScreenX - touchX)), -1, -1, -1);
+            setMargin(mArrowView, (int) (mIndicatorPopW.getContentView().getMeasuredWidth() / 2 - (mWindowWidth - indicatorScreenX - touchX)), -1, -1, -1);
         } else {
-            setMargin(0, 0, 0, 0);
-        }
-    }
-
-    private void setMargin(int left, int top, int right, int bottom) {
-        if (mArrowView == null) {
-            return;
-        }
-        if (mArrowView.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
-            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mArrowView.getLayoutParams();
-            layoutParams.setMargins(left == -1 ? layoutParams.leftMargin : left, top == -1 ? layoutParams.topMargin : top, right == -1 ? layoutParams.rightMargin : right, bottom == -1 ? layoutParams.bottomMargin : bottom);
-            mArrowView.requestLayout();
+            setMargin(mArrowView, 0, 0, 0, 0);
         }
     }
 

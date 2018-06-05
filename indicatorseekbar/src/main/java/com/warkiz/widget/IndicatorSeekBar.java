@@ -1001,7 +1001,7 @@ public class IndicatorSeekBar extends View {
                 for (int i = 0; i < stateCount; i++) {
                     int[] stateSet = listDrawable.getStateSet(i);
                     if (stateSet.length > 0) {
-                        if (stateSet[0] == android.R.attr.state_pressed) {
+                        if (stateSet[0] == android.R.attr.state_selected) {
                             mSelectTickMarksBitmap = getDrawBitmap(listDrawable.getStateDrawable(i), false);
                         } else {
                             //please check your selector drawable's format, please see above to correct.

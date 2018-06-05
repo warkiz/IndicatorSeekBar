@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!--this drawable is for thumb when pressing-->
-    <item android:drawable="@mipmap/ic_launcher_round" android:state_pressed="true" />
+    <item android:drawable="@mipmap/ic_launcher_round" android:state_selected="true" />
     <!--for thumb in normal-->
     <item android:drawable="@mipmap/ic_launcher" />
 </selector>

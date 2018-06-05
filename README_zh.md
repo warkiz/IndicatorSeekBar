@@ -22,7 +22,7 @@
 ## 初始化
 
 ```gradle
-    implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.0'
+implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.1'
 ```
 
 ## 使用

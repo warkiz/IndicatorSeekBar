@@ -1706,8 +1706,8 @@ public class IndicatorSeekBar extends View {
      * make sure you had chosen the float progress type
      * <p>
      * such as:
-     * scale = 3; progress: 1.78627347--> 1.786
-     * scale = 4; progress: 1.78627347--> 1.7863
+     * scale = 3; progress: 1.78627347 to 1.786
+     * scale = 4; progress: 1.78627347 to 1.7863
      *
      * @param scale scale for the float type progress value.
      */

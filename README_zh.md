@@ -4,9 +4,7 @@
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
 
-这是一个安卓自定义SeekBar库.
-
- [ English.md ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)
+这是一个安卓自定义SeekBar库. [ English.md ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)
 
 ## 预览
 
@@ -24,9 +22,7 @@
 ## 初始化
 
 ```gradle
-dependencies {
     implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.0'
-}
 ```
 
 ## 使用
@@ -165,18 +161,21 @@ sectionSeekBar.customSectionTrackColor(new ColorCollector() {
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/custom_indicator_bg_oval" android:state_pressed="true" />  <!--this drawable is for thumb when pressing-->
-    <item android:drawable="@mipmap/ic_launcher" />  <!--for thumb when normal-->
+    <!--this drawable is for thumb when pressing-->
+    <item android:drawable="@mipmap/ic_launcher_round" android:state_pressed="true" />
+    <!--for thumb in normal-->
+    <item android:drawable="@mipmap/ic_launcher" />
 </selector>
 ```
 
 滑块颜色 selectorr:
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/colorAccent" android:state_pressed="true" />  <!--this color is for thumb which is at pressing status-->
-    <item android:color="@color/color_blue" />                                <!--for thumb which is at normal status-->
+    <!--this drawable is for thumb when pressing-->
+    <item android:drawable="@mipmap/ic_launcher_round" android:state_pressed="true" />
+    <!--for thumb in normal-->
+    <item android:drawable="@mipmap/ic_launcher" />
 </selector>
 ```
 
@@ -185,8 +184,10 @@ tick标记图片 selector：
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@mipmap/ic_launcher_round" android:state_pressed="true" />  <!--this drawable is for thumb when pressing-->
-    <item android:drawable="@mipmap/ic_launcher" />  <!--for thumb when normal-->
+    <!--this drawable is for thumb when pressing-->
+    <item android:drawable="@mipmap/ic_launcher_round" android:state_pressed="true" />
+    <!--for thumb when normal-->
+    <item android:drawable="@mipmap/ic_launcher" />
 </selector>
 ```
 
@@ -195,8 +196,10 @@ tick标记颜色 selector：
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/colorAccent" android:state_selected="true" />  <!--this color is for marks those are at left side of thumb-->
-    <item android:color="@color/color_gray" />                                 <!--for marks those are at right side of thumb-->
+    <!--this color is for marks those are at left side of thumb-->
+    <item android:color="@color/colorAccent" android:state_selected="true" />
+    <!--for marks those are at right side of thumb-->
+    <item android:color="@color/color_gray" />
 </selector>
 ```
 
@@ -205,9 +208,12 @@ tick文字颜色 selector：
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/colorAccent" android:state_selected="true" />  <!--this color is for texts those are at left side of thumb-->
-    <item android:color="@color/color_blue" android:state_hovered="true" />     <!--for tick text which is stoped under thumb -->
-    <item android:color="@color/color_gray" />                                 <!--for texts those are at right side of thumb-->
+    <!--this color is for texts those are at left side of thumb-->
+    <item android:color="@color/colorAccent" android:state_selected="true" />
+    <!--for tick text which is stoped under thumb -->
+    <item android:color="@color/color_blue" android:state_hovered="true" />
+    <!--for texts those are at right side of thumb-->
+    <item android:color="@color/color_gray" />
 </selector>
 ```
 

@@ -4,7 +4,7 @@
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
 
-This is a customizable SeekBar library on Android. [ 中文.md ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_zh.md)
+This is a customizable SeekBar library on Android. Also, If you don't need indicator and want to show tick texts to top of seek bar, please see [anther library](https://github.com/warkiz/TickSeekBar) [  中文.md ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_zh.md)
 
 
 ## OverView
@@ -171,10 +171,10 @@ Thumb selector color:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--this drawable is for thumb when pressing-->
-    <item android:drawable="@mipmap/ic_launcher_round" android:state_pressed="true" />
-    <!--for thumb in normal-->
-    <item android:drawable="@mipmap/ic_launcher" />
+    <!--this color is for thumb which is at pressing status-->
+    <item android:color="@color/colorAccent" android:state_pressed="true" />
+    <!--for thumb which is at normal status-->
+    <item android:color="@color/color_blue" />
 </selector>
 ```
 
@@ -183,9 +183,9 @@ TickMarks selector drawable：
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--this drawable is for thumb when pressing-->
-    <item android:drawable="@mipmap/ic_launcher_round" android:state_pressed="true" />
-    <!--for thumb in normal-->
+    <!--this drawable is for tickMarks when pressing-->
+    <item android:drawable="@mipmap/ic_launcher_round" android:state_selected="true" />
+    <!--for tickMarks in normal-->
     <item android:drawable="@mipmap/ic_launcher" />
 </selector>
 ```
@@ -209,7 +209,7 @@ TickTexts selector color：
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!--this color is for texts those are at left side of thumb-->
     <item android:color="@color/colorAccent" android:state_selected="true" />
-    <!--for tick text which is stoped under thumb -->
+    <!--for tick text which is stopped under thumb -->
     <item android:color="@color/color_blue" android:state_hovered="true" />
     <!--for texts those are at right side of thumb-->
     <item android:color="@color/color_gray" />

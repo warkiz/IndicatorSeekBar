@@ -613,7 +613,6 @@ public class IndicatorSeekBar extends View {
     }
 
     private float getThumbCenterX() {
-        refreshThumbCenterXByProgress(mProgress);
         if (mR2L) {
             return mBackgroundTrack.right;
         }
@@ -1536,6 +1535,7 @@ public class IndicatorSeekBar extends View {
         }
         lastProgress = mProgress;
         setSeekListener(false);
+        refreshSeekBarLocation();
         postInvalidate();
         updateStayIndicator();
     }
@@ -1543,7 +1543,7 @@ public class IndicatorSeekBar extends View {
     /**
      * Set the upper range of the seek bar
      *
-     * @param max the upper range of this mProgressArr bar.
+     * @param max the upper range of this progress bar.
      */
     public synchronized void setMax(float max) {
         this.mMax = Math.max(mMin, max);
@@ -1708,6 +1708,8 @@ public class IndicatorSeekBar extends View {
      * such as:
      * scale = 3; progress: 1.78627347 to 1.786
      * scale = 4; progress: 1.78627347 to 1.7863
+     * <p>
+     * make sure you have call the attr progress_value_float=true before, otherwise no change.
      *
      * @param scale scale for the float type progress value.
      */

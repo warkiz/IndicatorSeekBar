@@ -1525,7 +1525,7 @@ public class IndicatorSeekBar extends View {
      *
      * @param progress a new progress value , if the new progress is less than min ,
      *                 it will set to min;
-     *                 if over max ,will be max.
+     *                 if over max ,will be max. 
      */
     public synchronized void setProgress(float progress) {
         mProgress = MathUtils.constrain(progress, mMin, mMax);

@@ -4,7 +4,9 @@
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
 
-This is a customizable SeekBar library on Android. Also, If you don't need indicator and want to show tick texts to top of seek bar, please see [anther library](https://github.com/warkiz/TickSeekBar) [  中文.md ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_zh.md)
+This is a customizable SeekBar library on Android. Also, If you don't need indicator and want to show tick texts to top of seek bar, please see [the other library](https://github.com/warkiz/TickSeekBar).
+
+[ 中文.md ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_zh.md)
 
 
 ## OverView

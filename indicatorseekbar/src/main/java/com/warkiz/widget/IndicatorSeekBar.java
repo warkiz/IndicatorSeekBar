@@ -65,10 +65,10 @@ public class IndicatorSeekBar extends View {
     private float mMax;
     private float mMin;
     private float mProgress;
-    private boolean mIsFloatProgress;// true for the mProgressArr value in float,otherwise in int.
+    private boolean mIsFloatProgress;// true for the progress value in float,otherwise in int.
     private int mScale = 1;//the scale of the float progress.
-    private boolean mUserSeekable;//true if the user can seek to change the mProgressArr,otherwise only can be changed by setProgress().
-    private boolean mOnlyThumbDraggable;//only drag the seek bar's thumb can be change the mProgressArr
+    private boolean mUserSeekable;//true if the user can seek to change the progress,otherwise only can be changed by setProgress().
+    private boolean mOnlyThumbDraggable;//only drag the seek bar's thumb can be change the progress
     private boolean mSeekSmoothly;//seek continuously
     private float[] mProgressArr;//save the progress which at tickMark position.
     private boolean mR2L;//right to left,compat local problem.
@@ -368,7 +368,7 @@ public class IndicatorSeekBar extends View {
             return;
         }
         initTextsArray();
-        //adjust thumb auto,so find out the closest mProgressArr in the mProgressArr array and replace it.
+        //adjust thumb auto,so find out the closest progress in the mProgressArr array and replace it.
         //it is not necessary to adjust thumb while count is less than 3.
         if (mTicksCount > 2) {
             mProgress = mProgressArr[getClosestIndex()];
@@ -436,7 +436,7 @@ public class IndicatorSeekBar extends View {
     }
 
     /**
-     * calculate the thumb's centerX by the changing mProgressArr.
+     * calculate the thumb's centerX by the changing progress.
      */
     private void refreshThumbCenterXByProgress(float progress) {
         //ThumbCenterX
@@ -487,7 +487,7 @@ public class IndicatorSeekBar extends View {
                 }
             }
         } else {
-            //draw mProgressArr track
+            //draw progress track
             mStockPaint.setColor(mProgressTrackColor);
             mStockPaint.setStrokeWidth(mProgressTrackSize);
             canvas.drawLine(mProgressTrack.left, mProgressTrack.top, mProgressTrack.right, mProgressTrack.bottom, mStockPaint);
@@ -1285,11 +1285,10 @@ public class IndicatorSeekBar extends View {
                 lastProgress = mProgress;
                 if (touchUpProgress - mProgressArr[closestIndex] > 0) {
                     mProgress = touchUpProgress - (Float) animation.getAnimatedValue();
-                    refreshThumbCenterXByProgress(mProgress);
                 } else {
                     mProgress = touchUpProgress + (Float) animation.getAnimatedValue();
-                    refreshThumbCenterXByProgress(mProgress);
                 }
+                refreshThumbCenterXByProgress(mProgress);
                 //the auto adjust was happened after user touched up, so from user is false.
                 setSeekListener(false);
                 if (mIndicator != null && mIndicatorStayAlways) {
@@ -1528,14 +1527,14 @@ public class IndicatorSeekBar extends View {
      *                 if over max ,will be max. 
      */
     public synchronized void setProgress(float progress) {
+        lastProgress = mProgress;
         mProgress = MathUtils.constrain(progress, mMin, mMax);
         //adjust to the closest tick's progress
         if (mTicksCount > 2) {
             mProgress = mProgressArr[getClosestIndex()];
         }
-        lastProgress = mProgress;
         setSeekListener(false);
-        refreshSeekBarLocation();
+        refreshThumbCenterXByProgress(mProgress);
         postInvalidate();
         updateStayIndicator();
     }

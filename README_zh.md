@@ -22,7 +22,7 @@
 ## 初始化
 
 ```gradle
-implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.2'
+implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.3'
 ```
 
 ## 使用
@@ -87,6 +87,7 @@ implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.2'
 ```
 
 ## 指示器总是停留
+将IndicatorSeekBar放进IndicatorStayLayout后可以使Indicator总是停留，在此之前，请确保你使用属性去显示indicator.
 
 #### Xml
 

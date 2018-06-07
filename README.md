@@ -22,7 +22,7 @@ This is a customizable SeekBar library on Android. Also, If you don't need indic
 ## Setup
 
 ```gradle
-implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.2'
+implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.3'
 ```
 
 ## Usage
@@ -87,6 +87,9 @@ implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.2'
 ```
 
 ## Indicator stay always
+
+Put IndicatorSeekBar into a IndicatorStayLayout can make the indicator stayed always.
+By the way, make sure you had called the attr to show the indicator before.
 
 #### Xml
 
@@ -153,8 +156,8 @@ sectionSeekBar.customSectionTrackColor(new ColorCollector() {
 
 ## Selector drawable&color were supported
 
-You can set the StateListDrawable or ColorStateList for the thumb,tickMarks;
-also,ColorStateList for tickTexts is supported, too. Usage's format acccording to:
+You can set the StateListDrawable or ColorStateList for the thumb, tickMarks;
+ also, ColorStateList for tickTexts is supported, too. Usage's format according to:
 
 Thumb selector drawable:
 

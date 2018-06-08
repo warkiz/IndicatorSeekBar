@@ -268,6 +268,7 @@ public class IndicatorSeekBar extends View {
         mProgressTrack = new RectF();
         mBackgroundTrack = new RectF();
         initDefaultPadding();
+        initIndicatorContentView();
     }
 
     private void initDefaultPadding() {
@@ -748,6 +749,10 @@ public class IndicatorSeekBar extends View {
             mPressedThumbColor = mThumbColor;
             return;
         }
+        //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
+        // if you want to run this library with firm belief, you can download the hidden API [android.jar]
+        // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
+        // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
         int[][] states = colorStateList.getStates();
         int[] colors = colorStateList.getColors();
         if (states.length == 1) {
@@ -803,6 +808,10 @@ public class IndicatorSeekBar extends View {
             mUnSelectedTickMarksColor = mSelectedTickMarksColor;
             return;
         }
+        //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
+        // if you want to run this library with firm belief, you can download the hidden API [android.jar]
+        // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
+        // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
         int[][] states = colorStateList.getStates();
         int[] colors = colorStateList.getColors();
         if (states.length == 1) {
@@ -860,6 +869,10 @@ public class IndicatorSeekBar extends View {
             mHoveredTextColor = mUnselectedTextsColor;
             return;
         }
+        //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
+        // if you want to run this library with firm belief, you can download the hidden API [android.jar]
+        // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
+        // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
         int[][] states = colorStateList.getStates();
         int[] colors = colorStateList.getColors();
         if (states.length == 1) {
@@ -946,18 +959,34 @@ public class IndicatorSeekBar extends View {
             mPressedThumbBitmap = mThumbBitmap;
         } else if (mThumbDrawable instanceof StateListDrawable) {
             StateListDrawable listDrawable = (StateListDrawable) mThumbDrawable;
+            //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
+            // if you want to run this library with firm belief, you can download the hidden API [android.jar]
+            // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
+            // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
             int stateCount = listDrawable.getStateCount();
             if (stateCount == 2) {
                 for (int i = 0; i < stateCount; i++) {
+                    //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
+                    // if you want to run this library with firm belief, you can download the hidden API [android.jar]
+                    // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
+                    // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
                     int[] stateSet = listDrawable.getStateSet(i);
                     if (stateSet.length > 0) {
                         if (stateSet[0] == android.R.attr.state_pressed) {
+                            //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
+                            // if you want to run this library with firm belief, you can download the hidden API [android.jar]
+                            // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
+                            // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
                             mPressedThumbBitmap = getDrawBitmap(listDrawable.getStateDrawable(i), true);
                         } else {
                             //please check your selector drawable's format, please see above to correct.
                             throw new IllegalArgumentException("the state of the selector thumb drawable is wrong!");
                         }
                     } else {
+                        //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
+                        // if you want to run this library with firm belief, you can download the hidden API [android.jar]
+                        // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
+                        // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
                         mThumbBitmap = getDrawBitmap(listDrawable.getStateDrawable(i), true);
                     }
                 }
@@ -995,18 +1024,34 @@ public class IndicatorSeekBar extends View {
             mSelectTickMarksBitmap = mUnselectTickMarksBitmap;
         } else if (mTickMarksDrawable instanceof StateListDrawable) {
             StateListDrawable listDrawable = (StateListDrawable) mTickMarksDrawable;
+            //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
+            // if you want to run this library with firm belief, you can download the hidden API [android.jar]
+            // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
+            // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
             int stateCount = listDrawable.getStateCount();
             if (stateCount == 2) {
                 for (int i = 0; i < stateCount; i++) {
+                    //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
+                    // if you want to run this library with firm belief, you can download the hidden API [android.jar]
+                    // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
+                    // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
                     int[] stateSet = listDrawable.getStateSet(i);
                     if (stateSet.length > 0) {
                         if (stateSet[0] == android.R.attr.state_selected) {
+                            //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
+                            // if you want to run this library with firm belief, you can download the hidden API [android.jar]
+                            // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
+                            // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
                             mSelectTickMarksBitmap = getDrawBitmap(listDrawable.getStateDrawable(i), false);
                         } else {
                             //please check your selector drawable's format, please see above to correct.
                             throw new IllegalArgumentException("the state of the selector TickMarks drawable is wrong!");
                         }
                     } else {
+                        //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
+                        // if you want to run this library with firm belief, you can download the hidden API [android.jar]
+                        // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
+                        // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
                         mUnselectTickMarksBitmap = getDrawBitmap(listDrawable.getStateDrawable(i), false);
                     }
                 }
@@ -1204,10 +1249,10 @@ public class IndicatorSeekBar extends View {
         if (mIndicatorStayAlways) {
             updateStayIndicator();
         } else {
-            initIndicatorContentView();
             if (mIndicator == null) {
                 return;
             }
+            mIndicator.iniPop();
             if (mIndicator.isShowing()) {
                 mIndicator.update(getThumbCenterX());
             } else {
@@ -1232,9 +1277,6 @@ public class IndicatorSeekBar extends View {
             this.mIndicatorContentView = mIndicator.getInsideContentView();
         }
 
-        if (!mIndicatorStayAlways) {
-            mIndicator.iniPop(mIndicatorStayAlways);
-        }
     }
 
     private void updateStayIndicator() {
@@ -1429,7 +1471,6 @@ public class IndicatorSeekBar extends View {
 
     View getIndicatorContentView(boolean indicatorStayAlways) {
         this.mIndicatorStayAlways = indicatorStayAlways;
-        initIndicatorContentView();
         return mIndicatorContentView;
     }
 
@@ -1528,6 +1569,10 @@ public class IndicatorSeekBar extends View {
      */
     public synchronized void setProgress(float progress) {
         lastProgress = mProgress;
+        //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
+        // if you want to run this library with firm belief, you can download the hidden API [android.jar]
+        // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
+        // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
         mProgress = MathUtils.constrain(progress, mMin, mMax);
         //adjust to the closest tick's progress
         if (mTicksCount > 2) {

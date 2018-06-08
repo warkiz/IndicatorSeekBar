@@ -172,11 +172,11 @@ public class Indicator {
         }
     }
 
-    void iniPop(boolean indicatorStayAlways) {
+    void iniPop() {
         if (mIndicatorPopW != null) {
             return;
         }
-        if (mIndicatorType != IndicatorType.NONE && mIndicatorView != null && !indicatorStayAlways) {
+        if (mIndicatorType != IndicatorType.NONE && mIndicatorView != null) {
             mIndicatorView.measure(0, 0);
             mIndicatorPopW = new PopupWindow(mIndicatorView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, false);
         }

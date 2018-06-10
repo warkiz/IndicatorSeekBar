@@ -71,7 +71,8 @@ public class IndicatorStayLayout extends LinearLayout {
     private void layoutIndicator(View child, int index) {
         if (child instanceof IndicatorSeekBar) {
             IndicatorSeekBar seekBar = (IndicatorSeekBar) child;
-            View contentView = seekBar.getIndicatorContentView(true);
+            seekBar.setIndicatorStayAlways(true);
+            View contentView = seekBar.getIndicatorContentView();
             if (contentView == null) {
                 throw new IllegalStateException("Can not find any indicator in the IndicatorSeekBar, please " +
                         "make sure you have called the attr: SHOW_INDICATOR_TYPE for IndicatorSeekBar and the value is not IndicatorType.NONE.");
@@ -86,7 +87,7 @@ public class IndicatorStayLayout extends LinearLayout {
             layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin,
                     layoutParams.rightMargin, SizeUtils.dp2px(seekBar.getContext(), 2) - seekBar.getPaddingTop());
             addView(contentView, index, layoutParams);
-            seekBar.updateStayIndicator(getViewScreenX());
+            seekBar.showStayIndicator();
         }
     }
 
@@ -97,12 +98,6 @@ public class IndicatorStayLayout extends LinearLayout {
                     + " not support horizontal orientation");
         }
         super.setOrientation(orientation);
-    }
-
-    private int getViewScreenX() {
-        int[] mLocation = new int[2];
-        getLocationOnScreen(mLocation);
-        return mLocation[0];
     }
 
 }

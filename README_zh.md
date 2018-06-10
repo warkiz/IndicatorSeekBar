@@ -22,7 +22,7 @@
 ## 初始化
 
 ```gradle
-implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.5'
+implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.6'
 ```
 
 ## 使用
@@ -242,6 +242,13 @@ seekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
             }
         });
 ```
+
+## 混淆配置
+
+``` groovy
+-dontwarn com.warkiz.widget.**
+```
+
 
 ## 属性
 

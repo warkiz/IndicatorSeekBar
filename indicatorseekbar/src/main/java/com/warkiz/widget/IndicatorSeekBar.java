@@ -72,7 +72,6 @@ public class IndicatorSeekBar extends View {
     private boolean mSeekSmoothly;//seek continuously
     private float[] mProgressArr;//save the progress which at tickMark position.
     private boolean mR2L;//right to left,compat local problem.
-    private int mSeekBarScreenX;
     //tick texts
     private boolean mShowTickText;//the palace where the tick text show .
     private int mTickTextsHeight;//the height of text
@@ -1298,8 +1297,8 @@ public class IndicatorSeekBar extends View {
         }
         int indicatorOffset;
         int arrowOffset;
-        if (measuredWidth / 2 + thumbCenterX > mScreenWidth - mSeekBarScreenX) {
-            indicatorOffset = (int) (mScreenWidth - measuredWidth - mSeekBarScreenX);
+        if (measuredWidth / 2 + thumbCenterX > mMeasuredWidth) {
+            indicatorOffset = mMeasuredWidth - measuredWidth;
             arrowOffset = (int) (thumbCenterX - indicatorOffset - measuredWidth / 2);
         } else if (thumbCenterX - measuredWidth / 2 < 0) {
             indicatorOffset = 0;
@@ -1454,8 +1453,7 @@ public class IndicatorSeekBar extends View {
     /**
      * first showing when initial for indicator stay always.
      */
-    void updateStayIndicator(int seekBarScreenX) {
-        this.mSeekBarScreenX = seekBarScreenX;
+    void showStayIndicator() {
         mIndicatorContentView.setVisibility(INVISIBLE);
         postDelayed(new Runnable() {
             @Override
@@ -1469,8 +1467,14 @@ public class IndicatorSeekBar extends View {
         }, 300);
     }
 
-    View getIndicatorContentView(boolean indicatorStayAlways) {
+    /**
+     * @param indicatorStayAlways IndicatorStayLayout call this, always true.
+     */
+    void setIndicatorStayAlways(boolean indicatorStayAlways) {
         this.mIndicatorStayAlways = indicatorStayAlways;
+    }
+
+    View getIndicatorContentView() {
         return mIndicatorContentView;
     }
 

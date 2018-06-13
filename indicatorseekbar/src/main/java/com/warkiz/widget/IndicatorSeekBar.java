@@ -21,7 +21,6 @@ import android.support.annotation.NonNull;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.MathUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
@@ -29,6 +28,8 @@ import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 
 /**
@@ -131,6 +132,7 @@ public class IndicatorSeekBar extends View {
     private boolean mShowThumbText;//the place where the thumb text show .
     private float mThumbTextY;//the thumb text's drawing Y anchor
     private int mThumbTextColor;
+    private boolean mHideThumb;
 
     public IndicatorSeekBar(Context context) {
         this(context, null);
@@ -579,6 +581,9 @@ public class IndicatorSeekBar extends View {
     }
 
     private void drawThumb(Canvas canvas) {
+        if (mHideThumb) {
+            return;
+        }
         float thumbCenterX = getThumbCenterX();
         if (mThumbDrawable != null) {//check user has set thumb drawable or not.ThumbDrawable first, thumb color for later.
             if (mThumbBitmap == null || mPressedThumbBitmap == null) {
@@ -748,12 +753,26 @@ public class IndicatorSeekBar extends View {
             mPressedThumbColor = mThumbColor;
             return;
         }
-        //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
-        // if you want to run this library with firm belief, you can download the hidden API [android.jar]
-        // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
-        // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
-        int[][] states = colorStateList.getStates();
-        int[] colors = colorStateList.getColors();
+        int[][] states = null;
+        int[] colors = null;
+        Class<? extends ColorStateList> aClass = colorStateList.getClass();
+        try {
+            Field[] f = aClass.getDeclaredFields();
+            for (Field field : f) {
+                field.setAccessible(true);
+                if ("mStateSpecs".equals(field.getName())) {
+                    states = (int[][]) field.get(colorStateList);
+                }
+                if ("mColors".equals(field.getName())) {
+                    colors = (int[]) field.get(colorStateList);
+                }
+            }
+            if (states == null || colors == null) {
+                return;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Something wrong happened when parseing thumb selector color.");
+        }
         if (states.length == 1) {
             mThumbColor = colors[0];
             mPressedThumbColor = mThumbColor;
@@ -777,6 +796,7 @@ public class IndicatorSeekBar extends View {
             //the color selector file was set by a wrong format , please see above to correct.
             throw new IllegalArgumentException("the selector color file you set for the argument: isb_thumb_color is in wrong format.");
         }
+
     }
 
     /**
@@ -807,12 +827,26 @@ public class IndicatorSeekBar extends View {
             mUnSelectedTickMarksColor = mSelectedTickMarksColor;
             return;
         }
-        //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
-        // if you want to run this library with firm belief, you can download the hidden API [android.jar]
-        // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
-        // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
-        int[][] states = colorStateList.getStates();
-        int[] colors = colorStateList.getColors();
+        int[][] states = null;
+        int[] colors = null;
+        Class<? extends ColorStateList> aClass = colorStateList.getClass();
+        try {
+            Field[] f = aClass.getDeclaredFields();
+            for (Field field : f) {
+                field.setAccessible(true);
+                if ("mStateSpecs".equals(field.getName())) {
+                    states = (int[][]) field.get(colorStateList);
+                }
+                if ("mColors".equals(field.getName())) {
+                    colors = (int[]) field.get(colorStateList);
+                }
+            }
+            if (states == null || colors == null) {
+                return;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Something wrong happened when parsing thumb selector color." + e.getMessage());
+        }
         if (states.length == 1) {
             mSelectedTickMarksColor = colors[0];
             mUnSelectedTickMarksColor = mSelectedTickMarksColor;
@@ -868,12 +902,26 @@ public class IndicatorSeekBar extends View {
             mHoveredTextColor = mUnselectedTextsColor;
             return;
         }
-        //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
-        // if you want to run this library with firm belief, you can download the hidden API [android.jar]
-        // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
-        // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
-        int[][] states = colorStateList.getStates();
-        int[] colors = colorStateList.getColors();
+        int[][] states = null;
+        int[] colors = null;
+        Class<? extends ColorStateList> aClass = colorStateList.getClass();
+        try {
+            Field[] f = aClass.getDeclaredFields();
+            for (Field field : f) {
+                field.setAccessible(true);
+                if ("mStateSpecs".equals(field.getName())) {
+                    states = (int[][]) field.get(colorStateList);
+                }
+                if ("mColors".equals(field.getName())) {
+                    colors = (int[]) field.get(colorStateList);
+                }
+            }
+            if (states == null || colors == null) {
+                return;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Something wrong happened when parseing thumb selector color.");
+        }
         if (states.length == 1) {
             mUnselectedTextsColor = colors[0];
             mSelectedTextsColor = mUnselectedTextsColor;
@@ -953,46 +1001,43 @@ public class IndicatorSeekBar extends View {
      * </selector>
      */
     private void initThumbBitmap() {
+        if (mThumbDrawable == null) {
+            return;
+        }
         if (mThumbDrawable instanceof BitmapDrawable) {
             mThumbBitmap = getDrawBitmap(mThumbDrawable, true);
             mPressedThumbBitmap = mThumbBitmap;
         } else if (mThumbDrawable instanceof StateListDrawable) {
-            StateListDrawable listDrawable = (StateListDrawable) mThumbDrawable;
-            //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
-            // if you want to run this library with firm belief, you can download the hidden API [android.jar]
-            // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
-            // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
-            int stateCount = listDrawable.getStateCount();
-            if (stateCount == 2) {
-                for (int i = 0; i < stateCount; i++) {
-                    //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
-                    // if you want to run this library with firm belief, you can download the hidden API [android.jar]
-                    // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
-                    // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
-                    int[] stateSet = listDrawable.getStateSet(i);
-                    if (stateSet.length > 0) {
-                        if (stateSet[0] == android.R.attr.state_pressed) {
-                            //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
-                            // if you want to run this library with firm belief, you can download the hidden API [android.jar]
-                            // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
-                            // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
-                            mPressedThumbBitmap = getDrawBitmap(listDrawable.getStateDrawable(i), true);
+            try {
+                StateListDrawable listDrawable = (StateListDrawable) mThumbDrawable;
+                Class<? extends StateListDrawable> aClass = listDrawable.getClass();
+                int stateCount = (int) aClass.getMethod("getStateCount").invoke(listDrawable);
+                if (stateCount == 2) {
+                    Method getStateSet = aClass.getMethod("getStateSet", int.class);
+                    Method getStateDrawable = aClass.getMethod("getStateDrawable", int.class);
+                    for (int i = 0; i < stateCount; i++) {
+                        int[] stateSet = (int[]) getStateSet.invoke(listDrawable, i);
+                        if (stateSet.length > 0) {
+                            if (stateSet[0] == android.R.attr.state_pressed) {
+                                Drawable stateDrawable = (Drawable) getStateDrawable.invoke(listDrawable, i);
+                                mPressedThumbBitmap = getDrawBitmap(stateDrawable, true);
+                            } else {
+                                //please check your selector drawable's format, please see above to correct.
+                                throw new IllegalArgumentException("the state of the selector thumb drawable is wrong!");
+                            }
                         } else {
-                            //please check your selector drawable's format, please see above to correct.
-                            throw new IllegalArgumentException("the state of the selector thumb drawable is wrong!");
+                            Drawable stateDrawable = (Drawable) getStateDrawable.invoke(listDrawable, i);
+                            mThumbBitmap = getDrawBitmap(stateDrawable, true);
                         }
-                    } else {
-                        //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
-                        // if you want to run this library with firm belief, you can download the hidden API [android.jar]
-                        // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
-                        // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
-                        mThumbBitmap = getDrawBitmap(listDrawable.getStateDrawable(i), true);
                     }
+                } else {
+                    //please check your selector drawable's format, please see above to correct.
+                    throw new IllegalArgumentException("the format of the selector thumb drawable is wrong!");
                 }
-            } else {
-                //please check your selector drawable's format, please see above to correct.
-                throw new IllegalArgumentException("the format of the selector thumb drawable is wrong!");
+            } catch (Exception e) {
+                throw new RuntimeException("Something wrong happened when parsing thumb selector drawable." + e.getMessage());
             }
+
         } else {
             //please check your selector drawable's format, please see above to correct.
             throw new IllegalArgumentException("Nonsupport this drawable's type for custom thumb drawable!");
@@ -1027,36 +1072,36 @@ public class IndicatorSeekBar extends View {
             // if you want to run this library with firm belief, you can download the hidden API [android.jar]
             // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
             // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
-            int stateCount = listDrawable.getStateCount();
-            if (stateCount == 2) {
-                for (int i = 0; i < stateCount; i++) {
-                    //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
-                    // if you want to run this library with firm belief, you can download the hidden API [android.jar]
-                    // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
-                    // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
-                    int[] stateSet = listDrawable.getStateSet(i);
-                    if (stateSet.length > 0) {
-                        if (stateSet[0] == android.R.attr.state_selected) {
-                            //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
-                            // if you want to run this library with firm belief, you can download the hidden API [android.jar]
-                            // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
-                            // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
-                            mSelectTickMarksBitmap = getDrawBitmap(listDrawable.getStateDrawable(i), false);
+//            int stateCount = listDrawable.getStateCount();
+
+            try {
+                Class<? extends StateListDrawable> aClass = listDrawable.getClass();
+                Method getStateCount = aClass.getMethod("getStateCount");
+                int stateCount = (int) getStateCount.invoke(listDrawable);
+                if (stateCount == 2) {
+                    Method getStateSet = aClass.getMethod("getStateSet", int.class);
+                    Method getStateDrawable = aClass.getMethod("getStateDrawable", int.class);
+                    for (int i = 0; i < stateCount; i++) {
+                        int[] stateSet = (int[]) getStateSet.invoke(listDrawable, i);
+                        if (stateSet.length > 0) {
+                            if (stateSet[0] == android.R.attr.state_selected) {
+                                Drawable stateDrawable = (Drawable) getStateDrawable.invoke(listDrawable, i);
+                                mSelectTickMarksBitmap = getDrawBitmap(stateDrawable, false);
+                            } else {
+                                //please check your selector drawable's format, please see above to correct.
+                                throw new IllegalArgumentException("the state of the selector TickMarks drawable is wrong!");
+                            }
                         } else {
-                            //please check your selector drawable's format, please see above to correct.
-                            throw new IllegalArgumentException("the state of the selector TickMarks drawable is wrong!");
+                            Drawable stateDrawable = (Drawable) getStateDrawable.invoke(listDrawable, i);
+                            mUnselectTickMarksBitmap = getDrawBitmap(stateDrawable, false);
                         }
-                    } else {
-                        //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
-                        // if you want to run this library with firm belief, you can download the hidden API [android.jar]
-                        // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
-                        // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
-                        mUnselectTickMarksBitmap = getDrawBitmap(listDrawable.getStateDrawable(i), false);
                     }
+                } else {
+                    //please check your selector drawable's format, please see above to correct.
+                    throw new IllegalArgumentException("the format of the selector TickMarks drawable is wrong!");
                 }
-            } else {
-                //please check your selector drawable's format, please see above to correct.
-                throw new IllegalArgumentException("the format of the selector TickMarks drawable is wrong!");
+            } catch (Exception e) {
+                throw new RuntimeException("Something wrong happened when parsing TickMarks selector drawable." + e.getMessage());
             }
         } else {
             //please check your selector drawable's format, please see above to correct.
@@ -1573,11 +1618,7 @@ public class IndicatorSeekBar extends View {
      */
     public synchronized void setProgress(float progress) {
         lastProgress = mProgress;
-        //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
-        // if you want to run this library with firm belief, you can download the hidden API [android.jar]
-        // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
-        // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
-        mProgress = MathUtils.constrain(progress, mMin, mMax);
+        mProgress = progress < mMin ? mMin : (progress > mMax ? mMax : progress);
         //adjust to the closest tick's progress
         if (mTicksCount > 2) {
             mProgress = mProgressArr[getClosestIndex()];
@@ -1637,13 +1678,35 @@ public class IndicatorSeekBar extends View {
     //<item android:drawable="@drawable/ic_launcher" android:state_pressed="true" />  <!--this drawable is for thumb when pressing-->
     //<item android:drawable="@drawable/ic_launcher_round" />  < !--for thumb when normal-->
     //</selector>
-    public void setThumbDrawable(@NonNull Drawable drawable) {
-        this.mThumbDrawable = drawable;
-        mThumbRadius = Math.min(SizeUtils.dp2px(mContext, THUMB_MAX_WIDTH), mThumbSize) / 2.0f;
-        mThumbTouchRadius = mThumbRadius;
-        mCustomDrawableMaxHeight = Math.max(mThumbTouchRadius, mTickRadius) * 2.0f;
-        initThumbBitmap();
+    public void setThumbDrawable(Drawable drawable) {
+        if (drawable == null) {
+            this.mThumbDrawable = null;
+            this.mThumbBitmap = null;
+            this.mPressedThumbBitmap = null;
+        } else {
+            this.mThumbDrawable = drawable;
+            this.mThumbRadius = Math.min(SizeUtils.dp2px(mContext, THUMB_MAX_WIDTH), mThumbSize) / 2.0f;
+            this.mThumbTouchRadius = mThumbRadius;
+            this.mCustomDrawableMaxHeight = Math.max(mThumbTouchRadius, mTickRadius) * 2.0f;
+            initThumbBitmap();
+        }
         requestLayout();
+        invalidate();
+    }
+
+    /**
+     * call this will do not draw thumb, true if hide.
+     */
+    public void hideThumb(boolean hide) {
+        mHideThumb = hide;
+        invalidate();
+    }
+
+    /**
+     * call this will do not draw the text which below thumb. true if hide.
+     */
+    public void hideThumbText(boolean hide) {
+        mShowThumbText = hide;
         invalidate();
     }
 
@@ -1685,11 +1748,17 @@ public class IndicatorSeekBar extends View {
     //<item android:drawable="@drawable/ic_launcher" android:state_selected="true" />  < !--this drawable is for thickMarks which thumb swept-->
     //<item android:drawable="@drawable/ic_launcher_round" />  < !--for thickMarks which thumb haven't reached-->
     //</selector>
-    public void setTickMarksDrawable(@NonNull Drawable drawable) {
-        this.mTickMarksDrawable = drawable;
-        mTickRadius = Math.min(SizeUtils.dp2px(mContext, THUMB_MAX_WIDTH), mTickMarksSize) / 2.0f;
-        mCustomDrawableMaxHeight = Math.max(mThumbTouchRadius, mTickRadius) * 2.0f;
-        initTickMarksBitmap();
+    public void setTickMarksDrawable(Drawable drawable) {
+        if (drawable == null) {
+            this.mTickMarksDrawable = null;
+            this.mUnselectTickMarksBitmap = null;
+            this.mSelectTickMarksBitmap = null;
+        } else {
+            this.mTickMarksDrawable = drawable;
+            this.mTickRadius = Math.min(SizeUtils.dp2px(mContext, THUMB_MAX_WIDTH), mTickMarksSize) / 2.0f;
+            this.mCustomDrawableMaxHeight = Math.max(mThumbTouchRadius, mTickRadius) * 2.0f;
+            initTickMarksBitmap();
+        }
         invalidate();
     }
 

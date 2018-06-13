@@ -22,7 +22,7 @@ This is a customizable SeekBar library on Android. Also, If you don't need indic
 ## Setup
 
 ```gradle
-implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.6'
+implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.7'
 ```
 
 ## Usage
@@ -243,12 +243,6 @@ seekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
             public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
             }
         });
-```
-
-## Proguard
-
-``` groovy
--dontwarn com.warkiz.widget.**
 ```
 
 ## Attributes

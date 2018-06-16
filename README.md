@@ -22,7 +22,7 @@ This is a customizable SeekBar library on Android. Also, If you don't need indic
 ## Setup
 
 ```gradle
-implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.7'
+implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.8'
 ```
 
 ## Usage
@@ -141,7 +141,7 @@ seekbar.setIndicatorTextFormat("I am ${TICK_TEXT}")
 The color of every block of seek bar can also be custom.
 
 ```Java
-sectionSeekBar.customSectionTrackColor(new ColorCollector() {
+seekBar.customSectionTrackColor(new ColorCollector() {
     @Override
     public boolean collectSectionTrackColor(int[] colorIntArr) {
         //the length of colorIntArray equals section count
@@ -188,7 +188,7 @@ TickMarks selector drawable：
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--this drawable is for tickMarks when pressing-->
+    <!--this drawable is for tickMarks those are at start side of thumb-->
     <item android:drawable="@mipmap/ic_launcher_round" android:state_selected="true" />
     <!--for tickMarks in normal-->
     <item android:drawable="@mipmap/ic_launcher" />
@@ -200,7 +200,7 @@ TickMarks selector color：
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--this color is for marks those are at left side of thumb-->
+    <!--this color is for marks those are at start side of thumb-->
     <item android:color="@color/colorAccent" android:state_selected="true" />
     <!--for marks those are at right side of thumb-->
     <item android:color="@color/color_gray" />
@@ -212,7 +212,7 @@ TickTexts selector color：
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--this color is for texts those are at left side of thumb-->
+    <!--this color is for texts those are at start side of thumb-->
     <item android:color="@color/colorAccent" android:state_selected="true" />
     <!--for tick text which is stopped under thumb -->
     <item android:color="@color/color_blue" android:state_hovered="true" />

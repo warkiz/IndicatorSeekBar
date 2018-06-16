@@ -22,7 +22,7 @@
 ## 初始化
 
 ```gradle
-implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.7'
+implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.8'
 ```
 
 ## 使用
@@ -140,7 +140,7 @@ seekbar.setIndicatorTextFormat("I am ${TICK_TEXT}")
 seekbar上每一块track的颜色都能被设置：
 
 ```Java
-sectionSeekBar.customSectionTrackColor(new ColorCollector() {
+seekBar.customSectionTrackColor(new ColorCollector() {
     @Override
     public boolean collectSectionTrackColor(int[] colorIntArr) {
         //the length of colorIntArray equals section count
@@ -186,7 +186,7 @@ tick标记图片 selector：
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--this drawable is for tickMarks when pressing-->
+    <!--this drawable is for tickMarks those are at left side of thumb-->
     <item android:drawable="@mipmap/ic_launcher_round" android:state_selected="true" />
     <!--for tickMarks in normal-->
     <item android:drawable="@mipmap/ic_launcher" />
@@ -223,7 +223,7 @@ tick文字颜色 selector：
 ```Java
 seekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
             @Override
-            public void onSeeking(SeekParams seekParams) {
+            public void onSeeking(SeekParams p) {
                 Log.i(TAG, seekParams.seekBar);
                 Log.i(TAG, seekParams.progress);
                 Log.i(TAG, seekParams.progressFloat);

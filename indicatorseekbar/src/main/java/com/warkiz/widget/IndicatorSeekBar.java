@@ -21,6 +21,7 @@ import android.support.annotation.NonNull;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
@@ -75,6 +76,7 @@ public class IndicatorSeekBar extends View {
     private boolean mR2L;//right to left,compat local problem.
     //tick texts
     private boolean mShowTickText;//the palace where the tick text show .
+    private boolean mShowBothTickTextsOnly;//show the tick texts on the both ends of seek bar before.
     private int mTickTextsHeight;//the height of text
     private String[] mTickTextsArr;//save the tick texts which at tickMark position.
     private float[] mTickTextsWidth;//save the tick texts width bounds.
@@ -559,6 +561,11 @@ public class IndicatorSeekBar extends View {
         }
         float thumbPosFloat = getThumbPosOnTickFloat();
         for (int i = 0; i < mTickTextsArr.length; i++) {
+            if (mShowBothTickTextsOnly) {
+                if (i != 0 && i != mTickTextsArr.length - 1) {
+                    continue;
+                }
+            }
             if (i == getThumbPosOnTick() && i == thumbPosFloat) {
                 mTextPaint.setColor(mHoveredTextColor);
             } else if (i < thumbPosFloat) {
@@ -1935,6 +1942,14 @@ public class IndicatorSeekBar extends View {
         this.mSeekChangeListener = listener;
     }
 
+    /**
+     * only show the tick texts on both of ends seek bar, make sure you hava called the attr:show tick text before.
+     *
+     * @param onlyShow true if only show the tick texts on both of ends seek bar
+     */
+    public void showBothTickTextsOnly(boolean onlyShow) {
+        this.mShowBothTickTextsOnly = onlyShow;
+    }
     /*------------------API END-------------------*/
 
 

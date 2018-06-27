@@ -1713,7 +1713,7 @@ public class IndicatorSeekBar extends View {
      * call this will do not draw the text which below thumb. true if hide.
      */
     public void hideThumbText(boolean hide) {
-        mShowThumbText = hide;
+        mShowThumbText = !hide;
         invalidate();
     }
 
@@ -1947,9 +1947,19 @@ public class IndicatorSeekBar extends View {
      *
      * @param onlyShow true if only show the tick texts on both of ends seek bar
      */
-    public void showBothTickTextsOnly(boolean onlyShow) {
+    public void showBothEndsTickTextsOnly(boolean onlyShow) {
         this.mShowBothTickTextsOnly = onlyShow;
     }
+
+    /**
+     * prevent user from seeking
+     *
+     * @param seekAble true if user can seek
+     */
+    public void setUserSeekAble(boolean seekAble) {
+        this.mUserSeekable = seekAble;
+    }
+
     /*------------------API END-------------------*/
 
 

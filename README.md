@@ -22,7 +22,7 @@ This is a customizable SeekBar library on Android. Also, If you don't need indic
 ## Setup
 
 ```gradle
-implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.8'
+implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.9'
 ```
 
 ## Usage

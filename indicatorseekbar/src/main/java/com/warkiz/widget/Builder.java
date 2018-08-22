@@ -29,6 +29,8 @@ public class Builder {
     boolean userSeekable = true;
     boolean onlyThumbDraggable = false;
     boolean clearPadding = false;
+    boolean longClick = false;
+    int longClickTime = 0;
     //indicator
     int showIndicatorType = IndicatorType.ROUNDED_RECTANGLE;
     int indicatorColor = Color.parseColor("#FF4081");
@@ -160,6 +162,28 @@ public class Builder {
      */
     public Builder clearPadding(boolean clearPadding) {
         this.clearPadding = clearPadding;
+        return this;
+    }
+
+    /**
+     * seek bar will respond only on longClick
+     *
+     * @param longClick true to set longClick behaviour
+     * @return Builder
+     */
+    public Builder longClick(boolean longClick){
+        this.longClick = longClick;
+        return this;
+    }
+
+    /**
+     * seek bar will respond on longClick after a time expressed in ms
+     *
+     * @param longClickTime time (in ms) before to respond
+     * @return Builder
+     */
+    public Builder longClickTime(int longClickTime){
+        this.longClickTime = longClickTime;
         return this;
     }
 

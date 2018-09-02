@@ -60,7 +60,7 @@
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="4. seek_smoothly=true, show_tick_marks_type=oval,\n customTickTexts" />
+            android:text="4. seek_smoothly=true, show_tick_marks_type=oval,\n customTickTexts,thumb_adjust_auto=false" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:id="@+id/custom_text"
@@ -71,6 +71,7 @@
             app:isb_show_indicator="rounded_rectangle"
             app:isb_show_tick_marks_type="oval"
             app:isb_show_tick_texts="true"
+            app:isb_thumb_adjust_auto="false"
             app:isb_ticks_count="7"
             app:isb_track_progress_color="@color/color_blue" />
 

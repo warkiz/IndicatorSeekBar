@@ -12,7 +12,7 @@
 
         <TextView
             style="@style/title_text_style"
-            android:text="Custom_Indicator/stay_always" />
+            android:text="Custom Indicator, Indicator stay always" />
 
         <TextView
             style="@style/subtitle_text_style"

@@ -15,6 +15,9 @@ import com.warkiz.indicatorseekbar.fragment.DiscreteFragment;
 import com.warkiz.indicatorseekbar.fragment.IndicatorFragment;
 import com.warkiz.indicatorseekbar.fragment.JavaBuildFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * created by zhuangguangquan on 2017/9/6
  */
@@ -22,17 +25,22 @@ import com.warkiz.indicatorseekbar.fragment.JavaBuildFragment;
 public class MainActivity extends AppCompatActivity {
 
     private static String[] sType = new String[]{"continuous", "discrete", "custom", "java", "indicator"};
-    private ContinuousFragment mContinuousFragment;
-    private DiscreteFragment mDiscreteFragment;
-    private CustomFragment mCustomFragment;
-    private Fragment mJavaBuildFragment;
-    private IndicatorFragment mIndicatorFragment;
+    private List<Fragment> mFragmentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initFragment();
         initViews();
+    }
+
+    private void initFragment() {
+        mFragmentList.add(new ContinuousFragment());
+        mFragmentList.add(new DiscreteFragment());
+        mFragmentList.add(new CustomFragment());
+        mFragmentList.add(new JavaBuildFragment());
+        mFragmentList.add(new IndicatorFragment());
     }
 
     private void initViews() {
@@ -58,32 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            if (position == 0) {
-                if (mContinuousFragment == null) {
-                    mContinuousFragment = new ContinuousFragment();
-                }
-                return mContinuousFragment;
-            } else if (position == 1) {
-                if (mDiscreteFragment == null) {
-                    mDiscreteFragment = new DiscreteFragment();
-                }
-                return mDiscreteFragment;
-            } else if (position == 2) {
-                if (mCustomFragment == null) {
-                    mCustomFragment = new CustomFragment();
-                }
-                return mCustomFragment;
-            } else if (position == 3) {
-                if (mJavaBuildFragment == null) {
-                    mJavaBuildFragment = new JavaBuildFragment();
-                }
-                return mJavaBuildFragment;
-            }
-
-            if (mIndicatorFragment == null) {
-                mIndicatorFragment = new IndicatorFragment();
-            }
-            return mIndicatorFragment;
+            return mFragmentList.get(position);
         }
 
         @Override

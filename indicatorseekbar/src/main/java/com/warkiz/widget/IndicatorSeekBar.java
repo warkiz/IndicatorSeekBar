@@ -21,7 +21,6 @@ import android.support.annotation.NonNull;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
@@ -197,7 +196,7 @@ public class IndicatorSeekBar extends View {
         //thumb
         mThumbSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_thumb_size, builder.thumbSize);
         mThumbDrawable = ta.getDrawable(R.styleable.IndicatorSeekBar_isb_thumb_drawable);
-        mAdjustAuto = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_thumb_adjust_auto,true);
+        mAdjustAuto = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_thumb_adjust_auto, true);
         initThumbColor(ta.getColorStateList(R.styleable.IndicatorSeekBar_isb_thumb_color), builder.thumbColor);
         //thumb text
         mShowThumbText = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_show_thumb_text, builder.showThumbText);
@@ -233,9 +232,6 @@ public class IndicatorSeekBar extends View {
     }
 
     private void initParams() {
-        if (mTicksCount < 0 || mTicksCount > 50) {
-            throw new IllegalArgumentException("the Argument: TICK COUNT must be limited between 0-50, Now is " + mTicksCount);
-        }
         initProgressRangeValue();
         if (mBackgroundTrackSize > mProgressTrackSize) {
             mBackgroundTrackSize = mProgressTrackSize;
@@ -266,6 +262,9 @@ public class IndicatorSeekBar extends View {
     }
 
     private void collectTicksInfo() {
+        if (mTicksCount < 0 || mTicksCount > 50) {
+            throw new IllegalArgumentException("the Argument: TICK COUNT must be limited between (0-50), Now is " + mTicksCount);
+        }
         if (mTicksCount != 0) {
             mTickMarksX = new float[mTicksCount];
             if (mShowTickText) {
@@ -391,11 +390,11 @@ public class IndicatorSeekBar extends View {
         if (mTicksCount == 0) {
             return;
         }
+        if (mShowTickText) {
+            mTickTextsArr = new String[mTicksCount];
+        }
         for (int i = 0; i < mTickMarksX.length; i++) {
             if (mShowTickText) {
-                if (mTickTextsArr == null) {
-                    mTickTextsArr = new String[mTicksCount];
-                }
                 mTickTextsArr[i] = getTickTextByPosition(i);
                 mTextPaint.getTextBounds(mTickTextsArr[i], 0, mTickTextsArr[i].length(), mRect);
                 mTickTextsWidth[i] = mRect.width();
@@ -1374,7 +1373,7 @@ public class IndicatorSeekBar extends View {
         if (mTicksCount < 3 || !mSeekSmoothly) {//it is not necessary to adjust while count less than 3 .
             return false;
         }
-        if (!mAdjustAuto){
+        if (!mAdjustAuto) {
             return false;
         }
         final int closestIndex = getClosestIndex();
@@ -1977,8 +1976,13 @@ public class IndicatorSeekBar extends View {
      * @param tickCount
      */
     public synchronized void setTickCount(int tickCount) {
+        if (mTicksCount < 0 || mTicksCount > 50) {
+            throw new IllegalArgumentException("the Argument: TICK COUNT must be limited between (0-50), Now is " + mTicksCount);
+        }
         mTicksCount = tickCount;
-        initParams();
+        collectTicksInfo();
+        initTextsArray();
+        initSeekBarInfo();
         refreshSeekBarLocation();
         invalidate();
         updateStayIndicator();

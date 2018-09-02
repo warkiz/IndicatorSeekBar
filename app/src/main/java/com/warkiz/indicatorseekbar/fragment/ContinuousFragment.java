@@ -30,7 +30,6 @@ public class ContinuousFragment extends BaseFragment {
         IndicatorSeekBar scale = root.findViewById(R.id.scale);
         scale.setDecimalScale(4);
         View contentView = scale.getIndicator().getContentView();
-        Log.i("asasa", "initView: "+contentView.toString());
 
         //thumb_drawable
         IndicatorSeekBar thumb_drawable = root.findViewById(R.id.thumb_drawable);

@@ -12,12 +12,17 @@
         android:orientation="vertical">
 
         <TextView
+            style="@style/title_text_style"
+            android:text="Continuous" />
+
+        <TextView
             style="@style/subtitle_text_style"
             android:text="1.default, progress = 50" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:isb_indicator_text_size="28sp"
             app:isb_progress="50" />
 
         <TextView

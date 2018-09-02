@@ -255,6 +255,15 @@ public class IndicatorSeekBar extends View {
         measureTickTextsBonds();
         lastProgress = mProgress;
 
+        collectTicksInfo();
+
+        mProgressTrack = new RectF();
+        mBackgroundTrack = new RectF();
+        initDefaultPadding();
+        initIndicatorContentView();
+    }
+
+    private void collectTicksInfo() {
         if (mTicksCount != 0) {
             mTickMarksX = new float[mTicksCount];
             if (mShowTickText) {
@@ -267,11 +276,6 @@ public class IndicatorSeekBar extends View {
             }
 
         }
-
-        mProgressTrack = new RectF();
-        mBackgroundTrack = new RectF();
-        initDefaultPadding();
-        initIndicatorContentView();
     }
 
     private void initDefaultPadding() {
@@ -1644,6 +1648,7 @@ public class IndicatorSeekBar extends View {
     public synchronized void setMax(float max) {
         this.mMax = Math.max(mMin, max);
         initProgressRangeValue();
+        collectTicksInfo();
         refreshSeekBarLocation();
         invalidate();
         updateStayIndicator();
@@ -1657,6 +1662,7 @@ public class IndicatorSeekBar extends View {
     public synchronized void setMin(float min) {
         this.mMin = Math.min(mMax, min);
         initProgressRangeValue();
+        collectTicksInfo();
         refreshSeekBarLocation();
         invalidate();
         updateStayIndicator();
@@ -1958,6 +1964,19 @@ public class IndicatorSeekBar extends View {
      */
     public void setUserSeekAble(boolean seekAble) {
         this.mUserSeekable = seekAble;
+    }
+
+    /**
+     * Sets the tick count
+     *
+     * @param tickCount
+     */
+    public synchronized void setTickCount(int tickCount) {
+        mTicksCount = tickCount;
+        initParams();
+        refreshSeekBarLocation();
+        invalidate();
+        updateStayIndicator();
     }
 
     /*------------------API END-------------------*/

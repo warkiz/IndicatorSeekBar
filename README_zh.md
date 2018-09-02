@@ -256,6 +256,7 @@ Feel free to contact me if you have any trouble on this project:
 ## Buy me a coffee
 
 Buy me a coffee by Alipay or WeChatPay, thanks
+
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true" width = "400" height = "531"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true" width = "387" height = "531"/>
 ## License
 

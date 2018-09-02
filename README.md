@@ -124,12 +124,13 @@ new IndicatorStayLayout(getContext()).attachTo(seekBar);
 ## Custom indicator's View
 
 You can custom the indicator View by below way:
+
 1.if you want to replace the indicator's View on top part, you can call:
 ```Java
  seekBar.getIndicator().setTopContentView(yourTopView);
 ```
 
-2.if you want to custom the indicator's View you want , you can call:
+or want to custom the indicator's View you want , you can call:
 ```Java
 seekBar.getIndicator().setContentView(yourView);
 ```
@@ -148,6 +149,7 @@ or want to show the tick text with prefix: `I am` ，the code like：
 
 ```Java
 seekBar.setIndicatorTextFormat("I am ${TICK_TEXT}")
+```
 
 ## Custom section tracks color
 The color of every block of seek bar can also be custom.
@@ -270,8 +272,8 @@ Feel free to contact me if you have any trouble on this project:
 ## Buy me a coffee
 
 Buy me a coffee by Alipay or WeChatPay, thanks
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true" width = "400" height = "606"/>
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true" width = "441" height = "606"/>
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true" width = "400" height = "531"/>
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true" width = "387" height = "531"/>
 ## License
 
 	Copyright (C) 2017 zhuangguangquan(庄广权)

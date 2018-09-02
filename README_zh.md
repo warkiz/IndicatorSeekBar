@@ -256,9 +256,9 @@ Feel free to contact me if you have any trouble on this project:
 ## Buy me a coffee
 
 Buy me a coffee by Alipay or WeChatPay, thanks
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true" width = "400" height = "606"/>
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true" width = "441" height = "606"/>
-## 证书
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true" width = "400" height = "531"/>
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true" width = "387" height = "531"/>
+## License
 
 	Copyright (C) 2017 zhuangguangquan(庄广权)
 
@@ -273,4 +273,3 @@ Buy me a coffee by Alipay or WeChatPay, thanks
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License.
-

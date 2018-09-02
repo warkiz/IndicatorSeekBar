@@ -7,15 +7,30 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        app:tabGravity="center"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="#FF4081"
-        app:tabTextColor="#FFF" />
+        android:orientation="vertical">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            app:tabGravity="center"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="#FF4081"
+            app:tabTextColor="#FFF" />
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/buy_me_a_coffee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more" />
+    </LinearLayout>
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"

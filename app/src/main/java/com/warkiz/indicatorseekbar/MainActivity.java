@@ -1,14 +1,14 @@
 package com.warkiz.indicatorseekbar;
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.warkiz.indicatorseekbar.donation.BaseActivity;
+import com.warkiz.indicatorseekbar.donation.DonationFragment;
 import com.warkiz.indicatorseekbar.fragment.ContinuousFragment;
 import com.warkiz.indicatorseekbar.fragment.CustomFragment;
 import com.warkiz.indicatorseekbar.fragment.DiscreteFragment;
@@ -22,15 +22,19 @@ import java.util.List;
  * created by zhuangguangquan on 2017/9/6
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
-    private static String[] sType = new String[]{"continuous", "discrete", "custom", "java", "indicator"};
+    private static String[] sType = new String[]{"continuous", "discrete", "custom", "java", "indicator", "donation"};
     private List<Fragment> mFragmentList = new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public int getLayoutResId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initCreate() {
+        super.initCreate();
         initFragment();
         initViews();
     }
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         mFragmentList.add(new CustomFragment());
         mFragmentList.add(new JavaBuildFragment());
         mFragmentList.add(new IndicatorFragment());
+        mFragmentList.add(new DonationFragment());
     }
 
     private void initViews() {
@@ -79,5 +84,6 @@ public class MainActivity extends AppCompatActivity {
             return sType[position];
         }
     }
+
 
 }

@@ -32,7 +32,7 @@ public class DonationFragment extends BaseFragment {
         if (AlipayUtil.hasInstalledAlipayClient(getContext())) {
             AlipayUtil.startAlipayClient(getActivity());
         } else {
-            Toast.makeText(getContext(), "No found alipay on your phone!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "No Alipay APP found on your phone!", Toast.LENGTH_LONG).show();
         }
     }
 

@@ -1,6 +1,6 @@
 # IndicatorSeekBar
 
-[![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
+[![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekBar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekBar/_latestVersion)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
 
@@ -22,7 +22,7 @@ This is a customizable SeekBar library on Android. Also, If you don't need indic
 ## Setup
 
 ```gradle
-implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.9'
+implementation 'com.github.warkiz.widget:indicatorseekBar:2.1.0'
 ```
 
 ## Usage
@@ -59,7 +59,7 @@ implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.9'
 
 ```Java
 
- IndicatorSeekBar seekbar = IndicatorSeekBar
+ IndicatorSeekBar seekBar = IndicatorSeekBar
                 .with(getContext())
                 .max(110)
                 .min(10)
@@ -110,7 +110,7 @@ By the way, make sure you had called the attr to show the indicator before.
 #### Java
 
 ```Java
-IndicatorSeekBar seekbar = IndicatorSeekBar
+IndicatorSeekBar seekBar = IndicatorSeekBar
                 .with(getContext())
                 .max(50)
                 .min(10)
@@ -118,7 +118,20 @@ IndicatorSeekBar seekbar = IndicatorSeekBar
                 ...
                 .build();
 
-new IndicatorStayLayout(getContext()).attachTo(seekbar);
+new IndicatorStayLayout(getContext()).attachTo(seekBar);
+```
+
+## Custom indicator's View
+
+You can custom the indicator View by below way:
+1.if you want to replace the indicator's View on top part, you can call:
+```Java
+ seekBar.getIndicator().setTopContentView(yourTopView);
+```
+
+2.if you want to custom the indicator's View you want , you can call:
+```Java
+seekBar.getIndicator().setContentView(yourView);
 ```
 
 ## Custom indicator's text
@@ -128,14 +141,13 @@ For example:
 If you want to show the progress with suffix: `%` ，the code like：
 
 ```Java
-seekbar.setIndicatorTextFormat("${PROGRESS} %")
+seekBar.setIndicatorTextFormat("${PROGRESS} %")
 ```
 
 or want to show the tick text with prefix: `I am` ，the code like：
 
 ```Java
-seekbar.setIndicatorTextFormat("I am ${TICK_TEXT}")
-```
+seekBar.setIndicatorTextFormat("I am ${TICK_TEXT}")
 
 ## Custom section tracks color
 The color of every block of seek bar can also be custom.
@@ -247,19 +259,22 @@ seekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
 
 ## Attributes
 
-[ attr.xml ](https://github.com/warkiz/IndicatorSeekBar/blob/master/indicatorseekbar/src/main/res/values/attr.xml)
+[ attr.xml ](https://github.com/warkiz/IndicatorSeekBar/blob/master/indicatorseekBar/src/main/res/values/attr.xml)
 
-## Support & Contact me
-
-Star to support me , many thanks!
+## Contact me
 
 Feel free to contact me if you have any trouble on this project:
 1. Create an issue.
 2. Send mail to me, "warkiz".concat("4j").concat("@").concat("gmail.com")
 
+## Buy me a coffee
+
+Buy me a coffee by Alipay or WeChatPay, thanks
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true" width = "400" height = "606"/>
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true" width = "441" height = "606"/>
 ## License
 
-	Copyright (C) 2017 zhuangguangquan warkiz
+	Copyright (C) 2017 zhuangguangquan(庄广权)
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.

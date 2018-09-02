@@ -22,7 +22,7 @@
 ## 初始化
 
 ```gradle
-implementation 'com.github.warkiz.widget:indicatorseekbar:2.0.9'
+implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.0'
 ```
 
 ## 使用
@@ -247,17 +247,20 @@ seekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
 
 [ attr.xml ](https://github.com/warkiz/IndicatorSeekBar/blob/master/indicatorseekbar/src/main/res/values/attr.xml)
 
-## 支持 & 联系我
-
-Star to support me , many thanks!
+## 联系我
 
 Feel free to contact me if you have any trouble on this project:
 1. Create an issue.
 2. Send mail to me, "warkiz".concat("4j").concat("@").concat("gmail.com")
 
-## 许可
+## Buy me a coffee
 
-	Copyright (C) 2017 zhuangguangquan warkiz
+Buy me a coffee by Alipay or WeChatPay, thanks
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true" width = "400" height = "606"/>
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true" width = "441" height = "606"/>
+## 证书
+
+	Copyright (C) 2017 zhuangguangquan(庄广权)
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -270,3 +273,4 @@ Feel free to contact me if you have any trouble on this project:
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License.
+

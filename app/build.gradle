@@ -5,7 +5,7 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.warkiz.indicatorseekbar"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 27
         versionCode 3
         versionName "2.0"

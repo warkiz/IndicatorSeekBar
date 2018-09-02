@@ -135,6 +135,7 @@ public class IndicatorSeekBar extends View {
     private float mThumbTextY;//the thumb text's drawing Y anchor
     private int mThumbTextColor;
     private boolean mHideThumb;
+    private boolean mAdjustAuto;
 
     public IndicatorSeekBar(Context context) {
         this(context, null);
@@ -196,6 +197,7 @@ public class IndicatorSeekBar extends View {
         //thumb
         mThumbSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_thumb_size, builder.thumbSize);
         mThumbDrawable = ta.getDrawable(R.styleable.IndicatorSeekBar_isb_thumb_drawable);
+        mAdjustAuto = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_thumb_adjust_auto,true);
         initThumbColor(ta.getColorStateList(R.styleable.IndicatorSeekBar_isb_thumb_color), builder.thumbColor);
         //thumb text
         mShowThumbText = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_show_thumb_text, builder.showThumbText);
@@ -1372,6 +1374,9 @@ public class IndicatorSeekBar extends View {
         if (mTicksCount < 3 || !mSeekSmoothly) {//it is not necessary to adjust while count less than 3 .
             return false;
         }
+        if (!mAdjustAuto){
+            return false;
+        }
         final int closestIndex = getClosestIndex();
         final float touchUpProgress = mProgress;
         ValueAnimator animator = ValueAnimator.ofFloat(0, Math.abs(touchUpProgress - mProgressArr[closestIndex]));
@@ -1978,6 +1983,16 @@ public class IndicatorSeekBar extends View {
         invalidate();
         updateStayIndicator();
     }
+
+    /**
+     * Sets the thumb move to the closed tick after touched up automatically, default true
+     *
+     * @param adjustAuto true if auto move after touched up.
+     */
+    public void setThumbAdjustAuto(boolean adjustAuto) {
+        mAdjustAuto = adjustAuto;
+    }
+
 
     /*------------------API END-------------------*/
 

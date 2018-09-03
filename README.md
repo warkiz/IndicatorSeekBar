@@ -1,6 +1,6 @@
 # IndicatorSeekBar
 
-[![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekBar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekBar/_latestVersion)
+[![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
 

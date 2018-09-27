@@ -265,7 +265,7 @@ seekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
 
 ## Attributes
 
-[ attr.xml ](https://github.com/warkiz/IndicatorSeekBar/blob/master/indicatorseekBar/src/main/res/values/attr.xml)
+[ attr.xml ](https://github.com/warkiz/IndicatorSeekBar/blob/master/indicatorseekbar/src/main/res/values/attr.xml)
 
 ## Contact me
 
@@ -281,13 +281,13 @@ Buy me a coffee by Alipay or WeChatPay, thanks
 ## License
 
 	Copyright (C) 2017 zhuangguangquan(庄广权)
-
+	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-
+	
 	   http://www.apache.org/licenses/LICENSE-2.0
-
+	
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.

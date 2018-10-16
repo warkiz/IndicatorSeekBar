@@ -56,7 +56,8 @@ implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.0'
     app:isb_track_background_color="@color/color_gray"
     app:isb_track_background_size="2dp"
     app:isb_track_progress_color="@color/color_blue"
-    app:isb_track_progress_size="4dp" />
+    app:isb_track_progress_size="4dp"
+    app:isb_only_thumb_draggable="false"/>
 ```
 
 #### Java
@@ -86,6 +87,7 @@ implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.0'
                 .trackProgressSize(4)
                 .trackBackgroundColor(getResources().getColor(R.color.color_gray))
                 .trackBackgroundSize(2)
+		.onlyThumbDraggable(false)
                 .build();
 
 ```

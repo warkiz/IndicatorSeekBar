@@ -1406,14 +1406,11 @@ public class IndicatorSeekBar extends View {
      * transfer the progress value to string type
      */
     private String getProgressString(float progress) {
-        String progressString;
         if (mIsFloatProgress) {
-            progressString = String.valueOf(BigDecimal.valueOf(progress).
-                    setScale(mScale, BigDecimal.ROUND_HALF_UP).floatValue());
+            return FormatUtils.fastFormat(progress, mScale);
         } else {
-            progressString = String.valueOf(Math.round(progress));
+            return String.valueOf(Math.round(progress));
         }
-        return progressString;
     }
 
     private int getClosestIndex() {

@@ -1018,10 +1018,7 @@ public class IndicatorSeekBar extends View {
         if (mThumbDrawable == null) {
             return;
         }
-        if (mThumbDrawable instanceof BitmapDrawable) {
-            mThumbBitmap = getDrawBitmap(mThumbDrawable, true);
-            mPressedThumbBitmap = mThumbBitmap;
-        } else if (mThumbDrawable instanceof StateListDrawable) {
+        if (mThumbDrawable instanceof StateListDrawable) {
             try {
                 StateListDrawable listDrawable = (StateListDrawable) mThumbDrawable;
                 Class<? extends StateListDrawable> aClass = listDrawable.getClass();
@@ -1049,12 +1046,12 @@ public class IndicatorSeekBar extends View {
                     throw new IllegalArgumentException("the format of the selector thumb drawable is wrong!");
                 }
             } catch (Exception e) {
-                throw new RuntimeException("Something wrong happened when parsing thumb selector drawable." + e.getMessage());
+                mThumbBitmap = getDrawBitmap(mThumbDrawable, true);
+                mPressedThumbBitmap = mThumbBitmap;
             }
-
         } else {
-            //please check your selector drawable's format, please see above to correct.
-            throw new IllegalArgumentException("Nonsupport this drawable's type for custom thumb drawable!");
+            mThumbBitmap = getDrawBitmap(mThumbDrawable, true);
+            mPressedThumbBitmap = mThumbBitmap;
         }
     }
 
@@ -1077,17 +1074,8 @@ public class IndicatorSeekBar extends View {
      * </selector>
      */
     private void initTickMarksBitmap() {
-        if (mTickMarksDrawable instanceof BitmapDrawable) {
-            mUnselectTickMarksBitmap = getDrawBitmap(mTickMarksDrawable, false);
-            mSelectTickMarksBitmap = mUnselectTickMarksBitmap;
-        } else if (mTickMarksDrawable instanceof StateListDrawable) {
+        if (mTickMarksDrawable instanceof StateListDrawable) {
             StateListDrawable listDrawable = (StateListDrawable) mTickMarksDrawable;
-            //This library has used some android hidden API ，so it‘s will occur some error if you android sdk is in normal.
-            // if you want to run this library with firm belief, you can download the hidden API [android.jar]
-            // (https://github.com/warkiz/android-hidden-api/blob/master/android-27/android.jar) and replace
-            // the old one in \SDK\platforms\android-27\ . Btw, take a backup first.
-//            int stateCount = listDrawable.getStateCount();
-
             try {
                 Class<? extends StateListDrawable> aClass = listDrawable.getClass();
                 Method getStateCount = aClass.getMethod("getStateCount");
@@ -1115,12 +1103,14 @@ public class IndicatorSeekBar extends View {
                     throw new IllegalArgumentException("the format of the selector TickMarks drawable is wrong!");
                 }
             } catch (Exception e) {
-                throw new RuntimeException("Something wrong happened when parsing TickMarks selector drawable." + e.getMessage());
+                mUnselectTickMarksBitmap = getDrawBitmap(mTickMarksDrawable, false);
+                mSelectTickMarksBitmap = mUnselectTickMarksBitmap;
             }
         } else {
-            //please check your selector drawable's format, please see above to correct.
-            throw new IllegalArgumentException("Nonsupport this drawable's type for custom TickMarks drawable!");
+            mUnselectTickMarksBitmap = getDrawBitmap(mTickMarksDrawable, false);
+            mSelectTickMarksBitmap = mUnselectTickMarksBitmap;
         }
+
     }
 
     @Override

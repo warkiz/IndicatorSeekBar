@@ -13,6 +13,8 @@ import android.view.View;
 
 /**
  * Created by zhuangguangquan on 2017/12/13.
+ * <p>
+ * https://github.com/warkiz/IndicatorSeekBar
  */
 
 public class CircleBubbleView extends View {

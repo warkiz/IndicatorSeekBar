@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 /**
  * created by zhuangguangquan on 2018/5/27
  * <p>
+ * https://github.com/warkiz/IndicatorSeekBar
+ * <p>
  * the container for IndicatorSeekBar to make the indicator stay always
  */
 public class IndicatorStayLayout extends LinearLayout {

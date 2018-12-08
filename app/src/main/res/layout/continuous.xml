@@ -115,6 +115,7 @@
                 app:isb_only_thumb_draggable="true"
                 app:isb_show_indicator="circular_bubble"
                 app:isb_show_tick_texts="true"
+                app:isb_thumb_drawable="@drawable/thumb"
                 app:isb_ticks_count="2" />
 
         </com.warkiz.widget.IndicatorStayLayout>

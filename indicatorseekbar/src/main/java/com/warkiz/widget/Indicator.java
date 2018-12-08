@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 /**
  * created by zhuangguangquan on 2017/9/9
+ * <p>
+ * https://github.com/warkiz/IndicatorSeekBar
  */
 public class Indicator {
     private final int mWindowWidth;
@@ -289,7 +291,7 @@ public class Indicator {
      * call this method to replace the current indicator with a new indicator view, indicator arrow will be replace ,too.
      *
      * @param customIndicatorView a new content view for indicator.
-     * @param progressTextView    this TextView will show the progress or tick text, must be found in @param topContentView
+     * @param progressTextView    this TextView will show the progress or tick text, must be found in @param customIndicatorView
      */
     public void setContentView(@NonNull View customIndicatorView, TextView progressTextView) {
         this.mProgressTextView = progressTextView;

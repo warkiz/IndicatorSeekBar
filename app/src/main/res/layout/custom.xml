@@ -150,6 +150,19 @@
             app:isb_tick_marks_color="#FFFFFFFF"
             app:isb_ticks_count="6" />
 
+        <TextView
+            style="@style/subtitle_text_style"
+            android:text="8. thumb_drawable=@drawable/thumb, tick_drawable=@drawable/tick_mark" />
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isb_progress="20"
+            app:isb_thumb_drawable="@drawable/thumb"
+            app:isb_thumb_size="26dp"
+            app:isb_tick_marks_drawable="@drawable/tick_mark"
+            app:isb_ticks_count="6" />
+
         <include layout="@layout/source_code_link" />
 
     </LinearLayout>

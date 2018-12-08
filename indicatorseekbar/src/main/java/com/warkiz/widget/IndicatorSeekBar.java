@@ -35,6 +35,8 @@ import java.math.BigDecimal;
 /**
  * created by zhuangguangquan on 2017/9/1
  * <p>
+ * https://github.com/warkiz/IndicatorSeekBar
+ * <p>
  * A custom SeekBar on Android, which can be changed the size ,
  * color , thumb drawable , tick drawable , texts , indicator;
  * also can show an indicator view above SeekBar when seeking.
@@ -1635,7 +1637,7 @@ public class IndicatorSeekBar extends View {
         lastProgress = mProgress;
         mProgress = progress < mMin ? mMin : (progress > mMax ? mMax : progress);
         //adjust to the closest tick's progress
-        if (mTicksCount > 2) {
+        if ((!mSeekSmoothly) && mTicksCount > 2) {
             mProgress = mProgressArr[getClosestIndex()];
         }
         setSeekListener(false);
@@ -1858,6 +1860,12 @@ public class IndicatorSeekBar extends View {
      * seekBar.setIndicatorTextFormat("${PROGRESS} %");
      * seekBar.setIndicatorTextFormat("${PROGRESS} miles");
      * seekBar.setIndicatorTextFormat("I am ${TICK_TEXT}%");
+     * <p>
+     * Kotlin：
+     * seekBar.setIndicatorTextFormat("\${PROGRESS} %");
+     * seekBar.setIndicatorTextFormat("\${PROGRESS} miles");
+     * seekBar.setIndicatorTextFormat("I am \${TICK_TEXT}%");
+     * <p>
      * <p>
      * make sure you have custom and show the tick text before you
      * use ${TICK_TEXT}% , otherwise will be shown a "" value.

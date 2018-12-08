@@ -10,7 +10,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
@@ -18,6 +17,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -143,9 +143,13 @@ public class IndicatorSeekBar extends View {
     }
 
     public IndicatorSeekBar(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        this.mContext = context;
+        initAttrs(mContext, attrs);
+        initParams();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public IndicatorSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.mContext = context;

@@ -384,8 +384,8 @@ public class IndicatorSeekBar extends View {
         }
         initTextsArray();
         //adjust thumb auto,so find out the closest progress in the mProgressArr array and replace it.
-        //it is not necessary to adjust thumb while count is less than 3.
-        if (mTicksCount > 2) {
+        //it is not necessary to adjust thumb while count is less than 2.
+        if (mTicksCount > 1) {
             mProgress = mProgressArr[getClosestIndex()];
             lastProgress = mProgress;
         }
@@ -526,7 +526,7 @@ public class IndicatorSeekBar extends View {
                     continue;
                 }
             }
-            if (i == getThumbPosOnTick() && mTicksCount > 2 && !mSeekSmoothly) {
+            if (i == getThumbPosOnTick() && mTicksCount > 1 && !mSeekSmoothly) {
                 continue;
             }
             if (i <= thumbPosFloat) {
@@ -628,7 +628,7 @@ public class IndicatorSeekBar extends View {
     }
 
     private void drawThumbText(Canvas canvas) {
-        if (!mShowThumbText || (mShowTickText && mTicksCount > 2)) {
+        if (!mShowThumbText || (mShowTickText && mTicksCount > 1)) {
             return;
         }
         mTextPaint.setColor(mThumbTextColor);
@@ -1266,8 +1266,8 @@ public class IndicatorSeekBar extends View {
     private float calculateTouchX(float touchX) {
         float touchXTemp = touchX;
         //make sure the seek bar to seek smoothly always
-        // while the tick's count is less than 3(tick's count is 1 or 2.).
-        if (mTicksCount > 2 && !mSeekSmoothly) {
+        // while the tick's count is less than 2(tick's count is 1).
+        if (mTicksCount > 1 && !mSeekSmoothly) {
             int touchBlockSize = Math.round((touchX - mPaddingLeft) / mSeekBlockLength);
             touchXTemp = mSeekBlockLength * touchBlockSize + mPaddingLeft;
         }
@@ -1366,7 +1366,7 @@ public class IndicatorSeekBar extends View {
     }
 
     private boolean autoAdjustThumb() {
-        if (mTicksCount < 3 || !mSeekSmoothly) {//it is not necessary to adjust while count less than 3 .
+        if (mTicksCount < 2 || !mSeekSmoothly) {//it is not necessary to adjust while count less than 2.
             return false;
         }
         if (!mAdjustAuto) {
@@ -1402,14 +1402,11 @@ public class IndicatorSeekBar extends View {
      * transfer the progress value to string type
      */
     private String getProgressString(float progress) {
-        String progressString;
         if (mIsFloatProgress) {
-            progressString = String.valueOf(BigDecimal.valueOf(progress).
-                    setScale(mScale, BigDecimal.ROUND_HALF_UP).floatValue());
+            return FormatUtils.fastFormat(progress, mScale);
         } else {
-            progressString = String.valueOf(Math.round(progress));
+            return String.valueOf(Math.round(progress));
         }
-        return progressString;
     }
 
     private int getClosestIndex() {
@@ -1446,7 +1443,7 @@ public class IndicatorSeekBar extends View {
         mSeekParams.progressFloat = getProgressFloat();
         mSeekParams.fromUser = formUser;
         //for discrete series seek bar
-        if (mTicksCount > 2) {
+        if (mTicksCount > 1) {
             int rawThumbPos = getThumbPosOnTick();
             if (mShowTickText && mTickTextsArr != null) {
                 mSeekParams.tickText = mTickTextsArr[rawThumbPos];
@@ -1536,7 +1533,7 @@ public class IndicatorSeekBar extends View {
 
     String getIndicatorTextString() {
         if (mIndicatorTextFormat != null && mIndicatorTextFormat.contains(FORMAT_TICK_TEXT)) {
-            if (mTicksCount > 2 && mTickTextsArr != null) {
+            if (mTicksCount > 1 && mTickTextsArr != null) {
                 return mIndicatorTextFormat.replace(FORMAT_TICK_TEXT, mTickTextsArr[getThumbPosOnTick()]);
             }
         } else if (mIndicatorTextFormat != null && mIndicatorTextFormat.contains(FORMAT_PROGRESS)) {
@@ -1631,7 +1628,7 @@ public class IndicatorSeekBar extends View {
         lastProgress = mProgress;
         mProgress = progress < mMin ? mMin : (progress > mMax ? mMax : progress);
         //adjust to the closest tick's progress
-        if ((!mSeekSmoothly) && mTicksCount > 2) {
+        if ((!mSeekSmoothly) && mTicksCount > 1) {
             mProgress = mProgressArr[getClosestIndex()];
         }
         setSeekListener(false);
@@ -1854,12 +1851,6 @@ public class IndicatorSeekBar extends View {
      * seekBar.setIndicatorTextFormat("${PROGRESS} %");
      * seekBar.setIndicatorTextFormat("${PROGRESS} miles");
      * seekBar.setIndicatorTextFormat("I am ${TICK_TEXT}%");
-     * <p>
-     * Kotlin：
-     * seekBar.setIndicatorTextFormat("\${PROGRESS} %");
-     * seekBar.setIndicatorTextFormat("\${PROGRESS} miles");
-     * seekBar.setIndicatorTextFormat("I am \${TICK_TEXT}%");
-     * <p>
      * <p>
      * make sure you have custom and show the tick text before you
      * use ${TICK_TEXT}% , otherwise will be shown a "" value.

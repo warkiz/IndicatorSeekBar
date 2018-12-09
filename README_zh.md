@@ -27,7 +27,7 @@
 ## 初始化
 
 ```gradle
-implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.0'
+implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.1'
 ```
 
 ## 使用
@@ -133,12 +133,18 @@ new IndicatorStayLayout(getContext()).attachTo(seekbar);
 
 ```Java
 seekbar.setIndicatorTextFormat("${PROGRESS} %")
+
+Kotlin:
+seekbar.setIndicatorTextFormat("\${PROGRESS} %")
 ```
 
 如果你想显示带前缀 `I am`的指示器tick text文字 ，代码如下：
 
 ```Java
 seekbar.setIndicatorTextFormat("I am ${TICK_TEXT}")
+
+Kotlin:
+seekbar.setIndicatorTextFormat("I am \${TICK_TEXT}")
 ```
 
 ## 自定义每一节的track块颜色

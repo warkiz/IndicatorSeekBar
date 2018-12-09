@@ -26,7 +26,7 @@ This is a customizable SeekBar library on Android. Also, If you don't need indic
 ## Setup
 
 ```gradle
-implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.0'
+implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.1'
 ```
 
 ## Usage
@@ -149,12 +149,18 @@ If you want to show the progress with suffix: `%` ，the code like：
 
 ```Java
 seekBar.setIndicatorTextFormat("${PROGRESS} %")
+
+Kotlin:
+seekBar.setIndicatorTextFormat("\${PROGRESS} %")
 ```
 
 or want to show the tick text with prefix: `I am` ，the code like：
 
 ```Java
 seekBar.setIndicatorTextFormat("I am ${TICK_TEXT}")
+
+Kotlin:
+seekBar.setIndicatorTextFormat("I am \${TICK_TEXT}")
 ```
 
 ## Custom section tracks color

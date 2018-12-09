@@ -11,27 +11,18 @@ import java.util.Arrays;
 class FormatUtils {
 
     private final static char[][] LEADING_DECIMALS = new char[][]{
-        "0.".toCharArray(), "0.0".toCharArray(),
-        "0.00".toCharArray(), "0.000".toCharArray(), "0.0000".toCharArray(),
-        "0.00000".toCharArray(),
-        "0.000000".toCharArray(), "0.0000000".toCharArray(), "0.00000000".toCharArray(),
-        "0.000000000".toCharArray(), "0.0000000000".toCharArray(), "0.00000000000".toCharArray(),
-        "0.000000000000".toCharArray(), "0.0000000000000".toCharArray(),
-        "0.00000000000000".toCharArray(),
-        "0.000000000000000".toCharArray()
+            "0.".toCharArray(), "0.0".toCharArray(),
+            "0.00".toCharArray(), "0.000".toCharArray(), "0.0000".toCharArray(),
+            "0.00000".toCharArray(),
+            "0.000000".toCharArray(), "0.0000000".toCharArray(), "0.00000000".toCharArray(),
+            "0.000000000".toCharArray(), "0.0000000000".toCharArray(), "0.00000000000".toCharArray(),
+            "0.000000000000".toCharArray(), "0.0000000000000".toCharArray(),
+            "0.00000000000000".toCharArray(),
+            "0.000000000000000".toCharArray()
     };
 
     /**
-     * 快速格式化一个double，尾零去除（非对齐）<br>
-     * 等同于:<br>
-     * NumberFormat f = NumberFormat.getNumberInstance();<br>
-     * f.setGroupingUsed(false);<br>
-     * f.setMaximumFractionDigits(precision);<br>
-     * f.format(d);<br>
-     * 但一般情况效率高于NumberFormat一倍，且精度无丢失。<br>
-     *
-     * @param d         the double value
-     * @param precision [0,16]
+     * format a double value quickly, will remove the suffix:0
      */
     static String fastFormat(double d, int precision) {
         int posPrecision = Math.abs(precision);
@@ -56,7 +47,7 @@ class FormatUtils {
                 System.arraycopy(longPartChars, 0, formatChars, 0, decIndex);
                 formatChars[decIndex] = '.';
                 System.arraycopy(longPartChars, decIndex, formatChars,
-                    decIndex + 1, end - decIndex + 1);
+                        decIndex + 1, end - decIndex + 1);
             } else {
                 formatChars = new char[decIndex];
                 System.arraycopy(longPartChars, 0, formatChars, 0, decIndex);
@@ -75,7 +66,7 @@ class FormatUtils {
 
     private static String bigDecFormat(double d, int precision) {
         String formatStr = new BigDecimal(Double.toString(d)).setScale(Math.abs(precision), RoundingMode.HALF_UP)
-            .toString();
+                .toString();
         if (precision == 0) {
             return formatStr;
         }

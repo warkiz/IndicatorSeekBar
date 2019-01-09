@@ -290,10 +290,21 @@ Buy me a coffee by Alipay or WeChatPay, thanks
 
 感谢所有之前支持我的朋友。如果下次你要给我打赏，可以顺带写上你的github地址，我会在这里用链接贴出来，算是相互鼓励。
 
-感谢你们的支持。
+##捐赠列表
 
+非常感谢列表中的朋友，你们的肯定和支持是我前进的最大动力！
 
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true" width = "400" height = "531"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true" width = "387" height = "531"/>
+昵称 | 日期 | 方式 | 留言	| 友情连接
+- | :-: |:-: |:-: | -:
+*j!n | 2019-01-08| 微信| 666| [ jincom ](https://github.com/jincom)
+*乐 | 2018-12-19| 支付宝|  |
+*勇 | 2018-12-05| 微信|  |
+*天佑 | 2018-11-05| 支付宝|  |
+*勇 | 2018-10-16| 支付宝|  |
+*利成 | 2018-05-22| 支付宝|  |
+
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true" /><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true" />
+
 ## License
 
 	Copyright (C) 2017 zhuangguangquan(庄广权)

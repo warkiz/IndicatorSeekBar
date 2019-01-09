@@ -286,6 +286,12 @@ Buy me a coffee by Alipay or WeChatPay, thanks
 *勇 | 2018-10-16| 支付宝|  |
 *利成 | 2018-05-22| 支付宝|  |
 
+
+|昵称|日期|方式|留言|友情连接|
+|:---:|:---:|:---:|:---:|:---:|
+|[*1]|2019-11-15|微信|2|1|
+|[*2]|2019-14|微信|2|1|
+
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true" /><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true" />
 
 ## License

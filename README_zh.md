@@ -260,22 +260,19 @@ seekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
 
 ## 联系我
 
-Feel free to contact me if you have any trouble on this project:
-1. Create an issue.
-2. Send mail to me, "warkiz".concat("4j").concat("@").concat("gmail.com")
+如果你对项目有疑问，欢迎通过下面的方式联系我:
+1. 提交issue.
+2. 发邮件, "warkiz".concat("4j").concat("@").concat("gmail.com")
 
-## Buy me a coffee
+## 捐赠
 
-Buy me a coffee by Alipay or WeChatPay, thanks
-
-感谢：
-自从在文档里公布了二维码，我收到国内的朋友的一些打赏，虽然金额不大，但是一些支持和鼓励的话语还是让我感到开心，非常感谢。
+    自从在文档里公布了二维码，我收到国内的朋友的一些打赏，虽然金额不大，但是一些支持和鼓励的话语还是让我感到开心，非常感谢。
 
 感谢所有之前支持我的朋友。如果下次你要给我打赏，可以顺带写上你的github地址，我会在这里用链接贴出来，算是相互鼓励。
 
 ## 捐赠列表
 
-非常感谢列表中的朋友，你们的肯定和支持是我前进的最大动力！
+    非常感谢列表中的朋友，你们的肯定和支持是我前进的最大动力！
 
 |昵称|日期|方式|留言|友情连接|
 |:---:|:---:|:---:|:---:|:---:|
@@ -288,7 +285,7 @@ Buy me a coffee by Alipay or WeChatPay, thanks
 
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true" /><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true" />
 
-## License
+## 证书
 
 	Copyright (C) 2017 zhuangguangquan(庄广权)
 

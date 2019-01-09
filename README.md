@@ -294,14 +294,14 @@ Buy me a coffee by Alipay or WeChatPay, thanks
 
 非常感谢列表中的朋友，你们的肯定和支持是我前进的最大动力！
 
-昵称 | 日期 | 方式 | 留言	| 友情连接
-- | :-: |:-: |:-: | -:
-*j!n | 2019-01-08| 微信| 666| [ jincom ](https://github.com/jincom)
-*乐 | 2018-12-19| 支付宝|  |
-*勇 | 2018-12-05| 微信|  |
-*天佑 | 2018-11-05| 支付宝|  |
-*勇 | 2018-10-16| 支付宝|  |
-*利成 | 2018-05-22| 支付宝|  |
+|昵称|日期|方式|留言|友情连接|
+|:---:|:---:|:---:|:---:|:---:|
+|[*j!n]|2019-01-08|微信|666|[jincom](https://github.com/jincom)|
+|[*乐]|2018-12-19|支付宝| | |
+|[*勇]|2018-12-05|微信| | |
+|[*天佑]|2018-11-05|支付宝| | |
+|[*勇]|2018-10-16|支付宝| | |
+|[*利成]|2018-05-22|支付宝| | |
 
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true" /><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true" />
 

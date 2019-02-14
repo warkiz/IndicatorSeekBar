@@ -293,7 +293,8 @@ Feel free to contact me if you have any trouble on this project:
 
 |昵称|日期|方式|留言|友情连接|
 |:---:|:---:|:---:|:---:|:---:|
-|[*j!n]|2019-01-08|微信|666|[jincom](https://github.com/jincom)|
+|[*兴明]|2019-02-12|支付宝| |[GitHub/jdpxiaoming](https://github.com/jdpxiaoming)|
+|[*j!n]|2019-01-08|微信|666|[GitHub/jincom](https://github.com/jincom)|
 |[*乐]|2018-12-19|支付宝| | |
 |[*勇]|2018-12-05|微信| | |
 |[*天佑]|2018-11-05|支付宝| | |

@@ -53,7 +53,8 @@ public class IndicatorSeekBar extends View {
     private Rect mRect;
     private float mCustomDrawableMaxHeight;//the max height for custom drawable
     private float lastProgress;
-    private float mFaultTolerance = -1;//the tolerance for user seek bar touching
+    private float mFaultToleranceHorizontal = -1;//the tolerance for user seek bar touching horizontally
+    private float mFaultToleranceVertical = -1;//the tolerance for user seek bar touching vertically
     private float mScreenWidth = -1;
     private boolean mClearPadding;
     private SeekParams mSeekParams;//save the params when seeking change.
@@ -193,6 +194,8 @@ public class IndicatorSeekBar extends View {
         mOnlyThumbDraggable = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_only_thumb_draggable, builder.onlyThumbDraggable);
         mSeekSmoothly = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_seek_smoothly, builder.seekSmoothly);
         mR2L = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_r2l, builder.r2l);
+        mFaultToleranceHorizontal = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_horizontal_touch_gap, SizeUtils.dp2px(context, 5));
+        mFaultToleranceVertical = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_vertical_touch_gap, SizeUtils.dp2px(context, 5));
         //track
         mBackgroundTrackSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_track_background_size, builder.trackBackgroundSize);
         mProgressTrackSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_track_progress_size, builder.trackProgressSize);
@@ -1278,11 +1281,14 @@ public class IndicatorSeekBar extends View {
     }
 
     private boolean isTouchSeekBar(float mX, float mY) {
-        if (mFaultTolerance == -1) {
-            mFaultTolerance = SizeUtils.dp2px(mContext, 5);
+        if (mFaultToleranceVertical == -1) {
+            mFaultToleranceVertical = SizeUtils.dp2px(mContext, 5);
         }
-        boolean inWidthRange = mX >= (mPaddingLeft - 2 * mFaultTolerance) && mX <= (mMeasuredWidth - mPaddingRight + 2 * mFaultTolerance);
-        boolean inHeightRange = mY >= mProgressTrack.top - mThumbTouchRadius - mFaultTolerance && mY <= mProgressTrack.top + mThumbTouchRadius + mFaultTolerance;
+        if (mFaultToleranceHorizontal == -1) {
+            mFaultToleranceHorizontal = SizeUtils.dp2px(mContext, 5);
+        }
+        boolean inWidthRange = mX >= (mPaddingLeft - 2 * mFaultToleranceHorizontal) && mX <= (mMeasuredWidth - mPaddingRight + 2 * mFaultToleranceHorizontal);
+        boolean inHeightRange = mY >= mProgressTrack.top - mThumbTouchRadius - mFaultToleranceVertical && mY <= mProgressTrack.top + mThumbTouchRadius + mFaultToleranceVertical;
         return inWidthRange && inHeightRange;
     }
 

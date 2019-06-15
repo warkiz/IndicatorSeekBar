@@ -9,6 +9,8 @@
         <attr name="isb_seek_smoothly" format="boolean" /><!--true to seek smoothly when has ticks, default false-->
         <attr name="isb_r2l" format="boolean" /><!--compat app local change,like arabic local, default false-->
         <attr name="isb_ticks_count" format="integer" /><!--seekBar's ticks count, default zero-->
+        <attr name="isb_horizontal_touch_gap" format="dimension|reference" /><!--seekBar's ticks count, default zero-->
+        <attr name="isb_vertical_touch_gap" format="dimension|reference" /><!--seekBar's ticks count, default zero-->
         <attr name="isb_user_seekable" format="boolean" /><!--prevent user from seeking,only can be change thumb location by setProgress(), default false-->
         <attr name="isb_clear_default_padding" format="boolean" /><!-- set seekBar's leftPadding&rightPadding to zero, default false, default padding is 16dp-->
         <attr name="isb_only_thumb_draggable" format="boolean" /><!--user change the thumb's location by touching thumb/touching track,true for touching track to seek. false for touching thumb; default false-->

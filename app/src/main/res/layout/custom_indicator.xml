@@ -61,20 +61,11 @@
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="30dp"
-            android:paddingBottom="30dp"
             app:isb_indicator_content_layout="@layout/custom_indicator_oval"
-            app:isb_max="5"
-            app:isb_min="1"
-            app:isb_only_thumb_draggable="false"
             app:isb_progress="75"
             app:isb_show_indicator="custom"
             app:isb_show_tick_marks_type="divider"
-            app:isb_thumb_color="#3cd200"
-            app:isb_thumb_size="20dp"
-            app:isb_ticks_count="5"
-            app:isb_track_progress_size="4dp"
-            app:isb_vertical_touch_gap="30dp" />
+            app:isb_ticks_count="6" />
 
         <TextView
             style="@style/subtitle_text_style"

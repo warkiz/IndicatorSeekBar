@@ -6,6 +6,7 @@
 
 这是一个安卓自定义SeekBar库。 另外, 如果你不需要指示器并且希望文字显示在SeekBar的顶部, 请看另外一个[SeekBar库](https://github.com/warkiz/TickSeekBar)。  [  English.md ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README.md)
 
+
 ## 预览
 
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
@@ -13,13 +14,13 @@
 
 ## 截图
 
-
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/continuous.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_1.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/discrete_2.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/custom.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/java_build.gif?raw=true" width = "264" height = "464"/><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/indicator.gif?raw=true" width = "264" height = "464"/>
 
 ## 演示
 [下载demo.apk](https://github.com/warkiz/IndicatorSeekBar/raw/master/apk/demo.apk)
 
  扫码下载：
+
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/downloadQRcode.png?raw=true" width = "100" height = "100"/>
 
 
@@ -258,37 +259,29 @@ seekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
 
 [ attr.xml ](https://github.com/warkiz/IndicatorSeekBar/blob/master/indicatorseekbar/src/main/res/values/attr.xml)
 
+##Buy Me a cup of tea, thanks
+So happy to receive your donation or encouraging words, and give me your github site that I could post it on my [ thanks-lists ](https://github.com/warkiz/IndicatorSeekBar#Thanks-lists)
+, thanks.
+
+<a href='https://www.paypal.me/BuyMeACupOfTeaThx' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/Paypal.png?raw=true?' border='0' /></a>
+
+## 打赏
+
+自从文档里公布了二维码，我收到国内的朋友的一些打赏，虽然金额不大，但是一些支持和鼓励的话语还是让我感到开心，非常感谢。
+
+感谢所有之前支持我的朋友。如果下次你要给我打赏，可以顺带写上你的github地址，我会在这里用[ 链接 ](https://github.com/warkiz/IndicatorSeekBar#Thanks-lists)贴出来，算是相互鼓励。
+
+<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true" /><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true" />
+
 ## 联系我
 
 如果你对项目有疑问，欢迎通过下面的方式联系我:
 1. 提交issue.
 2. 发邮件, "warkiz".concat("4j").concat("@").concat("gmail.com")
 
-## 捐赠
-
-自从在文档里公布了二维码，我收到国内的朋友的一些打赏，虽然金额不大，但是一些支持和鼓励的话语还是让我感到开心，非常感谢。
-
-感谢所有之前支持我的朋友。如果下次你要给我打赏，可以顺带写上你的github地址，我会在这里用链接贴出来，算是相互鼓励。
-
-## 捐赠列表
-
-非常感谢列表中的朋友，你们的肯定和支持是我前进的最大动力！
-
-|昵称|日期|方式|留言|友情连接|
-|:---:|:---:|:---:|:---:|:---:|
-|[*兴明]|2019-02-12|支付宝| |[GitHub/jdpxiaoming](https://github.com/jdpxiaoming)|
-|[*j!n]|2019-01-08|微信|666|[GitHub/jincom](https://github.com/jincom)|
-|[*乐]|2018-12-19|支付宝| | |
-|[*勇]|2018-12-05|微信| | |
-|[*天佑]|2018-11-05|支付宝| | |
-|[*勇]|2018-10-16|支付宝| | |
-|[*利成]|2018-05-22|支付宝| | |
-
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true" /><img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true" />
-
 ## 证书
 
-	Copyright (C) 2017 zhuangguangquan(庄广权)
+	Copyright (C) 2017 zhuangguangquan
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.

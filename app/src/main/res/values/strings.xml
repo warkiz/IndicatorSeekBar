@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">IndicatorSeekBar</string>
+    <string name="alipay">Ali-pay</string>
+    <string name="wechatpay">Wechat-pay</string>
+    <string name="paypal">Paypal</string>
+    <string name="buy_me_a_coffee">Buy me a coffee,thanks</string>
 </resources>

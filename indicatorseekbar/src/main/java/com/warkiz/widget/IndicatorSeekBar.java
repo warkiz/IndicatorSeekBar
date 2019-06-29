@@ -31,6 +31,7 @@ import android.view.animation.Animation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * created by zhuangguangquan on 2017/9/1
@@ -83,6 +84,10 @@ public class IndicatorSeekBar extends View {
     private boolean mSeekSmoothly;//seek continuously
     private float[] mProgressArr;//save the progress which at tickMark position.
     private boolean mR2L;//right to left,compat local problem.
+    private boolean mLongClick;//true if seekbar responds on longClick
+    private int mLongClickTime;//time (in ms) passed before responds onlongClick
+    private long startTime;
+    private long endTime;
     //tick texts
     private boolean mShowTickText;//the palace where the tick text show .
     private boolean mShowBothTickTextsOnly;//show the tick texts on the both ends of seek bar before.
@@ -201,6 +206,8 @@ public class IndicatorSeekBar extends View {
         mOnlyThumbDraggable = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_only_thumb_draggable, builder.onlyThumbDraggable);
         mSeekSmoothly = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_seek_smoothly, builder.seekSmoothly);
         mR2L = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_r2l, builder.r2l);
+        mLongClick = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_longclick, builder.longClick);
+        mLongClickTime = ta.getInteger(R.styleable.IndicatorSeekBar_isb_longclick_time, builder.longClickTime);
         //track
         mBackgroundTrackSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_track_background_size, builder.trackBackgroundSize);
         mProgressTrackSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_track_progress_size, builder.trackProgressSize);
@@ -1214,18 +1221,43 @@ public class IndicatorSeekBar extends View {
                     if (mSeekChangeListener != null) {
                         mSeekChangeListener.onStartTrackingTouch(this);
                     }
-                    refreshSeekBar(event);
+                    if(!mLongClick) {
+                        refreshSeekBar(event);
+                    }
+                    else{
+                        startTime = event.getEventTime();
+                    }
                     return true;
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                refreshSeekBar(event);
+                if(mLongClick) {
+                    endTime = event.getEventTime();
+                    if (endTime - startTime > mLongClickTime) {
+                        refreshSeekBar(event);
+                    }
+                }
+                else{
+                    refreshSeekBar(event);
+                }
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 mIsTouching = false;
-                if (mSeekChangeListener != null) {
-                    mSeekChangeListener.onStopTrackingTouch(this);
+
+                if(mLongClick) {
+                    endTime = event.getEventTime();
+                    if (endTime - startTime > mLongClickTime) {
+                        refreshSeekBar(event);
+                        if (mSeekChangeListener != null) {
+                            mSeekChangeListener.onStopTrackingTouch(this);
+                        }
+                    }
+                }
+                else{
+                    if (mSeekChangeListener != null) {
+                        mSeekChangeListener.onStopTrackingTouch(this);
+                    }
                 }
                 if (!autoAdjustThumb()) {
                     invalidate();

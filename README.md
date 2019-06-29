@@ -280,12 +280,7 @@ seekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
 So happy to receive your donation or encouraging words , and I will post this on my [ thanks-lists ](https://github.com/warkiz/IndicatorSeekBar#Thanks-lists)
 , thanks.
 
-## Donation
-
-So happy to receive your donation or encouraging words, and give me your github site that I could post it on my [ thanks-lists ](https://github.com/warkiz/IndicatorSeekBar#Thanks-lists)
-, thanks.
-
-## 打赏
+## 打赏([ 支付宝 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true))([ 微信支付 ](https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true))
 
 自从文档里公布了二维码，我收到国内的朋友的一些打赏，虽然金额不大，但是一些支持和鼓励的话语还是让我感到开心，非常感谢。
 

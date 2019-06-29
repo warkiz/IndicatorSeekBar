@@ -259,12 +259,10 @@ seekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
 
 [ attr.xml ](https://github.com/warkiz/IndicatorSeekBar/blob/master/indicatorseekbar/src/main/res/values/attr.xml)
 
-## Buy Me a cup of tea, thanks
+## Donation by [ Paypal ](https://www.paypal.me/BuyMeACupOfTeaThx), thanks
 
-So happy to receive your donation or encouraging words, and give me your github site that I could post it on my [ thanks-lists ](https://github.com/warkiz/IndicatorSeekBar#Thanks-lists)
+So happy to receive your donation or encouraging words , and I will post this on my [ thanks-lists ](https://github.com/warkiz/IndicatorSeekBar#Thanks-lists)
 , thanks.
-
-<a href='https://www.paypal.me/BuyMeACupOfTeaThx' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/Paypal.png?raw=true?' border='0' /></a>
 
 ## 打赏
 

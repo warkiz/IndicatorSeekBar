@@ -275,6 +275,11 @@ seekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
 
 [ attr.xml ](https://github.com/warkiz/IndicatorSeekBar/blob/master/indicatorseekbar/src/main/res/values/attr.xml)
 
+## Donation by [ Paypal ](https://www.paypal.me/BuyMeACupOfTeaThx), thanks
+
+So happy to receive your donation or encouraging words , and I will post this on my [ thanks-lists ](https://github.com/warkiz/IndicatorSeekBar#Thanks-lists)
+, thanks.
+
 ## Donation
 
 So happy to receive your donation or encouraging words, and give me your github site that I could post it on my [ thanks-lists ](https://github.com/warkiz/IndicatorSeekBar#Thanks-lists)

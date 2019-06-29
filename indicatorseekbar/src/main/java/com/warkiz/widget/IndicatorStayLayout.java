@@ -10,9 +10,15 @@ import android.widget.LinearLayout;
 /**
  * created by zhuangguangquan on 2018/5/27
  * <p>
+ * the container for IndicatorSeekBar to make the indicator stay always
+ * <p>
  * https://github.com/warkiz/IndicatorSeekBar
  * <p>
- * the container for IndicatorSeekBar to make the indicator stay always
+ * Donation/打赏:
+ * If this library is helpful to you ,you can give me a donation by @see <a href="https://www.paypal.me/BuyMeACupOfTeaThx">ZhuanGuangQuan's Paypal</a>,
+ * or @see <a href="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true">微信支付</a>,
+ * or @see <a href="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true">支付宝</a>
+ * <p>
  */
 public class IndicatorStayLayout extends LinearLayout {
 

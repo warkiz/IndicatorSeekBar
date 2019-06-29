@@ -20,7 +20,6 @@ public class SeekParams {
     public float progressFloat;
     //True if the progress change was initiated by the user, otherwise by setProgress() programmatically.
     public boolean fromUser;
-
     //for discrete series seek bar
     //the thumb location on tick when the section changed, continuous series will be zero.
     public int thumbPosition;

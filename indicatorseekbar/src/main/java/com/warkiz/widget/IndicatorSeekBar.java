@@ -35,11 +35,17 @@ import java.math.BigDecimal;
 /**
  * created by zhuangguangquan on 2017/9/1
  * <p>
- * https://github.com/warkiz/IndicatorSeekBar
- * <p>
  * A custom SeekBar on Android, which can be changed the size ,
  * color , thumb drawable , tick drawable , texts , indicator;
  * also can show an indicator view above SeekBar when seeking.
+ * <p>
+ * https://github.com/warkiz/IndicatorSeekBar
+ * <p>
+ * Donation/打赏:
+ * If this library is helpful to you ,you can give me a donation by @see <a href="https://www.paypal.me/BuyMeACupOfTeaThx">ZhuanGuangQuan's Paypal</a>,
+ * or @see <a href="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/wechat_pay.png?raw=true">微信支付</a>,
+ * or @see <a href="https://github.com/warkiz/IndicatorSeekBar/blob/master/app/src/main/res/mipmap-xxhdpi/alipay.png?raw=true">支付宝</a>
+ * <p>
  */
 
 public class IndicatorSeekBar extends View {

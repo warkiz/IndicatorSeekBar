@@ -285,8 +285,6 @@ So happy to receive your donation or encouraging words , and I will post this on
 So happy to receive your donation or encouraging words, and give me your github site that I could post it on my [ thanks-lists ](https://github.com/warkiz/IndicatorSeekBar#Thanks-lists)
 , thanks.
 
-<a href='https://www.paypal.me/BuyMeACupOfTeaThx' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/Paypal.png?raw=true?' border='0' /></a>
-
 ## 打赏
 
 自从文档里公布了二维码，我收到国内的朋友的一些打赏，虽然金额不大，但是一些支持和鼓励的话语还是让我感到开心，非常感谢。

@@ -275,7 +275,8 @@ seekBar.setOnSeekChangeListener(new OnSeekChangeListener() {
 
 [ attr.xml ](https://github.com/warkiz/IndicatorSeekBar/blob/master/indicatorseekbar/src/main/res/values/attr.xml)
 
-##Buy Me a cup of tea, thanks
+## Donation
+
 So happy to receive your donation or encouraging words, and give me your github site that I could post it on my [ thanks-lists ](https://github.com/warkiz/IndicatorSeekBar#Thanks-lists)
 , thanks.
 
@@ -289,8 +290,9 @@ So happy to receive your donation or encouraging words, and give me your github 
 
 ## Thanks-lists
 
-Thanks for all the friends on the lists!
 非常感谢列表中的朋友，你们的肯定和支持是我前进的最大动力！
+
+Thanks for all the friends on the lists!
 
 |Name/昵称|Date/日期|Payment Tools/方式|Words/留言|Friendly link/友情连接|
 |:---:|:---:|:---:|:---:|:---:|

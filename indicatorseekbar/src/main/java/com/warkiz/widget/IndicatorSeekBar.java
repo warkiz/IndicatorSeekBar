@@ -1623,7 +1623,18 @@ public class IndicatorSeekBar extends View {
     public OnSeekChangeListener getOnSeekChangeListener() {
         return mSeekChangeListener;
     }
-
+    /**
+     * Sets the tick count
+     *
+     * @param tickCount
+     */
+    public synchronized void setTickCount(int tickCount) {
+        mTicksCount = tickCount;
+        initProgressRangeValue();
+        refreshSeekBarLocation();
+        invalidate();
+        updateStayIndicator();
+    }
     /**
      * Sets the current progress to the specified value.also,
      * if the seek bar's tick'count is larger than 2,the progress will adjust to the closest tick's progress auto.

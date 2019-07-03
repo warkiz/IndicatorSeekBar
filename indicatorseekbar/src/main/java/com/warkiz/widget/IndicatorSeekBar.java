@@ -1542,7 +1542,7 @@ public class IndicatorSeekBar extends View {
     String getIndicatorTextString() {
         if (mIndicatorTextFormat != null && mIndicatorTextFormat.contains(FORMAT_TICK_TEXT)) {
             if (mTicksCount > 2 && mTickTextsArr != null) {
-                return mIndicatorTextFormat.replace(FORMAT_TICK_TEXT, mTickTextsArr[getThumbPosOnTick()]);
+                return mIndicatorTextFormat.replace(FORMAT_TICK_TEXT, mTickTextsArr[mR2L ? mTicksCount - getThumbPosOnTick() - 1 : getThumbPosOnTick()]);
             }
         } else if (mIndicatorTextFormat != null && mIndicatorTextFormat.contains(FORMAT_PROGRESS)) {
             return mIndicatorTextFormat.replace(FORMAT_PROGRESS, getProgressString(mProgress));

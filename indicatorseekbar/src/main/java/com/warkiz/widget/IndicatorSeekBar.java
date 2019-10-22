@@ -31,6 +31,7 @@ import android.view.animation.Animation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * created by zhuangguangquan on 2017/9/1
@@ -51,7 +52,6 @@ import java.math.BigDecimal;
  */
 
 public class IndicatorSeekBar extends View {
-    private static final int THUMB_MAX_WIDTH = 30;
     private static final String FORMAT_PROGRESS = "${PROGRESS}";
     private static final String FORMAT_TICK_TEXT = "${TICK_TEXT}";
     private Context mContext;
@@ -83,6 +83,10 @@ public class IndicatorSeekBar extends View {
     private boolean mSeekSmoothly;//seek continuously
     private float[] mProgressArr;//save the progress which at tickMark position.
     private boolean mR2L;//right to left,compat local problem.
+    private boolean mLongClick;//true if seekbar responds on longClick
+    private int mLongClickTime;//time (in ms) passed before responds onlongClick
+    private long startTime;
+    private long endTime;
     //tick texts
     private boolean mShowTickText;//the palace where the tick text show .
     private boolean mShowBothTickTextsOnly;//show the tick texts on the both ends of seek bar before.
@@ -201,6 +205,8 @@ public class IndicatorSeekBar extends View {
         mOnlyThumbDraggable = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_only_thumb_draggable, builder.onlyThumbDraggable);
         mSeekSmoothly = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_seek_smoothly, builder.seekSmoothly);
         mR2L = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_r2l, builder.r2l);
+        mLongClick = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_longclick, builder.longClick);
+        mLongClickTime = ta.getInteger(R.styleable.IndicatorSeekBar_isb_longclick_time, builder.longClickTime);
         //track
         mBackgroundTrackSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_track_background_size, builder.trackBackgroundSize);
         mProgressTrackSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_track_progress_size, builder.trackProgressSize);
@@ -254,13 +260,13 @@ public class IndicatorSeekBar extends View {
             mThumbRadius = mThumbSize / 2.0f;
             mThumbTouchRadius = mThumbRadius * 1.2f;
         } else {
-            mThumbRadius = Math.min(SizeUtils.dp2px(mContext, THUMB_MAX_WIDTH), mThumbSize) / 2.0f;
+            mThumbRadius = mThumbSize / 2.0f;
             mThumbTouchRadius = mThumbRadius;
         }
         if (mTickMarksDrawable == null) {
             mTickRadius = mTickMarksSize / 2.0f;
         } else {
-            mTickRadius = Math.min(SizeUtils.dp2px(mContext, THUMB_MAX_WIDTH), mTickMarksSize) / 2.0f;
+            mTickRadius = mTickMarksSize / 2.0f;
         }
         mCustomDrawableMaxHeight = Math.max(mThumbTouchRadius, mTickRadius) * 2.0f;
         initStrokePaint();
@@ -725,7 +731,7 @@ public class IndicatorSeekBar extends View {
         }
         int width;
         int height;
-        int maxRange = SizeUtils.dp2px(mContext, THUMB_MAX_WIDTH);
+        int maxRange = mThumbSize;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         if (intrinsicWidth > maxRange) {
             if (isThumb) {
@@ -1214,18 +1220,43 @@ public class IndicatorSeekBar extends View {
                     if (mSeekChangeListener != null) {
                         mSeekChangeListener.onStartTrackingTouch(this);
                     }
-                    refreshSeekBar(event);
+                    if(!mLongClick) {
+                        refreshSeekBar(event);
+                    }
+                    else{
+                        startTime = event.getEventTime();
+                    }
                     return true;
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                refreshSeekBar(event);
+                if(mLongClick) {
+                    endTime = event.getEventTime();
+                    if (endTime - startTime > mLongClickTime) {
+                        refreshSeekBar(event);
+                    }
+                }
+                else{
+                    refreshSeekBar(event);
+                }
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 mIsTouching = false;
-                if (mSeekChangeListener != null) {
-                    mSeekChangeListener.onStopTrackingTouch(this);
+
+                if(mLongClick) {
+                    endTime = event.getEventTime();
+                    if (endTime - startTime > mLongClickTime) {
+                        refreshSeekBar(event);
+                        if (mSeekChangeListener != null) {
+                            mSeekChangeListener.onStopTrackingTouch(this);
+                        }
+                    }
+                }
+                else{
+                    if (mSeekChangeListener != null) {
+                        mSeekChangeListener.onStopTrackingTouch(this);
+                    }
                 }
                 if (!autoAdjustThumb()) {
                     invalidate();
@@ -1703,7 +1734,7 @@ public class IndicatorSeekBar extends View {
             this.mPressedThumbBitmap = null;
         } else {
             this.mThumbDrawable = drawable;
-            this.mThumbRadius = Math.min(SizeUtils.dp2px(mContext, THUMB_MAX_WIDTH), mThumbSize) / 2.0f;
+            this.mThumbRadius = mThumbSize / 2.0f;
             this.mThumbTouchRadius = mThumbRadius;
             this.mCustomDrawableMaxHeight = Math.max(mThumbTouchRadius, mTickRadius) * 2.0f;
             initThumbBitmap();
@@ -1773,7 +1804,7 @@ public class IndicatorSeekBar extends View {
             this.mSelectTickMarksBitmap = null;
         } else {
             this.mTickMarksDrawable = drawable;
-            this.mTickRadius = Math.min(SizeUtils.dp2px(mContext, THUMB_MAX_WIDTH), mTickMarksSize) / 2.0f;
+            this.mTickRadius = mTickMarksSize / 2.0f;
             this.mCustomDrawableMaxHeight = Math.max(mThumbTouchRadius, mTickRadius) * 2.0f;
             initTickMarksBitmap();
         }

@@ -222,6 +222,23 @@
             app:isb_tick_texts_array="@array/last_next_length_6"
             app:isb_ticks_count="6" />
 
+        <TextView
+            style="@style/subtitle_text_style"
+            android:text="12. Modifying sensitivity of seekbar, specially useful when the seekbar is inside a RecyclerView (longClick, longClickTime (in ms))" />
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:id="@+id/long_click_drawable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            app:isb_progress="40"
+            app:isb_show_tick_marks_type="oval"
+            app:isb_show_tick_texts="true"
+            app:isb_tick_texts_array="@array/last_next_length_6"
+            app:isb_ticks_count="6"
+            app:isb_longclick="true"
+            app:isb_longclick_time="500"/>
+
         <include layout="@layout/source_code_link" />
     </LinearLayout>
 

@@ -12,6 +12,8 @@
         <attr name="isb_user_seekable" format="boolean" /><!--prevent user from seeking,only can be change thumb location by setProgress(), default false-->
         <attr name="isb_clear_default_padding" format="boolean" /><!-- set seekBar's leftPadding&rightPadding to zero, default false, default padding is 16dp-->
         <attr name="isb_only_thumb_draggable" format="boolean" /><!--user change the thumb's location by touching thumb/touching track,true for touching track to seek. false for touching thumb; default false-->
+        <attr name="isb_longclick" format="boolean" />
+        <attr name="isb_longclick_time" format="integer" />
         //indicator
         <attr name="isb_show_indicator"><!-- the type of indicator, default rectangle_rounded_corner/0.-->
             <enum name="none" value="0" />

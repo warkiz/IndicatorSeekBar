@@ -27,7 +27,7 @@
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="2. progress_value_float=true, show_thumb_text=true \n show_indicator=none" />
+            android:text="2. progress_value_float=true, show_thumb_text=true \n show_indicator=none, tick_mark_in_center=true" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
@@ -35,7 +35,9 @@
             app:isb_progress="76.9"
             app:isb_progress_value_float="true"
             app:isb_show_indicator="none"
-            app:isb_show_thumb_text="true" />
+            app:isb_show_thumb_text="true"
+            app:isb_tick_mark_in_center="true"
+            app:isb_tick_marks_color="@color/colorPrimary" />
 
         <TextView
             style="@style/subtitle_text_style"

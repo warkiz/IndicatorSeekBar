@@ -51,7 +51,7 @@ import java.math.BigDecimal;
  */
 
 public class IndicatorSeekBar extends View {
-    private static final int THUMB_MAX_WIDTH = 30;
+    private static final int THUMB_MAX_WIDTH = 50;
     private static final String FORMAT_PROGRESS = "${PROGRESS}";
     private static final String FORMAT_TICK_TEXT = "${TICK_TEXT}";
     private Context mContext;

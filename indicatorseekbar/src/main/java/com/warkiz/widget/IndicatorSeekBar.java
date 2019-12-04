@@ -2017,6 +2017,14 @@ public class IndicatorSeekBar extends View {
         mAdjustAuto = adjustAuto;
     }
 
+    /**
+     * draw tick on seekBar's center position, default false
+     *
+     * @param tickMarkInCenter true for show.
+     */
+    public void setTickMarkInCenter(boolean tickMarkInCenter) {
+        this.mTickMarkInCenter = tickMarkInCenter;
+    }
 
     /*------------------API END-------------------*/
 

@@ -12,9 +12,8 @@ This is a customizable SeekBar library on Android. Also, If you don't need indic
 ## Overview
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
 
-#### Feature:
-TickMark in SeekBar center:
-<img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/screenshots/tick_mark_in_center.jpg?raw=true" width = "264" height = "574"/>
+#### New Feature: TickMark in SeekBar center
+<img src="https://github.com/elfifo4/IndicatorSeekBar/blob/master/screenshots/tick_mark_in_center.jpg" width = "264" height = "574"/>
 
 ## Screenshot
 

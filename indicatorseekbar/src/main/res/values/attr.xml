@@ -46,6 +46,7 @@
         <attr name="isb_tick_marks_ends_hide" format="boolean" /><!--hide 2 ticks on the seekBar's both ends, default false-->
         <attr name="isb_tick_marks_swept_hide" format="boolean" /><!--hide the ticks on the seekBar's thumb left, default false-->
         <attr name="isb_tick_mark_in_center" format="boolean" /><!--draw tick on seekBar's center position, default false-->
+        <attr name="isb_start_point_in_center" format="boolean" /><!--seekBar starts in center position, default false-->
         <attr name="isb_show_tick_marks_type"><!--select the tick shape type, default not show： NONE/0-->
             <enum name="none" value="0" />
             <enum name="oval" value="1" />

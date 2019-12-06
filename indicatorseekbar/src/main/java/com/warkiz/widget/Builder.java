@@ -75,6 +75,7 @@ public class Builder {
     boolean tickMarksEndsHide = false;
     boolean tickMarksSweptHide = false;
     boolean tickMarkInCenter = false;
+    boolean startPointInCenter = false;
     ColorStateList tickMarksColorStateList = null;
 
     Builder(Context context) {
@@ -646,6 +647,18 @@ public class Builder {
      */
     public Builder setTickMarkInCenter(boolean tickMarkInCenter) {
         this.tickMarkInCenter = tickMarkInCenter;
+        return this;
+    }
+
+
+    /**
+     * call this method to make seekBar starts in center position;
+     *
+     * @param startPointInCenter true to make seekBar starts in center position
+     * @return Builder
+     */
+    public Builder setStartPointInCenter(boolean startPointInCenter) {
+        this.startPointInCenter = startPointInCenter;
         return this;
     }
 

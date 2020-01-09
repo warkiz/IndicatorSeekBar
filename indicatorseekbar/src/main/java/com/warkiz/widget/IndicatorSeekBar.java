@@ -393,7 +393,7 @@ public class IndicatorSeekBar extends View {
         initTextsArray();
         //adjust thumb auto,so find out the closest progress in the mProgressArr array and replace it.
         //it is not necessary to adjust thumb while count is less than 2.
-        if (mTicksCount > 2) {
+        if ((!mSeekSmoothly) && mTicksCount > 2) {
             mProgress = mProgressArr[getClosestIndex()];
             lastProgress = mProgress;
         }

@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -75,6 +74,8 @@ public class Builder {
     Drawable tickMarksDrawable = null;
     boolean tickMarksEndsHide = false;
     boolean tickMarksSweptHide = false;
+    boolean tickMarkInCenter = false;
+    boolean startPointInCenter = false;
     ColorStateList tickMarksColorStateList = null;
 
     Builder(Context context) {
@@ -108,7 +109,7 @@ public class Builder {
     }
 
     /**
-     * Set the  lower limit of this seek bar's range.
+     * Set the lower limit of this seek bar's range.
      *
      * @param min the min range
      * @return Builder
@@ -635,6 +636,29 @@ public class Builder {
      */
     public Builder tickMarksSweptHide(boolean tickMarksSweptHide) {
         this.tickMarksSweptHide = tickMarksSweptHide;
+        return this;
+    }
+
+    /**
+     * call this method to draw tick on seekBar's center position;
+     *
+     * @param tickMarkInCenter true for show.
+     * @return Builder
+     */
+    public Builder setTickMarkInCenter(boolean tickMarkInCenter) {
+        this.tickMarkInCenter = tickMarkInCenter;
+        return this;
+    }
+
+
+    /**
+     * call this method to make seekBar starts in center position;
+     *
+     * @param startPointInCenter true to make seekBar starts in center position
+     * @return Builder
+     */
+    public Builder setStartPointInCenter(boolean startPointInCenter) {
+        this.startPointInCenter = startPointInCenter;
         return this;
     }
 

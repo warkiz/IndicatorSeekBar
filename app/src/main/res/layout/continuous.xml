@@ -17,17 +17,24 @@
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="1.default, progress = 50" />
+            android:text="1. default, progress = -30, tick_mark_in_center=true \n tick_marks_color=@color/colorPrimary \n start_point_in_center=true" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:isb_indicator_text_size="28sp"
-            app:isb_progress="50" />
+            app:isb_max="50"
+            app:isb_min="-50"
+            app:isb_progress="-30"
+            app:isb_start_point_in_center="true"
+            app:isb_thumb_drawable="@drawable/seekbar_thumb_finger"
+            app:isb_thumb_size="50dp"
+            app:isb_tick_mark_in_center="true"
+            app:isb_tick_marks_color="@color/colorPrimary" />
 
         <TextView
             style="@style/subtitle_text_style"
-            android:text="2. progress_value_float=true, show_thumb_text=true \n show_indicator=none" />
+            android:text="2. progress_value_float=true, show_thumb_text=true \n show_indicator=none, tick_mark_in_center=true" />
 
         <com.warkiz.widget.IndicatorSeekBar
             android:layout_width="match_parent"
@@ -35,7 +42,8 @@
             app:isb_progress="76.9"
             app:isb_progress_value_float="true"
             app:isb_show_indicator="none"
-            app:isb_show_thumb_text="true" />
+            app:isb_show_thumb_text="true"
+            app:isb_tick_mark_in_center="true" />
 
         <TextView
             style="@style/subtitle_text_style"

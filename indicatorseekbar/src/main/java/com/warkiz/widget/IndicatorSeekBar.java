@@ -51,7 +51,7 @@ import java.math.BigDecimal;
  */
 
 public class IndicatorSeekBar extends View {
-    private static final int THUMB_MAX_WIDTH = 30;
+    private static final int THUMB_MAX_WIDTH = 120; //was 30
     private static final String FORMAT_PROGRESS = "${PROGRESS}";
     private static final String FORMAT_TICK_TEXT = "${TICK_TEXT}";
     private Context mContext;
@@ -117,8 +117,10 @@ public class IndicatorSeekBar extends View {
     private Bitmap mSelectTickMarksBitmap;//the drawable bitmap for tick
     private Drawable mTickMarksDrawable;
     private int mShowTickMarksType;
-    private boolean mTickMarksEndsHide;//true if want to hide the tickMarks which in both side ends of seek bar
+    private boolean mTickMarksEndsHide;//true if want to hide the tickMarks which in both side ends of seek bar.
     private boolean mTickMarksSweptHide;//true if want to hide the tickMarks which on thumb left.
+    private boolean mTickMarkInCenter;//true if want to draw tick on seekBar's center position.
+    private boolean mStartPointInCenter;//true if want the seekBar to start in center position.
     private int mTickMarksSize;//the width of tickMark
     //track
     private boolean mTrackRoundedCorners;
@@ -223,6 +225,8 @@ public class IndicatorSeekBar extends View {
         mTickMarksDrawable = ta.getDrawable(R.styleable.IndicatorSeekBar_isb_tick_marks_drawable);
         mTickMarksSweptHide = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_tick_marks_swept_hide, builder.tickMarksSweptHide);
         mTickMarksEndsHide = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_tick_marks_ends_hide, builder.tickMarksEndsHide);
+        mTickMarkInCenter = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_tick_mark_in_center, builder.tickMarkInCenter);
+        mStartPointInCenter = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_start_point_in_center, builder.startPointInCenter);
         //tickTexts
         mShowTickText = ta.getBoolean(R.styleable.IndicatorSeekBar_isb_show_tick_texts, builder.showTickText);
         mTickTextsSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_tick_texts_size, builder.tickTextsSize);
@@ -442,6 +446,17 @@ public class IndicatorSeekBar extends View {
             mBackgroundTrack.right = mMeasuredWidth - mPaddingRight;
             mBackgroundTrack.bottom = mProgressTrack.bottom;
         }
+
+        if (mStartPointInCenter) {
+            mBackgroundTrack.left = mPaddingLeft;
+            mBackgroundTrack.right = mMeasuredWidth - mPaddingRight;
+
+            if (mR2L) {
+                mProgressTrack.right = mSeekLength / 2 + mPaddingLeft;
+            } else {
+                mProgressTrack.left = mSeekLength / 2 + mPaddingLeft;
+            }
+        }
     }
 
     private String getTickTextByPosition(int index) {
@@ -460,11 +475,18 @@ public class IndicatorSeekBar extends View {
     private void refreshThumbCenterXByProgress(float progress) {
         //ThumbCenterX
         if (mR2L) {
-            mBackgroundTrack.right = mPaddingLeft + mSeekLength * (1.0f - (progress - mMin) / (getAmplitude()));//ThumbCenterX
-            mProgressTrack.left = mBackgroundTrack.right;
+            float size = mPaddingLeft + mSeekLength * (1.0f - (progress - mMin) / (getAmplitude()));//ThumbCenterX
+            if (!mStartPointInCenter) {
+                mBackgroundTrack.right = size;
+                mProgressTrack.left = mBackgroundTrack.right;
+            } else {
+                mProgressTrack.left = size;
+            }
         } else {
             mProgressTrack.right = (progress - mMin) * mSeekLength / (getAmplitude()) + mPaddingLeft;
-            mBackgroundTrack.left = mProgressTrack.right;
+            if (!mStartPointInCenter) {
+                mBackgroundTrack.left = mProgressTrack.right;
+            }
         }
     }
 
@@ -472,6 +494,7 @@ public class IndicatorSeekBar extends View {
     protected synchronized void onDraw(Canvas canvas) {
         drawTrack(canvas);
         drawTickMarks(canvas);
+        drawTickInCenter(canvas);
         drawTickTexts(canvas);
         drawThumb(canvas);
         drawThumbText(canvas);
@@ -506,15 +529,26 @@ public class IndicatorSeekBar extends View {
                 }
             }
         } else {
-            //draw progress track
-            mStockPaint.setColor(mProgressTrackColor);
-            mStockPaint.setStrokeWidth(mProgressTrackSize);
-            canvas.drawLine(mProgressTrack.left, mProgressTrack.top, mProgressTrack.right, mProgressTrack.bottom, mStockPaint);
-            //draw BG track
-            mStockPaint.setColor(mBackgroundTrackColor);
-            mStockPaint.setStrokeWidth(mBackgroundTrackSize);
-            canvas.drawLine(mBackgroundTrack.left, mBackgroundTrack.top, mBackgroundTrack.right, mBackgroundTrack.bottom, mStockPaint);
+            if (mStartPointInCenter) {
+                drawBackgroundTrack(canvas);
+                drawProgressTrack(canvas);
+            } else {
+                drawProgressTrack(canvas);
+                drawBackgroundTrack(canvas);
+            }
         }
+    }
+
+    private void drawBackgroundTrack(Canvas canvas) {
+        mStockPaint.setColor(mBackgroundTrackColor);
+        mStockPaint.setStrokeWidth(mBackgroundTrackSize);
+        canvas.drawLine(mBackgroundTrack.left, mBackgroundTrack.top, mBackgroundTrack.right, mBackgroundTrack.bottom, mStockPaint);
+    }
+
+    private void drawProgressTrack(Canvas canvas) {
+        mStockPaint.setColor(mProgressTrackColor);
+        mStockPaint.setStrokeWidth(mProgressTrackSize);
+        canvas.drawLine(mProgressTrack.left, mProgressTrack.top, mProgressTrack.right, mProgressTrack.bottom, mStockPaint);
     }
 
     private void drawTickMarks(Canvas canvas) {
@@ -572,6 +606,21 @@ public class IndicatorSeekBar extends View {
                 canvas.drawRect(mTickMarksX[i] - mTickMarksSize / 2.0f, mProgressTrack.top - mTickMarksSize / 2.0f, mTickMarksX[i] + mTickMarksSize / 2.0f, mProgressTrack.top + mTickMarksSize / 2.0f, mStockPaint);
             }
         }
+    }
+
+    private void drawTickInCenter(Canvas canvas) {
+        if (!mTickMarkInCenter) {
+            return;
+        }
+        float dividerTickHeight = mProgressTrackSize * 3f;
+        int rectWidth = SizeUtils.dp2px(mContext, 1);
+        mStockPaint.setColor(mSelectedTickMarksColor);
+        canvas.drawRect(
+                mSeekLength / 2 + mPaddingLeft - rectWidth,
+                mProgressTrack.top - dividerTickHeight,
+                mSeekLength / 2 + mPaddingRight + rectWidth,
+                mProgressTrack.top + dividerTickHeight,
+                mStockPaint);
     }
 
     private void drawTickTexts(Canvas canvas) {
@@ -645,7 +694,11 @@ public class IndicatorSeekBar extends View {
 
     private float getThumbCenterX() {
         if (mR2L) {
-            return mBackgroundTrack.right;
+            if (mStartPointInCenter) {
+                return mProgressTrack.left;
+            } else {
+                return mBackgroundTrack.right;
+            }
         }
         return mProgressTrack.right;
     }
@@ -1287,7 +1340,7 @@ public class IndicatorSeekBar extends View {
 
     private boolean isTouchSeekBar(float mX, float mY) {
         if (mFaultTolerance == -1) {
-            mFaultTolerance = SizeUtils.dp2px(mContext, 5);
+            mFaultTolerance = SizeUtils.dp2px(mContext, 15);
         }
         boolean inWidthRange = mX >= (mPaddingLeft - 2 * mFaultTolerance) && mX <= (mMeasuredWidth - mPaddingRight + 2 * mFaultTolerance);
         boolean inHeightRange = mY >= mProgressTrack.top - mThumbTouchRadius - mFaultTolerance && mY <= mProgressTrack.top + mThumbTouchRadius + mFaultTolerance;
@@ -1299,6 +1352,9 @@ public class IndicatorSeekBar extends View {
         refreshThumbCenterXByProgress(mProgress);
         if (mR2L) {
             rawTouchX = mBackgroundTrack.right;
+            if (mStartPointInCenter) {
+                rawTouchX = mProgressTrack.right;
+            }
         } else {
             rawTouchX = mProgressTrack.right;
         }
@@ -1502,6 +1558,8 @@ public class IndicatorSeekBar extends View {
         this.mTickMarksDrawable = builder.tickMarksDrawable;
         this.mTickMarksEndsHide = builder.tickMarksEndsHide;
         this.mTickMarksSweptHide = builder.tickMarksSweptHide;
+        this.mTickMarkInCenter = builder.tickMarkInCenter;
+        this.mStartPointInCenter = builder.startPointInCenter;
         initTickMarksColor(builder.tickMarksColorStateList, builder.tickMarksColor);
         //tickTexts
         this.mShowTickText = builder.showTickText;
@@ -1998,6 +2056,24 @@ public class IndicatorSeekBar extends View {
         mAdjustAuto = adjustAuto;
     }
 
+    /**
+     * draw tick on seekBar's center position, default false
+     *
+     * @param tickMarkInCenter true for show.
+     */
+    public void setTickMarkInCenter(boolean tickMarkInCenter) {
+        this.mTickMarkInCenter = tickMarkInCenter;
+    }
+
+    /**
+     * call this method to make seekBar starts in center position;
+     *
+     * @param mStartPointInCenter true to make seekBar starts in center position
+     */
+
+    public void setStartPointInCenter(boolean mStartPointInCenter) {
+        this.mStartPointInCenter = mStartPointInCenter;
+    }
 
     /*------------------API END-------------------*/
 

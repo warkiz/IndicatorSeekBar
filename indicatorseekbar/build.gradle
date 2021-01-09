@@ -1,14 +1,14 @@
 apply plugin: 'com.android.library'
 
-def VERSION_NAME = "2.1.2"
+def VERSION_NAME = "3.0.0"
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'indicatorseekbar'
+    bintrayName = 'androidx-indicatorseekbar'
 
     publishedGroupId = 'com.github.warkiz.widget'
-    libraryName = 'IndicatorSeekbar'
-    artifact = 'indicatorseekbar'
+    libraryName = 'IndicatorSeekbarAndroidx'
+    artifact = 'androidx-indicatorseekbar'
 
     libraryDescription = 'A custom SeekBar on Android, which can be changed the size ,color , thumb drawable , tick drawable , tick text and isb_indicator , also , will show an isb_indicator view with progress above SeekBar when seeking. '
 
@@ -17,9 +17,9 @@ ext {
 
     libraryVersion = VERSION_NAME
 
-    developerId = 'warkiz'
-    developerName = 'Guangquan Chuang'
-    developerEmail = 'warkiz4j@gmail.com'
+    developerId = 'kuldipsatputeck'
+    developerName = 'Kuldip Satpute'
+    developerEmail = 'satputekuldip@gmail.com'
 
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
@@ -27,13 +27,13 @@ ext {
 }
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 30
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 27
-        versionCode 3
+        targetSdkVersion 30
+        versionCode 4
         versionName VERSION_NAME
     }
     buildTypes {
@@ -45,7 +45,7 @@ android {
 }
 
 dependencies {
-    compileOnly 'com.android.support:appcompat-v7:27.1.1'
+    compileOnly 'androidx.appcompat:appcompat:1.0.0'
 }
 
 

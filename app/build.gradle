@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 30
+    buildToolsVersion '30.0.3'
     defaultConfig {
         applicationId "com.warkiz.indicatorseekbar"
         minSdkVersion 24
-        targetSdkVersion 27
-        versionCode 3
-        versionName "2.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        targetSdkVersion 30
+        versionCode 4
+        versionName "3.0"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
         release {
@@ -21,6 +21,6 @@ android {
 
 dependencies {
     implementation project(':indicatorseekbar')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
 }

@@ -1,5 +1,6 @@
 # IndicatorSeekBar
 
+[![Jitpack](https://jitpack.io/v/cupidknot/IndicatorSeekBar.svg)](https://jitpack.io/#cupidknot/IndicatorSeekBar)
 [![DOWNLOAD](https://api.bintray.com/packages/warkiz/maven/indicatorseekbar/images/download.svg)](https://bintray.com/warkiz/maven/indicatorseekbar/_latestVersion)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-IndicatorSeekBar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6434 )
@@ -7,7 +8,6 @@
 This is a customizable SeekBar library on Android. Also, If you don't need indicator and want to show tick texts to top of seek bar, please see [the other library](https://github.com/warkiz/TickSeekBar).
 
 [ 中文.md ](https://github.com/warkiz/IndicatorSeekBar/blob/master/README_zh.md)
-
 
 ## Overview
 <img src="https://github.com/warkiz/IndicatorSeekBar/blob/master/gif/overview.png?raw=true" width = "392" height = "115"/>
